@@ -15,6 +15,7 @@ enable_testing()
 add_executable(
     libtest 
     src/parse_text_file.cpp
+    src/parse_gzip_file.cpp
 )
 
 target_link_libraries(
@@ -22,6 +23,9 @@ target_link_libraries(
     gtest_main
     buffin 
 )
+
+find_package(ZLIB)
+target_link_libraries(libtest ZLIB::ZLIB)
 
 include(CheckIncludeFiles)
 check_include_files(filesystem HAVE_CXX_FS)

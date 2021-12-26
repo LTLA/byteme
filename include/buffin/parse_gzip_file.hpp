@@ -51,8 +51,9 @@ struct GZFile {
  *
  * @return The file's contents are iteratively decompressed into a buffer that is passed to `Parser::add()` until completion.
  */
-void parse_gzip_file(const char* path, Parser& parser, size_t bufsize = 65536) { 
-    GZFile gz(filepath);
+template<class Parser>
+void parse_gzip_file(const char* path, Parser& parser, size_t buffer_size = 65536) { 
+    GZFile gz(path);
     std::vector<unsigned char> buffer(buffer_size); 
 
     size_t leftovers = 0;
