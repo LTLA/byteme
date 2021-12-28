@@ -18,7 +18,7 @@ namespace buffin {
  * @param buffer Pointer to an array containing the text data.
  * @param len Length of the `buffer` array.
  * @param parser Instance of the parser class.
- * @param bufsize Size of the buffer to use for reading.
+ * @param buffer_size Size of the buffer to use for reading.
  *
  * @return The buffer's contents are iteratively parsed by `Parser::add()` until completion.
  *

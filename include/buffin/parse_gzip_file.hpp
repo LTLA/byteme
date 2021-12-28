@@ -47,7 +47,7 @@ struct GZFile {
  *
  * @param path Path to the file.
  * @param parser Instance of the parser class.
- * @param bufsize Size of the buffer to use for reading.
+ * @param buffer_size Size of the buffer to use for reading.
  *
  * @return The file's contents are iteratively decompressed into a buffer that is passed to `Parser::add()` until completion.
  */

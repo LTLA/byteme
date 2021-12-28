@@ -5,6 +5,12 @@
 #include <stdexcept>
 #include <vector>
 
+/**
+ * @file parse_zlib_buffer.hpp
+ *
+ * @brief Parse a Zlib-compressed buffer.
+ */
+
 namespace buffin {
 
 /**
@@ -65,7 +71,7 @@ struct ZStream {
  * @param parser Instance of the parser class.
  * @param mode Compression of the stream - DEFLATE (0), Zlib (1) or Gzip (2).
  * Default of 3 will auto-detect between Zlib and Gzip based on the headers.
- * @param bufsize Size of the buffer to use for reading.
+ * @param buffer_size Size of the buffer to use for reading.
  *
  * @return The buffer's contents are iteratively decompressed into a buffer that is passed to `Parser::add()` until completion.
  */
