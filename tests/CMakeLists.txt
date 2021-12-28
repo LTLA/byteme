@@ -15,6 +15,7 @@ enable_testing()
 add_executable(
     libtest 
     src/parse_text_file.cpp
+    src/parse_text_buffer.cpp
     src/parse_gzip_file.cpp
     src/parse_zlib_buffer.cpp
 )
