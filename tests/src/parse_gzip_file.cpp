@@ -1,9 +1,10 @@
 #include <gtest/gtest.h>
 
 #include "LineReader.h"
-#include "temp_file_path.h"
 
+#include "buffin/temp_file_path.hpp"
 #include "buffin/parse_gzip_file.hpp"
+
 #include "zlib.h"
 #include <fstream>
 
@@ -16,7 +17,7 @@ protected:
             stuff += '\n';
         }
 
-        auto gzname = temp_file_path("gzip");
+        auto gzname = buffin::temp_file_path("gzip");
         gzFile ohandle = gzopen(gzname.c_str(), "w");
         gzwrite(ohandle, stuff.c_str(), stuff.size());
         gzclose(ohandle);

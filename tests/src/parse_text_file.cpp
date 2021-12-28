@@ -1,15 +1,15 @@
 #include <gtest/gtest.h>
 
 #include "LineReader.h"
-#include "temp_file_path.h"
 
+#include "buffin/temp_file_path.hpp"
 #include "buffin/parse_text_file.hpp"
 #include <fstream>
 
 class ParseTextFileTest : public ::testing::TestWithParam<int> {
 protected:    
     auto dump_file(const std::vector<std::string>& contents) {
-        auto path = temp_file_path("text");
+        auto path = buffin::temp_file_path("text");
         std::ofstream output(path.c_str());
         for (auto c : contents) {
             output << c << "\n";
