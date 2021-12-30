@@ -67,7 +67,36 @@ $(function() {
   <div class="headertitle"><div class="title">Buffered inputs </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md__github_workspace_README"></a> This library contains a few utilities to handle buffered inputs from uncompressed or Gzip-compressed files. By supplying an object with an <code>.add()</code> method to process a buffer of <code>char</code>s, we can easily read from (compressed) buffers or files. </p>
+<div class="textblock"><p ><a class="anchor" id="md__github_workspace_README"></a> <img src="https://github.com/clusterfork/buffin/actions/workflows/run-tests.yaml/badge.svg" alt="Unit tests" style="pointer-events: none;" class="inline"/> <img src="https://github.com/clusterfork/buffin/actions/workflows/doxygenate.yaml/badge.svg" alt="Documentation" style="pointer-events: none;" class="inline"/></p>
+<h1>Overview</h1>
+<p >This library contains a few utilities to parse buffered inputs from uncompressed or Gzip-compressed files. By supplying an object with an <code>.add()</code> method to parser a buffer of (unsigned) <code>char</code>s, we can easily read from buffers or files, with or without Gzip compression. This allows me to consolidate some common boilerplate across several projects, e.g., <a href="https://github.com/LTLA/tatami"><b>tatami</b></a>, <a href="https://github.com/clusterfork/singlepp"><b>singlepp</b></a>. Interfacing with Zlib is particularly fiddly and I don't want to have to remember how to do it in each project.</p>
+<h1>Usage</h1>
+<p >First we need to define a class that has an <code>add(const char*, size_t)</code> method. The first argument is a pointer to a buffer while the second argument is the length of the buffer; the method should then parse the contents of the buffer to load something from the file. This method should be templated to accept both <code>char</code> or <code>unsigned char</code> inputs. See the <a href="tests/src/LineReader.h"><code>LineReader</code></a> class for an example of such a class.</p>
+<p >Once we have an instance of this class, we can pass it to the <b>buffin</b> helper functions. For example, we can parse a text file by passing in the <code>parser</code> instance:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="parse__text__file_8hpp.html">buffin/parse_text_file.hpp</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_function" href="parse__text__file_8hpp.html#a112ed2e3fdbc23d57e717a35558edf1b">buffin::parse_text_file</a>(filepath, parser); </div>
+<div class="ttc" id="aparse__text__file_8hpp_html"><div class="ttname"><a href="parse__text__file_8hpp.html">parse_text_file.hpp</a></div><div class="ttdoc">Parse a text file without any compression.</div></div>
+<div class="ttc" id="aparse__text__file_8hpp_html_a112ed2e3fdbc23d57e717a35558edf1b"><div class="ttname"><a href="parse__text__file_8hpp.html#a112ed2e3fdbc23d57e717a35558edf1b">buffin::parse_text_file</a></div><div class="ttdeci">void parse_text_file(const char *path, Parser &amp;parser, size_t buffer_size=65536)</div><div class="ttdef"><b>Definition:</b> parse_text_file.hpp:54</div></div>
+</div><!-- fragment --><p >This will repeatedly call <code>parser.add()</code> on chunks of the desired file until completion. It is assumed that <code>parser</code> is modified by reference such that the parsed contents of the file can be extracted from <code>parser</code>'s members. The same approach can be used to parser Gzip files or buffers, provided Zlib is available - more details can be found in the <a href="https://clusterfork.github.io/buffin">reference documentation</a>.</p>
+<h1>Building projects</h1>
+<p >If you're using CMake, you just need to add something like this to your <code>CMakeLists.txt</code>:</p>
+<div class="fragment"><div class="line">include(FetchContent)</div>
+<div class="line"> </div>
+<div class="line">FetchContent_Declare(</div>
+<div class="line">  buffin </div>
+<div class="line">  GIT_REPOSITORY https://github.com/clusterfork/buffin</div>
+<div class="line">  GIT_TAG master # or any version of interest</div>
+<div class="line">)</div>
+<div class="line"> </div>
+<div class="line">FetchContent_MakeAvailable(buffin)</div>
+</div><!-- fragment --><p >Then you can link to <b>buffin</b> to make the headers available during compilation:</p>
+<div class="fragment"><div class="line"># For executables:</div>
+<div class="line">target_link_libraries(myexe buffin)</div>
+<div class="line"> </div>
+<div class="line"># For libaries</div>
+<div class="line">target_link_libraries(mylib INTERFACE buffin)</div>
+</div><!-- fragment --><p >If you're not using CMake, the simple approach is to just copy the files and include their path during compilation. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
