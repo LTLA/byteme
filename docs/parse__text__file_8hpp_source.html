@@ -82,7 +82,7 @@ $(function() {
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span>buffin {</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">struct </span>SelfClosingFILE {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    SelfClosingFILE(<span class="keyword">const</span> <span class="keywordtype">char</span> * path) : handle(std::fopen(path, <span class="stringliteral">&quot;r&quot;</span>)) {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    SelfClosingFILE(<span class="keyword">const</span> <span class="keywordtype">char</span> * path) : handle(std::fopen(path, <span class="stringliteral">&quot;rb&quot;</span>)) {</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordflow">if</span> (!handle) {</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to open file at &#39;&quot;</span> + std::string(path) + <span class="stringliteral">&quot;&#39;&quot;</span>);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        }</div>
