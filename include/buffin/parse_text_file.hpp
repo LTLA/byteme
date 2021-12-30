@@ -18,7 +18,7 @@ namespace buffin {
  * @cond
  */
 struct SelfClosingFILE {
-    SelfClosingFILE(const char * path) : handle(std::fopen(path, "r")) {
+    SelfClosingFILE(const char * path) : handle(std::fopen(path, "rb")) {
         if (!handle) {
             throw std::runtime_error("failed to open file at '" + std::string(path) + "'");
         }
