@@ -18,6 +18,7 @@ add_executable(
     src/parse_text_buffer.cpp
     src/parse_gzip_file.cpp
     src/parse_zlib_buffer.cpp
+    src/parse_input_stream.cpp
 )
 
 target_link_libraries(
