@@ -4,6 +4,7 @@
 
 #include "buffin/temp_file_path.hpp"
 #include "buffin/parse_text_file.hpp"
+#include "buffin/parse_some_file.hpp"
 #include <fstream>
 
 class ParseTextFileTest : public ::testing::TestWithParam<int> {
@@ -40,6 +41,14 @@ TEST_P(ParseTextFileTest, TooLong) {
     auto path = dump_file(contents);
     LineReader reader;
     buffin::parse_text_file(path.c_str(), reader, GetParam());
+    EXPECT_EQ(reader.lines, contents);
+}
+
+TEST_P(ParseTextFileTest, SomeFileWorks) {
+    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
+    auto path = dump_file(contents);
+    LineReader reader;
+    buffin::parse_some_file(path.c_str(), reader, GetParam());
     EXPECT_EQ(reader.lines, contents);
 }
 

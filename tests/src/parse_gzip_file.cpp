@@ -4,6 +4,7 @@
 
 #include "buffin/temp_file_path.hpp"
 #include "buffin/parse_gzip_file.hpp"
+#include "buffin/parse_some_file.hpp"
 
 #include "zlib.h"
 #include <fstream>
@@ -46,6 +47,14 @@ TEST_P(ParseGzipFileTest, TooLong) {
     auto path = dump_file(contents);
     LineReader reader;
     buffin::parse_gzip_file(path.c_str(), reader, GetParam());
+    EXPECT_EQ(reader.lines, contents);
+}
+
+TEST_P(ParseGzipFileTest, SomeFileWorks) {
+    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
+    auto path = dump_file(contents);
+    LineReader reader;
+    buffin::parse_some_file(path.c_str(), reader, GetParam());
     EXPECT_EQ(reader.lines, contents);
 }
 
