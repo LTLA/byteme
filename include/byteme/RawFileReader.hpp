@@ -1,26 +1,30 @@
-#ifndef BYTEME_TEXTFILEREADER_HPP
-#define BYTEME_TEXTFILEREADER_HPP
+#ifndef BYTEME_RAW_FILE_READER_HPP
+#define BYTEME_RAW_FILE_READER_HPP
 
 #include <vector>
 #include <stdexcept>
 #include <string>
 #include <cstdio>
+#include <type_traits>
 
 /**
- * @file TextFileReader.hpp
+ * @file RawFileReader.hpp
  *
- * @brief Read a text file.
+ * @brief Read a file without any extra transformations.
  */
 
-namespace buffin {
+namespace byteme {
 
 /**
- * @brief Read bytes from a text file.
+ * @brief Read bytes from a file, usually text.
  *
  * This is basically a simple wrapper around `FILE` structures, with correct closing and error checking.
  * Mostly provided because I always forget how to interact with `ifstream` objects when I want a sequence of bytes.
+ *
+ * @tparam B Buffer type, either `char` or `unsigned char`.
  */
-class TextFileReader {
+template<typename B = char>
+class RawFileReader {
 private:
     /**
      * @cond
@@ -51,7 +55,11 @@ private:
      */
 
 public:
-    TextFileReader(const char* path, size_t buffer_size = 65536) : file(path), buffer_(buffer_size), read(0) {}
+    /**
+     * @param path Path to the file.
+     * @param buffer_size Size of the buffer to use for reading.
+     */
+    RawFileReader(const char* path, size_t buffer_size = 65536) : file(path), buffer_(buffer_size), read(0) {}
 
     /**
      * Read the next chunk of bytes from the input file.
@@ -62,14 +70,14 @@ public:
      *
      * @return Boolean indicating whether there are still bytes remaining in the file.
      */
-    bool operator() {
+    bool operator()() {
         auto& handle = file.handle;
-        read = std::fread(buffer_.data(), sizeof(char), buffer_size, handle);
-        if (read != buffer_size) {
+        read = std::fread(buffer_.data(), sizeof(B), buffer_.size(), handle);
+        if (read != buffer_.size()) {
             if (std::feof(handle)) {
                 return false;
             } else {
-                throw std::runtime_error("failed to read '" + std::string(path) + "' (error code " + std::to_string(std::ferror(handle)) + ")");
+                throw std::runtime_error("failed to read raw binary file (fread error " + std::to_string(std::ferror(handle)) + ")");
             }
         }
         return true;
@@ -79,7 +87,7 @@ public:
      * @return Pointer to the start of an array containing the decompressed bytes.
      * The number of available bytes is provided in `available()`.
      */
-    const unsigned char* buffer() const  {
+    const B* buffer() const {
         return buffer_.data();
     }
 
@@ -92,7 +100,7 @@ public:
 
 private:
     SelfClosingFILE file;
-    std::vector<char> buffer;
+    std::vector<B> buffer_;
     size_t read;
 };
 
