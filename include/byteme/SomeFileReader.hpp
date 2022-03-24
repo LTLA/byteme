@@ -8,7 +8,7 @@
 #include <cstdio>
 
 /**
- * @file parse_some_file.hpp
+ * @file SomeFileReader.hpp
  *
  * @brief Read a possibly-Gzipped file.
  */

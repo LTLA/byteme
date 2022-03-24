@@ -1,36 +1,53 @@
-# Buffered inputs
+# Read bytes from somewhere
 
 ![Unit tests](https://github.com/clusterfork/buffin/actions/workflows/run-tests.yaml/badge.svg)
 ![Documentation](https://github.com/clusterfork/buffin/actions/workflows/doxygenate.yaml/badge.svg)
 
 ## Overview
 
-This library contains a few utilities to parse buffered inputs from uncompressed or Gzip-compressed files.
-By supplying an object with an `.add()` method to parser a buffer of (unsigned) `char`s, we can easily read from buffers or files, with or without Gzip compression.
-This allows me to consolidate some common boilerplate across several projects, e.g., [**tatami**](https://github.com/LTLA/tatami), [**singlepp**](https://github.com/clusterfork/singlepp).
-Interfacing with Zlib is particularly fiddly and I don't want to have to remember how to do it in each project.
+This library implements a few functors to read buffered inputs from uncompressed or Gzip-compressed files or buffers.
+Classes can be exchanged at compile- or run-time to easily re-use the same code across different input sources.
+The aim is to consolidate some common boilerplate across several projects, e.g., [**tatami**](https://github.com/LTLA/tatami), [**singlepp**](https://github.com/clusterfork/singlepp).
+Interfacing with Zlib is particularly fiddly and I don't want to be forced to remember how to do it in each project.
 
 ## Usage
 
-First we need to define a class that has an `add(const char*, size_t)` method.
-The first argument is a pointer to a buffer while the second argument is the length of the buffer;
-the method should then parse the contents of the buffer to load something from the file. 
-This method should be templated to accept both `char` or `unsigned char` inputs.
-See the [`LineReader`](tests/src/LineReader.h) class for an example of such a class.
-
-Once we have an instance of this class, we can pass it to the **buffin** helper functions.
-For example, we can parse a text file by passing in the `parser` instance:
+Usage is simple - create an instance of the desired `Reader` class and loop until no bytes remain in the source.
 
 ```cpp
-#include "buffin/parse_text_file.hpp"
+#include "byteme/GzipFileReader.hpp"
 
-buffin::parse_text_file(filepath, parser); 
+byteme::GzipFileReader reader(filepath); 
+bool remaining = true;
+
+do {
+    remaining = reader();
+    const unsigned * buffer = reader.buffer();
+    size_t available = reader.available();
+
+    /* Do something with the available bytes in the buffer */
+
+} while (remaining);
 ```
 
-This will repeatedly call `parser.add()` on chunks of the desired file until completion.
-It is assumed that `parser` is modified by reference such that the parsed contents of the file can be extracted from `parser`'s members.
-The same approach can be used to parser Gzip files or buffers, provided Zlib is available -
-more details can be found in the [reference documentation](https://clusterfork.github.io/buffin).
+The different `Reader` subclasses can be switched at compile-time via templating, or at run-time by exploiting the class hierarchy:
+
+```cpp
+#include "byteme/GzipBufferReader.hpp"
+#include "byteme/RawBufferReader.hpp"
+#include <memory>
+
+std::unique_ptr<byteme::Reader> ptr;
+if (some_condition) {
+    ptr.reset(new GzipBufferReader(buffer, length));
+} else {
+    ptr.reset(new RawBufferReader(buffer, length));
+}
+
+/* Loop with ptr->operator()(), ptr->buffer(), etc. */
+```
+
+More details can be found in the [reference documentation](https://clusterfork.github.io/buffin).
 
 ## Building projects
 
@@ -40,22 +57,28 @@ If you're using CMake, you just need to add something like this to your `CMakeLi
 include(FetchContent)
 
 FetchContent_Declare(
-  buffin 
+  byteme 
   GIT_REPOSITORY https://github.com/clusterfork/buffin
   GIT_TAG master # or any version of interest
 )
 
-FetchContent_MakeAvailable(buffin)
+FetchContent_MakeAvailable(byteme)
 ```
 
-Then you can link to **buffin** to make the headers available during compilation:
+Then you can link to **byteme** to make the headers available during compilation:
 
 ```
 # For executables:
-target_link_libraries(myexe buffin)
+target_link_libraries(myexe byteme)
 
 # For libaries
-target_link_libraries(mylib INTERFACE buffin)
+target_link_libraries(mylib INTERFACE byteme)
 ```
 
 If you're not using CMake, the simple approach is to just copy the files and include their path during compilation.
+
+## Further comments
+
+I thought about using C++ streams, much like how the [**zstr**](https://github.com/mateidavid/zstr) library handles Gzip (de)compression.
+However, I'm not very knowledgeable about the `std::istream` interface, so I decided to go with something simpler.
+Just in case, I did add a `byteme::IstreamReader` class so that **byteme** clients can easily leverage custom streams. 
