@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['temp_5ffile_5fpath_0',['temp_file_path',['../temp__file__path_8hpp.html#ab00b2e7dda2b1f838e87cdaa6ea093e4',1,'buffin']]]
+  ['buffer_0',['buffer',['../classbyteme_1_1GzipFileReader.html#a5ebdbb98c1f78cb78883fccb11701bfd',1,'byteme::GzipFileReader::buffer()'],['../classbyteme_1_1IstreamReader.html#a9414f2f58ed8d011ca511144436748a5',1,'byteme::IstreamReader::buffer()'],['../classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3',1,'byteme::RawBufferReader::buffer()'],['../classbyteme_1_1RawFileReader.html#ae4d96df0332cc6b55f7c2702d87c6797',1,'byteme::RawFileReader::buffer()'],['../classbyteme_1_1Reader.html#a5b1d291e37d73e5e1dcb6219915c28f0',1,'byteme::Reader::buffer()'],['../classbyteme_1_1SomeFileReader.html#a88e3abc2c4f024f0003e8589e425033b',1,'byteme::SomeFileReader::buffer()'],['../classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b',1,'byteme::ZlibBufferReader::buffer()']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['temp_5ffile_5fpath_0',['temp_file_path',['../temp__file__path_8hpp.html#ab00b2e7dda2b1f838e87cdaa6ea093e4',1,'buffin']]],
-  ['temp_5ffile_5fpath_2ehpp_1',['temp_file_path.hpp',['../temp__file__path_8hpp.html',1,'']]]
+  ['gzipfilereader_0',['GzipFileReader',['../classbyteme_1_1GzipFileReader.html',1,'byteme::GzipFileReader'],['../classbyteme_1_1GzipFileReader.html#ac6fba0ca5a6b14614286503060bf0381',1,'byteme::GzipFileReader::GzipFileReader(const char *path, size_t buffer_size=65536)'],['../classbyteme_1_1GzipFileReader.html#a80a27441b6d4428c56a0daecf1507fa5',1,'byteme::GzipFileReader::GzipFileReader(const std::string &amp;path, size_t buffer_size=65536)']]],
+  ['gzipfilereader_2ehpp_1',['GzipFileReader.hpp',['../GzipFileReader_8hpp.html',1,'']]]
 ];

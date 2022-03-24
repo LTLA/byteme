@@ -1,15 +1,4 @@
 var searchData=
 [
-  ['parse_5fgzip_5ffile_0',['parse_gzip_file',['../parse__gzip__file_8hpp.html#a48b95c554a0e13778d39a4a2dfaf67de',1,'buffin']]],
-  ['parse_5fgzip_5ffile_2ehpp_1',['parse_gzip_file.hpp',['../parse__gzip__file_8hpp.html',1,'']]],
-  ['parse_5finput_5fstream_2',['parse_input_stream',['../parse__input__stream_8hpp.html#a52842516521ba02f60416c466dd60b91',1,'buffin']]],
-  ['parse_5finput_5fstream_2ehpp_3',['parse_input_stream.hpp',['../parse__input__stream_8hpp.html',1,'']]],
-  ['parse_5fsome_5ffile_4',['parse_some_file',['../parse__some__file_8hpp.html#a18032fe88d57bea90c83194ed3f5b4b5',1,'buffin']]],
-  ['parse_5fsome_5ffile_2ehpp_5',['parse_some_file.hpp',['../parse__some__file_8hpp.html',1,'']]],
-  ['parse_5ftext_5fbuffer_6',['parse_text_buffer',['../parse__text__buffer_8hpp.html#a53faf87683e7376bef037e33a053383f',1,'buffin']]],
-  ['parse_5ftext_5fbuffer_2ehpp_7',['parse_text_buffer.hpp',['../parse__text__buffer_8hpp.html',1,'']]],
-  ['parse_5ftext_5ffile_8',['parse_text_file',['../parse__text__file_8hpp.html#a112ed2e3fdbc23d57e717a35558edf1b',1,'buffin']]],
-  ['parse_5ftext_5ffile_2ehpp_9',['parse_text_file.hpp',['../parse__text__file_8hpp.html',1,'']]],
-  ['parse_5fzlib_5fbuffer_10',['parse_zlib_buffer',['../parse__zlib__buffer_8hpp.html#aa33f6ab792e0fce165656af7e5d29b93',1,'buffin']]],
-  ['parse_5fzlib_5fbuffer_2ehpp_11',['parse_zlib_buffer.hpp',['../parse__zlib__buffer_8hpp.html',1,'']]]
+  ['buffer_0',['buffer',['../classbyteme_1_1GzipFileReader.html#a5ebdbb98c1f78cb78883fccb11701bfd',1,'byteme::GzipFileReader::buffer()'],['../classbyteme_1_1IstreamReader.html#a9414f2f58ed8d011ca511144436748a5',1,'byteme::IstreamReader::buffer()'],['../classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3',1,'byteme::RawBufferReader::buffer()'],['../classbyteme_1_1RawFileReader.html#ae4d96df0332cc6b55f7c2702d87c6797',1,'byteme::RawFileReader::buffer()'],['../classbyteme_1_1Reader.html#a5b1d291e37d73e5e1dcb6219915c28f0',1,'byteme::Reader::buffer()'],['../classbyteme_1_1SomeFileReader.html#a88e3abc2c4f024f0003e8589e425033b',1,'byteme::SomeFileReader::buffer()'],['../classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b',1,'byteme::ZlibBufferReader::buffer()']]]
 ];

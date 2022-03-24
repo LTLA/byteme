@@ -1,0 +1,9 @@
+<map id="byteme::Reader" name="byteme::Reader">
+<area shape="rect" id="node1" title="Virtual class for reading bytes from a source." alt="" coords="5,132,116,159"/>
+<area shape="rect" id="node2" href="$classbyteme_1_1GzipFileReader.html" title="Read uncompressed bytes from a Gzip&#45;compressed file." alt="" coords="170,5,329,32"/>
+<area shape="rect" id="node3" href="$classbyteme_1_1IstreamReader.html" title="Read bytes from a std::istream." alt="" coords="172,56,327,83"/>
+<area shape="rect" id="node4" href="$classbyteme_1_1RawBufferReader.html" title="Read bytes from a raw buffer, usually text." alt="" coords="164,107,335,133"/>
+<area shape="rect" id="node5" href="$classbyteme_1_1RawFileReader.html" title="Read bytes from a file, usually text." alt="" coords="170,157,329,184"/>
+<area shape="rect" id="node6" href="$classbyteme_1_1SomeFileReader.html" title="Read a file that may or may not be Gzipped." alt="" coords="166,208,333,235"/>
+<area shape="rect" id="node7" href="$classbyteme_1_1ZlibBufferReader.html" title="Read and decompress bytes from a Zlib&#45;compressed buffer." alt="" coords="166,259,333,285"/>
+</map>

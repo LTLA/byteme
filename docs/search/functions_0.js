@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['parse_5fgzip_5ffile_0',['parse_gzip_file',['../parse__gzip__file_8hpp.html#a48b95c554a0e13778d39a4a2dfaf67de',1,'buffin']]],
-  ['parse_5finput_5fstream_1',['parse_input_stream',['../parse__input__stream_8hpp.html#a52842516521ba02f60416c466dd60b91',1,'buffin']]],
-  ['parse_5fsome_5ffile_2',['parse_some_file',['../parse__some__file_8hpp.html#a18032fe88d57bea90c83194ed3f5b4b5',1,'buffin']]],
-  ['parse_5ftext_5fbuffer_3',['parse_text_buffer',['../parse__text__buffer_8hpp.html#a53faf87683e7376bef037e33a053383f',1,'buffin']]],
-  ['parse_5ftext_5ffile_4',['parse_text_file',['../parse__text__file_8hpp.html#a112ed2e3fdbc23d57e717a35558edf1b',1,'buffin']]],
-  ['parse_5fzlib_5fbuffer_5',['parse_zlib_buffer',['../parse__zlib__buffer_8hpp.html#aa33f6ab792e0fce165656af7e5d29b93',1,'buffin']]]
+  ['available_0',['available',['../classbyteme_1_1GzipFileReader.html#a16d150b28d80163e4cda48583cbf4c74',1,'byteme::GzipFileReader::available()'],['../classbyteme_1_1IstreamReader.html#a56d06b2ce0c5efbd7a7dd74acf8ddb1b',1,'byteme::IstreamReader::available()'],['../classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5',1,'byteme::RawBufferReader::available()'],['../classbyteme_1_1RawFileReader.html#acd21606c899971a36f9a8b2112982c39',1,'byteme::RawFileReader::available()'],['../classbyteme_1_1Reader.html#a9a09114f17cef5b01171fd97dd0306b0',1,'byteme::Reader::available()'],['../classbyteme_1_1SomeFileReader.html#ae2bc3e4bcbf088dc674859f145294b96',1,'byteme::SomeFileReader::available()'],['../classbyteme_1_1ZlibBufferReader.html#a2317cd92892fafe298dec159ce3938d1',1,'byteme::ZlibBufferReader::available()']]]
 ];

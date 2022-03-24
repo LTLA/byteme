@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['buffered_20inputs_0',['Buffered inputs',['../index.html',1,'']]]
+  ['read_20bytes_20from_20somewhere_0',['Read bytes from somewhere',['../index.html',1,'']]]
 ];

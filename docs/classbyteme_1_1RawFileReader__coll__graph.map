@@ -1,0 +1,4 @@
+<map id="byteme::RawFileReader" name="byteme::RawFileReader">
+<area shape="rect" id="node1" title="Read bytes from a file, usually text." alt="" coords="5,80,164,107"/>
+<area shape="rect" id="node2" href="$classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="29,5,140,32"/>
+</map>
