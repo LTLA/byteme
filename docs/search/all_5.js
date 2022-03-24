@@ -4,7 +4,6 @@ var searchData=
   ['rawbufferreader_2ehpp_1',['RawBufferReader.hpp',['../RawBufferReader_8hpp.html',1,'']]],
   ['rawfilereader_2',['RawFileReader',['../classbyteme_1_1RawFileReader.html',1,'byteme::RawFileReader'],['../classbyteme_1_1RawFileReader.html#a003ec82a4c79cc6baf05285da75acb9f',1,'byteme::RawFileReader::RawFileReader(const char *path, size_t buffer_size=65536)'],['../classbyteme_1_1RawFileReader.html#a0754fa094b5fcfe96995288b06d21086',1,'byteme::RawFileReader::RawFileReader(const std::string &amp;path, size_t buffer_size=65536)']]],
   ['rawfilereader_2ehpp_3',['RawFileReader.hpp',['../RawFileReader_8hpp.html',1,'']]],
-  ['read_20bytes_20from_20somewhere_4',['Read bytes from somewhere',['../index.html',1,'']]],
-  ['reader_5',['Reader',['../classbyteme_1_1Reader.html',1,'byteme']]],
-  ['reader_2ehpp_6',['Reader.hpp',['../Reader_8hpp.html',1,'']]]
+  ['reader_4',['Reader',['../classbyteme_1_1Reader.html',1,'byteme']]],
+  ['reader_2ehpp_5',['Reader.hpp',['../Reader_8hpp.html',1,'']]]
 ];

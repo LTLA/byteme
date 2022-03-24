@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['read_20bytes_20from_20somewhere_0',['Read bytes from somewhere',['../index.html',1,'']]]
+  ['gimme_20some_20bytes_0',['Gimme some bytes',['../index.html',1,'']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>byteme: Read bytes from somewhere</title>
+<title>byteme: Gimme some bytes</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,12 +64,12 @@ $(function() {
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Read bytes from somewhere </div></div>
+  <div class="headertitle"><div class="title">Gimme some bytes </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md__github_workspace_README"></a> <img src="https://github.com/clusterfork/buffin/actions/workflows/run-tests.yaml/badge.svg" alt="Unit tests" style="pointer-events: none;" class="inline"/> <img src="https://github.com/clusterfork/buffin/actions/workflows/doxygenate.yaml/badge.svg" alt="Documentation" style="pointer-events: none;" class="inline"/></p>
+<div class="textblock"><p ><a class="anchor" id="md__github_workspace_README"></a> <img src="https://github.com/LTLA/byteme/actions/workflows/run-tests.yaml/badge.svg" alt="Unit tests" style="pointer-events: none;" class="inline"/> <img src="https://github.com/LTLA/byteme/actions/workflows/doxygenate.yaml/badge.svg" alt="Documentation" style="pointer-events: none;" class="inline"/></p>
 <h1>Overview</h1>
-<p >This library implements a few functors to read buffered inputs from uncompressed or Gzip-compressed files or buffers. Classes can be exchanged at compile- or run-time to easily re-use the same code across different input sources. The aim is to consolidate some common boilerplate across several projects, e.g., <a href="https://github.com/LTLA/tatami"><b>tatami</b></a>, <a href="https://github.com/clusterfork/singlepp"><b>singlepp</b></a>. Interfacing with Zlib is particularly fiddly and I don't want to be forced to remember how to do it in each project.</p>
+<p >This library implements a few functors to read buffered inputs from uncompressed or Gzip-compressed files or buffers. Classes can be exchanged at compile- or run-time to easily re-use the same code across different input sources. The aim is to consolidate some common boilerplate across several projects, e.g., <a href="https://github.com/LTLA/tatami"><b>tatami</b></a>, <a href="https://github.com/LTLA/singlepp"><b>singlepp</b></a>. Interfacing with Zlib is particularly fiddly and I don't want to be forced to remember how to do it in each project.</p>
 <h1>Usage</h1>
 <p >Usage is simple - create an instance of the desired <code>Reader</code> class and loop until no bytes remain in the source.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="GzipFileReader_8hpp.html">byteme/GzipFileReader.hpp</a>&quot;</span></div>
@@ -101,14 +101,14 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="comment">/* Loop with ptr-&gt;operator()(), ptr-&gt;buffer(), etc. */</span></div>
 <div class="ttc" id="aRawBufferReader_8hpp_html"><div class="ttname"><a href="RawBufferReader_8hpp.html">RawBufferReader.hpp</a></div><div class="ttdoc">Read bytes from a raw buffer without any extra transformations.</div></div>
-</div><!-- fragment --><p >More details can be found in the <a href="https://clusterfork.github.io/buffin">reference documentation</a>.</p>
+</div><!-- fragment --><p >More details can be found in the <a href="https://LTLA.github.io/byteme">reference documentation</a>.</p>
 <h1>Building projects</h1>
 <p >If you're using CMake, you just need to add something like this to your <code>CMakeLists.txt</code>:</p>
 <div class="fragment"><div class="line">include(FetchContent)</div>
 <div class="line"> </div>
 <div class="line">FetchContent_Declare(</div>
 <div class="line">  byteme </div>
-<div class="line">  GIT_REPOSITORY https://github.com/clusterfork/buffin</div>
+<div class="line">  GIT_REPOSITORY https://github.com/LTLA/byteme</div>
 <div class="line">  GIT_TAG master # or any version of interest</div>
 <div class="line">)</div>
 <div class="line"> </div>
