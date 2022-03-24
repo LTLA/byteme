@@ -4,6 +4,7 @@
 #include "zlib.h"
 #include <stdexcept>
 #include <vector>
+#include "Reader.hpp"
 
 /**
  * @file ZlibBufferReader.hpp
@@ -17,11 +18,8 @@ namespace byteme {
  * @brief Read and decompress bytes from a Zlib-compressed buffer.
  *
  * This is basically a wrapper around Zlib's inflate method, with correct closing and error checking.
- *
- * @tparam B Buffer type, either `char` or `unsigned char`.
  */
-template<typename B = unsigned char>
-class ZlibBufferReader {
+class ZlibBufferReader : public Reader {
 private:
     /**
      * @cond
@@ -77,29 +75,15 @@ public:
      * @param buffer Pointer to an array containing the compressed data.
      * The lack of `const`-ness is only a consequence of the C interface - the contents of the buffer do not seem to be modified.
      * @param len Length of the `buffer` array.
-     * @param parser Instance of the parser class.
      * @param mode Compression of the stream - DEFLATE (0), Zlib (1) or Gzip (2).
      * Default of 3 will auto-detect between Zlib and Gzip based on the headers.
      * @param buffer_size Size of the buffer to use for reading.
      */
-    ZlibBufferReader(const unsigned char* buffer, size_t len, int mode = 3, size_t buffer_size = 65536) : str(mode), buffer_(buffer_size) {
+    ZlibBufferReader(const unsigned char* buffer, size_t len, int mode = 3, size_t buffer_size = 65536) : zstr(mode), buffer_(buffer_size) {
         zstr.strm.avail_in = len;
-        zstr.strm.next_in = buffer_;
-        if constexpr(std::is_same<B, char>::value) {
-            counter_buffer.resize(buffer_size);            
-        }
-        return;
+        zstr.strm.next_in = const_cast<unsigned char*>(buffer); // cast is purely for C compatibility.
     }
 
-    /**
-     * Read and decompress the next stretch of bytes from the zlib-compressed buffer.
-     *
-     * To read and decompress the entire buffer, this function should be called repeatedly until `false` is returned.
-     * Note that `buffer()` and `available()` will still be valid on the last invocation (i.e., the one that returns `false`),
-     * as some bytes may have been read before reaching the end of the file.
-     *
-     * @return Boolean indicating whether there are still bytes remaining in the buffer.
-     */
     bool operator()() {
         /* This function is stolen from the loop in 'inf()' at
          * http://www.zlib.net/zpipe.c, with some shuffling of code to make it
@@ -125,38 +109,23 @@ public:
                 throw std::runtime_error("zlib error");
         }
 
-        available = buffer_.size() - zstr.strm.avail_out;
-        if constexpr(std::is_same<char, B>::value) {
-            std::copy_n(buffer_.data(), available, counter_buffer.data());
-        }
+        read = buffer_.size() - zstr.strm.avail_out;
 
         return (ret != Z_STREAM_END);
     }
 
-    /**
-     * @return Pointer to the start of an array containing the bytes.
-     * The number of available bytes is provided in `available()`.
-     */
-    const B* buffer() const {
-        if constexpr(std::is_same<char, B>::value) {
-            return counter_buffer.data();
-        } else {
-            return buffer_.data();
-        }
+    const unsigned char* buffer() const {
+        return buffer_.data();
     }
 
-    /**
-     * @return Number of decompressed bytes available in the `buffer()`.
-     */
     size_t available() const {
-        return len_;
+        return read;
     }
 
 private:
     ZStream zstr;
     std::vector<unsigned char> buffer_;
-    std::vector<char> counter_buffer;
-    size_t available;
+    size_t read = 0;
 };
 
 }

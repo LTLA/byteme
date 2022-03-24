@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 
-#include "LineReader.h"
-#include "buffin/parse_text_buffer.hpp"
+#include "read_lines.h"
+#include "byteme/RawBufferReader.hpp"
 
-class ParseTextBufferTest : public ::testing::TestWithParam<int> {
+class RawBufferReaderTest : public ::testing::TestWithParam<int> {
 protected:    
     auto dump_buffer(const std::vector<std::string>& contents) {
         std::string output;
@@ -13,34 +13,41 @@ protected:
         }
         return output;
     }
+
+    static const unsigned char* to_pointer(const std::string& x) {
+        return reinterpret_cast<const unsigned char*>(x.c_str());
+    }
 };
 
-TEST_P(ParseTextBufferTest, Basic) {
+TEST_P(RawBufferReaderTest, Basic) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto concat = dump_buffer(contents);
-    LineReader reader;
-    buffin::parse_text_buffer(concat.c_str(), concat.size(), reader, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::RawBufferReader reader(to_pointer(concat), concat.size());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
-TEST_P(ParseTextBufferTest, Empty) {
+TEST_P(RawBufferReaderTest, Empty) {
     std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
     auto concat = dump_buffer(contents);
-    LineReader reader;
-    buffin::parse_text_buffer(concat.c_str(), concat.size(), reader, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::RawBufferReader reader(to_pointer(concat), concat.size());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
-TEST_P(ParseTextBufferTest, TooLong) {
+TEST_P(RawBufferReaderTest, TooLong) {
     std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
     auto concat = dump_buffer(contents);
-    LineReader reader;
-    buffin::parse_text_buffer(concat.c_str(), concat.size(), reader, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::RawBufferReader reader(to_pointer(concat), concat.size());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    ParseTextBuffer,
-    ParseTextBufferTest,
+    RawBufferReader,
+    RawBufferReaderTest,
     ::testing::Values(10, 50, 100, 1000)
 );

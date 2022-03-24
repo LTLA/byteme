@@ -1,12 +1,20 @@
-#ifndef LINE_READER_H
-#define LINE_READER_H
+#ifndef READ_LINES_H 
+#define READ_LINES_H 
 
 #include <string>
 #include <vector>
 
-struct LineReader {
-    template<class B>
-    void add(const B* buffer, size_t n) {
+template<class Reader>
+std::vector<std::string> read_lines(Reader& reader) { 
+    std::vector<std::string> lines;
+    bool remaining = true;
+    bool continuing = false;
+
+    while (remaining) {
+        remaining = reader();
+        const char* buffer = reinterpret_cast<const char*>(reader.buffer()); // reinterpreting as chars.
+        size_t n = reader.available();
+
         size_t pos = 0;
         size_t last = 0;
 
@@ -32,14 +40,13 @@ struct LineReader {
             } else {
                 lines.emplace_back(buffer + last, buffer + pos);
             }
+
             ++pos;
             last = pos;
         }
-
     }
 
-    bool continuing = false;
-    std::vector<std::string> lines;
-};
+    return lines;
+}
 
 #endif

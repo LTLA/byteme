@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <string>
 #include <cstdio>
-#include <type_traits>
+#include "Reader.hpp"
 
 /**
  * @file RawFileReader.hpp
@@ -20,11 +20,8 @@ namespace byteme {
  *
  * This is basically a simple wrapper around `FILE` structures, with correct closing and error checking.
  * Mostly provided because I always forget how to interact with `ifstream` objects when I want a sequence of bytes.
- *
- * @tparam B Buffer type, either `char` or `unsigned char`.
  */
-template<typename B = char>
-class RawFileReader {
+class RawFileReader : public Reader {
 private:
     /**
      * @cond
@@ -50,6 +47,8 @@ private:
 
         FILE* handle;
     };
+
+    friend class SomeFileReader;
     /**
      * @endcond
      */
@@ -59,20 +58,17 @@ public:
      * @param path Path to the file.
      * @param buffer_size Size of the buffer to use for reading.
      */
-    RawFileReader(const char* path, size_t buffer_size = 65536) : file(path), buffer_(buffer_size), read(0) {}
+    RawFileReader(const char* path, size_t buffer_size = 65536) : file(path), buffer_(buffer_size) {}
 
     /**
-     * Read the next chunk of bytes from the input file.
-     *
-     * To read the entire file, this function should be called repeatedly until `false` is returned.
-     * Note that `buffer()` and `available()` may still be valid on the last invocation (i.e., the one that returns `false`),
-     * as some bytes may have been read before reaching the end of the file.
-     *
-     * @return Boolean indicating whether there are still bytes remaining in the file.
+     * @param path Path to the file.
+     * @param buffer_size Size of the buffer to use for reading.
      */
+    RawFileReader(const std::string& path, size_t buffer_size = 65536) : RawFileReader(path.c_str(), buffer_size) {}
+
     bool operator()() {
         auto& handle = file.handle;
-        read = std::fread(buffer_.data(), sizeof(B), buffer_.size(), handle);
+        read = std::fread(buffer_.data(), sizeof(unsigned char), buffer_.size(), handle);
         if (read != buffer_.size()) {
             if (std::feof(handle)) {
                 return false;
@@ -83,25 +79,18 @@ public:
         return true;
     }
 
-    /**
-     * @return Pointer to the start of an array containing the decompressed bytes.
-     * The number of available bytes is provided in `available()`.
-     */
-    const B* buffer() const {
+    const unsigned char* buffer() const {
         return buffer_.data();
     }
 
-    /**
-     * @return Number of decompressed bytes available in the `buffer()`.
-     */
     size_t available() const {
         return read;
     }
 
 private:
     SelfClosingFILE file;
-    std::vector<B> buffer_;
-    size_t read;
+    std::vector<unsigned char> buffer_;
+    size_t read = 0;
 };
 
 }

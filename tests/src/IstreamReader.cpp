@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 
-#include "LineReader.h"
-#include "buffin/parse_input_stream.hpp"
+#include "read_lines.h"
+#include "byteme/IstreamReader.hpp"
 
-class ParseInputStreamTest : public ::testing::TestWithParam<int> {
+class IstreamReaderTest : public ::testing::TestWithParam<int> {
 protected:    
     auto dump_buffer(const std::vector<std::string>& contents) {
         std::string output;
@@ -15,32 +15,35 @@ protected:
     }
 };
 
-TEST_P(ParseInputStreamTest, Basic) {
+TEST_P(IstreamReaderTest, Basic) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     std::istringstream is(dump_buffer(contents));
-    LineReader reader;
-    buffin::parse_input_stream(is, reader, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::IstreamReader reader(is, GetParam());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
-TEST_P(ParseInputStreamTest, Empty) {
+TEST_P(IstreamReaderTest, Empty) {
     std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
     std::istringstream is(dump_buffer(contents));
-    LineReader reader;
-    buffin::parse_input_stream(is, reader, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::IstreamReader reader(is, GetParam());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
-TEST_P(ParseInputStreamTest, TooLong) {
+TEST_P(IstreamReaderTest, TooLong) {
     std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
     std::istringstream is(dump_buffer(contents));
-    LineReader reader;
-    buffin::parse_input_stream(is, reader, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::IstreamReader reader(is, GetParam());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    ParseInputStream,
-    ParseInputStreamTest,
+    IstreamReader,
+    IstreamReaderTest,
     ::testing::Values(10, 50, 100, 1000)
 );

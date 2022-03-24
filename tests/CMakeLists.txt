@@ -14,17 +14,17 @@ enable_testing()
 
 add_executable(
     libtest 
-    src/parse_text_file.cpp
-    src/parse_text_buffer.cpp
-    src/parse_gzip_file.cpp
-    src/parse_zlib_buffer.cpp
-    src/parse_input_stream.cpp
+    src/GzipFileReader.cpp
+    src/IstreamReader.cpp
+    src/RawBufferReader.cpp
+    src/RawFileReader.cpp
+    src/ZlibBufferReader.cpp
 )
 
 target_link_libraries(
     libtest
     gtest_main
-    buffin 
+    byteme 
 )
 
 find_package(ZLIB)
