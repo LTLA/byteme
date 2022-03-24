@@ -1,13 +1,13 @@
-# Read bytes from somewhere
+# Gimme some bytes 
 
-![Unit tests](https://github.com/clusterfork/buffin/actions/workflows/run-tests.yaml/badge.svg)
-![Documentation](https://github.com/clusterfork/buffin/actions/workflows/doxygenate.yaml/badge.svg)
+![Unit tests](https://github.com/LTLA/byteme/actions/workflows/run-tests.yaml/badge.svg)
+![Documentation](https://github.com/LTLA/byteme/actions/workflows/doxygenate.yaml/badge.svg)
 
 ## Overview
 
 This library implements a few functors to read buffered inputs from uncompressed or Gzip-compressed files or buffers.
 Classes can be exchanged at compile- or run-time to easily re-use the same code across different input sources.
-The aim is to consolidate some common boilerplate across several projects, e.g., [**tatami**](https://github.com/LTLA/tatami), [**singlepp**](https://github.com/clusterfork/singlepp).
+The aim is to consolidate some common boilerplate across several projects, e.g., [**tatami**](https://github.com/LTLA/tatami), [**singlepp**](https://github.com/LTLA/singlepp).
 Interfacing with Zlib is particularly fiddly and I don't want to be forced to remember how to do it in each project.
 
 ## Usage
@@ -47,7 +47,7 @@ if (some_condition) {
 /* Loop with ptr->operator()(), ptr->buffer(), etc. */
 ```
 
-More details can be found in the [reference documentation](https://clusterfork.github.io/buffin).
+More details can be found in the [reference documentation](https://LTLA.github.io/byteme).
 
 ## Building projects
 
@@ -58,7 +58,7 @@ include(FetchContent)
 
 FetchContent_Declare(
   byteme 
-  GIT_REPOSITORY https://github.com/clusterfork/buffin
+  GIT_REPOSITORY https://github.com/LTLA/byteme
   GIT_TAG master # or any version of interest
 )
 
