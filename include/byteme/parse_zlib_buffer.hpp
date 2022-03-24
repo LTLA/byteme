@@ -85,7 +85,9 @@ void parse_zlib_buffer(unsigned char* buffer, size_t len, Parser& parser, int mo
     zstr.strm.avail_in = len;
     zstr.strm.next_in = buffer;
 
-    while (1) {
+    // Not entirely sure why we need to check for this, but https://zlib.net/zpipe.c does it, and so will we.
+    while (zstr.strm.avail_in > 0) {
+
         zstr.strm.avail_out = buffer_size;
         zstr.strm.next_out = output.data();
         int ret = inflate(&(zstr.strm), Z_NO_FLUSH);

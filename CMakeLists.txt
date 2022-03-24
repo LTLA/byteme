@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(aarand
+project(byteme
     VERSION 1.0.0
-    DESCRIPTION "C++ library to parse buffered inputs"
+    DESCRIPTION "No-frills byte streaming from file"
     LANGUAGES CXX)
 
-add_library(buffin INTERFACE)
+add_library(byteme INTERFACE)
 
-target_include_directories(buffin INTERFACE include/)
+target_include_directories(byteme INTERFACE include/)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     include(CTest)
