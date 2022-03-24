@@ -30,7 +30,7 @@ namespace buffin {
  * The file itself is created at that location, though this may not be thread-safe.
  *
  * This function is wholly intended for unit testing in **buffin** and downstream libraries.
- * Production use should prefer to use thread-safe alternatives such as `mkstemp()`. 
+ * Production use should use OS-specific thread-safe alternatives such as `mkstemp()`. 
  */
 inline std::string temp_file_path(std::string prefix) {
     auto path = fs::temp_directory_path();

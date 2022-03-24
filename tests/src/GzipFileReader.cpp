@@ -1,15 +1,15 @@
 #include <gtest/gtest.h>
 
-#include "LineReader.h"
+#include "read_lines.h"
 
-#include "buffin/temp_file_path.hpp"
-#include "buffin/parse_gzip_file.hpp"
-#include "buffin/parse_some_file.hpp"
+#include "byteme/temp_file_path.hpp"
+#include "byteme/GzipFileReader.hpp"
+#include "byteme/SomeFileReader.hpp"
 
 #include "zlib.h"
 #include <fstream>
 
-class ParseGzipFileTest : public ::testing::TestWithParam<int> {
+class GzipFileReaderTest : public ::testing::TestWithParam<int> {
 protected:
     auto dump_file(const std::vector<std::string>& contents) {
         std::string stuff;
@@ -26,40 +26,44 @@ protected:
     }
 };
 
-TEST_P(ParseGzipFileTest, Basic) {
+TEST_P(GzipFileReaderTest, Basic) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto path = dump_file(contents);
-    LineReader reader;
-    buffin::parse_gzip_file(path.c_str(), reader, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::GzipFileReader reader(path, GetParam());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
-TEST_P(ParseGzipFileTest, Empty) {
+TEST_P(GzipFileReaderTest, Empty) {
     std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
     auto path = dump_file(contents);
-    LineReader reader;
-    buffin::parse_gzip_file(path.c_str(), reader, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::GzipFileReader reader(path, GetParam());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
-TEST_P(ParseGzipFileTest, TooLong) {
+TEST_P(GzipFileReaderTest, TooLong) {
     std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
     auto path = dump_file(contents);
-    LineReader reader;
-    buffin::parse_gzip_file(path.c_str(), reader, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::GzipFileReader reader(path, GetParam());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
-TEST_P(ParseGzipFileTest, SomeFileWorks) {
+TEST_P(GzipFileReaderTest, SomeFileWorks) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto path = dump_file(contents);
-    LineReader reader;
-    buffin::parse_some_file(path.c_str(), reader, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::SomeFileReader reader(path, GetParam());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    ParseGzipFile,
-    ParseGzipFileTest,
+    GzipFileReader,
+    GzipFileReaderTest,
     ::testing::Values(10, 50, 100, 1000)
 );

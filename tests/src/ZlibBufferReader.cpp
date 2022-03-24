@@ -1,13 +1,13 @@
 #include <gtest/gtest.h>
 
-#include "LineReader.h"
+#include "read_lines.h"
 
-#include "buffin/temp_file_path.hpp"
-#include "buffin/parse_zlib_buffer.hpp"
+#include "byteme/temp_file_path.hpp"
+#include "byteme/ZlibBufferReader.hpp"
 #include "zlib.h"
 #include <fstream>
 
-class ParseZlibBufferTest : public ::testing::TestWithParam<int> {
+class ZlibBufferReaderTest : public ::testing::TestWithParam<int> {
 protected:
     std::vector<unsigned char> dump_file(const std::vector<std::string>& contents) {
         std::string stuff;
@@ -29,32 +29,35 @@ protected:
     }
 };
 
-TEST_P(ParseZlibBufferTest, Basic) {
+TEST_P(ZlibBufferReaderTest, Basic) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto gzcontents = dump_file(contents);
-    LineReader reader;
-    buffin::parse_zlib_buffer(gzcontents.data(), gzcontents.size(), reader, 3, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::ZlibBufferReader reader(gzcontents.data(), gzcontents.size(), 3, GetParam());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
-TEST_P(ParseZlibBufferTest, Empty) {
+TEST_P(ZlibBufferReaderTest, Empty) {
     std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
     auto gzcontents = dump_file(contents);
-    LineReader reader;
-    buffin::parse_zlib_buffer(gzcontents.data(), gzcontents.size(), reader, 3, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::ZlibBufferReader reader(gzcontents.data(), gzcontents.size(), 3, GetParam());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
-TEST_P(ParseZlibBufferTest, TooLong) {
+TEST_P(ZlibBufferReaderTest, TooLong) {
     std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
     auto gzcontents = dump_file(contents);
-    LineReader reader;
-    buffin::parse_zlib_buffer(gzcontents.data(), gzcontents.size(), reader, 3, GetParam());
-    EXPECT_EQ(reader.lines, contents);
+
+    byteme::ZlibBufferReader reader(gzcontents.data(), gzcontents.size(), 3, GetParam());
+    auto lines = read_lines(reader);
+    EXPECT_EQ(lines, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    ParseZlibBuffer,
-    ParseZlibBufferTest,
+    ZlibBufferReader,
+    ZlibBufferReaderTest,
     ::testing::Values(10, 50, 100, 1000)
 );
