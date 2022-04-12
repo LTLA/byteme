@@ -18,7 +18,7 @@ namespace byteme {
  * This is a wrapper around an input buffer, provided for consistency with the other `*Reader` classes.
  * We assume that the lifetime of the data in the `buffer` pointer exceeds the lifetime of the instance.
  */
-class RawBufferReader : Reader {
+class RawBufferReader : public Reader {
 public:
     /**
      * @param buffer Buffer containing text.
