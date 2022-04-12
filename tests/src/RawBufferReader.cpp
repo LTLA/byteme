@@ -3,7 +3,7 @@
 #include "read_lines.h"
 #include "byteme/RawBufferReader.hpp"
 
-class RawBufferReaderTest : public ::testing::TestWithParam<int> {
+class RawBufferReaderTest : public ::testing::Test {
 protected:    
     auto dump_buffer(const std::vector<std::string>& contents) {
         std::string output;
@@ -19,7 +19,7 @@ protected:
     }
 };
 
-TEST_P(RawBufferReaderTest, Basic) {
+TEST_F(RawBufferReaderTest, Basic) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto concat = dump_buffer(contents);
 
@@ -28,7 +28,7 @@ TEST_P(RawBufferReaderTest, Basic) {
     EXPECT_EQ(lines, contents);
 }
 
-TEST_P(RawBufferReaderTest, Empty) {
+TEST_F(RawBufferReaderTest, Empty) {
     std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
     auto concat = dump_buffer(contents);
 
@@ -37,7 +37,7 @@ TEST_P(RawBufferReaderTest, Empty) {
     EXPECT_EQ(lines, contents);
 }
 
-TEST_P(RawBufferReaderTest, TooLong) {
+TEST_F(RawBufferReaderTest, TooLong) {
     std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
     auto concat = dump_buffer(contents);
 
@@ -45,9 +45,3 @@ TEST_P(RawBufferReaderTest, TooLong) {
     auto lines = read_lines(reader);
     EXPECT_EQ(lines, contents);
 }
-
-INSTANTIATE_TEST_SUITE_P(
-    RawBufferReader,
-    RawBufferReaderTest,
-    ::testing::Values(10, 50, 100, 1000)
-);
