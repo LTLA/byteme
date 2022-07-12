@@ -73,7 +73,6 @@ private:
 public:
     /**
      * @param buffer Pointer to an array containing the compressed data.
-     * The lack of `const`-ness is only a consequence of the C interface - the contents of the buffer do not seem to be modified.
      * @param len Length of the `buffer` array.
      * @param mode Compression of the stream - DEFLATE (0), Zlib (1) or Gzip (2).
      * Default of 3 will auto-detect between Zlib and Gzip based on the headers.

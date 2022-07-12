@@ -4,6 +4,7 @@
 #include "Reader.hpp"
 #include "RawFileReader.hpp"
 #include "GzipFileReader.hpp"
+#include "magic_numbers.hpp"
 #include <memory>
 #include <cstdio>
 
@@ -18,8 +19,8 @@ namespace byteme {
 /**
  * @brief Read a file that may or may not be Gzipped.
  *
- * This class will automatically detect whether `path` refers to a text file or a Gzip-compressed file, based on its header.
- * After that, it will dispatch appropriately to `parse_text_file()` or `parse_gzip_file()` respectively.
+ * This class will automatically detect whether `path` refers to a text file or a Gzip-compressed file, based on its initial magic numbers.
+ * After that, it will dispatch appropriately to `RawFileReader` or `GzipFileReader` respectively.
  */
 class SomeFileReader : public Reader {
 public:
@@ -35,7 +36,7 @@ public:
             read = std::fread(header, sizeof(unsigned char), 3, file.handle);
         }
 
-        if (read == 3 && static_cast<unsigned char>(header[0]) == 0x1f && static_cast<unsigned char>(header[1]) == 0x8b && static_cast<unsigned char>(header[2]) == 0x08) {
+        if (is_gzip(header, read)) {
             source.reset(new GzipFileReader(path, buffer_size));
         } else {
             source.reset(new RawFileReader(path, buffer_size));
