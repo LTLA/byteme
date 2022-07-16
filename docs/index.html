@@ -88,20 +88,21 @@ $(function() {
 <div class="ttc" id="aGzipFileReader_8hpp_html"><div class="ttname"><a href="GzipFileReader_8hpp.html">GzipFileReader.hpp</a></div><div class="ttdoc">Read a Gzip-compressed file.</div></div>
 <div class="ttc" id="aclassbyteme_1_1GzipFileReader_html"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html">byteme::GzipFileReader</a></div><div class="ttdoc">Read uncompressed bytes from a Gzip-compressed file.</div><div class="ttdef"><b>Definition:</b> GzipFileReader.hpp:23</div></div>
 </div><!-- fragment --><p >The different <code>Reader</code> subclasses can be switched at compile-time via templating, or at run-time by exploiting the class hierarchy:</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;byteme/GzipBufferReader.hpp&quot;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="ZlibBufferReader_8hpp.html">byteme/ZlibBufferReader.hpp</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="RawBufferReader_8hpp.html">byteme/RawBufferReader.hpp</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"> </div>
 <div class="line">std::unique_ptr&lt;byteme::Reader&gt; ptr;</div>
 <div class="line"><span class="keywordflow">if</span> (some_condition) {</div>
-<div class="line">    ptr.reset(<span class="keyword">new</span> GzipBufferReader(buffer, length));</div>
+<div class="line">    ptr.reset(<span class="keyword">new</span> ZlibBufferReader(buffer, length));</div>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">    ptr.reset(<span class="keyword">new</span> RawBufferReader(buffer, length));</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* Loop with ptr-&gt;operator()(), ptr-&gt;buffer(), etc. */</span></div>
 <div class="ttc" id="aRawBufferReader_8hpp_html"><div class="ttname"><a href="RawBufferReader_8hpp.html">RawBufferReader.hpp</a></div><div class="ttdoc">Read bytes from a raw buffer without any extra transformations.</div></div>
-</div><!-- fragment --><p >More details can be found in the <a href="https://LTLA.github.io/byteme">reference documentation</a>.</p>
+<div class="ttc" id="aZlibBufferReader_8hpp_html"><div class="ttname"><a href="ZlibBufferReader_8hpp.html">ZlibBufferReader.hpp</a></div><div class="ttdoc">Read bytes from a Zlib-compressed buffer.</div></div>
+</div><!-- fragment --><p >More details can be found in the <a href="https://ltla.github.io/byteme">reference documentation</a>.</p>
 <h1>Building projects</h1>
 <p >If you're using CMake, you just need to add something like this to your <code>CMakeLists.txt</code>:</p>
 <div class="fragment"><div class="line">include(FetchContent)</div>
