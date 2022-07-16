@@ -1,5 +1,5 @@
-#ifndef BYTEME_PARSE_SOME_BUFFER_HPP
-#define BYTEME_PARSE_SOME_BUFFER_HPP
+#ifndef BYTEME_SOME_BUFFER_READER_HPP
+#define BYTEME_SOME_BUFFER_READER_HPP
 
 #include "Reader.hpp"
 #include "RawBufferReader.hpp"

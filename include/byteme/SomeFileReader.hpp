@@ -1,5 +1,5 @@
-#ifndef BUFFIN_PARSE_SOME_FILE_HPP
-#define BUFFIN_PARSE_SOME_FILE_HPP
+#ifndef BYTEME_SOME_FILE_READER_HPP
+#define BYTEME_SOME_FILE_READER_HPP
 
 #include "Reader.hpp"
 #include "RawFileReader.hpp"

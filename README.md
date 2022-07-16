@@ -33,13 +33,13 @@ do {
 The different `Reader` subclasses can be switched at compile-time via templating, or at run-time by exploiting the class hierarchy:
 
 ```cpp
-#include "byteme/GzipBufferReader.hpp"
+#include "byteme/ZlibBufferReader.hpp"
 #include "byteme/RawBufferReader.hpp"
 #include <memory>
 
 std::unique_ptr<byteme::Reader> ptr;
 if (some_condition) {
-    ptr.reset(new GzipBufferReader(buffer, length));
+    ptr.reset(new ZlibBufferReader(buffer, length));
 } else {
     ptr.reset(new RawBufferReader(buffer, length));
 }
@@ -47,7 +47,7 @@ if (some_condition) {
 /* Loop with ptr->operator()(), ptr->buffer(), etc. */
 ```
 
-More details can be found in the [reference documentation](https://LTLA.github.io/byteme).
+More details can be found in the [reference documentation](https://ltla.github.io/byteme).
 
 ## Building projects
 
