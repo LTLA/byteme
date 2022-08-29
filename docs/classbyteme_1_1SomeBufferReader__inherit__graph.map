@@ -1,4 +1,4 @@
 <map id="byteme::SomeBufferReader" name="byteme::SomeBufferReader">
-<area shape="rect" id="node1" title="Read a buffer that may or may not be Gzip/Zlib&#45;compressed." alt="" coords="5,80,184,107"/>
-<area shape="rect" id="node2" href="$classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="39,5,150,32"/>
+<area shape="rect" id="node1" title="Read a buffer that may or may not be Gzip/Zlib&#45;compressed." alt="" coords="5,79,184,104"/>
+<area shape="rect" id="node2" href="$classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="39,5,150,31"/>
 </map>
