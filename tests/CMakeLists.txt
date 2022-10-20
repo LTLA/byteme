@@ -19,6 +19,7 @@ add_executable(
     src/RawBufferReader.cpp
     src/RawFileReader.cpp
     src/ZlibBufferReader.cpp
+    src/PerByte.cpp
 )
 
 target_link_libraries(
