@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['somebufferreader_0',['SomeBufferReader',['../classbyteme_1_1SomeBufferReader.html#a08b7339bf485a88bc4af698be28f6a0e',1,'byteme::SomeBufferReader']]],
-  ['somefilereader_1',['SomeFileReader',['../classbyteme_1_1SomeFileReader.html#ac7ba4b558c83e39e2ff42bb8767cf963',1,'byteme::SomeFileReader::SomeFileReader(const char *path, size_t buffer_size=65536)'],['../classbyteme_1_1SomeFileReader.html#a2267b7fcb53a5c78c415d2718bce06e0',1,'byteme::SomeFileReader::SomeFileReader(const std::string &amp;path, size_t buffer_size=65536)']]]
+  ['rawbufferreader_0',['RawBufferReader',['../classbyteme_1_1RawBufferReader.html#a52edfb966cd7ce5db47ba2cbb3cd245d',1,'byteme::RawBufferReader']]],
+  ['rawfilereader_1',['RawFileReader',['../classbyteme_1_1RawFileReader.html#a003ec82a4c79cc6baf05285da75acb9f',1,'byteme::RawFileReader::RawFileReader(const char *path, size_t buffer_size=65536)'],['../classbyteme_1_1RawFileReader.html#a0754fa094b5fcfe96995288b06d21086',1,'byteme::RawFileReader::RawFileReader(const std::string &amp;path, size_t buffer_size=65536)']]]
 ];

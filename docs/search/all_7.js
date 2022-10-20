@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['temp_5ffile_5fpath_0',['temp_file_path',['../temp__file__path_8hpp.html#ab00b2e7dda2b1f838e87cdaa6ea093e4',1,'buffin']]],
-  ['temp_5ffile_5fpath_2ehpp_1',['temp_file_path.hpp',['../temp__file__path_8hpp.html',1,'']]]
+  ['somebufferreader_0',['SomeBufferReader',['../classbyteme_1_1SomeBufferReader.html',1,'byteme::SomeBufferReader'],['../classbyteme_1_1SomeBufferReader.html#a08b7339bf485a88bc4af698be28f6a0e',1,'byteme::SomeBufferReader::SomeBufferReader()']]],
+  ['somebufferreader_2ehpp_1',['SomeBufferReader.hpp',['../SomeBufferReader_8hpp.html',1,'']]],
+  ['somefilereader_2',['SomeFileReader',['../classbyteme_1_1SomeFileReader.html',1,'byteme::SomeFileReader'],['../classbyteme_1_1SomeFileReader.html#ac7ba4b558c83e39e2ff42bb8767cf963',1,'byteme::SomeFileReader::SomeFileReader(const char *path, size_t buffer_size=65536)'],['../classbyteme_1_1SomeFileReader.html#a2267b7fcb53a5c78c415d2718bce06e0',1,'byteme::SomeFileReader::SomeFileReader(const std::string &amp;path, size_t buffer_size=65536)']]],
+  ['somefilereader_2ehpp_3',['SomeFileReader.hpp',['../SomeFileReader_8hpp.html',1,'']]]
 ];

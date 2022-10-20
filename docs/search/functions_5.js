@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['rawbufferreader_0',['RawBufferReader',['../classbyteme_1_1RawBufferReader.html#a52edfb966cd7ce5db47ba2cbb3cd245d',1,'byteme::RawBufferReader']]],
-  ['rawfilereader_1',['RawFileReader',['../classbyteme_1_1RawFileReader.html#a003ec82a4c79cc6baf05285da75acb9f',1,'byteme::RawFileReader::RawFileReader(const char *path, size_t buffer_size=65536)'],['../classbyteme_1_1RawFileReader.html#a0754fa094b5fcfe96995288b06d21086',1,'byteme::RawFileReader::RawFileReader(const std::string &amp;path, size_t buffer_size=65536)']]]
+  ['perbyte_0',['PerByte',['../structbyteme_1_1PerByte.html#a286a8d91ce0f1669a862729a4dd8ef1c',1,'byteme::PerByte']]],
+  ['position_1',['position',['../structbyteme_1_1PerByte.html#ae633d92405777ff6183ec183c7a372f5',1,'byteme::PerByte']]]
 ];

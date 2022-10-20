@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['somebufferreader_0',['SomeBufferReader',['../classbyteme_1_1SomeBufferReader.html',1,'byteme']]],
-  ['somefilereader_1',['SomeFileReader',['../classbyteme_1_1SomeFileReader.html',1,'byteme']]]
+  ['rawbufferreader_0',['RawBufferReader',['../classbyteme_1_1RawBufferReader.html',1,'byteme']]],
+  ['rawfilereader_1',['RawFileReader',['../classbyteme_1_1RawFileReader.html',1,'byteme']]],
+  ['reader_2',['Reader',['../classbyteme_1_1Reader.html',1,'byteme']]]
 ];

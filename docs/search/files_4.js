@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['temp_5ffile_5fpath_2ehpp_0',['temp_file_path.hpp',['../temp__file__path_8hpp.html',1,'']]]
+  ['somebufferreader_2ehpp_0',['SomeBufferReader.hpp',['../SomeBufferReader_8hpp.html',1,'']]],
+  ['somefilereader_2ehpp_1',['SomeFileReader.hpp',['../SomeFileReader_8hpp.html',1,'']]]
 ];
