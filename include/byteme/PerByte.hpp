@@ -9,6 +9,7 @@
 #include <thread>
 #include <vector>
 #include <algorithm>
+#include <exception>
 
 #include "Reader.hpp"
 
@@ -104,6 +105,7 @@ private:
     Reader* reader = nullptr;
     bool use_meanwhile = false;
     std::thread meanwhile;
+    std::exception_ptr thread_err = nullptr;
     std::vector<T> buffer;
 
     void refill() {
@@ -115,8 +117,12 @@ private:
         current = 0;
         use_meanwhile = remaining;
         if (remaining) {
-            meanwhile = std::thread([&]() -> void { 
-                remaining = (*reader)(); 
+            meanwhile = std::thread([&]() -> void {
+                try {
+                    remaining = (*reader)(); 
+                } catch (...) {
+                    thread_err = std::current_exception();
+                }
             });
         }
     }
@@ -147,6 +153,9 @@ public:
             overall += available;
             if (use_meanwhile) {
                 meanwhile.join();
+                if (thread_err) {
+                    std::rethrow_exception(thread_err);
+                }
                 refill();
             }
         }
