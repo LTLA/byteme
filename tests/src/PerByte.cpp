@@ -51,6 +51,28 @@ TEST_P(PerByteTest, Basic) {
     EXPECT_EQ(observed, expected);
 }
 
+TEST_P(PerByteTest, Parallel) {
+    std::vector<std::string> contents { "Ochite iku sunadokei bakari miteru yo", "Sakasama ni sureba hora mata hajimaru yo", "Kizanda dake susumu jikan ni", "Itsuka boku mo haireru kana" };
+    auto path = dump_file(contents);
+
+    byteme::RawFileReader reader(path, GetParam());
+    byteme::PerByteParallel extractor(reader);
+
+    std::string observed;
+    while (extractor.valid()) {
+        observed += extractor.get();
+        extractor.advance();
+    }
+
+    std::string expected;
+    for (const auto& x : contents) {
+        expected += x;
+        expected += "\n";
+    }
+
+    EXPECT_EQ(observed, expected);
+}
+
 INSTANTIATE_TEST_SUITE_P(
     PerByte,
     PerByteTest,

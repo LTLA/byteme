@@ -6,6 +6,10 @@
  * @brief Perform byte-by-byte extraction.
  */
 
+#include <thread>
+#include <vector>
+#include <algorithm>
+
 #include "Reader.hpp"
 
 namespace byteme {
@@ -71,6 +75,90 @@ public:
      */
     T get() const {
         return ptr[current];
+    }
+
+    /**
+     * @return The position of the current byte since the start of the input.
+     */
+    size_t position() const {
+        return overall + current;
+    }
+};
+
+/**
+ * @brief Perform parallelized byte-by-byte extraction from a `Reader` source.
+ *
+ * @tparam T Character type to return, usually `char` for text or `unsigned char` for binary.
+ *
+ * This is much like `PerByte` except that the `Reader`'s loading operation is called in a separate thread,
+ * thus allowing the caller to parse the bytes of the current chunk in parallel.
+ */
+template<typename T = char>
+struct PerByteParallel {
+private:
+    size_t current = 0;
+    bool remaining = false;
+    size_t available = 0;
+    size_t overall = 0;
+
+    Reader* reader = nullptr;
+    bool use_meanwhile = false;
+    std::thread meanwhile;
+    std::vector<T> buffer;
+
+    void refill() {
+        auto ptr = reinterpret_cast<const T*>(reader->buffer());
+        available = reader->available();
+        buffer.resize(available);
+        std::copy(ptr, ptr + available, buffer.begin());
+
+        current = 0;
+        use_meanwhile = remaining;
+        if (remaining) {
+            meanwhile = std::thread([&]() -> void { 
+                remaining = (*reader)(); 
+            });
+        }
+    }
+
+public:
+    /**
+     * @param r An existing reader object that has not been read from.
+     */
+    PerByteParallel(Reader& r) : reader(&r) {
+        remaining = (*reader)();
+        refill();
+    }
+
+    /**
+     * @return Whether this instance still has bytes to be read.
+     */
+    bool valid() const {
+        return current < available;
+    }
+
+    /**
+     * Advance to the next byte, possibly reading a new chunk from the supplied `Reader`.
+     * This should only be called if `valid()` is `true`.
+     */
+    void advance() {
+        ++current;
+        if (current == available) {
+            overall += available;
+            if (use_meanwhile) {
+                meanwhile.join();
+                refill();
+            }
+        }
+    }
+
+    /**
+     * @return The current byte.
+     *
+     * This should only be called if `valid()` is `true`.
+     */
+    T get() const {
+        return buffer[current];
     }
 
     /**
