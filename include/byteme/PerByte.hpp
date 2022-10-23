@@ -137,6 +137,20 @@ public:
     }
 
     /**
+     * @cond
+     */
+    ~PerByteParallel() {
+        // Avoid a dangling thread if we need to destroy this prematurely,
+        // e.g., because the caller encountered an exception.
+        if (use_meanwhile) {
+            meanwhile.join();
+        }
+    }
+    /**
+     * @endcond
+     */
+
+    /**
      * @return Whether this instance still has bytes to be read.
      */
     bool valid() const {

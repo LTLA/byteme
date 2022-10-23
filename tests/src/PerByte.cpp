@@ -73,8 +73,25 @@ TEST_P(PerByteTest, Parallel) {
     EXPECT_EQ(observed, expected);
 }
 
+TEST_P(PerByteTest, ParallelDestruction) {
+    std::vector<std::string> contents { "Kimi dake ga sugisatta saka no tochuu wa", "Atataka na hidamari ga ikutsu mo dekiteta", "Boku hitori ga koko de yasashii", "Atatakasa o omoikaeshiteru" };
+    auto path = dump_file(contents);
+    byteme::RawFileReader reader(path, GetParam());
+
+    // Get enough hits to trigger the next (parallelized) chunk read.
+    {
+        byteme::PerByteParallel extractor(reader);
+        size_t limit = GetParam();
+        for (size_t i = 0; i < limit + 10 && extractor.valid(); ++i) {
+            extractor.get();
+        }
+    }
+
+    // Destruction of the object should not result in a segfault.
+}
+
 INSTANTIATE_TEST_SUITE_P(
     PerByte,
     PerByteTest,
-    ::testing::Values(10, 50, 100, 1000)
+    ::testing::Values(10, 20, 50, 100)
 );
