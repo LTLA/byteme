@@ -6,7 +6,7 @@
 #include <string>
 #include <cstdio>
 #include "Writer.hpp"
-#include "SelfClosingFile.hpp"
+#include "SelfClosingFILE.hpp"
 
 /**
  * @file RawFileWriter.hpp
@@ -50,33 +50,24 @@ public:
             } else {
                 size_t to_add = capacity - used;
                 std::copy(buffer, buffer + to_add, ptr + used);
-
-                size_t ok = std::fwrite(ptr, sizeof(unsigned char), capacity, handle);
-                if (ok < capacity) {
-                    throw std::runtime_error("failed to write raw binary file (fwrite error " + std::to_string(std::ferror(handle)) + ")");
-                }
-                
+                dump(ptr, capacity);
                 std::copy(buffer + to_add, buffer + n, ptr);
                 used = n - to_add;
             }
         } else {
             if (used) {
-                size_t ok = std::fwrite(ptr, sizeof(unsigned char), used, handle);
-                if (ok < capacity) {
-                    throw std::runtime_error("failed to write raw binary file (fwrite error " + std::to_string(std::ferror(handle)) + ")");
-                }
+                dump(ptr, used);
                 used = 0;
             }
-
-            size_t ok = std::fwrite(buffer, sizeof(unsigned char), n, handle);
-            if (ok < capacity) {
-                throw std::runtime_error("failed to write raw binary file (fwrite error " + std::to_string(std::ferror(handle)) + ")");
-            }
+            dump(buffer, n);
         }
     }
 
     void finish() {
         if (file.handle) {
+            if (used) {
+                dump(buffer_.data(), used);
+            }
             if (std::fclose(file.handle)) {
                 throw std::runtime_error("failed to close raw binary file");
             }
@@ -88,6 +79,14 @@ private:
     SelfClosingFILE file;
     std::vector<unsigned char> buffer_;
     size_t used = 0;
+
+    void dump(const unsigned char* ptr, size_t len) {
+        size_t ok = std::fwrite(ptr, sizeof(unsigned char), len, file.handle);
+        if (ok < len) {
+            throw std::runtime_error("failed to write raw binary file (fwrite error " + std::to_string(std::ferror(file.handle)) + ")");
+        }
+        return;
+    }
 };
 
 }
