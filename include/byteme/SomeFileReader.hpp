@@ -32,7 +32,7 @@ public:
         unsigned char header[3];
         size_t read;
         {
-            RawFileReader::SelfClosingFILE file(path);
+            SelfClosingFILE file(path, "rb");
             read = std::fread(header, sizeof(unsigned char), 3, file.handle);
         }
 
