@@ -874,6 +874,7 @@ RECURSIVE              = YES
 # run.
 
 EXCLUDE                = ../include/byteme/SelfClosingFILE.hpp \
+                         ../include/byteme/SelfClosingGzFile.hpp \
                          ../include/byteme/temp_file_path.hpp \
                          ../include/byteme/magic_numbers.hpp
 
