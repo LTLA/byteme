@@ -26,7 +26,7 @@ public:
      * @param compression_level Gzip compression level. 
      * @param buffer_size Size of the internal buffer. 
      */
-    GzipFileWriter(const char* path, int compression_level = 6, size_t buffer_size = 65536) : gz(path), buffer_(buffer_size) {
+    GzipFileWriter(const char* path, int compression_level = 6, size_t buffer_size = 65536) : gz(path, "wb"), buffer_(buffer_size) {
         if (gzsetparams(gz.handle, compression_level, Z_DEFAULT_STRATEGY) != Z_OK) {
             throw std::runtime_error("failed to set the compression parameters");
         }
@@ -40,14 +40,13 @@ public:
     GzipFileWriter(const std::string& path, int compression_level = 6, size_t buffer_size = 65536) : GzipFileWriter(path.c_str(), compression_level, buffer_size) {}
 
 public:
-    void write(const unsigned char* buffer, size_t len) {
-        if (!len) {
+    void write(const unsigned char* buffer, size_t n) {
+        if (!n) {
             return;
         }
 
         const auto capacity = buffer_.size();
         auto ptr = buffer_.data();
-        auto& handle = file.handle;
 
         // A bunch of choices made here to minimize the number of writes.
         if (n < capacity) {
@@ -89,7 +88,7 @@ private:
         if (!len) {
             return;
         }
-        size_t ok = gzwrite(file.handle, ptr, len);
+        size_t ok = gzwrite(gz.handle, ptr, len);
         if (ok != len) {
             throw std::runtime_error("failed to write to the Gzip-compressed file");
         }
