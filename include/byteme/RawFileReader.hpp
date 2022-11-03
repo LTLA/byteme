@@ -6,7 +6,7 @@
 #include <string>
 #include <cstdio>
 #include "Reader.hpp"
-#include "SelfClosingFile.hpp"
+#include "SelfClosingFILE.hpp"
 
 /**
  * @file RawFileReader.hpp
