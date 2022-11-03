@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['temp_5ffile_5fpath_0',['temp_file_path',['../temp__file__path_8hpp.html#ab00b2e7dda2b1f838e87cdaa6ea093e4',1,'buffin']]],
-  ['temp_5ffile_5fpath_2ehpp_1',['temp_file_path.hpp',['../temp__file__path_8hpp.html',1,'']]]
+  ['valid_0',['valid',['../structbyteme_1_1PerByte.html#a4efe7a19d400c939f3045616ec59c117',1,'byteme::PerByte::valid()'],['../structbyteme_1_1PerByteParallel.html#a8ae603d29d895fcb0276ea05374bad2b',1,'byteme::PerByteParallel::valid()']]]
 ];

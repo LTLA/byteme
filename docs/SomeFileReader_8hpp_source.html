@@ -96,7 +96,7 @@ $(function() {
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> header[3];</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordtype">size_t</span> read;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            RawFileReader::SelfClosingFILE file(path);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            SelfClosingFILE file(path, <span class="stringliteral">&quot;rb&quot;</span>);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            read = std::fread(header, <span class="keyword">sizeof</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>), 3, file.handle);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        }</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
@@ -132,7 +132,7 @@ $(function() {
 <div class="ttc" id="aRawFileReader_8hpp_html"><div class="ttname"><a href="RawFileReader_8hpp.html">RawFileReader.hpp</a></div><div class="ttdoc">Read a file without any extra transformations.</div></div>
 <div class="ttc" id="aReader_8hpp_html"><div class="ttname"><a href="Reader_8hpp.html">Reader.hpp</a></div><div class="ttdoc">Read an input source.</div></div>
 <div class="ttc" id="aclassbyteme_1_1GzipFileReader_html"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html">byteme::GzipFileReader</a></div><div class="ttdoc">Read uncompressed bytes from a Gzip-compressed file.</div><div class="ttdef"><b>Definition:</b> GzipFileReader.hpp:23</div></div>
-<div class="ttc" id="aclassbyteme_1_1RawFileReader_html"><div class="ttname"><a href="classbyteme_1_1RawFileReader.html">byteme::RawFileReader</a></div><div class="ttdoc">Read bytes from a file, usually text.</div><div class="ttdef"><b>Definition:</b> RawFileReader.hpp:24</div></div>
+<div class="ttc" id="aclassbyteme_1_1RawFileReader_html"><div class="ttname"><a href="classbyteme_1_1RawFileReader.html">byteme::RawFileReader</a></div><div class="ttdoc">Read bytes from a file, usually text.</div><div class="ttdef"><b>Definition:</b> RawFileReader.hpp:25</div></div>
 <div class="ttc" id="aclassbyteme_1_1Reader_html"><div class="ttname"><a href="classbyteme_1_1Reader.html">byteme::Reader</a></div><div class="ttdoc">Virtual class for reading bytes from a source.</div><div class="ttdef"><b>Definition:</b> Reader.hpp:15</div></div>
 <div class="ttc" id="aclassbyteme_1_1SomeFileReader_html"><div class="ttname"><a href="classbyteme_1_1SomeFileReader.html">byteme::SomeFileReader</a></div><div class="ttdoc">Read a file that may or may not be Gzipped.</div><div class="ttdef"><b>Definition:</b> SomeFileReader.hpp:25</div></div>
 <div class="ttc" id="aclassbyteme_1_1SomeFileReader_html_a2267b7fcb53a5c78c415d2718bce06e0"><div class="ttname"><a href="classbyteme_1_1SomeFileReader.html#a2267b7fcb53a5c78c415d2718bce06e0">byteme::SomeFileReader::SomeFileReader</a></div><div class="ttdeci">SomeFileReader(const std::string &amp;path, size_t buffer_size=65536)</div><div class="ttdef"><b>Definition:</b> SomeFileReader.hpp:50</div></div>
