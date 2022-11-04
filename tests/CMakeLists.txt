@@ -30,6 +30,7 @@ add_executable(
 target_link_libraries(
     libtest
     gtest_main
+    gmock_main
     byteme 
 )
 

@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include "read_lines.h"
 
@@ -87,3 +88,18 @@ INSTANTIATE_TEST_SUITE_P(
         ::testing::Values(10, 50, 100, 1000) // chunk size
     )
 );
+
+TEST(ZlibBufferWriterExtraTests, OtherModes) {
+    byteme::ZlibBufferWriter writer1(0); // deflate
+    byteme::ZlibBufferWriter writer2(1); // zlib
+
+    EXPECT_ANY_THROW(
+        try {
+            byteme::ZlibBufferWriter writer(5);
+        } catch (std::exception& e) {
+            EXPECT_THAT(e.what(), ::testing::HasSubstr("unknown Zlib compression"));
+            throw e;
+        }
+    );
+}
+
