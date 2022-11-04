@@ -21,22 +21,20 @@ namespace byteme {
 class RawBufferWriter : public Writer {
 public:
     /**
-     * @param reserved Number of bytes to reserve in the vector.
      */
-    RawBufferWriter(size_t reserved = 0) {
-        contents.reserve(reserved);
-    }
+    RawBufferWriter() {}
 
     void write(const unsigned char* buffer, size_t n) {
-        contents.insert(contents.end(), buffer, buffer + n);
+        output.insert(output.end(), buffer, buffer + n);
     }
 
     void finish() {}
 
     /**
-     * Contents of the buffer so far.
+     * Contents of the output buffer.
+     * This should only be accessed after `finish()` is called.
      */
-    std::vector<unsigned char> contents;
+    std::vector<unsigned char> output;
 };
 
 }

@@ -12,7 +12,7 @@ protected:
             writer.write(reinterpret_cast<const unsigned char*>(&newline), 1);
         }
         writer.finish();
-        return writer.contents;
+        return writer.output;
     }
 
     std::string combine(const std::vector<std::string>& contents) {
