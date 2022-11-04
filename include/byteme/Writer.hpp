@@ -27,6 +27,7 @@ public:
 
     /**
      * Indicate that the writing has finished and that the relevant clean-up (buffer flushing, file closing, etc.) should be performed.
+     * This should be called exactly once, after which no further calls to `write()` or `finish()` should be performed.
      */
     virtual void finish() = 0;
 };
