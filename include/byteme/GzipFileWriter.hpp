@@ -26,9 +26,12 @@ public:
      * @param compression_level Gzip compression level. 
      * @param buffer_size Size of the internal buffer. 
      */
-    GzipFileWriter(const char* path, int compression_level = 6, size_t buffer_size = 65536) : gz(path, "wb"), buffer_(buffer_size) {
+    GzipFileWriter(const char* path, int compression_level = 6, size_t buffer_size = 65536) : gz(path, "wb") {
+        if (gzbuffer(gz.handle, buffer_size)) {
+            throw std::runtime_error("failed to set the Gzip compression buffer");
+        }
         if (gzsetparams(gz.handle, compression_level, Z_DEFAULT_STRATEGY) != Z_OK) {
-            throw std::runtime_error("failed to set the compression parameters");
+            throw std::runtime_error("failed to set the Gzip compression parameters");
         }
     }
 
@@ -44,34 +47,12 @@ public:
         if (!n) {
             return;
         }
-
-        const auto capacity = buffer_.size();
-        auto ptr = buffer_.data();
-
-        // A bunch of choices made here to minimize the number of writes.
-        if (n < capacity) {
-            if (used + n < capacity) {
-                std::copy(buffer, buffer + n, ptr + used);
-                used += n;
-            } else {
-                size_t to_add = capacity - used;
-                std::copy(buffer, buffer + to_add, ptr + used);
-                dump(ptr, capacity);
-                std::copy(buffer + to_add, buffer + n, ptr);
-                used = n - to_add;
-            }
-        } else {
-            if (used) {
-                dump(ptr, used);
-                used = 0;
-            }
-            dump(buffer, n);
-        }
+        dump(buffer, n);
     }
 
     void finish() {
         if (!gz.closed) {
-            dump(buffer_.data(), used);
+            dump(holding.data(), used);
             gz.closed = true;
             if (gzclose(gz.handle) != Z_OK) {
                 throw std::runtime_error("failed to close the Gzip-compressed file after writing");
@@ -81,13 +62,10 @@ public:
 
 private:
     SelfClosingGzFile gz;
-    std::vector<unsigned char> buffer_;
+    std::vector<unsigned char> holding;
     size_t used = 0;
 
     void dump(const unsigned char* ptr, size_t len) {
-        if (!len) {
-            return;
-        }
         size_t ok = gzwrite(gz.handle, ptr, len);
         if (ok != len) {
             throw std::runtime_error("failed to write to the Gzip-compressed file");
