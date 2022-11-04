@@ -1,0 +1,4 @@
+<map id="byteme::OstreamWriter" name="byteme::OstreamWriter">
+<area shape="rect" id="node1" title="Read bytes from a std::ostream." alt="" coords="5,79,160,104"/>
+<area shape="rect" id="node2" href="$classbyteme_1_1Writer.html" title="Virtual class for writing bytes to a sink." alt="" coords="31,5,135,31"/>
+</map>

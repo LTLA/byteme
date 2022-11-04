@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['get_0',['get',['../structbyteme_1_1PerByte.html#a563561d143629f7dab11ab75d0a586ea',1,'byteme::PerByte::get()'],['../structbyteme_1_1PerByteParallel.html#a91ee4195b57831b88e143948a3e52e22',1,'byteme::PerByteParallel::get()']]],
-  ['gimme_20some_20bytes_1',['Gimme some bytes',['../index.html',1,'']]],
-  ['gzipfilereader_2',['GzipFileReader',['../classbyteme_1_1GzipFileReader.html',1,'byteme::GzipFileReader'],['../classbyteme_1_1GzipFileReader.html#ac6fba0ca5a6b14614286503060bf0381',1,'byteme::GzipFileReader::GzipFileReader(const char *path, size_t buffer_size=65536)'],['../classbyteme_1_1GzipFileReader.html#a80a27441b6d4428c56a0daecf1507fa5',1,'byteme::GzipFileReader::GzipFileReader(const std::string &amp;path, size_t buffer_size=65536)']]],
-  ['gzipfilereader_2ehpp_3',['GzipFileReader.hpp',['../GzipFileReader_8hpp.html',1,'']]]
+  ['finish_0',['finish',['../classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3',1,'byteme::GzipFileWriter::finish()'],['../classbyteme_1_1OstreamWriter.html#a754e94afa4e246b87410dda6abbab461',1,'byteme::OstreamWriter::finish()'],['../classbyteme_1_1RawBufferWriter.html#a9f5da6446f98b72afcdbbcf504e10512',1,'byteme::RawBufferWriter::finish()'],['../classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535',1,'byteme::RawFileWriter::finish()'],['../classbyteme_1_1Writer.html#a8317429c5645d0e447a4207091953164',1,'byteme::Writer::finish()'],['../classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac',1,'byteme::ZlibBufferWriter::finish()']]]
 ];

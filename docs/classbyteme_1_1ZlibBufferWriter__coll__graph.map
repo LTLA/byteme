@@ -1,0 +1,4 @@
+<map id="byteme::ZlibBufferWriter" name="byteme::ZlibBufferWriter">
+<area shape="rect" id="node1" title="Compress and write bytes to a Zlib&#45;compressed buffer." alt="" coords="5,79,164,104"/>
+<area shape="rect" id="node2" href="$classbyteme_1_1Writer.html" title="Virtual class for writing bytes to a sink." alt="" coords="33,5,137,31"/>
+</map>

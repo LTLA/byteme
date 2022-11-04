@@ -1,0 +1,4 @@
+<map id="byteme::RawFileWriter" name="byteme::RawFileWriter">
+<area shape="rect" id="node1" title="Write bytes to a file." alt="" coords="5,79,156,104"/>
+<area shape="rect" id="node2" href="$classbyteme_1_1Writer.html" title="Virtual class for writing bytes to a sink." alt="" coords="29,5,133,31"/>
+</map>

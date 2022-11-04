@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['zlibbufferreader_0',['ZlibBufferReader',['../classbyteme_1_1ZlibBufferReader.html',1,'byteme']]]
+  ['somebufferreader_0',['SomeBufferReader',['../classbyteme_1_1SomeBufferReader.html',1,'byteme']]],
+  ['somefilereader_1',['SomeFileReader',['../classbyteme_1_1SomeFileReader.html',1,'byteme']]]
 ];

@@ -1,0 +1,4 @@
+<map id="byteme::GzipFileWriter" name="byteme::GzipFileWriter">
+<area shape="rect" id="node1" title="Write uncompressed bytes to a Gzip&#45;compressed file." alt="" coords="5,79,156,104"/>
+<area shape="rect" id="node2" href="$classbyteme_1_1Writer.html" title="Virtual class for writing bytes to a sink." alt="" coords="29,5,133,31"/>
+</map>

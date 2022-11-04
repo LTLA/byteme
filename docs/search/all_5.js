@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['perbyte_0',['PerByte',['../structbyteme_1_1PerByte.html',1,'byteme::PerByte&lt; T &gt;'],['../structbyteme_1_1PerByte.html#a286a8d91ce0f1669a862729a4dd8ef1c',1,'byteme::PerByte::PerByte()']]],
-  ['perbyte_2ehpp_1',['PerByte.hpp',['../PerByte_8hpp.html',1,'']]],
-  ['perbyteparallel_2',['PerByteParallel',['../structbyteme_1_1PerByteParallel.html',1,'byteme::PerByteParallel&lt; T &gt;'],['../structbyteme_1_1PerByteParallel.html#a005e37bc3a8fb28732d62a37c4d2dd99',1,'byteme::PerByteParallel::PerByteParallel()']]],
-  ['position_3',['position',['../structbyteme_1_1PerByte.html#ae633d92405777ff6183ec183c7a372f5',1,'byteme::PerByte::position()'],['../structbyteme_1_1PerByteParallel.html#af540836a81bbd9050a27fd3218b9d597',1,'byteme::PerByteParallel::position()']]]
+  ['operator_28_29_0',['operator()',['../classbyteme_1_1GzipFileReader.html#a0411c9ffef9be3500b93dbe561c2d490',1,'byteme::GzipFileReader::operator()()'],['../classbyteme_1_1IstreamReader.html#a21c7f0c362aae4b6c6335b8129d62f97',1,'byteme::IstreamReader::operator()()'],['../classbyteme_1_1RawBufferReader.html#a73872d781e13e1686916785ed9110b01',1,'byteme::RawBufferReader::operator()()'],['../classbyteme_1_1RawFileReader.html#a57bbd8da978b1a4e011425fab08e54f3',1,'byteme::RawFileReader::operator()()'],['../classbyteme_1_1Reader.html#ad3261250c0d2ee3fbeef2f0cf2cc4182',1,'byteme::Reader::operator()()'],['../classbyteme_1_1SomeBufferReader.html#a2631f751059637bb6a22b9b2de67524f',1,'byteme::SomeBufferReader::operator()()'],['../classbyteme_1_1SomeFileReader.html#a7755125d2aa65cf05d285e3dfbfb2c87',1,'byteme::SomeFileReader::operator()()'],['../classbyteme_1_1ZlibBufferReader.html#a628659c6663b6d1cc91e44cdd1dba669',1,'byteme::ZlibBufferReader::operator()()']]],
+  ['ostreamwriter_1',['OstreamWriter',['../classbyteme_1_1OstreamWriter.html',1,'byteme::OstreamWriter'],['../classbyteme_1_1OstreamWriter.html#a9a388c901bf6ccbaf54cd814cdf6e10e',1,'byteme::OstreamWriter::OstreamWriter()']]],
+  ['ostreamwriter_2ehpp_2',['OstreamWriter.hpp',['../OstreamWriter_8hpp.html',1,'']]],
+  ['output_3',['output',['../classbyteme_1_1RawBufferWriter.html#aa2ef4387f39905e9d59be392f7c4e927',1,'byteme::RawBufferWriter::output()'],['../classbyteme_1_1ZlibBufferWriter.html#abb6a541dd76e86e32a73bff39c15988b',1,'byteme::ZlibBufferWriter::output()']]]
 ];
