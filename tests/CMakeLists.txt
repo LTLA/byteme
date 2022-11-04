@@ -24,6 +24,7 @@ add_executable(
     src/RawBufferWriter.cpp
     src/RawFileWriter.cpp
     src/GzipFileWriter.cpp
+    src/ZlibBufferWriter.cpp
 )
 
 target_link_libraries(
