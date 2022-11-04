@@ -9,15 +9,15 @@
 /**
  * @file ZlibBufferWriter.hpp
  *
- * @brief Read bytes from a Zlib-compressed buffer.
+ * @brief Write bytes to a Zlib-compressed buffer.
  */
 
 namespace byteme {
 
 /**
- * @brief Read and decompress bytes from a Zlib-compressed buffer.
+ * @brief Compress and write bytes to a Zlib-compressed buffer.
  *
- * This is basically a wrapper around Zlib's inflate method, with correct closing and error checking.
+ * This is basically a wrapper around Zlib's deflate method, with correct closing and error checking.
  */
 class ZlibBufferWriter : public Writer {
 private:

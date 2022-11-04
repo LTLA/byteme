@@ -9,7 +9,7 @@
 /**
  * @file GzipFileWriter.hpp
  *
- * @brief Read a Gzip-compressed file.
+ * @brief Write a Gzip-compressed file.
  */
 
 namespace byteme {
