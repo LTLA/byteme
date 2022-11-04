@@ -20,11 +20,18 @@ add_executable(
     src/RawFileReader.cpp
     src/ZlibBufferReader.cpp
     src/PerByte.cpp
+
+    src/RawBufferWriter.cpp
+    src/RawFileWriter.cpp
+    src/GzipFileWriter.cpp
+    src/ZlibBufferWriter.cpp
+    src/OstreamWriter.cpp
 )
 
 target_link_libraries(
     libtest
     gtest_main
+    gmock_main
     byteme 
 )
 
