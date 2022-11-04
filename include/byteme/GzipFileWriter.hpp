@@ -44,34 +44,23 @@ public:
 
 public:
     void write(const unsigned char* buffer, size_t n) {
-        if (!n) {
-            return;
+        if (n) {
+            size_t ok = gzwrite(gz.handle, buffer, n);
+            if (ok != n) {
+                throw std::runtime_error("failed to write to the Gzip-compressed file");
+            }
         }
-        dump(buffer, n);
     }
 
     void finish() {
-        if (!gz.closed) {
-            dump(holding.data(), used);
-            gz.closed = true;
-            if (gzclose(gz.handle) != Z_OK) {
-                throw std::runtime_error("failed to close the Gzip-compressed file after writing");
-            }
+        gz.closed = true;
+        if (gzclose(gz.handle) != Z_OK) {
+            throw std::runtime_error("failed to close the Gzip-compressed file after writing");
         }
     }
 
 private:
     SelfClosingGzFile gz;
-    std::vector<unsigned char> holding;
-    size_t used = 0;
-
-    void dump(const unsigned char* ptr, size_t len) {
-        size_t ok = gzwrite(gz.handle, ptr, len);
-        if (ok != len) {
-            throw std::runtime_error("failed to write to the Gzip-compressed file");
-        }
-        return;
-    }
 };
 
 }
