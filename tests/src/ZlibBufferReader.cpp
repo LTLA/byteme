@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include "read_lines.h"
 
@@ -37,6 +38,13 @@ TEST_P(ZlibBufferReaderTest, Basic) {
     byteme::ZlibBufferReader reader(gzcontents.data(), gzcontents.size(), 3, GetParam());
     auto lines = read_lines(reader);
     EXPECT_EQ(lines, contents);
+
+    // Trying in dedicated Gzip mode.
+    {
+        byteme::ZlibBufferReader reader(gzcontents.data(), gzcontents.size(), 2, GetParam());
+        auto lines = read_lines(reader);
+        EXPECT_EQ(lines, contents);
+    }
 }
 
 TEST_P(ZlibBufferReaderTest, Empty) {
@@ -71,3 +79,19 @@ INSTANTIATE_TEST_SUITE_P(
     ZlibBufferReaderTest,
     ::testing::Values(10, 50, 100, 1000)
 );
+
+TEST(ZlibBufferReaderExtraTests, OtherModes) {
+    byteme::ZlibBufferReader reader1(NULL, 0, 0, 100); // deflate
+    byteme::ZlibBufferReader reader2(NULL, 0, 1, 100); // zlib
+
+    EXPECT_ANY_THROW(
+        try {
+            byteme::ZlibBufferReader reader(NULL, 0, 5, 100);
+        } catch (std::exception& e) {
+            EXPECT_THAT(e.what(), ::testing::HasSubstr("mode must be"));
+            throw e;
+        }
+    );
+}
+
+
