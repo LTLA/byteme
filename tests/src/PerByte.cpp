@@ -34,7 +34,8 @@ TEST_P(PerByteTest, Basic) {
         } else {
             observed += extractor.get();
         }
-        extractor.advance();
+        bool still_valid = extractor.advance();
+        EXPECT_EQ(still_valid, extractor.valid());
     }
 
     std::string expected;
@@ -61,7 +62,8 @@ TEST_P(PerByteTest, Parallel) {
     std::string observed;
     while (extractor.valid()) {
         observed += extractor.get();
-        extractor.advance();
+        bool still_valid = extractor.advance();
+        EXPECT_EQ(still_valid, extractor.valid());
     }
 
     std::string expected;

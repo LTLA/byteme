@@ -58,15 +58,22 @@ public:
     /**
      * Advance to the next byte, possibly reading a new chunk from the supplied `Reader`.
      * This should only be called if `valid()` is `true`.
+     *
+     * @return Whether this instance still has bytes to be read, i.e., the output of `valid()` after advancing to the next byte.
      */
-    void advance() {
+    bool advance() {
         ++current;
-        if (current == available) {
-            overall += available;
-            if (remaining) {
-                refill();
-            }
+        if (current < available) {
+            return true;
         }
+
+        overall += available;
+        if (!remaining) {
+            return false;
+        }
+
+        refill();
+        return true;
     }
 
     /**
@@ -160,19 +167,26 @@ public:
     /**
      * Advance to the next byte, possibly reading a new chunk from the supplied `Reader`.
      * This should only be called if `valid()` is `true`.
+     *
+     * @return Whether this instance still has bytes to be read, i.e., the output of `valid()` after advancing to the next byte.
      */
-    void advance() {
+    bool advance() {
         ++current;
-        if (current == available) {
-            overall += available;
-            if (use_meanwhile) {
-                meanwhile.join();
-                if (thread_err) {
-                    std::rethrow_exception(thread_err);
-                }
-                refill();
-            }
+        if (current < available) {
+            return true;
         }
+
+        overall += available;
+        if (!use_meanwhile) {
+            return false;
+        }
+
+        meanwhile.join();
+        if (thread_err) {
+            std::rethrow_exception(thread_err);
+        }
+        refill();
+        return true;
     }
 
     /**
