@@ -1,4 +1,5 @@
 <map id="byteme::GzipFileReader" name="byteme::GzipFileReader">
-<area shape="rect" id="node1" title="Read uncompressed bytes from a Gzip&#45;compressed file." alt="" coords="5,79,164,104"/>
-<area shape="rect" id="node2" href="$classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="29,5,140,31"/>
+<area shape="rect" id="Node000001" title="Read uncompressed bytes from a Gzip&#45;compressed file." alt="" coords="5,79,163,105"/>
+<area shape="rect" id="Node000002" href="$classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="29,5,139,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,46,87,79,81,79,81,46"/>
 </map>

@@ -1,8 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classbyteme_1_1Writer.html" title="Virtual class for writing bytes to a sink." alt="" coords="5,104,109,129"/>
-<area shape="rect" id="node2" href="$classbyteme_1_1GzipFileWriter.html" title="Write uncompressed bytes to a Gzip&#45;compressed file." alt="" coords="164,5,315,31"/>
-<area shape="rect" id="node3" href="$classbyteme_1_1OstreamWriter.html" title="Read bytes from a std::ostream." alt="" coords="162,55,317,80"/>
-<area shape="rect" id="node4" href="$classbyteme_1_1RawBufferWriter.html" title="Write bytes to a raw buffer." alt="" coords="157,104,321,129"/>
-<area shape="rect" id="node5" href="$classbyteme_1_1RawFileWriter.html" title="Write bytes to a file." alt="" coords="164,153,315,179"/>
-<area shape="rect" id="node6" href="$classbyteme_1_1ZlibBufferWriter.html" title="Compress and write bytes to a Zlib&#45;compressed buffer." alt="" coords="160,203,319,228"/>
+<area shape="rect" id="Node000000" href="$classbyteme_1_1Writer.html" title="Virtual class for writing bytes to a sink." alt="" coords="5,104,109,130"/>
+<area shape="rect" id="Node000001" href="$classbyteme_1_1GzipFileWriter.html" title="Write uncompressed bytes to a Gzip&#45;compressed file." alt="" coords="163,5,314,31"/>
+<area shape="poly" id="edge8_Node000000_Node000001" title=" " alt="" coords="81,92,115,65,155,40,181,29,183,34,158,45,118,69,85,96"/>
+<area shape="rect" id="Node000002" href="$classbyteme_1_1OstreamWriter.html" title="Read bytes from a std::ostream." alt="" coords="162,55,315,80"/>
+<area shape="poly" id="edge9_Node000000_Node000002" title=" " alt="" coords="121,97,188,78,189,84,122,102"/>
+<area shape="rect" id="Node000003" href="$classbyteme_1_1RawBufferWriter.html" title="Write bytes to a raw buffer." alt="" coords="157,104,320,130"/>
+<area shape="poly" id="edge10_Node000000_Node000003" title=" " alt="" coords="124,114,156,114,156,120,124,120"/>
+<area shape="rect" id="Node000004" href="$classbyteme_1_1RawFileWriter.html" title="Write bytes to a file." alt="" coords="163,153,314,179"/>
+<area shape="poly" id="edge11_Node000000_Node000004" title=" " alt="" coords="122,132,189,150,188,155,121,137"/>
+<area shape="rect" id="Node000005" href="$classbyteme_1_1ZlibBufferWriter.html" title="Compress and write bytes to a Zlib&#45;compressed buffer." alt="" coords="159,203,318,228"/>
+<area shape="poly" id="edge12_Node000000_Node000005" title=" " alt="" coords="85,138,118,164,158,189,183,200,181,205,155,194,115,169,81,142"/>
 </map>
