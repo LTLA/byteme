@@ -28,13 +28,18 @@ public:
     virtual bool operator()() = 0;
 
     /**
-     * @return Pointer to the start of an array containing the decompressed bytes.
+     * @return Pointer to the start of an array containing the available bytes.
      * The number of available bytes is provided in `available()`.
+     *
+     * This method should only be called after `operator()()`.
      */
     virtual const unsigned char* buffer() const = 0;
 
     /**
-     * @return Number of decompressed bytes available in the `buffer()`.
+     * @return Number of available bytes in `buffer()`.
+     * This is expected to be a positive value.
+     *
+     * This method should only be called after `operator()()`.
      */
     virtual size_t available() const = 0;
 };
