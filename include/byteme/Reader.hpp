@@ -21,7 +21,7 @@ public:
      *
      * To read the entire source, this function should be called repeatedly until `false` is returned.
      * Note that `buffer()` and `available()` may still be valid on the last invocation (i.e., the one that returns `false`),
-     * as some bytes may have been read before reaching the end of the file.
+     * as some bytes may have been read before reaching the end of the source.
      *
      * @return Boolean indicating whether there are still bytes remaining in the source.
      */
@@ -37,9 +37,11 @@ public:
 
     /**
      * @return Number of available bytes in `buffer()`.
-     * This is expected to be a positive value.
      *
      * This method should only be called after `operator()()`.
+     *
+     * The return value is generally expected to be positive; however, it is possible to return a zero.
+     * Note that zero values should not be interpreted as the end of the source, which is strictly only defined by `operator()()` returning `false`.
      */
     virtual size_t available() const = 0;
 };

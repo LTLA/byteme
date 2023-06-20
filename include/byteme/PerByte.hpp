@@ -37,9 +37,12 @@ private:
     Pointer_ reader;
 
     void refill() {
-        remaining = (*reader)();
+        do {
+            remaining = (*reader)();
+            available = reader->available();
+        } while (remaining && available == 0); // continue collecting bytes if a zero-length buffer is returned without remaining = false.
+
         ptr = reinterpret_cast<const Type_*>(reader->buffer());
-        available = reader->available();
         current = 0;
     }
 public:
@@ -75,7 +78,7 @@ public:
         }
 
         refill();
-        return true;
+        return available > 0; // Check that there's actually bytes to extract in the next round.
     }
 
     /**
@@ -130,7 +133,9 @@ private:
         if (remaining) {
             meanwhile = std::thread([&]() -> void {
                 try {
-                    remaining = (*reader)(); 
+                    do {
+                        remaining = (*reader)();
+                    } while (remaining && reader->available() == 0);
                 } catch (...) {
                     thread_err = std::current_exception();
                 }
@@ -187,7 +192,7 @@ public:
             std::rethrow_exception(thread_err);
         }
         refill();
-        return true;
+        return available > 0; // confirm there's actually bytes to extract in the next round.
     }
 
     /**
