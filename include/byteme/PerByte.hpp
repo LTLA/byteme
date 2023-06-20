@@ -10,6 +10,7 @@
 #include <vector>
 #include <algorithm>
 #include <exception>
+#include <type_traits>
 
 #include "Reader.hpp"
 
@@ -18,33 +19,34 @@ namespace byteme {
 /**
  * @brief Perform byte-by-byte extraction from a `Reader` source.
  *
- * @tparam T Character type to return, usually `char` for text or `unsigned char` for binary.
+ * @tparam Type_ Character type to return, usually `char` for text or `unsigned char` for binary.
+ * @tparam Pointer_ A (possibly smart) non-`const` pointer to a `Reader`.
  *
  * This wraps a `Reader` so that developers can avoid the boilerplate of managing blocks of bytes,
  * when all they want is to iterate over the bytes of the input.
  */
-template<typename T = char>
+template<typename Type_ = char, class Pointer_ = Reader*>
 struct PerByte {
 private:
-    const T* ptr = nullptr;
+    const Type_* ptr = nullptr;
     size_t available = 0;
     size_t current = 0;
     bool remaining = false;
     size_t overall = 0;
 
-    Reader* reader = nullptr;
+    Pointer_ reader;
 
     void refill() {
         remaining = (*reader)();
-        ptr = reinterpret_cast<const T*>(reader->buffer());
+        ptr = reinterpret_cast<const Type_*>(reader->buffer());
         available = reader->available();
         current = 0;
     }
 public:
     /**
-     * @param r An existing reader object that has not been read from.
+     * @param r A (possibly smart) pointer to a `Reader` object that has not been read from.
      */
-    PerByte(Reader& r) : reader(&r) {
+    PerByte(Pointer_ r) : reader(std::move(r)) {
         refill();
     }
 
@@ -81,7 +83,7 @@ public:
      *
      * This should only be called if `valid()` is `true`.
      */
-    T get() const {
+    Type_ get() const {
         return ptr[current];
     }
 
@@ -96,12 +98,13 @@ public:
 /**
  * @brief Perform parallelized byte-by-byte extraction from a `Reader` source.
  *
- * @tparam T Character type to return, usually `char` for text or `unsigned char` for binary.
+ * @tparam Type_ Character type to return, usually `char` for text or `unsigned char` for binary.
+ * @tparam Pointer_ A (possibly smart) non-`const` pointer to a `Reader`.
  *
  * This is much like `PerByte` except that the `Reader`'s loading operation is called in a separate thread,
  * thus allowing the caller to parse the bytes of the current chunk in parallel.
  */
-template<typename T = char>
+template<typename Type_ = char, class Pointer_ = Reader*>
 struct PerByteParallel {
 private:
     size_t current = 0;
@@ -109,14 +112,15 @@ private:
     size_t available = 0;
     size_t overall = 0;
 
-    Reader* reader = nullptr;
+    Pointer_ reader;
+
     bool use_meanwhile = false;
     std::thread meanwhile;
     std::exception_ptr thread_err = nullptr;
-    std::vector<T> buffer;
+    std::vector<Type_> buffer;
 
     void refill() {
-        auto ptr = reinterpret_cast<const T*>(reader->buffer());
+        auto ptr = reinterpret_cast<const Type_*>(reader->buffer());
         available = reader->available();
         buffer.resize(available);
         std::copy(ptr, ptr + available, buffer.begin());
@@ -136,10 +140,10 @@ private:
 
 public:
     /**
-     * @param r An existing reader object that has not been read from.
+     * @copydoc PerByte::PerByte()
      */
-    PerByteParallel(Reader& r) : reader(&r) {
-        remaining = (*reader)();
+    PerByteParallel(Pointer_ r) : reader(std::move(r)) {
+        remaining = (*reader)(); 
         refill();
     }
 
@@ -158,17 +162,14 @@ public:
      */
 
     /**
-     * @return Whether this instance still has bytes to be read.
+     * @copydoc PerByte::valid()
      */
     bool valid() const {
         return current < available;
     }
 
     /**
-     * Advance to the next byte, possibly reading a new chunk from the supplied `Reader`.
-     * This should only be called if `valid()` is `true`.
-     *
-     * @return Whether this instance still has bytes to be read, i.e., the output of `valid()` after advancing to the next byte.
+     * @copydoc PerByte::advance()
      */
     bool advance() {
         ++current;
@@ -190,16 +191,14 @@ public:
     }
 
     /**
-     * @return The current byte.
-     *
-     * This should only be called if `valid()` is `true`.
+     * @copydoc PerByte::get()
      */
-    T get() const {
+    Type_ get() const {
         return buffer[current];
     }
 
     /**
-     * @return The position of the current byte since the start of the input.
+     * @copydoc PerByte::position()
      */
     size_t position() const {
         return overall + current;

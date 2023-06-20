@@ -4,6 +4,7 @@
 #include "byteme/temp_file_path.hpp"
 #include "byteme/RawFileReader.hpp"
 #include <fstream>
+#include <memory>
 
 class PerByteTest : public ::testing::TestWithParam<int> {
 protected:
@@ -23,7 +24,7 @@ TEST_P(PerByteTest, Basic) {
     auto path = dump_file(contents);
 
     byteme::RawFileReader reader(path, GetParam());
-    byteme::PerByte extractor(reader);
+    byteme::PerByte extractor(&reader);
 
     std::string observed;
     size_t count = 0;
@@ -52,12 +53,32 @@ TEST_P(PerByteTest, Basic) {
     EXPECT_EQ(observed, expected);
 }
 
+TEST_P(PerByteTest, SmartPointer) {
+    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
+    auto path = dump_file(contents);
+
+    byteme::PerByte extractor(std::make_unique<byteme::RawFileReader>(path, GetParam()));
+
+    std::vector<std::string> observed(1);
+    while (extractor.valid()) {
+        if (extractor.get() == '\n') {
+            observed.push_back("");
+        } else {
+            observed.back() += extractor.get();
+        }
+        extractor.advance();
+    }
+
+    observed.pop_back(); // remove trailing newline.
+    EXPECT_EQ(contents, observed);
+}
+
 TEST_P(PerByteTest, Parallel) {
     std::vector<std::string> contents { "Ochite iku sunadokei bakari miteru yo", "Sakasama ni sureba hora mata hajimaru yo", "Kizanda dake susumu jikan ni", "Itsuka boku mo haireru kana" };
     auto path = dump_file(contents);
 
     byteme::RawFileReader reader(path, GetParam());
-    byteme::PerByteParallel extractor(reader);
+    byteme::PerByteParallel extractor(&reader);
 
     std::string observed;
     while (extractor.valid()) {
@@ -82,7 +103,7 @@ TEST_P(PerByteTest, ParallelDestruction) {
 
     // Get enough hits to trigger the next (parallelized) chunk read.
     {
-        byteme::PerByteParallel extractor(reader);
+        byteme::PerByteParallel extractor(&reader);
         size_t limit = GetParam();
         for (size_t i = 0; i < limit + 10 && extractor.valid(); ++i) {
             extractor.get();
@@ -90,6 +111,27 @@ TEST_P(PerByteTest, ParallelDestruction) {
     }
 
     // Destruction of the object should not result in a segfault.
+}
+
+TEST_P(PerByteTest, ParallelSmartPointer) {
+    std::vector<std::string> contents { "Kimi dake o kimi dake o", "Suki de ita yo", "Kaze de me ga nijinde", "Tooku naru yo", "Itsu made mo oboeteru" };
+    auto path = dump_file(contents);
+
+    // Passing in a unique pointer.
+    byteme::PerByteParallel extractor(std::make_unique<byteme::RawFileReader>(path, GetParam()));
+
+    std::vector<std::string> observed(1);
+    while (extractor.valid()) {
+        if (extractor.get() == '\n') {
+            observed.push_back("");
+        } else {
+            observed.back() += extractor.get();
+        }
+        extractor.advance();
+    }
+
+    observed.pop_back(); // remove trailing newline.
+    EXPECT_EQ(contents, observed);
 }
 
 INSTANTIATE_TEST_SUITE_P(
