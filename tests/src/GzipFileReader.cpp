@@ -67,3 +67,24 @@ INSTANTIATE_TEST_SUITE_P(
     GzipFileReaderTest,
     ::testing::Values(10, 50, 100, 1000)
 );
+
+TEST_F(GzipFileReaderTest, Moveable) {
+    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
+    auto path = dump_file(contents);
+
+    // Move constructor.
+    {
+        byteme::GzipFileReader reader(path, 100);
+        byteme::GzipFileReader other(std::move(reader));
+        auto lines = read_lines(other);
+        EXPECT_EQ(lines, contents);
+    }
+
+    // Move assignment.
+    {
+        byteme::GzipFileReader reader(path, 100);
+        byteme::GzipFileReader other = std::move(reader);
+        auto lines = read_lines(other);
+        EXPECT_EQ(lines, contents);
+    }
+}

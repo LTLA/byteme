@@ -60,3 +60,24 @@ INSTANTIATE_TEST_SUITE_P(
     RawFileReaderTest,
     ::testing::Values(10, 50, 100, 1000)
 );
+
+TEST_F(RawFileReaderTest, Moveable) {
+    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
+    auto path = dump_file(contents);
+
+    // Move constructor.
+    {
+        byteme::RawFileReader reader(path, 100);
+        byteme::RawFileReader other(std::move(reader));
+        auto lines = read_lines(other);
+        EXPECT_EQ(lines, contents);
+    }
+
+    // Move assignment.
+    {
+        byteme::RawFileReader reader(path, 100);
+        byteme::RawFileReader other = std::move(reader);
+        auto lines = read_lines(other);
+        EXPECT_EQ(lines, contents);
+    }
+}

@@ -23,11 +23,19 @@ struct SelfClosingFILE {
         return;
     }
 
+    SelfClosingFILE(SelfClosingFILE&& x) {
+        handle = x.handle;
+        x.handle = NULL;
+    }
+
+    SelfClosingFILE& operator=(SelfClosingFILE&& x) {
+        handle = x.handle;
+        x.handle = NULL;
+    }
+
     // Delete the remaining constructors.
     SelfClosingFILE(const SelfClosingFILE&) = delete;
-    SelfClosingFILE(SelfClosingFILE&&) = delete;
     SelfClosingFILE& operator=(const SelfClosingFILE&) = delete;
-    SelfClosingFILE& operator=(SelfClosingFILE&&) = delete;
 
     FILE* handle;
 };
