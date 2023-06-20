@@ -91,21 +91,21 @@ Inheritance diagram for byteme::Reader:</div>
 <div class="dyncontent">
 <div class="center"><img src="classbyteme_1_1Reader__inherit__graph.png" border="0" usemap="#abyteme_1_1Reader_inherit__map" alt="Inheritance graph"/></div>
 <map name="abyteme_1_1Reader_inherit__map" id="abyteme_1_1Reader_inherit__map">
-<area shape="rect" title="Virtual class for reading bytes from a source." alt="" coords="5,153,116,179"/>
+<area shape="rect" title="Virtual class for reading bytes from a source." alt="" coords="5,169,116,195"/>
 <area shape="rect" href="classbyteme_1_1GzipFileReader.html" title="Read uncompressed bytes from a Gzip&#45;compressed file." alt="" coords="174,5,332,31"/>
-<area shape="poly" title=" " alt="" coords="74,139,110,89,134,62,162,40,184,29,186,34,165,44,138,66,114,92,78,142"/>
-<area shape="rect" href="classbyteme_1_1IstreamReader.html" title="Read bytes from a std::istream." alt="" coords="176,55,330,80"/>
-<area shape="poly" title=" " alt="" coords="85,142,120,114,162,89,190,78,192,83,165,94,123,119,89,146"/>
-<area shape="rect" href="classbyteme_1_1RawBufferReader.html" title="Read bytes from a raw buffer, usually text." alt="" coords="168,104,338,130"/>
-<area shape="poly" title=" " alt="" coords="127,147,199,128,200,133,128,152"/>
-<area shape="rect" href="classbyteme_1_1RawFileReader.html" title="Read bytes from a file, usually text." alt="" coords="174,153,332,179"/>
-<area shape="poly" title=" " alt="" coords="130,164,174,164,174,169,130,169"/>
-<area shape="rect" href="classbyteme_1_1SomeBufferReader.html" title="Read a buffer that may or may not be Gzip/Zlib&#45;compressed." alt="" coords="164,203,342,228"/>
-<area shape="poly" title=" " alt="" coords="128,181,200,199,199,205,127,186"/>
-<area shape="rect" href="classbyteme_1_1SomeFileReader.html" title="Read a file that may or may not be Gzipped." alt="" coords="170,252,336,278"/>
-<area shape="poly" title=" " alt="" coords="89,187,123,214,165,238,192,249,190,254,162,243,120,218,85,191"/>
-<area shape="rect" href="classbyteme_1_1ZlibBufferReader.html" title="Read and decompress bytes from a Zlib&#45;compressed buffer." alt="" coords="170,301,336,327"/>
-<area shape="poly" title=" " alt="" coords="78,190,114,240,138,266,165,288,186,298,184,303,162,292,134,270,110,244,74,193"/>
+<area shape="poly" title=" " alt="" coords="72,155,107,97,132,67,162,41,185,29,188,34,165,46,136,71,112,101,77,157"/>
+<area shape="rect" href="classbyteme_1_1IstreamReader.html" title="Read bytes from a std::istream." alt="" coords="176,55,330,96"/>
+<area shape="poly" title=" " alt="" coords="87,157,122,131,162,105,186,94,188,99,165,110,125,135,90,162"/>
+<area shape="rect" href="classbyteme_1_1RawBufferReader.html" title="Read bytes from a raw buffer, usually text." alt="" coords="168,120,338,146"/>
+<area shape="poly" title=" " alt="" coords="127,163,199,144,200,149,128,168"/>
+<area shape="rect" href="classbyteme_1_1RawFileReader.html" title="Read bytes from a file, usually text." alt="" coords="174,169,332,195"/>
+<area shape="poly" title=" " alt="" coords="130,180,174,180,174,185,130,185"/>
+<area shape="rect" href="classbyteme_1_1SomeBufferReader.html" title="Read a buffer that may or may not be Gzip/Zlib&#45;compressed." alt="" coords="164,219,342,244"/>
+<area shape="poly" title=" " alt="" coords="128,197,200,215,199,221,127,202"/>
+<area shape="rect" href="classbyteme_1_1SomeFileReader.html" title="Read a file that may or may not be Gzipped." alt="" coords="170,268,336,294"/>
+<area shape="poly" title=" " alt="" coords="89,203,123,230,165,254,192,265,190,270,162,259,120,234,85,207"/>
+<area shape="rect" href="classbyteme_1_1ZlibBufferReader.html" title="Read and decompress bytes from a Zlib&#45;compressed buffer." alt="" coords="170,317,336,343"/>
+<area shape="poly" title=" " alt="" coords="78,206,114,256,138,282,165,304,186,314,184,319,162,308,134,286,110,260,74,209"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -146,7 +146,7 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Number of available bytes in <code><a class="el" href="classbyteme_1_1Reader.html#a5b1d291e37d73e5e1dcb6219915c28f0">buffer()</a></code>. This is expected to be a positive value.</dd></dl>
 <p>This method should only be called after <code><a class="el" href="classbyteme_1_1Reader.html#ad3261250c0d2ee3fbeef2f0cf2cc4182">operator()()</a></code>. </p>
 
-<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileReader.html#a16d150b28d80163e4cda48583cbf4c74">byteme::GzipFileReader</a>, <a class="el" href="classbyteme_1_1IstreamReader.html#a56d06b2ce0c5efbd7a7dd74acf8ddb1b">byteme::IstreamReader</a>, <a class="el" href="classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5">byteme::RawBufferReader</a>, <a class="el" href="classbyteme_1_1RawFileReader.html#acd21606c899971a36f9a8b2112982c39">byteme::RawFileReader</a>, <a class="el" href="classbyteme_1_1SomeBufferReader.html#a8c5300a163ff203723ab87454b4bce6d">byteme::SomeBufferReader</a>, <a class="el" href="classbyteme_1_1SomeFileReader.html#ae2bc3e4bcbf088dc674859f145294b96">byteme::SomeFileReader</a>, and <a class="el" href="classbyteme_1_1ZlibBufferReader.html#a2317cd92892fafe298dec159ce3938d1">byteme::ZlibBufferReader</a>.</p>
+<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileReader.html#a16d150b28d80163e4cda48583cbf4c74">byteme::GzipFileReader</a>, <a class="el" href="classbyteme_1_1IstreamReader.html#a52f73d6079ea22af024bd074e6de8c79">byteme::IstreamReader&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5">byteme::RawBufferReader</a>, <a class="el" href="classbyteme_1_1RawFileReader.html#acd21606c899971a36f9a8b2112982c39">byteme::RawFileReader</a>, <a class="el" href="classbyteme_1_1SomeBufferReader.html#a8c5300a163ff203723ab87454b4bce6d">byteme::SomeBufferReader</a>, <a class="el" href="classbyteme_1_1SomeFileReader.html#ae2bc3e4bcbf088dc674859f145294b96">byteme::SomeFileReader</a>, and <a class="el" href="classbyteme_1_1ZlibBufferReader.html#a2317cd92892fafe298dec159ce3938d1">byteme::ZlibBufferReader</a>.</p>
 
 </div>
 </div>
@@ -175,7 +175,7 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the start of an array containing the available bytes. The number of available bytes is provided in <code><a class="el" href="classbyteme_1_1Reader.html#a9a09114f17cef5b01171fd97dd0306b0">available()</a></code>.</dd></dl>
 <p>This method should only be called after <code><a class="el" href="classbyteme_1_1Reader.html#ad3261250c0d2ee3fbeef2f0cf2cc4182">operator()()</a></code>. </p>
 
-<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileReader.html#a5ebdbb98c1f78cb78883fccb11701bfd">byteme::GzipFileReader</a>, <a class="el" href="classbyteme_1_1IstreamReader.html#a9414f2f58ed8d011ca511144436748a5">byteme::IstreamReader</a>, <a class="el" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">byteme::RawBufferReader</a>, <a class="el" href="classbyteme_1_1RawFileReader.html#ae4d96df0332cc6b55f7c2702d87c6797">byteme::RawFileReader</a>, <a class="el" href="classbyteme_1_1SomeBufferReader.html#a845dc3ba53b3ec9fde4edf1ef3c9b2ab">byteme::SomeBufferReader</a>, <a class="el" href="classbyteme_1_1SomeFileReader.html#a88e3abc2c4f024f0003e8589e425033b">byteme::SomeFileReader</a>, and <a class="el" href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">byteme::ZlibBufferReader</a>.</p>
+<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileReader.html#a5ebdbb98c1f78cb78883fccb11701bfd">byteme::GzipFileReader</a>, <a class="el" href="classbyteme_1_1IstreamReader.html#a35ce4f9a45b6331d11be9cceb23ff80a">byteme::IstreamReader&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">byteme::RawBufferReader</a>, <a class="el" href="classbyteme_1_1RawFileReader.html#ae4d96df0332cc6b55f7c2702d87c6797">byteme::RawFileReader</a>, <a class="el" href="classbyteme_1_1SomeBufferReader.html#a845dc3ba53b3ec9fde4edf1ef3c9b2ab">byteme::SomeBufferReader</a>, <a class="el" href="classbyteme_1_1SomeFileReader.html#a88e3abc2c4f024f0003e8589e425033b">byteme::SomeFileReader</a>, and <a class="el" href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">byteme::ZlibBufferReader</a>.</p>
 
 </div>
 </div>
@@ -205,7 +205,7 @@ Public Member Functions</h2></td></tr>
 <p>To read the entire source, this function should be called repeatedly until <code>false</code> is returned. Note that <code><a class="el" href="classbyteme_1_1Reader.html#a5b1d291e37d73e5e1dcb6219915c28f0">buffer()</a></code> and <code><a class="el" href="classbyteme_1_1Reader.html#a9a09114f17cef5b01171fd97dd0306b0">available()</a></code> may still be valid on the last invocation (i.e., the one that returns <code>false</code>), as some bytes may have been read before reaching the end of the file.</p>
 <dl class="section return"><dt>Returns</dt><dd>Boolean indicating whether there are still bytes remaining in the source. </dd></dl>
 
-<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileReader.html#a0411c9ffef9be3500b93dbe561c2d490">byteme::GzipFileReader</a>, <a class="el" href="classbyteme_1_1IstreamReader.html#a21c7f0c362aae4b6c6335b8129d62f97">byteme::IstreamReader</a>, <a class="el" href="classbyteme_1_1RawBufferReader.html#a73872d781e13e1686916785ed9110b01">byteme::RawBufferReader</a>, <a class="el" href="classbyteme_1_1RawFileReader.html#a57bbd8da978b1a4e011425fab08e54f3">byteme::RawFileReader</a>, <a class="el" href="classbyteme_1_1SomeBufferReader.html#a2631f751059637bb6a22b9b2de67524f">byteme::SomeBufferReader</a>, <a class="el" href="classbyteme_1_1SomeFileReader.html#a7755125d2aa65cf05d285e3dfbfb2c87">byteme::SomeFileReader</a>, and <a class="el" href="classbyteme_1_1ZlibBufferReader.html#a628659c6663b6d1cc91e44cdd1dba669">byteme::ZlibBufferReader</a>.</p>
+<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileReader.html#a0411c9ffef9be3500b93dbe561c2d490">byteme::GzipFileReader</a>, <a class="el" href="classbyteme_1_1IstreamReader.html#a81addc42a58dacf661517bf9c0174a2e">byteme::IstreamReader&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferReader.html#a73872d781e13e1686916785ed9110b01">byteme::RawBufferReader</a>, <a class="el" href="classbyteme_1_1RawFileReader.html#a57bbd8da978b1a4e011425fab08e54f3">byteme::RawFileReader</a>, <a class="el" href="classbyteme_1_1SomeBufferReader.html#a2631f751059637bb6a22b9b2de67524f">byteme::SomeBufferReader</a>, <a class="el" href="classbyteme_1_1SomeFileReader.html#a7755125d2aa65cf05d285e3dfbfb2c87">byteme::SomeFileReader</a>, and <a class="el" href="classbyteme_1_1ZlibBufferReader.html#a628659c6663b6d1cc91e44cdd1dba669">byteme::ZlibBufferReader</a>.</p>
 
 </div>
 </div>

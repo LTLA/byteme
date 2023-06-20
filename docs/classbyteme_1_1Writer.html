@@ -91,17 +91,17 @@ Inheritance diagram for byteme::Writer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classbyteme_1_1Writer__inherit__graph.png" border="0" usemap="#abyteme_1_1Writer_inherit__map" alt="Inheritance graph"/></div>
 <map name="abyteme_1_1Writer_inherit__map" id="abyteme_1_1Writer_inherit__map">
-<area shape="rect" title="Virtual class for writing bytes to a sink." alt="" coords="5,104,109,130"/>
+<area shape="rect" title="Virtual class for writing bytes to a sink." alt="" coords="5,120,109,146"/>
 <area shape="rect" href="classbyteme_1_1GzipFileWriter.html" title="Write uncompressed bytes to a Gzip&#45;compressed file." alt="" coords="163,5,314,31"/>
-<area shape="poly" title=" " alt="" coords="81,92,115,65,155,40,181,29,183,34,158,45,118,69,85,96"/>
-<area shape="rect" href="classbyteme_1_1OstreamWriter.html" title="Read bytes from a std::ostream." alt="" coords="162,55,315,80"/>
-<area shape="poly" title=" " alt="" coords="121,97,188,78,189,84,122,102"/>
-<area shape="rect" href="classbyteme_1_1RawBufferWriter.html" title="Write bytes to a raw buffer." alt="" coords="157,104,320,130"/>
-<area shape="poly" title=" " alt="" coords="124,114,156,114,156,120,124,120"/>
-<area shape="rect" href="classbyteme_1_1RawFileWriter.html" title="Write bytes to a file." alt="" coords="163,153,314,179"/>
-<area shape="poly" title=" " alt="" coords="122,132,189,150,188,155,121,137"/>
-<area shape="rect" href="classbyteme_1_1ZlibBufferWriter.html" title="Compress and write bytes to a Zlib&#45;compressed buffer." alt="" coords="159,203,318,228"/>
-<area shape="poly" title=" " alt="" coords="85,138,118,164,158,189,183,200,181,205,155,194,115,169,81,142"/>
+<area shape="poly" title=" " alt="" coords="77,107,112,73,155,41,182,29,184,34,158,46,115,77,81,111"/>
+<area shape="rect" href="classbyteme_1_1OstreamWriter.html" title="Read bytes from a std::ostream." alt="" coords="162,55,315,96"/>
+<area shape="poly" title=" " alt="" coords="113,113,171,94,172,99,115,118"/>
+<area shape="rect" href="classbyteme_1_1RawBufferWriter.html" title="Write bytes to a raw buffer." alt="" coords="157,120,320,146"/>
+<area shape="poly" title=" " alt="" coords="124,130,156,130,156,136,124,136"/>
+<area shape="rect" href="classbyteme_1_1RawFileWriter.html" title="Write bytes to a file." alt="" coords="163,169,314,195"/>
+<area shape="poly" title=" " alt="" coords="122,148,189,166,188,171,121,153"/>
+<area shape="rect" href="classbyteme_1_1ZlibBufferWriter.html" title="Compress and write bytes to a Zlib&#45;compressed buffer." alt="" coords="159,219,318,244"/>
+<area shape="poly" title=" " alt="" coords="85,154,118,180,158,205,183,216,181,221,155,210,115,185,81,158"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -139,7 +139,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Indicate that the writing has finished and that the relevant clean-up (buffer flushing, file closing, etc.) should be performed. This should be called exactly once, after which no further calls to <code><a class="el" href="classbyteme_1_1Writer.html#a58d7347c900dfd9df0b28b68ae34ca1b">write()</a></code> or <code><a class="el" href="classbyteme_1_1Writer.html#a8317429c5645d0e447a4207091953164">finish()</a></code> should be performed. </p>
 
-<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3">byteme::GzipFileWriter</a>, <a class="el" href="classbyteme_1_1OstreamWriter.html#a754e94afa4e246b87410dda6abbab461">byteme::OstreamWriter</a>, <a class="el" href="classbyteme_1_1RawBufferWriter.html#a9f5da6446f98b72afcdbbcf504e10512">byteme::RawBufferWriter</a>, <a class="el" href="classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535">byteme::RawFileWriter</a>, and <a class="el" href="classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac">byteme::ZlibBufferWriter</a>.</p>
+<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3">byteme::GzipFileWriter</a>, <a class="el" href="classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7">byteme::OstreamWriter&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferWriter.html#a9f5da6446f98b72afcdbbcf504e10512">byteme::RawBufferWriter</a>, <a class="el" href="classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535">byteme::RawFileWriter</a>, and <a class="el" href="classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac">byteme::ZlibBufferWriter</a>.</p>
 
 </div>
 </div>
@@ -185,7 +185,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileWriter.html#a7408c1f7ad682e65113d94705f4f0997">byteme::GzipFileWriter</a>, <a class="el" href="classbyteme_1_1OstreamWriter.html#a6b0bb30b53610bdcc9d526d88b0867de">byteme::OstreamWriter</a>, <a class="el" href="classbyteme_1_1RawBufferWriter.html#af48cfca7172a4e12afb75a9a59045295">byteme::RawBufferWriter</a>, <a class="el" href="classbyteme_1_1RawFileWriter.html#ae7293d0c49e244bdcedeb49bbd023fba">byteme::RawFileWriter</a>, and <a class="el" href="classbyteme_1_1ZlibBufferWriter.html#ab227f7b9f62f0bfa7ae2a1a20a7fabd1">byteme::ZlibBufferWriter</a>.</p>
+<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileWriter.html#a7408c1f7ad682e65113d94705f4f0997">byteme::GzipFileWriter</a>, <a class="el" href="classbyteme_1_1OstreamWriter.html#ad6dfbb6fb76c395c0f334ce6f9de7f81">byteme::OstreamWriter&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferWriter.html#af48cfca7172a4e12afb75a9a59045295">byteme::RawBufferWriter</a>, <a class="el" href="classbyteme_1_1RawFileWriter.html#ae7293d0c49e244bdcedeb49bbd023fba">byteme::RawFileWriter</a>, and <a class="el" href="classbyteme_1_1ZlibBufferWriter.html#ab227f7b9f62f0bfa7ae2a1a20a7fabd1">byteme::ZlibBufferWriter</a>.</p>
 
 </div>
 </div>
