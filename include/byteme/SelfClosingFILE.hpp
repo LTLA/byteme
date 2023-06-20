@@ -31,6 +31,7 @@ struct SelfClosingFILE {
     SelfClosingFILE& operator=(SelfClosingFILE&& x) {
         handle = x.handle;
         x.handle = NULL;
+        return *this;
     }
 
     // Delete the remaining constructors.

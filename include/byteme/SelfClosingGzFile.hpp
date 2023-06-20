@@ -29,6 +29,7 @@ struct SelfClosingGzFile {
     SelfClosingGzFile& operator=(SelfClosingGzFile&& x) {
         handle = std::move(x.handle);
         x.closed = true;
+        return *this;
     }
 
     // Delete the remaining constructors.
