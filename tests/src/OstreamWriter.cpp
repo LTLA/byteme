@@ -11,7 +11,7 @@ protected:
     auto dump_file(const std::vector<std::string>& contents) {
         auto path = buffin::temp_file_path("text");
         std::ofstream ostr(path);
-        byteme::OstreamWriter writer(ostr);
+        byteme::OstreamWriter writer(&ostr);
 
         const char newline = '\n';
         for (const auto& c : contents) {
