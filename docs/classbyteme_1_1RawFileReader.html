@@ -239,8 +239,9 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Number of available bytes in <code><a class="el" href="classbyteme_1_1RawFileReader.html#ae4d96df0332cc6b55f7c2702d87c6797">buffer()</a></code>. This is expected to be a positive value.</dd></dl>
-<p>This method should only be called after <code><a class="el" href="classbyteme_1_1RawFileReader.html#a57bbd8da978b1a4e011425fab08e54f3">operator()()</a></code>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of available bytes in <code><a class="el" href="classbyteme_1_1RawFileReader.html#ae4d96df0332cc6b55f7c2702d87c6797">buffer()</a></code>.</dd></dl>
+<p>This method should only be called after <code><a class="el" href="classbyteme_1_1RawFileReader.html#a57bbd8da978b1a4e011425fab08e54f3">operator()()</a></code>.</p>
+<p>The return value is generally expected to be positive; however, it is possible to return a zero. Note that zero values should not be interpreted as the end of the source, which is strictly only defined by <code><a class="el" href="classbyteme_1_1RawFileReader.html#a57bbd8da978b1a4e011425fab08e54f3">operator()()</a></code> returning <code>false</code>. </p>
 
 <p>Implements <a class="el" href="classbyteme_1_1Reader.html#a9a09114f17cef5b01171fd97dd0306b0">byteme::Reader</a>.</p>
 
@@ -298,7 +299,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Read the next chunk of bytes from the input source.</p>
-<p>To read the entire source, this function should be called repeatedly until <code>false</code> is returned. Note that <code><a class="el" href="classbyteme_1_1RawFileReader.html#ae4d96df0332cc6b55f7c2702d87c6797">buffer()</a></code> and <code><a class="el" href="classbyteme_1_1RawFileReader.html#acd21606c899971a36f9a8b2112982c39">available()</a></code> may still be valid on the last invocation (i.e., the one that returns <code>false</code>), as some bytes may have been read before reaching the end of the file.</p>
+<p>To read the entire source, this function should be called repeatedly until <code>false</code> is returned. Note that <code><a class="el" href="classbyteme_1_1RawFileReader.html#ae4d96df0332cc6b55f7c2702d87c6797">buffer()</a></code> and <code><a class="el" href="classbyteme_1_1RawFileReader.html#acd21606c899971a36f9a8b2112982c39">available()</a></code> may still be valid on the last invocation (i.e., the one that returns <code>false</code>), as some bytes may have been read before reaching the end of the source.</p>
 <dl class="section return"><dt>Returns</dt><dd>Boolean indicating whether there are still bytes remaining in the source. </dd></dl>
 
 <p>Implements <a class="el" href="classbyteme_1_1Reader.html#ad3261250c0d2ee3fbeef2f0cf2cc4182">byteme::Reader</a>.</p>
