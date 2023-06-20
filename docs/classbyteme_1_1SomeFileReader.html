@@ -113,14 +113,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac7ba4b558c83e39e2ff42bb8767cf963"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2267b7fcb53a5c78c415d2718bce06e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1SomeFileReader.html#a2267b7fcb53a5c78c415d2718bce06e0">SomeFileReader</a> (const std::string &amp;path, size_t buffer_size=65536)</td></tr>
 <tr class="separator:a2267b7fcb53a5c78c415d2718bce06e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7755125d2aa65cf05d285e3dfbfb2c87"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1SomeFileReader.html#a7755125d2aa65cf05d285e3dfbfb2c87">operator()</a> ()</td></tr>
-<tr class="separator:a7755125d2aa65cf05d285e3dfbfb2c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac811bf5ceb6ee162201821403835b8bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1SomeFileReader.html#ac811bf5ceb6ee162201821403835b8bf">load</a> ()</td></tr>
+<tr class="separator:ac811bf5ceb6ee162201821403835b8bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88e3abc2c4f024f0003e8589e425033b"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1SomeFileReader.html#a88e3abc2c4f024f0003e8589e425033b">buffer</a> () const</td></tr>
 <tr class="separator:a88e3abc2c4f024f0003e8589e425033b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2bc3e4bcbf088dc674859f145294b96"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1SomeFileReader.html#ae2bc3e4bcbf088dc674859f145294b96">available</a> () const</td></tr>
 <tr class="separator:ae2bc3e4bcbf088dc674859f145294b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3261250c0d2ee3fbeef2f0cf2cc4182"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Reader.html#ad3261250c0d2ee3fbeef2f0cf2cc4182">operator()</a> ()=0</td></tr>
-<tr class="separator:ad3261250c0d2ee3fbeef2f0cf2cc4182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60671d10f28ce83fa256d7342c769ba5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Reader.html#a60671d10f28ce83fa256d7342c769ba5">load</a> ()=0</td></tr>
+<tr class="separator:a60671d10f28ce83fa256d7342c769ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b1d291e37d73e5e1dcb6219915c28f0"><td class="memItemLeft" align="right" valign="top">virtual const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Reader.html#a5b1d291e37d73e5e1dcb6219915c28f0">buffer</a> () const =0</td></tr>
 <tr class="separator:a5b1d291e37d73e5e1dcb6219915c28f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a09114f17cef5b01171fd97dd0306b0"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Reader.html#a9a09114f17cef5b01171fd97dd0306b0">available</a> () const =0</td></tr>
@@ -239,9 +239,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Number of available bytes in <code><a class="el" href="classbyteme_1_1SomeFileReader.html#a88e3abc2c4f024f0003e8589e425033b">buffer()</a></code>.</dd></dl>
-<p>This method should only be called after <code><a class="el" href="classbyteme_1_1SomeFileReader.html#a7755125d2aa65cf05d285e3dfbfb2c87">operator()()</a></code>.</p>
-<p>The return value is generally expected to be positive; however, it is possible to return a zero. Note that zero values should not be interpreted as the end of the source, which is strictly only defined by <code><a class="el" href="classbyteme_1_1SomeFileReader.html#a7755125d2aa65cf05d285e3dfbfb2c87">operator()()</a></code> returning <code>false</code>. </p>
+<p>This method should only be called after <code><a class="el" href="classbyteme_1_1SomeFileReader.html#ac811bf5ceb6ee162201821403835b8bf">load()</a></code> has been called and returns <code>true</code>. The return value is generally expected to be positive; however, it is possible to return a zero. Note that zero values should not be interpreted as the end of the source, which is strictly only defined by <code><a class="el" href="classbyteme_1_1SomeFileReader.html#ac811bf5ceb6ee162201821403835b8bf">load()</a></code> returning <code>false</code>.</p>
+<dl class="section return"><dt>Returns</dt><dd>Number of available bytes in <code><a class="el" href="classbyteme_1_1SomeFileReader.html#a88e3abc2c4f024f0003e8589e425033b">buffer()</a></code>. </dd></dl>
 
 <p>Implements <a class="el" href="classbyteme_1_1Reader.html#a9a09114f17cef5b01171fd97dd0306b0">byteme::Reader</a>.</p>
 
@@ -269,15 +268,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the start of an array containing the available bytes. The number of available bytes is provided in <code><a class="el" href="classbyteme_1_1SomeFileReader.html#ae2bc3e4bcbf088dc674859f145294b96">available()</a></code>.</dd></dl>
-<p>This method should only be called after <code><a class="el" href="classbyteme_1_1SomeFileReader.html#a7755125d2aa65cf05d285e3dfbfb2c87">operator()()</a></code>. </p>
+<p>This method should only be called after <code><a class="el" href="classbyteme_1_1SomeFileReader.html#ac811bf5ceb6ee162201821403835b8bf">load()</a></code> has been called and returns <code>true</code>.</p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the start of an array containing the available bytes. The number of available bytes is provided in <code><a class="el" href="classbyteme_1_1SomeFileReader.html#ae2bc3e4bcbf088dc674859f145294b96">available()</a></code>. </dd></dl>
 
 <p>Implements <a class="el" href="classbyteme_1_1Reader.html#a5b1d291e37d73e5e1dcb6219915c28f0">byteme::Reader</a>.</p>
 
 </div>
 </div>
-<a id="a7755125d2aa65cf05d285e3dfbfb2c87" name="a7755125d2aa65cf05d285e3dfbfb2c87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7755125d2aa65cf05d285e3dfbfb2c87">&#9670;&#160;</a></span>operator()()</h2>
+<a id="ac811bf5ceb6ee162201821403835b8bf" name="ac811bf5ceb6ee162201821403835b8bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac811bf5ceb6ee162201821403835b8bf">&#9670;&#160;</a></span>load()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,7 +285,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool byteme::SomeFileReader::operator() </td>
+          <td class="memname">bool byteme::SomeFileReader::load </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -298,11 +297,10 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Read the next chunk of bytes from the input source.</p>
-<p>To read the entire source, this function should be called repeatedly until <code>false</code> is returned. Note that <code><a class="el" href="classbyteme_1_1SomeFileReader.html#a88e3abc2c4f024f0003e8589e425033b">buffer()</a></code> and <code><a class="el" href="classbyteme_1_1SomeFileReader.html#ae2bc3e4bcbf088dc674859f145294b96">available()</a></code> may still be valid on the last invocation (i.e., the one that returns <code>false</code>), as some bytes may have been read before reaching the end of the source.</p>
-<dl class="section return"><dt>Returns</dt><dd>Boolean indicating whether there are still bytes remaining in the source. </dd></dl>
+<p>Read the next chunk of bytes from the input source. To read the entire source, this function should be called repeatedly until <code>false</code> is returned.</p>
+<dl class="section return"><dt>Returns</dt><dd>Boolean indicating whether the read was successful. If <code>false</code>, it can be assumed that the end of the source was reached. </dd></dl>
 
-<p>Implements <a class="el" href="classbyteme_1_1Reader.html#ad3261250c0d2ee3fbeef2f0cf2cc4182">byteme::Reader</a>.</p>
+<p>Implements <a class="el" href="classbyteme_1_1Reader.html#a60671d10f28ce83fa256d7342c769ba5">byteme::Reader</a>.</p>
 
 </div>
 </div>
