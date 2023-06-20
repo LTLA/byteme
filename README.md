@@ -2,6 +2,7 @@
 
 ![Unit tests](https://github.com/LTLA/byteme/actions/workflows/run-tests.yaml/badge.svg)
 ![Documentation](https://github.com/LTLA/byteme/actions/workflows/doxygenate.yaml/badge.svg)
+[![codecov](https://codecov.io/gh/LTLA/byteme/branch/master/graph/badge.svg?token=7I3UBJLHSO)](https://codecov.io/gh/LTLA/byteme)
 
 ## Overview
 
@@ -12,7 +13,7 @@ Interfacing with Zlib is particularly fiddly and I don't want to be forced to re
 
 ## Usage
 
-Usage is simple - create an instance of the desired `Reader` class and loop until no bytes remain in the source.
+To read bytes, create an instance of the desired `Reader` class and loop until no bytes remain in the source.
 
 ```cpp
 #include "byteme/GzipFileReader.hpp"
@@ -22,7 +23,7 @@ bool remaining = true;
 
 do {
     remaining = reader();
-    const unsigned * buffer = reader.buffer();
+    const unsigned char * buffer = reader.buffer();
     size_t available = reader.available();
 
     /* Do something with the available bytes in the buffer */
@@ -30,7 +31,66 @@ do {
 } while (remaining);
 ```
 
-The different `Reader` subclasses can be switched at compile-time via templating, or at run-time by exploiting the class hierarchy:
+Users may prefer to wrap this in a `PerByte` instance for byte-by-byte access:
+
+```cpp
+byteme::PerByte pb(std::make_unique<byteme::GzipFileReader>(filepath));
+auto valid = pb.valid();
+while (valid) {
+    auto x = pb.get();
+    valid = pb.advance();
+}
+```
+
+To write bytes, create the desired `Writer` class and supply an array of bytes until completion.
+
+```cpp
+#include "byteme/GzipFileWriter.hpp"
+
+std::vector<std::string> lyrics { 
+    "Kimi dake o kimi dake o", 
+    "Suki de ita yo",
+    "Kaze de me ga nijinde",
+    "Tooku naru yo"
+};
+
+byteme::GzipFileWriter writer("something.gz", 6);
+const char newline = '\n';
+for (const auto& line : lyrics) {
+    writer.write(reinterpret_cast<const unsigned char*>(line.c_str()), line.size());
+    writer.write(reinterpret_cast<const unsigned char*>(&newline), 1);
+}
+
+writer.finish();
+```
+
+More details can be found in the [reference documentation](https://ltla.github.io/byteme).
+
+## Supported classes
+
+For the readers:
+
+| Class | Description |
+|-------|-------------|
+|`RawBufferReader`| Read from a uncompressed buffer|
+|`RawFileReader`| Read from an uncompressed file|
+|`ZlibBufferReader`| Read from a Zlib-compressed buffer|
+|`GzipFileReader`| Read from an Gzip-compressed file|
+|`SomeBufferReader`| Read from a possibly-Gzip-compressed buffer|
+|`SomeFileReader`| Read from a possibly-Gzip-compressed file|
+|`IstreamReader`| Read from a `std::istream`|
+
+For the writers:
+
+| Class | Description |
+|-------|-------------|
+|`RawBufferWriter`| Write to a uncompressed buffer|
+|`RawFileWriter`| Write to an uncompressed file|
+|`ZlibBufferWriter`| Write to a Zlib-compressed buffer|
+|`GzipFileWriter`| Write to an Gzip-compressed file|
+|`OstreamWriter`| Write to a `std::ostream`|
+
+The different subclasses can be switched at compile time via templating, or at run-time by exploiting the class hierarchy:
 
 ```cpp
 #include "byteme/ZlibBufferReader.hpp"
@@ -44,16 +104,14 @@ if (some_condition) {
     ptr.reset(new RawBufferReader(buffer, length));
 }
 
-/* Loop with ptr->operator()(), ptr->buffer(), etc. */
+byteme::PerByte<char, decltype(ptr)> pb(std::move(ptr));
 ```
-
-More details can be found in the [reference documentation](https://ltla.github.io/byteme).
 
 ## Building projects
 
 If you're using CMake, you just need to add something like this to your `CMakeLists.txt`:
 
-```
+```cmake
 include(FetchContent)
 
 FetchContent_Declare(
@@ -67,7 +125,7 @@ FetchContent_MakeAvailable(byteme)
 
 Then you can link to **byteme** to make the headers available during compilation:
 
-```
+```cmake
 # For executables:
 target_link_libraries(myexe byteme)
 
