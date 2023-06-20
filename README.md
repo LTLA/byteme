@@ -19,16 +19,13 @@ To read bytes, create an instance of the desired `Reader` class and loop until n
 #include "byteme/GzipFileReader.hpp"
 
 byteme::GzipFileReader reader(filepath); 
-bool remaining = true;
 
-do {
-    remaining = reader();
+while (reader.load()) {
     const unsigned char * buffer = reader.buffer();
     size_t available = reader.available();
 
     /* Do something with the available bytes in the buffer */
-
-} while (remaining);
+}
 ```
 
 Users may prefer to wrap this in a `PerByte` instance for byte-by-byte access:

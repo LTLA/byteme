@@ -17,6 +17,26 @@
 namespace byteme {
 
 /**
+ * @cond
+ */
+template<class Pointer_>
+void skip_zero_buffers(Pointer_& reader, size_t& available) {
+    available = 0;
+    while (reader->load()) {
+        available = reader->available(); // continue collecting bytes if a zero-length buffer is returned without load() returning false.
+        if (available) {
+            break;
+        }
+    } 
+
+    // If available == 0 on return, then reader->load() must be false,
+    // and there are no more bytes left in the source.
+}
+/**
+ * @endcond
+ */
+
+/**
  * @brief Perform byte-by-byte extraction from a `Reader` source.
  *
  * @tparam Type_ Character type to return, usually `char` for text or `unsigned char` for binary.
@@ -31,17 +51,12 @@ private:
     const Type_* ptr = nullptr;
     size_t available = 0;
     size_t current = 0;
-    bool remaining = false;
     size_t overall = 0;
 
     Pointer_ reader;
 
     void refill() {
-        do {
-            remaining = (*reader)();
-            available = reader->available();
-        } while (remaining && available == 0); // continue collecting bytes if a zero-length buffer is returned without remaining = false.
-
+        skip_zero_buffers(reader, available);
         ptr = reinterpret_cast<const Type_*>(reader->buffer());
         current = 0;
     }
@@ -73,12 +88,8 @@ public:
         }
 
         overall += available;
-        if (!remaining) {
-            return false;
-        }
-
         refill();
-        return available > 0; // Check that there's actually bytes to extract in the next round.
+        return available > 0; // Check that we haven't reached the end of the reader.
     }
 
     /**
@@ -111,36 +122,38 @@ template<typename Type_ = char, class Pointer_ = Reader*>
 struct PerByteParallel {
 private:
     size_t current = 0;
-    bool remaining = false;
     size_t available = 0;
+    size_t next_available = 0;
     size_t overall = 0;
 
     Pointer_ reader;
 
-    bool use_meanwhile = false;
+    bool use_meanwhile;
     std::thread meanwhile;
     std::exception_ptr thread_err = nullptr;
     std::vector<Type_> buffer;
 
     void refill() {
         auto ptr = reinterpret_cast<const Type_*>(reader->buffer());
-        available = reader->available();
-        buffer.resize(available);
-        std::copy(ptr, ptr + available, buffer.begin());
+        available = next_available;
 
-        current = 0;
-        use_meanwhile = remaining;
-        if (remaining) {
+        // If next_available == 0, this must mean that we reached the end, 
+        // so we don't bother spinning up a new thread to test that.
+        use_meanwhile = next_available > 0;
+        if (use_meanwhile) {
+            buffer.resize(available);
+            std::copy(ptr, ptr + available, buffer.begin());
+
             meanwhile = std::thread([&]() -> void {
                 try {
-                    do {
-                        remaining = (*reader)();
-                    } while (remaining && reader->available() == 0);
+                    skip_zero_buffers(reader, next_available);
                 } catch (...) {
                     thread_err = std::current_exception();
                 }
             });
         }
+
+        current = 0;
     }
 
 public:
@@ -148,7 +161,7 @@ public:
      * @copydoc PerByte::PerByte()
      */
     PerByteParallel(Pointer_ r) : reader(std::move(r)) {
-        remaining = (*reader)(); 
+        skip_zero_buffers(reader, next_available);
         refill();
     }
 

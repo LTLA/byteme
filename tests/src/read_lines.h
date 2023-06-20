@@ -7,11 +7,9 @@
 template<class Reader>
 std::vector<std::string> read_lines(Reader& reader) { 
     std::vector<std::string> lines;
-    bool remaining = true;
     bool continuing = false;
 
-    while (remaining) {
-        remaining = reader();
+    while (reader.load()) {
         const char* buffer = reinterpret_cast<const char*>(reader.buffer()); // reinterpreting as chars.
         size_t n = reader.available();
 

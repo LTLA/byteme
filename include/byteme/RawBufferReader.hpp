@@ -26,8 +26,12 @@ public:
      */
     RawBufferReader(const unsigned char* buffer, size_t length) : buffer_(buffer), len_(length) {}
 
-    bool operator()() {
-        return false;
+    bool load() {
+        if (used) {
+            return false;
+        }
+        used = true;
+        return true;
     }
 
     const unsigned char* buffer() const {
@@ -41,6 +45,7 @@ public:
 private:
     const unsigned char* buffer_;
     size_t len_;
+    bool used = false;
 };
 
 }

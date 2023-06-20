@@ -38,8 +38,8 @@ public:
         }
     }
 
-    bool operator()() {
-        return source->operator()();
+    bool load() {
+        return source->load();
     }
 
     const unsigned char* buffer() const {
