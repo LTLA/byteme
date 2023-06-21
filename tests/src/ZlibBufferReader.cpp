@@ -18,7 +18,7 @@ protected:
             stuff += '\n';
         }
 
-        auto gzname = buffin::temp_file_path("zlib");
+        auto gzname = byteme::temp_file_path("zlib");
         gzFile ohandle = gzopen(gzname.c_str(), "w");
         gzwrite(ohandle, stuff.c_str(), stuff.size());
         gzclose(ohandle);

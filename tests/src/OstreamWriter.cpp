@@ -9,7 +9,7 @@
 class OstreamWriterTest : public ::testing::Test {
 protected:    
     auto dump_file(const std::vector<std::string>& contents) {
-        auto path = buffin::temp_file_path("text");
+        auto path = byteme::temp_file_path("text");
         std::ofstream ostr(path);
         byteme::OstreamWriter writer(&ostr);
 

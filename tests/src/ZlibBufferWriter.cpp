@@ -20,7 +20,7 @@ protected:
         }
         writer.finish();
 
-        auto path = buffin::temp_file_path("temp_");
+        auto path = byteme::temp_file_path("temp_");
         {
             std::ofstream dump(path, std::ios::binary);
             dump.write(reinterpret_cast<const char*>(writer.output.data()), writer.output.size());

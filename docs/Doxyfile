@@ -875,7 +875,6 @@ RECURSIVE              = YES
 
 EXCLUDE                = ../include/byteme/SelfClosingFILE.hpp \
                          ../include/byteme/SelfClosingGzFile.hpp \
-                         ../include/byteme/temp_file_path.hpp \
                          ../include/byteme/magic_numbers.hpp
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or

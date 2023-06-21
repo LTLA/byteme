@@ -9,7 +9,7 @@
 class PerByteTest : public ::testing::TestWithParam<int> {
 protected:
     auto dump_file(const std::vector<std::string>& contents) {
-        auto path = buffin::temp_file_path("text");
+        auto path = byteme::temp_file_path("text");
         std::ofstream output(path);
         for (auto c : contents) {
             output << c << "\n";

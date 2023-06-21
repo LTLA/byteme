@@ -7,7 +7,7 @@
 class RawFileWriterTest : public ::testing::TestWithParam<int> {
 protected:
     auto dump_file(const std::vector<std::string>& contents, size_t chunk) {
-        auto path = buffin::temp_file_path("text");
+        auto path = byteme::temp_file_path("text");
         byteme::RawFileWriter writer(path, chunk);
         const char newline = '\n';
         for (const auto& c : contents) {
