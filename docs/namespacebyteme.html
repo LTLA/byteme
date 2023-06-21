@@ -137,14 +137,16 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4d04de3dc032f0cf75fb87a08bcb1abb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebyteme.html#a4d04de3dc032f0cf75fb87a08bcb1abb">temp_file_path</a> (std::string prefix)</td></tr>
-<tr class="separator:a4d04de3dc032f0cf75fb87a08bcb1abb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06ff6bac0c55a089e31301408937b058"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebyteme.html#a06ff6bac0c55a089e31301408937b058">temp_file_path</a> (const std::string &amp;prefix, const std::string &amp;ext)</td></tr>
+<tr class="separator:a06ff6bac0c55a089e31301408937b058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94163b5d4600eeacc222e31540453b01"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebyteme.html#a94163b5d4600eeacc222e31540453b01">temp_file_path</a> (const std::string &amp;prefix)</td></tr>
+<tr class="separator:a94163b5d4600eeacc222e31540453b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple byte readers and writers. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a4d04de3dc032f0cf75fb87a08bcb1abb" name="a4d04de3dc032f0cf75fb87a08bcb1abb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d04de3dc032f0cf75fb87a08bcb1abb">&#9670;&#160;</a></span>temp_file_path()</h2>
+<a id="a94163b5d4600eeacc222e31540453b01" name="a94163b5d4600eeacc222e31540453b01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94163b5d4600eeacc222e31540453b01">&#9670;&#160;</a></span>temp_file_path() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +157,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">std::string byteme::temp_file_path </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>prefix</em></td><td>)</td>
           <td></td>
         </tr>
@@ -169,6 +171,50 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">prefix</td><td>Prefix of the basename of the file.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Path to a new file without any extension, see <code><a class="el" href="namespacebyteme.html#a06ff6bac0c55a089e31301408937b058">temp_file_path()</a></code> for more details. </dd></dl>
+
+</div>
+</div>
+<a id="a06ff6bac0c55a089e31301408937b058" name="a06ff6bac0c55a089e31301408937b058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06ff6bac0c55a089e31301408937b058">&#9670;&#160;</a></span>temp_file_path() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string byteme::temp_file_path </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>ext</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prefix</td><td>Prefix of the basename of the file. </td></tr>
+    <tr><td class="paramname">ext</td><td>File extension.</td></tr>
   </table>
   </dd>
 </dl>
