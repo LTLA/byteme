@@ -1,0 +1,5 @@
+<map id="byteme::ChunkedBufferReader" name="byteme::ChunkedBufferReader">
+<area shape="rect" id="Node000001" title="Read chunks of bytes from a raw buffer." alt="" coords="5,79,201,105"/>
+<area shape="rect" id="Node000002" href="$classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="48,5,158,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,46,106,79,100,79,100,46"/>
+</map>

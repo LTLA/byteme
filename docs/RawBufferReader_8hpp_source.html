@@ -90,37 +90,41 @@ $(function() {
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawBufferReader.html#a52edfb966cd7ce5db47ba2cbb3cd245d">   27</a></span>    <a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#a52edfb966cd7ce5db47ba2cbb3cd245d">RawBufferReader</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a>, <span class="keywordtype">size_t</span> length) : buffer_(<a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a>), len_(length) {}</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf">   29</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf">load</a>() {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">if</span> (used) {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        }</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        used = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">   37</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">return</span> buffer_;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5">   41</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5">available</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> len_;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer_;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">size_t</span> len_;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">bool</span> used = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawBufferReader.html#acb412b1fa76c1f74b4b9a1e34846d96c">   33</a></span>    <a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#acb412b1fa76c1f74b4b9a1e34846d96c">RawBufferReader</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a>, <span class="keywordtype">size_t</span> length) : buffer_(reinterpret_cast&lt;const unsigned char*&gt;(<a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a>)), len_(length) {}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf">   36</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf">load</a>() {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">if</span> (used) {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        used = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">   44</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">return</span> buffer_;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5">   48</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5">available</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">return</span> len_;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer_;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">size_t</span> len_;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">bool</span> used = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aReader_8hpp_html"><div class="ttname"><a href="Reader_8hpp.html">Reader.hpp</a></div><div class="ttdoc">Read an input source.</div></div>
 <div class="ttc" id="aclassbyteme_1_1RawBufferReader_html"><div class="ttname"><a href="classbyteme_1_1RawBufferReader.html">byteme::RawBufferReader</a></div><div class="ttdoc">Read bytes from a raw buffer, usually text.</div><div class="ttdef"><b>Definition</b> RawBufferReader.hpp:21</div></div>
 <div class="ttc" id="aclassbyteme_1_1RawBufferReader_html_a52edfb966cd7ce5db47ba2cbb3cd245d"><div class="ttname"><a href="classbyteme_1_1RawBufferReader.html#a52edfb966cd7ce5db47ba2cbb3cd245d">byteme::RawBufferReader::RawBufferReader</a></div><div class="ttdeci">RawBufferReader(const unsigned char *buffer, size_t length)</div><div class="ttdef"><b>Definition</b> RawBufferReader.hpp:27</div></div>
-<div class="ttc" id="aclassbyteme_1_1RawBufferReader_html_a6405fcb9973d2836019db1d294a4d0cf"><div class="ttname"><a href="classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf">byteme::RawBufferReader::load</a></div><div class="ttdeci">bool load()</div><div class="ttdef"><b>Definition</b> RawBufferReader.hpp:29</div></div>
-<div class="ttc" id="aclassbyteme_1_1RawBufferReader_html_a9b38a2b7acc6c2e2f07cf2981053f8e3"><div class="ttname"><a href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">byteme::RawBufferReader::buffer</a></div><div class="ttdeci">const unsigned char * buffer() const</div><div class="ttdef"><b>Definition</b> RawBufferReader.hpp:37</div></div>
-<div class="ttc" id="aclassbyteme_1_1RawBufferReader_html_aa7e496c2f99981b0e3724e804ba0f3b5"><div class="ttname"><a href="classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5">byteme::RawBufferReader::available</a></div><div class="ttdeci">size_t available() const</div><div class="ttdef"><b>Definition</b> RawBufferReader.hpp:41</div></div>
+<div class="ttc" id="aclassbyteme_1_1RawBufferReader_html_a6405fcb9973d2836019db1d294a4d0cf"><div class="ttname"><a href="classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf">byteme::RawBufferReader::load</a></div><div class="ttdeci">bool load()</div><div class="ttdef"><b>Definition</b> RawBufferReader.hpp:36</div></div>
+<div class="ttc" id="aclassbyteme_1_1RawBufferReader_html_a9b38a2b7acc6c2e2f07cf2981053f8e3"><div class="ttname"><a href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">byteme::RawBufferReader::buffer</a></div><div class="ttdeci">const unsigned char * buffer() const</div><div class="ttdef"><b>Definition</b> RawBufferReader.hpp:44</div></div>
+<div class="ttc" id="aclassbyteme_1_1RawBufferReader_html_aa7e496c2f99981b0e3724e804ba0f3b5"><div class="ttname"><a href="classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5">byteme::RawBufferReader::available</a></div><div class="ttdeci">size_t available() const</div><div class="ttdef"><b>Definition</b> RawBufferReader.hpp:48</div></div>
+<div class="ttc" id="aclassbyteme_1_1RawBufferReader_html_acb412b1fa76c1f74b4b9a1e34846d96c"><div class="ttname"><a href="classbyteme_1_1RawBufferReader.html#acb412b1fa76c1f74b4b9a1e34846d96c">byteme::RawBufferReader::RawBufferReader</a></div><div class="ttdeci">RawBufferReader(const char *buffer, size_t length)</div><div class="ttdef"><b>Definition</b> RawBufferReader.hpp:33</div></div>
 <div class="ttc" id="aclassbyteme_1_1Reader_html"><div class="ttname"><a href="classbyteme_1_1Reader.html">byteme::Reader</a></div><div class="ttdoc">Virtual class for reading bytes from a source.</div><div class="ttdef"><b>Definition</b> Reader.hpp:15</div></div>
 <div class="ttc" id="anamespacebyteme_html"><div class="ttname"><a href="namespacebyteme.html">byteme</a></div><div class="ttdoc">Simple byte readers and writers.</div></div>
 </div><!-- fragment --></div><!-- contents -->

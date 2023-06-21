@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>byteme: byteme::RawBufferReader Class Reference</title>
+<title>byteme: byteme::ChunkedBufferReader Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,54 +71,54 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacebyteme.html">byteme</a></li><li class="navelem"><a class="el" href="classbyteme_1_1RawBufferReader.html">RawBufferReader</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacebyteme.html">byteme</a></li><li class="navelem"><a class="el" href="structbyteme_1_1ChunkedBufferReader.html">ChunkedBufferReader</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classbyteme_1_1RawBufferReader-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">byteme::RawBufferReader Class Reference</div></div>
+<a href="structbyteme_1_1ChunkedBufferReader-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">byteme::ChunkedBufferReader Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Read bytes from a raw buffer, usually text.  
- <a href="classbyteme_1_1RawBufferReader.html#details">More...</a></p>
+<p>Read chunks of bytes from a raw buffer.  
+ <a href="structbyteme_1_1ChunkedBufferReader.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="RawBufferReader_8hpp_source.html">RawBufferReader.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="ChunkedBufferReader_8hpp_source.html">ChunkedBufferReader.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for byteme::RawBufferReader:</div>
+Inheritance diagram for byteme::ChunkedBufferReader:</div>
 <div class="dyncontent">
-<div class="center"><img src="classbyteme_1_1RawBufferReader__inherit__graph.png" border="0" usemap="#abyteme_1_1RawBufferReader_inherit__map" alt="Inheritance graph"/></div>
-<map name="abyteme_1_1RawBufferReader_inherit__map" id="abyteme_1_1RawBufferReader_inherit__map">
-<area shape="rect" title="Read bytes from a raw buffer, usually text." alt="" coords="5,79,176,105"/>
-<area shape="rect" href="classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="35,5,146,31"/>
-<area shape="poly" title=" " alt="" coords="93,46,93,79,88,79,88,46"/>
+<div class="center"><img src="structbyteme_1_1ChunkedBufferReader__inherit__graph.png" border="0" usemap="#abyteme_1_1ChunkedBufferReader_inherit__map" alt="Inheritance graph"/></div>
+<map name="abyteme_1_1ChunkedBufferReader_inherit__map" id="abyteme_1_1ChunkedBufferReader_inherit__map">
+<area shape="rect" title="Read chunks of bytes from a raw buffer." alt="" coords="5,79,201,105"/>
+<area shape="rect" href="classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="48,5,158,31"/>
+<area shape="poly" title=" " alt="" coords="106,46,106,79,100,79,100,46"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
-Collaboration diagram for byteme::RawBufferReader:</div>
+Collaboration diagram for byteme::ChunkedBufferReader:</div>
 <div class="dyncontent">
-<div class="center"><img src="classbyteme_1_1RawBufferReader__coll__graph.png" border="0" usemap="#abyteme_1_1RawBufferReader_coll__map" alt="Collaboration graph"/></div>
-<map name="abyteme_1_1RawBufferReader_coll__map" id="abyteme_1_1RawBufferReader_coll__map">
-<area shape="rect" title="Read bytes from a raw buffer, usually text." alt="" coords="5,79,176,105"/>
-<area shape="rect" href="classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="35,5,146,31"/>
-<area shape="poly" title=" " alt="" coords="93,46,93,79,88,79,88,46"/>
+<div class="center"><img src="structbyteme_1_1ChunkedBufferReader__coll__graph.png" border="0" usemap="#abyteme_1_1ChunkedBufferReader_coll__map" alt="Collaboration graph"/></div>
+<map name="abyteme_1_1ChunkedBufferReader_coll__map" id="abyteme_1_1ChunkedBufferReader_coll__map">
+<area shape="rect" title="Read chunks of bytes from a raw buffer." alt="" coords="5,79,201,105"/>
+<area shape="rect" href="classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="48,5,158,31"/>
+<area shape="poly" title=" " alt="" coords="106,46,106,79,100,79,100,46"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a52edfb966cd7ce5db47ba2cbb3cd245d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1RawBufferReader.html#a52edfb966cd7ce5db47ba2cbb3cd245d">RawBufferReader</a> (const unsigned char *<a class="el" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a>, size_t length)</td></tr>
-<tr class="separator:a52edfb966cd7ce5db47ba2cbb3cd245d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb412b1fa76c1f74b4b9a1e34846d96c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1RawBufferReader.html#acb412b1fa76c1f74b4b9a1e34846d96c">RawBufferReader</a> (const char *<a class="el" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a>, size_t length)</td></tr>
-<tr class="separator:acb412b1fa76c1f74b4b9a1e34846d96c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6405fcb9973d2836019db1d294a4d0cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf">load</a> ()</td></tr>
-<tr class="separator:a6405fcb9973d2836019db1d294a4d0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b38a2b7acc6c2e2f07cf2981053f8e3"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a> () const</td></tr>
-<tr class="separator:a9b38a2b7acc6c2e2f07cf2981053f8e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7e496c2f99981b0e3724e804ba0f3b5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5">available</a> () const</td></tr>
-<tr class="separator:aa7e496c2f99981b0e3724e804ba0f3b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af708f65b9ab92834408bb591d30b65f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbyteme_1_1ChunkedBufferReader.html#af708f65b9ab92834408bb591d30b65f3">ChunkedBufferReader</a> (const unsigned char *<a class="el" href="structbyteme_1_1ChunkedBufferReader.html#afffa05cf40a60a82c01f0f546e78e65c">buffer</a>, size_t length, size_t chunk_size)</td></tr>
+<tr class="separator:af708f65b9ab92834408bb591d30b65f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39e73da2644e5f924dedf581a8002056"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbyteme_1_1ChunkedBufferReader.html#a39e73da2644e5f924dedf581a8002056">ChunkedBufferReader</a> (const char *<a class="el" href="structbyteme_1_1ChunkedBufferReader.html#afffa05cf40a60a82c01f0f546e78e65c">buffer</a>, size_t length, size_t chunk_size)</td></tr>
+<tr class="separator:a39e73da2644e5f924dedf581a8002056"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5f68b4486a3346e6ae062bf1a105226"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbyteme_1_1ChunkedBufferReader.html#ae5f68b4486a3346e6ae062bf1a105226">load</a> ()</td></tr>
+<tr class="separator:ae5f68b4486a3346e6ae062bf1a105226"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afffa05cf40a60a82c01f0f546e78e65c"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbyteme_1_1ChunkedBufferReader.html#afffa05cf40a60a82c01f0f546e78e65c">buffer</a> () const</td></tr>
+<tr class="separator:afffa05cf40a60a82c01f0f546e78e65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4159e974920585c143d57f52a0e8464"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbyteme_1_1ChunkedBufferReader.html#af4159e974920585c143d57f52a0e8464">available</a> () const</td></tr>
+<tr class="separator:af4159e974920585c143d57f52a0e8464"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60671d10f28ce83fa256d7342c769ba5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Reader.html#a60671d10f28ce83fa256d7342c769ba5">load</a> ()=0</td></tr>
 <tr class="separator:a60671d10f28ce83fa256d7342c769ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b1d291e37d73e5e1dcb6219915c28f0"><td class="memItemLeft" align="right" valign="top">virtual const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Reader.html#a5b1d291e37d73e5e1dcb6219915c28f0">buffer</a> () const =0</td></tr>
@@ -127,11 +127,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9a09114f17cef5b01171fd97dd0306b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Read bytes from a raw buffer, usually text. </p>
-<p>This is a wrapper around an input buffer, provided for consistency with the other <code>*Reader</code> classes. We assume that the lifetime of the data in the <code>buffer</code> pointer exceeds the lifetime of the instance. </p>
+<div class="textblock"><p>Read chunks of bytes from a raw buffer. </p>
+<p>This is basically the same as <code><a class="el" href="classbyteme_1_1RawBufferReader.html" title="Read bytes from a raw buffer, usually text.">RawBufferReader</a></code> except that chunks of bytes are returned on every <code><a class="el" href="structbyteme_1_1ChunkedBufferReader.html#ae5f68b4486a3346e6ae062bf1a105226">load()</a></code> call. It is primarily intended for use in tests of <b>byteme</b> callers, to ensure that downstream algorithms behave correctly with respect to chunked reads. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a52edfb966cd7ce5db47ba2cbb3cd245d" name="a52edfb966cd7ce5db47ba2cbb3cd245d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52edfb966cd7ce5db47ba2cbb3cd245d">&#9670;&#160;</a></span>RawBufferReader() <span class="overload">[1/2]</span></h2>
+<a id="af708f65b9ab92834408bb591d30b65f3" name="af708f65b9ab92834408bb591d30b65f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af708f65b9ab92834408bb591d30b65f3">&#9670;&#160;</a></span>ChunkedBufferReader() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -140,7 +140,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">byteme::RawBufferReader::RawBufferReader </td>
+          <td class="memname">byteme::ChunkedBufferReader::ChunkedBufferReader </td>
           <td>(</td>
           <td class="paramtype">const unsigned char *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
@@ -149,7 +149,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>length</em>&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>chunk_size</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -167,14 +173,15 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Pointer to an array of bytes, usually containing text. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">length</td><td>Length of the buffer. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">chunk_size</td><td>Size of each chunk in bytes. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="acb412b1fa76c1f74b4b9a1e34846d96c" name="acb412b1fa76c1f74b4b9a1e34846d96c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb412b1fa76c1f74b4b9a1e34846d96c">&#9670;&#160;</a></span>RawBufferReader() <span class="overload">[2/2]</span></h2>
+<a id="a39e73da2644e5f924dedf581a8002056" name="a39e73da2644e5f924dedf581a8002056"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39e73da2644e5f924dedf581a8002056">&#9670;&#160;</a></span>ChunkedBufferReader() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +190,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">byteme::RawBufferReader::RawBufferReader </td>
+          <td class="memname">byteme::ChunkedBufferReader::ChunkedBufferReader </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
@@ -192,7 +199,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>length</em>&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>chunk_size</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -210,6 +223,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Pointer to an array of bytes, usually containing text. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">length</td><td>Length of the buffer. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">chunk_size</td><td>Size of each chunk in bytes. </td></tr>
   </table>
   </dd>
 </dl>
@@ -217,8 +231,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa7e496c2f99981b0e3724e804ba0f3b5" name="aa7e496c2f99981b0e3724e804ba0f3b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7e496c2f99981b0e3724e804ba0f3b5">&#9670;&#160;</a></span>available()</h2>
+<a id="af4159e974920585c143d57f52a0e8464" name="af4159e974920585c143d57f52a0e8464"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4159e974920585c143d57f52a0e8464">&#9670;&#160;</a></span>available()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -227,7 +241,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t byteme::RawBufferReader::available </td>
+          <td class="memname">size_t byteme::ChunkedBufferReader::available </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -239,15 +253,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This method should only be called after <code><a class="el" href="classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf">load()</a></code> has been called and returns <code>true</code>. The return value is generally expected to be positive; however, it is possible to return a zero. Note that zero values should not be interpreted as the end of the source, which is strictly only defined by <code><a class="el" href="classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf">load()</a></code> returning <code>false</code>.</p>
-<dl class="section return"><dt>Returns</dt><dd>Number of available bytes in <code><a class="el" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer()</a></code>. </dd></dl>
+<p>This method should only be called after <code><a class="el" href="structbyteme_1_1ChunkedBufferReader.html#ae5f68b4486a3346e6ae062bf1a105226">load()</a></code> has been called and returns <code>true</code>. The return value is generally expected to be positive; however, it is possible to return a zero. Note that zero values should not be interpreted as the end of the source, which is strictly only defined by <code><a class="el" href="structbyteme_1_1ChunkedBufferReader.html#ae5f68b4486a3346e6ae062bf1a105226">load()</a></code> returning <code>false</code>.</p>
+<dl class="section return"><dt>Returns</dt><dd>Number of available bytes in <code><a class="el" href="structbyteme_1_1ChunkedBufferReader.html#afffa05cf40a60a82c01f0f546e78e65c">buffer()</a></code>. </dd></dl>
 
 <p>Implements <a class="el" href="classbyteme_1_1Reader.html#a9a09114f17cef5b01171fd97dd0306b0">byteme::Reader</a>.</p>
 
 </div>
 </div>
-<a id="a9b38a2b7acc6c2e2f07cf2981053f8e3" name="a9b38a2b7acc6c2e2f07cf2981053f8e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b38a2b7acc6c2e2f07cf2981053f8e3">&#9670;&#160;</a></span>buffer()</h2>
+<a id="afffa05cf40a60a82c01f0f546e78e65c" name="afffa05cf40a60a82c01f0f546e78e65c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afffa05cf40a60a82c01f0f546e78e65c">&#9670;&#160;</a></span>buffer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -256,7 +270,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const unsigned char * byteme::RawBufferReader::buffer </td>
+          <td class="memname">const unsigned char * byteme::ChunkedBufferReader::buffer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -268,15 +282,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This method should only be called after <code><a class="el" href="classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf">load()</a></code> has been called and returns <code>true</code>.</p>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the start of an array containing the available bytes. The number of available bytes is provided in <code><a class="el" href="classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5">available()</a></code>. </dd></dl>
+<p>This method should only be called after <code><a class="el" href="structbyteme_1_1ChunkedBufferReader.html#ae5f68b4486a3346e6ae062bf1a105226">load()</a></code> has been called and returns <code>true</code>.</p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the start of an array containing the available bytes. The number of available bytes is provided in <code><a class="el" href="structbyteme_1_1ChunkedBufferReader.html#af4159e974920585c143d57f52a0e8464">available()</a></code>. </dd></dl>
 
 <p>Implements <a class="el" href="classbyteme_1_1Reader.html#a5b1d291e37d73e5e1dcb6219915c28f0">byteme::Reader</a>.</p>
 
 </div>
 </div>
-<a id="a6405fcb9973d2836019db1d294a4d0cf" name="a6405fcb9973d2836019db1d294a4d0cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6405fcb9973d2836019db1d294a4d0cf">&#9670;&#160;</a></span>load()</h2>
+<a id="ae5f68b4486a3346e6ae062bf1a105226" name="ae5f68b4486a3346e6ae062bf1a105226"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5f68b4486a3346e6ae062bf1a105226">&#9670;&#160;</a></span>load()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -285,7 +299,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool byteme::RawBufferReader::load </td>
+          <td class="memname">bool byteme::ChunkedBufferReader::load </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -304,8 +318,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>byteme/<a class="el" href="RawBufferReader_8hpp_source.html">RawBufferReader.hpp</a></li>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>byteme/<a class="el" href="ChunkedBufferReader_8hpp_source.html">ChunkedBufferReader.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

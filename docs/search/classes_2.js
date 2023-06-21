@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ostreamwriter_0',['OstreamWriter',['../classbyteme_1_1OstreamWriter.html',1,'byteme']]]
+  ['istreamreader_0',['IstreamReader',['../classbyteme_1_1IstreamReader.html',1,'byteme']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['load_0',['load',['../classbyteme_1_1GzipFileReader.html#aa077d794ad9e305842adf83311906b8a',1,'byteme::GzipFileReader::load()'],['../classbyteme_1_1IstreamReader.html#aa09922b5fa256cca3ced445206e9a6dd',1,'byteme::IstreamReader::load()'],['../classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf',1,'byteme::RawBufferReader::load()'],['../classbyteme_1_1RawFileReader.html#a1477482100fb90bc49d743ea0339d885',1,'byteme::RawFileReader::load()'],['../classbyteme_1_1Reader.html#a60671d10f28ce83fa256d7342c769ba5',1,'byteme::Reader::load()'],['../classbyteme_1_1SomeBufferReader.html#a12ae0af8ee14ca87e9e2fed95e3ed4ae',1,'byteme::SomeBufferReader::load()'],['../classbyteme_1_1SomeFileReader.html#ac811bf5ceb6ee162201821403835b8bf',1,'byteme::SomeFileReader::load()'],['../classbyteme_1_1ZlibBufferReader.html#ad7205cb26d279ca957ada858598a86a3',1,'byteme::ZlibBufferReader::load()']]]
+  ['istreamreader_0',['IstreamReader',['../classbyteme_1_1IstreamReader.html',1,'byteme::IstreamReader&lt; Pointer_ &gt;'],['../classbyteme_1_1IstreamReader.html#ada90bd58bab480c588ecbae6f149587c',1,'byteme::IstreamReader::IstreamReader()']]],
+  ['istreamreader_2ehpp_1',['IstreamReader.hpp',['../IstreamReader_8hpp.html',1,'']]]
 ];

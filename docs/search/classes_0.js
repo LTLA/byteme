@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['gzipfilereader_0',['GzipFileReader',['../classbyteme_1_1GzipFileReader.html',1,'byteme']]],
-  ['gzipfilewriter_1',['GzipFileWriter',['../classbyteme_1_1GzipFileWriter.html',1,'byteme']]]
+  ['chunkedbufferreader_0',['ChunkedBufferReader',['../structbyteme_1_1ChunkedBufferReader.html',1,'byteme']]]
 ];

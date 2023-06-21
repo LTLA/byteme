@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rawbufferreader_0',['RawBufferReader',['../classbyteme_1_1RawBufferReader.html#a52edfb966cd7ce5db47ba2cbb3cd245d',1,'byteme::RawBufferReader']]],
-  ['rawfilereader_1',['RawFileReader',['../classbyteme_1_1RawFileReader.html#a003ec82a4c79cc6baf05285da75acb9f',1,'byteme::RawFileReader::RawFileReader(const char *path, size_t buffer_size=65536)'],['../classbyteme_1_1RawFileReader.html#a0754fa094b5fcfe96995288b06d21086',1,'byteme::RawFileReader::RawFileReader(const std::string &amp;path, size_t buffer_size=65536)']]],
-  ['rawfilewriter_2',['RawFileWriter',['../classbyteme_1_1RawFileWriter.html#aec0092b0773fa4510ac45ad2e3612d71',1,'byteme::RawFileWriter::RawFileWriter(const char *path, size_t buffer_size=65536)'],['../classbyteme_1_1RawFileWriter.html#a4702fdac7150872c7bf98618f5eb6372',1,'byteme::RawFileWriter::RawFileWriter(const std::string &amp;path, size_t buffer_size=65536)']]]
+  ['perbyte_0',['PerByte',['../structbyteme_1_1PerByte.html#a43e3b251904be9a4a3206400695d7d3d',1,'byteme::PerByte']]],
+  ['perbyteparallel_1',['PerByteParallel',['../structbyteme_1_1PerByteParallel.html#ad49773ba17237c616012fe72f66e4232',1,'byteme::PerByteParallel']]],
+  ['position_2',['position',['../structbyteme_1_1PerByte.html#a003b805b826d56dd8117be66bbcc0d34',1,'byteme::PerByte::position()'],['../structbyteme_1_1PerByteParallel.html#a68b5d094fa7ac5ddd74ca116e9f28ccd',1,'byteme::PerByteParallel::position()']]]
 ];

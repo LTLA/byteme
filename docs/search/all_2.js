@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['finish_0',['finish',['../classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3',1,'byteme::GzipFileWriter::finish()'],['../classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7',1,'byteme::OstreamWriter::finish()'],['../classbyteme_1_1RawBufferWriter.html#a9f5da6446f98b72afcdbbcf504e10512',1,'byteme::RawBufferWriter::finish()'],['../classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535',1,'byteme::RawFileWriter::finish()'],['../classbyteme_1_1Writer.html#a8317429c5645d0e447a4207091953164',1,'byteme::Writer::finish()'],['../classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac',1,'byteme::ZlibBufferWriter::finish()']]]
+  ['chunkedbufferreader_0',['ChunkedBufferReader',['../structbyteme_1_1ChunkedBufferReader.html',1,'byteme::ChunkedBufferReader'],['../structbyteme_1_1ChunkedBufferReader.html#af708f65b9ab92834408bb591d30b65f3',1,'byteme::ChunkedBufferReader::ChunkedBufferReader(const unsigned char *buffer, size_t length, size_t chunk_size)'],['../structbyteme_1_1ChunkedBufferReader.html#a39e73da2644e5f924dedf581a8002056',1,'byteme::ChunkedBufferReader::ChunkedBufferReader(const char *buffer, size_t length, size_t chunk_size)']]],
+  ['chunkedbufferreader_2ehpp_1',['ChunkedBufferReader.hpp',['../ChunkedBufferReader_8hpp.html',1,'']]]
 ];

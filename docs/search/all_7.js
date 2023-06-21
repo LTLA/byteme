@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['perbyte_0',['PerByte',['../structbyteme_1_1PerByte.html',1,'byteme::PerByte&lt; Type_, Pointer_ &gt;'],['../structbyteme_1_1PerByte.html#a43e3b251904be9a4a3206400695d7d3d',1,'byteme::PerByte::PerByte()']]],
-  ['perbyte_2ehpp_1',['PerByte.hpp',['../PerByte_8hpp.html',1,'']]],
-  ['perbyteparallel_2',['PerByteParallel',['../structbyteme_1_1PerByteParallel.html',1,'byteme::PerByteParallel&lt; Type_, Pointer_ &gt;'],['../structbyteme_1_1PerByteParallel.html#ad49773ba17237c616012fe72f66e4232',1,'byteme::PerByteParallel::PerByteParallel()']]],
-  ['position_3',['position',['../structbyteme_1_1PerByte.html#a003b805b826d56dd8117be66bbcc0d34',1,'byteme::PerByte::position()'],['../structbyteme_1_1PerByteParallel.html#a68b5d094fa7ac5ddd74ca116e9f28ccd',1,'byteme::PerByteParallel::position()']]]
+  ['ostreamwriter_0',['OstreamWriter',['../classbyteme_1_1OstreamWriter.html',1,'byteme::OstreamWriter&lt; Pointer_ &gt;'],['../classbyteme_1_1OstreamWriter.html#a3cbc4a7eec70e40dd6a1c370f165084c',1,'byteme::OstreamWriter::OstreamWriter()']]],
+  ['ostreamwriter_2ehpp_1',['OstreamWriter.hpp',['../OstreamWriter_8hpp.html',1,'']]],
+  ['output_2',['output',['../classbyteme_1_1RawBufferWriter.html#aa2ef4387f39905e9d59be392f7c4e927',1,'byteme::RawBufferWriter::output'],['../classbyteme_1_1ZlibBufferWriter.html#abb6a541dd76e86e32a73bff39c15988b',1,'byteme::ZlibBufferWriter::output']]]
 ];
