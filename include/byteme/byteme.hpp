@@ -5,6 +5,7 @@
 #include "RawBufferReader.hpp"
 #include "RawFileReader.hpp"
 #include "IstreamReader.hpp"
+#include "ChunkedBufferReader.hpp"
 
 #include "Writer.hpp"
 #include "RawBufferWriter.hpp"

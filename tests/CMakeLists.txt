@@ -14,11 +14,13 @@ enable_testing()
 
 add_executable(
     libtest 
+
     src/GzipFileReader.cpp
     src/IstreamReader.cpp
     src/RawBufferReader.cpp
     src/RawFileReader.cpp
     src/ZlibBufferReader.cpp
+    src/ChunkedBufferReader.cpp
     src/PerByte.cpp
 
     src/RawBufferWriter.cpp
