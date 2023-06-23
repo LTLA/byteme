@@ -37,6 +37,8 @@ target_link_libraries(
     byteme 
 )
 
+target_compile_options(libtest PRIVATE -Wall -Wextra -Wpedantic -Werror)
+
 find_package(ZLIB)
 target_link_libraries(libtest ZLIB::ZLIB)
 

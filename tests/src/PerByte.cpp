@@ -27,7 +27,6 @@ TEST_P(PerByteTest, Basic) {
     byteme::PerByte extractor(&reader);
 
     std::string observed;
-    size_t count = 0;
     std::vector<int> positions;
     while (extractor.valid()) {
         if (extractor.get() == '\n') {
