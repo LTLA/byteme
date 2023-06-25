@@ -28,6 +28,8 @@ add_executable(
     src/GzipFileWriter.cpp
     src/ZlibBufferWriter.cpp
     src/OstreamWriter.cpp
+
+    src/byteme.cpp
 )
 
 target_link_libraries(

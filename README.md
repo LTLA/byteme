@@ -16,7 +16,7 @@ Interfacing with Zlib is particularly fiddly and I don't want to be forced to re
 To read bytes, create an instance of the desired `Reader` class and loop until no bytes remain in the source.
 
 ```cpp
-#include "byteme/GzipFileReader.hpp"
+#include "byteme/byteme.hpp"
 
 byteme::GzipFileReader reader(filepath); 
 
@@ -42,7 +42,7 @@ while (valid) {
 To write bytes, create the desired `Writer` class and supply an array of bytes until completion.
 
 ```cpp
-#include "byteme/GzipFileWriter.hpp"
+#include "byteme/byteme.hpp"
 
 std::vector<std::string> lyrics { 
     "Kimi dake o kimi dake o", 
@@ -90,8 +90,7 @@ For the writers:
 The different subclasses can be switched at compile time via templating, or at run-time by exploiting the class hierarchy:
 
 ```cpp
-#include "byteme/ZlibBufferReader.hpp"
-#include "byteme/RawBufferReader.hpp"
+#include "byteme/byteme.hpp"
 #include <memory>
 
 std::unique_ptr<byteme::Reader> ptr;
@@ -128,6 +127,14 @@ target_link_libraries(myexe byteme)
 
 # For libaries
 target_link_libraries(mylib INTERFACE byteme)
+```
+
+To support Gzip-compressed files, we also need to link to Zlib.
+Otherwise, if the Zlib headers are not available, Gzip support is automatically dropped.
+
+```cmake
+find_package(ZLIB)
+target_link_libraries(myexe ZLIB::ZLIB)
 ```
 
 If you're not using CMake, the simple approach is to just copy the files and include their path during compilation.

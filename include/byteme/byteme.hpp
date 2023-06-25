@@ -14,7 +14,7 @@
 
 #include "PerByte.hpp"
 
-#ifndef BYTEME_NO_ZLIB
+#if __has_include("zlib.h")
 #include "GzipFileReader.hpp"
 #include "ZlibBufferReader.hpp"
 
@@ -28,6 +28,9 @@
 /**
  * @file byteme.hpp
  * @brief Umbrella header for all **byteme** classes
+ *
+ * If ZLib is not available, all of the Zlib-related headers are omitted.
+ * This will skip classes such as the `GzipFileReader` and `SomeBufferReader`.
  */
 
 /**
