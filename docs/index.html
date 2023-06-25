@@ -79,7 +79,7 @@ $(function() {
 <p>This library implements a few functors to read buffered inputs from uncompressed or Gzip-compressed files or buffers. Classes can be exchanged at compile- or run-time to easily re-use the same code across different input sources. The aim is to consolidate some common boilerplate across several projects, e.g., <a href="https://github.com/LTLA/tatami"><b>tatami</b></a>, <a href="https://github.com/LTLA/singlepp"><b>singlepp</b></a>. Interfacing with Zlib is particularly fiddly and I don't want to be forced to remember how to do it in each project.</p>
 <h1>Usage</h1>
 <p>To read bytes, create an instance of the desired <code>Reader</code> class and loop until no bytes remain in the source.</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="GzipFileReader_8hpp.html">byteme/GzipFileReader.hpp</a>&quot;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="byteme_8hpp.html">byteme/byteme.hpp</a>&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><a class="code hl_class" href="classbyteme_1_1GzipFileReader.html">byteme::GzipFileReader</a> reader(filepath); </div>
 <div class="line"> </div>
@@ -89,7 +89,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Do something with the available bytes in the buffer */</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aGzipFileReader_8hpp_html"><div class="ttname"><a href="GzipFileReader_8hpp.html">GzipFileReader.hpp</a></div><div class="ttdoc">Read a Gzip-compressed file.</div></div>
+<div class="ttc" id="abyteme_8hpp_html"><div class="ttname"><a href="byteme_8hpp.html">byteme.hpp</a></div><div class="ttdoc">Umbrella header for all byteme classes.</div></div>
 <div class="ttc" id="aclassbyteme_1_1GzipFileReader_html"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html">byteme::GzipFileReader</a></div><div class="ttdoc">Read uncompressed bytes from a Gzip-compressed file.</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:24</div></div>
 </div><!-- fragment --><p>Users may prefer to wrap this in a <code>PerByte</code> instance for byte-by-byte access:</p>
 <div class="fragment"><div class="line"><a class="code hl_struct" href="structbyteme_1_1PerByte.html">byteme::PerByte</a> pb(std::make_unique&lt;byteme::GzipFileReader&gt;(filepath));</div>
@@ -100,7 +100,7 @@ $(function() {
 <div class="line">}</div>
 <div class="ttc" id="astructbyteme_1_1PerByte_html"><div class="ttname"><a href="structbyteme_1_1PerByte.html">byteme::PerByte</a></div><div class="ttdoc">Perform byte-by-byte extraction from a Reader source.</div><div class="ttdef"><b>Definition</b> PerByte.hpp:49</div></div>
 </div><!-- fragment --><p>To write bytes, create the desired <code>Writer</code> class and supply an array of bytes until completion.</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="GzipFileWriter_8hpp.html">byteme/GzipFileWriter.hpp</a>&quot;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="byteme_8hpp.html">byteme/byteme.hpp</a>&quot;</span></div>
 <div class="line"> </div>
 <div class="line">std::vector&lt;std::string&gt; lyrics { </div>
 <div class="line">    <span class="stringliteral">&quot;Kimi dake o kimi dake o&quot;</span>, </div>
@@ -117,7 +117,6 @@ $(function() {
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line">writer.finish();</div>
-<div class="ttc" id="aGzipFileWriter_8hpp_html"><div class="ttname"><a href="GzipFileWriter_8hpp.html">GzipFileWriter.hpp</a></div><div class="ttdoc">Write a Gzip-compressed file.</div></div>
 <div class="ttc" id="aclassbyteme_1_1GzipFileWriter_html"><div class="ttname"><a href="classbyteme_1_1GzipFileWriter.html">byteme::GzipFileWriter</a></div><div class="ttdoc">Write uncompressed bytes to a Gzip-compressed file.</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:22</div></div>
 </div><!-- fragment --><p>More details can be found in the <a href="https://ltla.github.io/byteme">reference documentation</a>.</p>
 <h1>Supported classes</h1>
@@ -156,8 +155,7 @@ $(function() {
 <td class="markdownTableBodyNone"><code>OstreamWriter</code>   </td><td class="markdownTableBodyNone">Write to a <code>std::ostream</code>   </td></tr>
 </table>
 <p>The different subclasses can be switched at compile time via templating, or at run-time by exploiting the class hierarchy:</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="ZlibBufferReader_8hpp.html">byteme/ZlibBufferReader.hpp</a>&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="RawBufferReader_8hpp.html">byteme/RawBufferReader.hpp</a>&quot;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="byteme_8hpp.html">byteme/byteme.hpp</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"> </div>
 <div class="line">std::unique_ptr&lt;byteme::Reader&gt; ptr;</div>
@@ -168,8 +166,6 @@ $(function() {
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><a class="code hl_struct" href="structbyteme_1_1PerByte.html">byteme::PerByte</a>&lt;char, <span class="keyword">decltype</span>(ptr)&gt; pb(std::move(ptr));</div>
-<div class="ttc" id="aRawBufferReader_8hpp_html"><div class="ttname"><a href="RawBufferReader_8hpp.html">RawBufferReader.hpp</a></div><div class="ttdoc">Read bytes from a raw buffer without any extra transformations.</div></div>
-<div class="ttc" id="aZlibBufferReader_8hpp_html"><div class="ttname"><a href="ZlibBufferReader_8hpp.html">ZlibBufferReader.hpp</a></div><div class="ttdoc">Read bytes from a Zlib-compressed buffer.</div></div>
 </div><!-- fragment --><h1>Building projects</h1>
 <p>If you're using CMake, you just need to add something like this to your <code>CMakeLists.txt</code>:</p>
 <div class="fragment"><div class="line">include(FetchContent)</div>
@@ -187,6 +183,9 @@ $(function() {
 <div class="line"> </div>
 <div class="line"># For libaries</div>
 <div class="line">target_link_libraries(mylib INTERFACE byteme)</div>
+</div><!-- fragment --><p>To support Gzip-compressed files, we also need to link to Zlib. Otherwise, if the Zlib headers are not available, Gzip support is automatically dropped.</p>
+<div class="fragment"><div class="line">find_package(ZLIB)</div>
+<div class="line">target_link_libraries(myexe ZLIB::ZLIB)</div>
 </div><!-- fragment --><p>If you're not using CMake, the simple approach is to just copy the files and include their path during compilation.</p>
 <h1>Further comments</h1>
 <p>I thought about using C++ streams, much like how the <a href="https://github.com/mateidavid/zstr"><b>zstr</b></a> library handles Gzip (de)compression. However, I'm not very knowledgeable about the <code>std::istream</code> interface, so I decided to go with something simpler. Just in case, I did add a <code><a class="el" href="classbyteme_1_1IstreamReader.html" title="Read bytes from a std::istream.">byteme::IstreamReader</a></code> class so that <b>byteme</b> clients can easily leverage custom streams. </p>
