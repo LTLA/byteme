@@ -21,8 +21,11 @@ namespace byteme {
 class RawBufferWriter : public Writer {
 public:
     /**
+     * @param n Initial size of the output buffer to reserve.
      */
-    RawBufferWriter() {}
+    RawBufferWriter(size_t n = 0) {
+        output.reserve(n);
+    }
 
     using Writer::write;
 
