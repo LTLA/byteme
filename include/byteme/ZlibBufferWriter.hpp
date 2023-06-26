@@ -77,6 +77,8 @@ public:
      */
     ZlibBufferWriter(int mode = 2, int compression_level = 6, size_t buffer_size = 65536) : zstr(mode, compression_level), holding(buffer_size) {}
 
+    using Writer::write;
+
     void write(const unsigned char* buffer, size_t n) {
         zstr.strm.next_in = const_cast<unsigned char*>(buffer); // for C compatibility.
         zstr.strm.avail_in = n;

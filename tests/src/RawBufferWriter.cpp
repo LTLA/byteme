@@ -6,10 +6,9 @@ class RawBufferWriterTest : public ::testing::Test {
 protected:
     std::vector<unsigned char> roundtrip(const std::vector<std::string>& contents) {
         byteme::RawBufferWriter writer;
-        const char newline = '\n';
         for (const auto& x : contents) {
-            writer.write(reinterpret_cast<const unsigned char*>(x.c_str()), x.size());
-            writer.write(reinterpret_cast<const unsigned char*>(&newline), 1);
+            writer.write(x);
+            writer.write('\n');
         }
         writer.finish();
         return writer.output;
@@ -46,3 +45,17 @@ TEST_F(RawBufferWriterTest, Empty) {
 
     EXPECT_EQ(combined, expected);
 }
+
+TEST_F(RawBufferWriterTest, ArrayCheck) {
+    byteme::RawBufferWriter writer;
+    std::string expected("Gloria in excelsis deo");
+    writer.write(expected.c_str());
+    writer.finish();
+
+    const auto& stuff = writer.output;
+    auto ptr = reinterpret_cast<const char*>(stuff.data());
+    std::string extracted(ptr, ptr + stuff.size());
+
+    EXPECT_EQ(extracted, expected);
+}
+

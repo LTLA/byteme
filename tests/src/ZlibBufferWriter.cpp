@@ -13,10 +13,9 @@ protected:
     std::string roundtrip(const std::vector<std::string>& contents, int level, size_t chunk) {
         byteme::ZlibBufferWriter writer(2, level, chunk);
 
-        constexpr char newline = '\n';
         for (const auto& c : contents) {
-            writer.write(reinterpret_cast<const unsigned char*>(c.c_str()), c.size());
-            writer.write(reinterpret_cast<const unsigned char*>(&newline), 1);
+            writer.write(c);
+            writer.write('\n');
         }
         writer.finish();
 

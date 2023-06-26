@@ -24,6 +24,8 @@ public:
      */
     RawBufferWriter() {}
 
+    using Writer::write;
+
     void write(const unsigned char* buffer, size_t n) {
         output.insert(output.end(), buffer, buffer + n);
     }

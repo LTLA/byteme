@@ -29,6 +29,8 @@ public:
      */
     OstreamWriter(Pointer_ output) : ptr(std::move(output)) {}
 
+    using Writer::write;
+
     void write(const unsigned char* buffer, size_t n) {
         ptr->write(reinterpret_cast<const char*>(buffer), n);
         if (!(ptr->good())) {

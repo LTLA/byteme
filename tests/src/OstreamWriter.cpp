@@ -13,10 +13,9 @@ protected:
         std::ofstream ostr(path);
         byteme::OstreamWriter writer(&ostr);
 
-        const char newline = '\n';
         for (const auto& c : contents) {
-            writer.write(reinterpret_cast<const unsigned char*>(c.c_str()), c.size());
-            writer.write(reinterpret_cast<const unsigned char*>(&newline), 1);
+            writer.write(c);
+            writer.write('\n');
         }
         writer.finish();
 

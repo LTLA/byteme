@@ -41,6 +41,8 @@ public:
     RawFileWriter(const std::string& path, size_t buffer_size = 65536) : RawFileWriter(path.c_str(), buffer_size) {}
 
 public:
+    using Writer::write;
+
     void write(const unsigned char* buffer, size_t n) {
         size_t ok = std::fwrite(buffer, sizeof(unsigned char), n, file.handle);
         if (ok < n) {

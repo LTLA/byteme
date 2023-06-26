@@ -14,10 +14,9 @@ protected:
     auto dump_file(const std::vector<std::string>& contents, size_t chunk) {
         auto path = byteme::temp_file_path("text");
         byteme::GzipFileWriter writer(path, 6, chunk);
-        const char newline = '\n';
         for (const auto& c : contents) {
-            writer.write(reinterpret_cast<const unsigned char*>(c.c_str()), c.size());
-            writer.write(reinterpret_cast<const unsigned char*>(&newline), 1);
+            writer.write(c);
+            writer.write('\n');
         }
         writer.finish();
         return path;
