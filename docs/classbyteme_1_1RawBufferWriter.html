@@ -110,6 +110,8 @@ Collaboration diagram for byteme::RawBufferWriter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a2fda9b86baf43a0bd9c9b275c7ae8490"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1RawBufferWriter.html#a2fda9b86baf43a0bd9c9b275c7ae8490">RawBufferWriter</a> (size_t n=0)</td></tr>
+<tr class="separator:a2fda9b86baf43a0bd9c9b275c7ae8490"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af48cfca7172a4e12afb75a9a59045295"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1RawBufferWriter.html#af48cfca7172a4e12afb75a9a59045295">write</a> (const unsigned char *buffer, size_t n)</td></tr>
 <tr class="separator:af48cfca7172a4e12afb75a9a59045295"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f5da6446f98b72afcdbbcf504e10512"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1RawBufferWriter.html#a9f5da6446f98b72afcdbbcf504e10512">finish</a> ()</td></tr>
@@ -142,7 +144,40 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Write bytes to a raw buffer. </p>
 <p>This class will append bytes to an internal instance of a <code>std::vector</code> without any further transformations. Not much else to say here. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2fda9b86baf43a0bd9c9b275c7ae8490" name="a2fda9b86baf43a0bd9c9b275c7ae8490"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fda9b86baf43a0bd9c9b275c7ae8490">&#9670;&#160;</a></span>RawBufferWriter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">byteme::RawBufferWriter::RawBufferWriter </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>n</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>Initial size of the output buffer to reserve. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a9f5da6446f98b72afcdbbcf504e10512" name="a9f5da6446f98b72afcdbbcf504e10512"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9f5da6446f98b72afcdbbcf504e10512">&#9670;&#160;</a></span>finish()</h2>
 
