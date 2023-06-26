@@ -111,6 +111,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a58d7347c900dfd9df0b28b68ae34ca1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8317429c5645d0e447a4207091953164"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Writer.html#a8317429c5645d0e447a4207091953164">finish</a> ()=0</td></tr>
 <tr class="separator:a8317429c5645d0e447a4207091953164"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ecb1ea0461dfdb0f11dcadfb6fcc9fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Writer.html#a1ecb1ea0461dfdb0f11dcadfb6fcc9fb">write</a> (const std::string &amp;x)</td></tr>
+<tr class="separator:a1ecb1ea0461dfdb0f11dcadfb6fcc9fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca9683db3d581100d802b9a0b884dcc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Writer.html#aca9683db3d581100d802b9a0b884dcc3">write</a> (const char *x)</td></tr>
+<tr class="separator:aca9683db3d581100d802b9a0b884dcc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e2f96d90f4304638ac6fe332bf64a46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Writer.html#a3e2f96d90f4304638ac6fe332bf64a46">write</a> (char x)</td></tr>
+<tr class="separator:a3e2f96d90f4304638ac6fe332bf64a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Virtual class for writing bytes to a sink. </p>
@@ -143,8 +149,107 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a3e2f96d90f4304638ac6fe332bf64a46" name="a3e2f96d90f4304638ac6fe332bf64a46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e2f96d90f4304638ac6fe332bf64a46">&#9670;&#160;</a></span>write() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void byteme::Writer::write </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Write a single character to the output sink.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Character to be written. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aca9683db3d581100d802b9a0b884dcc3" name="aca9683db3d581100d802b9a0b884dcc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca9683db3d581100d802b9a0b884dcc3">&#9670;&#160;</a></span>write() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void byteme::Writer::write </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Write a null-terminated C-string to the output sink.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">Pointer</td><td>to the string to be written. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1ecb1ea0461dfdb0f11dcadfb6fcc9fb" name="a1ecb1ea0461dfdb0f11dcadfb6fcc9fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ecb1ea0461dfdb0f11dcadfb6fcc9fb">&#9670;&#160;</a></span>write() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void byteme::Writer::write </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Write a string to the output sink.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>String to be written. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a58d7347c900dfd9df0b28b68ae34ca1b" name="a58d7347c900dfd9df0b28b68ae34ca1b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58d7347c900dfd9df0b28b68ae34ca1b">&#9670;&#160;</a></span>write()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a58d7347c900dfd9df0b28b68ae34ca1b">&#9670;&#160;</a></span>write() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,7 +290,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileWriter.html#a7408c1f7ad682e65113d94705f4f0997">byteme::GzipFileWriter</a>, <a class="el" href="classbyteme_1_1OstreamWriter.html#ad6dfbb6fb76c395c0f334ce6f9de7f81">byteme::OstreamWriter&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferWriter.html#af48cfca7172a4e12afb75a9a59045295">byteme::RawBufferWriter</a>, <a class="el" href="classbyteme_1_1RawFileWriter.html#ae7293d0c49e244bdcedeb49bbd023fba">byteme::RawFileWriter</a>, and <a class="el" href="classbyteme_1_1ZlibBufferWriter.html#ab227f7b9f62f0bfa7ae2a1a20a7fabd1">byteme::ZlibBufferWriter</a>.</p>
+<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileWriter.html#a7408c1f7ad682e65113d94705f4f0997">byteme::GzipFileWriter</a>, <a class="el" href="classbyteme_1_1OstreamWriter.html#ad6dfbb6fb76c395c0f334ce6f9de7f81">byteme::OstreamWriter&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferWriter.html#af48cfca7172a4e12afb75a9a59045295">byteme::RawBufferWriter</a>, <a class="el" href="classbyteme_1_1RawFileWriter.html#ae7293d0c49e244bdcedeb49bbd023fba">byteme::RawFileWriter</a>, <a class="el" href="classbyteme_1_1ZlibBufferWriter.html#ab227f7b9f62f0bfa7ae2a1a20a7fabd1">byteme::ZlibBufferWriter</a>, <a class="el" href="classbyteme_1_1GzipFileWriter.html#a58d7347c900dfd9df0b28b68ae34ca1b">byteme::GzipFileWriter</a>, <a class="el" href="classbyteme_1_1OstreamWriter.html#a58d7347c900dfd9df0b28b68ae34ca1b">byteme::OstreamWriter&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferWriter.html#a58d7347c900dfd9df0b28b68ae34ca1b">byteme::RawBufferWriter</a>, <a class="el" href="classbyteme_1_1RawFileWriter.html#a58d7347c900dfd9df0b28b68ae34ca1b">byteme::RawFileWriter</a>, and <a class="el" href="classbyteme_1_1ZlibBufferWriter.html#a58d7347c900dfd9df0b28b68ae34ca1b">byteme::ZlibBufferWriter</a>.</p>
 
 </div>
 </div>

@@ -92,33 +92,36 @@ $(function() {
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classbyteme_1_1OstreamWriter.html#a3cbc4a7eec70e40dd6a1c370f165084c">   30</a></span>    <a class="code hl_function" href="classbyteme_1_1OstreamWriter.html#a3cbc4a7eec70e40dd6a1c370f165084c">OstreamWriter</a>(Pointer_ output) : ptr(std::move(output)) {}</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classbyteme_1_1OstreamWriter.html#ad6dfbb6fb76c395c0f334ce6f9de7f81">   32</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1OstreamWriter.html#ad6dfbb6fb76c395c0f334ce6f9de7f81">write</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, <span class="keywordtype">size_t</span> n) {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        ptr-&gt;write(<span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(buffer), n);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">if</span> (!(ptr-&gt;good())) {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to write to arbitrary output stream&quot;</span>);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        }</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7">   39</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7">finish</a>() {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        ptr-&gt;flush();</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">if</span> (ptr-&gt;fail() || ptr-&gt;bad()) {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to flush to arbitrary output stream&quot;</span>);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    Pointer_ ptr;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">using </span><a class="code hl_function" href="classbyteme_1_1Writer.html#a58d7347c900dfd9df0b28b68ae34ca1b">Writer::write</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classbyteme_1_1OstreamWriter.html#ad6dfbb6fb76c395c0f334ce6f9de7f81">   34</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1OstreamWriter.html#ad6dfbb6fb76c395c0f334ce6f9de7f81">write</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, <span class="keywordtype">size_t</span> n) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        ptr-&gt;write(<span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(buffer), n);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">if</span> (!(ptr-&gt;good())) {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to write to arbitrary output stream&quot;</span>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7">   41</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7">finish</a>() {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        ptr-&gt;flush();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span> (ptr-&gt;fail() || ptr-&gt;bad()) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to flush to arbitrary output stream&quot;</span>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    Pointer_ ptr;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aWriter_8hpp_html"><div class="ttname"><a href="Writer_8hpp.html">Writer.hpp</a></div><div class="ttdoc">Write to an output sink.</div></div>
 <div class="ttc" id="aclassbyteme_1_1OstreamWriter_html"><div class="ttname"><a href="classbyteme_1_1OstreamWriter.html">byteme::OstreamWriter</a></div><div class="ttdoc">Read bytes from a std::ostream.</div><div class="ttdef"><b>Definition</b> OstreamWriter.hpp:24</div></div>
 <div class="ttc" id="aclassbyteme_1_1OstreamWriter_html_a3cbc4a7eec70e40dd6a1c370f165084c"><div class="ttname"><a href="classbyteme_1_1OstreamWriter.html#a3cbc4a7eec70e40dd6a1c370f165084c">byteme::OstreamWriter::OstreamWriter</a></div><div class="ttdeci">OstreamWriter(Pointer_ output)</div><div class="ttdef"><b>Definition</b> OstreamWriter.hpp:30</div></div>
-<div class="ttc" id="aclassbyteme_1_1OstreamWriter_html_accafb6643fbd952a9c036e14b3bf3cb7"><div class="ttname"><a href="classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7">byteme::OstreamWriter::finish</a></div><div class="ttdeci">void finish()</div><div class="ttdef"><b>Definition</b> OstreamWriter.hpp:39</div></div>
-<div class="ttc" id="aclassbyteme_1_1OstreamWriter_html_ad6dfbb6fb76c395c0f334ce6f9de7f81"><div class="ttname"><a href="classbyteme_1_1OstreamWriter.html#ad6dfbb6fb76c395c0f334ce6f9de7f81">byteme::OstreamWriter::write</a></div><div class="ttdeci">void write(const unsigned char *buffer, size_t n)</div><div class="ttdef"><b>Definition</b> OstreamWriter.hpp:32</div></div>
-<div class="ttc" id="aclassbyteme_1_1Writer_html"><div class="ttname"><a href="classbyteme_1_1Writer.html">byteme::Writer</a></div><div class="ttdoc">Virtual class for writing bytes to a sink.</div><div class="ttdef"><b>Definition</b> Writer.hpp:15</div></div>
+<div class="ttc" id="aclassbyteme_1_1OstreamWriter_html_accafb6643fbd952a9c036e14b3bf3cb7"><div class="ttname"><a href="classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7">byteme::OstreamWriter::finish</a></div><div class="ttdeci">void finish()</div><div class="ttdef"><b>Definition</b> OstreamWriter.hpp:41</div></div>
+<div class="ttc" id="aclassbyteme_1_1OstreamWriter_html_ad6dfbb6fb76c395c0f334ce6f9de7f81"><div class="ttname"><a href="classbyteme_1_1OstreamWriter.html#ad6dfbb6fb76c395c0f334ce6f9de7f81">byteme::OstreamWriter::write</a></div><div class="ttdeci">void write(const unsigned char *buffer, size_t n)</div><div class="ttdef"><b>Definition</b> OstreamWriter.hpp:34</div></div>
+<div class="ttc" id="aclassbyteme_1_1Writer_html"><div class="ttname"><a href="classbyteme_1_1Writer.html">byteme::Writer</a></div><div class="ttdoc">Virtual class for writing bytes to a sink.</div><div class="ttdef"><b>Definition</b> Writer.hpp:18</div></div>
+<div class="ttc" id="aclassbyteme_1_1Writer_html_a58d7347c900dfd9df0b28b68ae34ca1b"><div class="ttname"><a href="classbyteme_1_1Writer.html#a58d7347c900dfd9df0b28b68ae34ca1b">byteme::Writer::write</a></div><div class="ttdeci">virtual void write(const unsigned char *buffer, size_t n)=0</div></div>
 <div class="ttc" id="anamespacebyteme_html"><div class="ttname"><a href="namespacebyteme.html">byteme</a></div><div class="ttdoc">Simple byte readers and writers.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
