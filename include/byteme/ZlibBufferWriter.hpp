@@ -1,5 +1,5 @@
-#ifndef BYTEME_ZLIB_BUFFER_READER_HPP
-#define BYTEME_ZLIB_BUFFER_READER_HPP
+#ifndef BYTEME_ZLIB_BUFFER_WRITER_HPP
+#define BYTEME_ZLIB_BUFFER_WRITER_HPP
 
 #include "zlib.h"
 #include <stdexcept>

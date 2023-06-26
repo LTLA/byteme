@@ -1,5 +1,5 @@
-#ifndef BYTEME_RAW_BUFFER_READER_HPP
-#define BYTEME_RAW_BUFFER_READER_HPP
+#ifndef BYTEME_RAW_FILE_WRITER_HPP
+#define BYTEME_RAW_FILE_WRITER_HPP
 
 #include <vector>
 #include <stdexcept>
