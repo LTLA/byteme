@@ -187,11 +187,11 @@ $(function() {
 </div><!-- fragment --><h2>CMake using <code>find_package()</code></h2>
 <p>You can install the library by cloning a suitable version of this repository and running the following commands:</p>
 <div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
-<div class="line">cmake .. -DTATAMI_TESTS=OFF</div>
+<div class="line">cmake .. -DBYTEME_TESTS=OFF</div>
 <div class="line">cmake --build . --target install</div>
 </div><!-- fragment --><p>Then you can use <code>find_package()</code> as usual:</p>
-<div class="fragment"><div class="line">find_package(tatami_tatami CONFIG REQUIRED)</div>
-<div class="line">target_link_libraries(mylib INTERFACE tatami::tatami)</div>
+<div class="fragment"><div class="line">find_package(ltla_byteme CONFIG REQUIRED)</div>
+<div class="line">target_link_libraries(mylib INTERFACE ltla::byteme)</div>
 </div><!-- fragment --><h2>Manual</h2>
 <p>If you're not using CMake, the simple approach is to just copy the files the <code>include/</code> subdirectory - either directly or with Git submodules - and include their path during compilation with, e.g., GCC's <code>-I</code>.</p>
 <h2>Adding Zlib support</h2>
