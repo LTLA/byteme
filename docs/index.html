@@ -167,6 +167,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><a class="code hl_struct" href="structbyteme_1_1PerByte.html">byteme::PerByte</a>&lt;char, <span class="keyword">decltype</span>(ptr)&gt; pb(std::move(ptr));</div>
 </div><!-- fragment --><h1>Building projects</h1>
+<h2>CMake using <code>FetchContent</code></h2>
 <p>If you're using CMake, you just need to add something like this to your <code>CMakeLists.txt</code>:</p>
 <div class="fragment"><div class="line">include(FetchContent)</div>
 <div class="line"> </div>
@@ -183,10 +184,18 @@ $(function() {
 <div class="line"> </div>
 <div class="line"># For libaries</div>
 <div class="line">target_link_libraries(mylib INTERFACE byteme)</div>
-</div><!-- fragment --><p>To support Gzip-compressed files, we also need to link to Zlib. Otherwise, if the Zlib headers are not available, Gzip support is automatically dropped.</p>
-<div class="fragment"><div class="line">find_package(ZLIB)</div>
-<div class="line">target_link_libraries(myexe ZLIB::ZLIB)</div>
-</div><!-- fragment --><p>If you're not using CMake, the simple approach is to just copy the files and include their path during compilation.</p>
+</div><!-- fragment --><h2>CMake using <code>find_package()</code></h2>
+<p>You can install the library by cloning a suitable version of this repository and running the following commands:</p>
+<div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake .. -DTATAMI_TESTS=OFF</div>
+<div class="line">cmake --build . --target install</div>
+</div><!-- fragment --><p>Then you can use <code>find_package()</code> as usual:</p>
+<div class="fragment"><div class="line">find_package(tatami_tatami CONFIG REQUIRED)</div>
+<div class="line">target_link_libraries(mylib INTERFACE tatami::tatami)</div>
+</div><!-- fragment --><h2>Manual</h2>
+<p>If you're not using CMake, the simple approach is to just copy the files the <code>include/</code> subdirectory - either directly or with Git submodules - and include their path during compilation with, e.g., GCC's <code>-I</code>.</p>
+<h2>Adding Zlib support</h2>
+<p>To support Gzip-compressed files, we also need to link to Zlib. When using CMake, <b>byteme</b> will automatically attempt to use <code>find_package()</code> to find the system Zlib. If no Zlib is found, it is skipped and no Gzip functionality is provided by the libary. Users can also set the <code>BYTEME_FIND_ZLIB</code> option to <code>OFF</code> to provide their own Zlib.</p>
 <h1>Further comments</h1>
 <p>I thought about using C++ streams, much like how the <a href="https://github.com/mateidavid/zstr"><b>zstr</b></a> library handles Gzip (de)compression. However, I'm not very knowledgeable about the <code>std::istream</code> interface, so I decided to go with something simpler. Just in case, I did add a <code><a class="el" href="classbyteme_1_1IstreamReader.html" title="Read bytes from a std::istream.">byteme::IstreamReader</a></code> class so that <b>byteme</b> clients can easily leverage custom streams. </p>
 </div></div><!-- PageDoc -->
