@@ -105,6 +105,8 @@ byteme::PerByte<char, decltype(ptr)> pb(std::move(ptr));
 
 ## Building projects
 
+### CMake using `FetchContent`
+
 If you're using CMake, you just need to add something like this to your `CMakeLists.txt`:
 
 ```cmake
@@ -129,15 +131,34 @@ target_link_libraries(myexe byteme)
 target_link_libraries(mylib INTERFACE byteme)
 ```
 
-To support Gzip-compressed files, we also need to link to Zlib.
-Otherwise, if the Zlib headers are not available, Gzip support is automatically dropped.
+### CMake using `find_package()`
 
-```cmake
-find_package(ZLIB)
-target_link_libraries(myexe ZLIB::ZLIB)
+You can install the library by cloning a suitable version of this repository and running the following commands:
+
+```sh
+mkdir build && cd build
+cmake .. -DTATAMI_TESTS=OFF
+cmake --build . --target install
 ```
 
-If you're not using CMake, the simple approach is to just copy the files and include their path during compilation.
+Then you can use `find_package()` as usual:
+
+```cmake
+find_package(tatami_tatami CONFIG REQUIRED)
+target_link_libraries(mylib INTERFACE tatami::tatami)
+```
+
+### Manual
+
+If you're not using CMake, the simple approach is to just copy the files the `include/` subdirectory -
+either directly or with Git submodules - and include their path during compilation with, e.g., GCC's `-I`.
+
+### Adding Zlib support
+
+To support Gzip-compressed files, we also need to link to Zlib.
+When using CMake, **byteme** will automatically attempt to use `find_package()` to find the system Zlib.
+If no Zlib is found, it is skipped and no Gzip functionality is provided by the libary.
+Users can also set the `BYTEME_FIND_ZLIB` option to `OFF` to provide their own Zlib.
 
 ## Further comments
 

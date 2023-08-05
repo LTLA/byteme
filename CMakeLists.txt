@@ -13,6 +13,14 @@ target_include_directories(byteme INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/byteme>")
 
+option(BYTEME_FIND_ZLIB "Try to find and link to Zlib for byteme." ON)
+if(BYTEME_FIND_ZLIB)
+    find_package(ZLIB)
+    if (ZLIB_FOUND)
+        target_link_libraries(byteme INTERFACE ZLIB::ZLIB)
+    endif()
+endif()
+
 # Building the test-related machinery, if we are compiling this library directly.
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     option(BYTEME_TESTS "Build byteme's test suite." ON)

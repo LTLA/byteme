@@ -45,9 +45,6 @@ target_link_libraries(
 
 target_compile_options(libtest PRIVATE -Wall -Wextra -Wpedantic -Werror)
 
-find_package(ZLIB)
-target_link_libraries(libtest ZLIB::ZLIB)
-
 include(CheckIncludeFiles)
 check_include_files(filesystem HAVE_CXX_FS)
 if (NOT HAVE_CXX_FS) 
