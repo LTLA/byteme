@@ -137,15 +137,15 @@ You can install the library by cloning a suitable version of this repository and
 
 ```sh
 mkdir build && cd build
-cmake .. -DTATAMI_TESTS=OFF
+cmake .. -DBYTEME_TESTS=OFF
 cmake --build . --target install
 ```
 
 Then you can use `find_package()` as usual:
 
 ```cmake
-find_package(tatami_tatami CONFIG REQUIRED)
-target_link_libraries(mylib INTERFACE tatami::tatami)
+find_package(ltla_byteme CONFIG REQUIRED)
+target_link_libraries(mylib INTERFACE ltla::byteme)
 ```
 
 ### Manual
