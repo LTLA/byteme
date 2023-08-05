@@ -11,7 +11,7 @@ add_library(ltla::byteme ALIAS byteme)
 include(GNUInstallDirs)
 target_include_directories(byteme INTERFACE 
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/byteme>")
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/ltla_byteme>")
 
 option(BYTEME_FIND_ZLIB "Try to find and link to Zlib for byteme." ON)
 if(BYTEME_FIND_ZLIB)
@@ -39,7 +39,7 @@ endif()
 include(CMakePackageConfigHelpers)
 
 install(DIRECTORY include/
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/byteme)
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/ltla_byteme)
 
 install(TARGETS byteme
     EXPORT bytemeTargets)
