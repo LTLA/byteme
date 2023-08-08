@@ -1,6 +1,7 @@
 @PACKAGE_INIT@
 
-include(CMakeFindDependencyMacro)
-find_dependency(ZLIB)
+if(@BYTEME_FIND_ZLIB@)
+    find_package(ZLIB)
+endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/ltla_bytemeTargets.cmake")
