@@ -52,6 +52,39 @@ TEST_P(PerByteTest, Basic) {
     EXPECT_EQ(observed, expected);
 }
 
+TEST_P(PerByteTest, Extraction) {
+    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
+    auto path = dump_file(contents);
+
+    std::string expected;
+    for (const auto& x : contents) {
+        expected += x;
+        expected += '\n';
+    }
+
+    // At least some of these extraction widths should coincide
+    // with the Reader buffer size, so as to get coverage on
+    // the case where we extract exactly the buffered content.
+    std::vector<int> extract_widths { 10, 20, 100 };
+
+    for (auto w : extract_widths) {
+        byteme::RawFileReader reader(path, GetParam());
+        byteme::PerByte extractor(&reader);
+
+        std::string observed;
+        std::vector<char> buffer(w);
+        while (1) {
+            auto out = extractor.extract(w, buffer.data());
+            observed.insert(observed.end(), buffer.data(), buffer.data() + out.first);
+            EXPECT_EQ(extractor.position(), observed.size());
+            if (!out.second) {
+                break;
+            }
+        }
+        EXPECT_EQ(observed, expected);
+    }
+}
+
 TEST_P(PerByteTest, SmartPointer) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto path = dump_file(contents);
@@ -132,6 +165,37 @@ TEST_P(PerByteTest, ParallelSmartPointer) {
     observed.pop_back(); // remove trailing newline.
     EXPECT_EQ(contents, observed);
 }
+
+TEST_P(PerByteTest, ParallelExtraction) {
+    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
+    auto path = dump_file(contents);
+
+    std::string expected;
+    for (const auto& x : contents) {
+        expected += x;
+        expected += '\n';
+    }
+
+    std::vector<int> extract_widths { 10, 20, 100 };
+
+    for (auto w : extract_widths) {
+        byteme::RawFileReader reader(path, GetParam());
+        byteme::PerByteParallel extractor(&reader);
+
+        std::string observed;
+        std::vector<char> buffer(w);
+        while (1) {
+            auto out = extractor.extract(w, buffer.data());
+            observed.insert(observed.end(), buffer.data(), buffer.data() + out.first);
+            EXPECT_EQ(extractor.position(), observed.size());
+            if (!out.second) {
+                break;
+            }
+        }
+        EXPECT_EQ(observed, expected);
+    }
+}
+
 
 INSTANTIATE_TEST_SUITE_P(
     PerByte,
