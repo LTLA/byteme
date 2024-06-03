@@ -22,6 +22,7 @@ struct SelfClosingGzFile {
         return;
     }
 
+public:
     SelfClosingGzFile(SelfClosingGzFile&& x) : handle(std::move(x.handle)) {
         x.closed = true;
     }
@@ -36,6 +37,7 @@ struct SelfClosingGzFile {
     SelfClosingGzFile(const SelfClosingGzFile&) = delete;
     SelfClosingGzFile& operator=(const SelfClosingGzFile&) = delete;
 
+public:
     bool closed = false;
     gzFile handle;
 };

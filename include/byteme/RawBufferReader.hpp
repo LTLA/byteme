@@ -24,35 +24,35 @@ public:
      * @param[in] buffer Pointer to an array of bytes, usually containing text.
      * @param length Length of the buffer.
      */
-    RawBufferReader(const unsigned char* buffer, size_t length) : buffer_(buffer), len_(length) {}
+    RawBufferReader(const unsigned char* buffer, size_t length) : my_buffer(buffer), my_length(length) {}
 
     /**
      * @param[in] buffer Pointer to an array of bytes, usually containing text.
      * @param length Length of the buffer.
      */
-    RawBufferReader(const char* buffer, size_t length) : buffer_(reinterpret_cast<const unsigned char*>(buffer)), len_(length) {}
+    RawBufferReader(const char* buffer, size_t length) : RawBufferReader(reinterpret_cast<const unsigned char*>(buffer), length) {}
 
 public:
     bool load() {
-        if (used) {
+        if (my_used) {
             return false;
         }
-        used = true;
+        my_used = true;
         return true;
     }
 
     const unsigned char* buffer() const {
-        return buffer_;
+        return my_buffer;
     }
 
     size_t available() const {
-        return len_;
+        return my_length;
     }
 
 private:
-    const unsigned char* buffer_;
-    size_t len_;
-    bool used = false;
+    const unsigned char* my_buffer;
+    size_t my_length;
+    bool my_used = false;
 };
 
 }
