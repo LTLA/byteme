@@ -11,7 +11,7 @@ protected:
             writer.write('\n');
         }
         writer.finish();
-        return writer.output;
+        return writer.get_output();
     }
 
     std::string combine(const std::vector<std::string>& contents) {
@@ -28,7 +28,7 @@ TEST_F(RawBufferWriterTest, Basic) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto expected = combine(contents);
 
-    const auto& output = roundtrip(contents);
+    auto output = roundtrip(contents);
     auto y = reinterpret_cast<const char*>(output.data());
     std::string combined(y, y + output.size());
 
@@ -39,7 +39,7 @@ TEST_F(RawBufferWriterTest, Empty) {
     std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
     auto expected = combine(contents);
 
-    const auto& output = roundtrip(contents);
+    auto output = roundtrip(contents);
     auto y = reinterpret_cast<const char*>(output.data());
     std::string combined(y, y + output.size());
 
@@ -52,10 +52,9 @@ TEST_F(RawBufferWriterTest, ArrayCheck) {
     writer.write(expected.c_str());
     writer.finish();
 
-    const auto& stuff = writer.output;
+    const auto& stuff = writer.get_output();
     auto ptr = reinterpret_cast<const char*>(stuff.data());
     std::string extracted(ptr, ptr + stuff.size());
 
     EXPECT_EQ(extracted, expected);
 }
-

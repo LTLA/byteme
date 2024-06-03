@@ -26,7 +26,7 @@ public:
      * @param chunk_size Size of each chunk in bytes.
      */
     ChunkedBufferReader(const unsigned char* buffer, size_t length, size_t chunk_size) : my_buffer(buffer), my_length(length), my_chunk_size(chunk_size) {
-        my_position = -chunksize; // deliberate underflow so that load() overflows to zero.
+        my_position = -my_chunk_size; // deliberate underflow so that load() overflows to zero.
     }
 
     /**

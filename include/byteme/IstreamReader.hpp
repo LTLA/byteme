@@ -36,10 +36,10 @@ public:
             return false;
         }
 
-        my_input->read(reinterpret_cast<char*>(buffer_.data()), buffer_.size());
+        my_input->read(reinterpret_cast<char*>(my_buffer.data()), my_buffer.size());
         my_read = my_input->gcount();
 
-        if (my_read < buffer_.size()) {
+        if (my_read < my_buffer.size()) {
             if (my_input->eof()) {
                 my_okay = false;
             } else {

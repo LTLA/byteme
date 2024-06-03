@@ -132,7 +132,7 @@ public:
             auto leftover = my_available - my_current;
 
             if (leftover > number) {
-                current += number;
+                my_current += number;
                 number = 0;
                 std::copy(start, my_ptr + my_current, output);
                 break;
@@ -140,7 +140,7 @@ public:
             } else {
                 number -= leftover;
                 std::copy(start, my_ptr + my_available, output);
-                overall += my_available;
+                my_overall += my_available;
                 refill();
 
                 okay = (my_available > 0);
@@ -165,7 +165,7 @@ public:
  * thus allowing the caller to parse the bytes of the current chunk in parallel.
  */
 template<typename Type_ = char, class Pointer_ = Reader*>
-struct PerByteParallel {
+class PerByteParallel {
 private:
     size_t my_current = 0;
     size_t my_available = 0;
@@ -200,7 +200,7 @@ private:
             });
         }
 
-        current = 0;
+        my_current = 0;
     }
 
     void join_and_refill() {

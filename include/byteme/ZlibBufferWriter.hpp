@@ -104,8 +104,8 @@ private:
             my_zstr.strm.next_out = my_holding.data();
             deflate(&(my_zstr.strm), flag); // no need to check, see https://zlib.net/zlib_how.html.
             size_t compressed = my_holding.size() - my_zstr.strm.avail_out;
-            output.insert(output.end(), holding.begin(), holding.begin() + compressed);
-        } while (zstr.strm.avail_out == 0);
+            output.insert(output.end(), my_holding.begin(), my_holding.begin() + compressed);
+        } while (my_zstr.strm.avail_out == 0);
     }
 
 public:

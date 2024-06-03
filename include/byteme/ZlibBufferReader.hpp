@@ -105,8 +105,8 @@ public:
             return false;
         }
 
-        zstr.strm.avail_out = my_buffer.size();
-        zstr.strm.next_out = my_buffer.data();
+        my_zstr.strm.avail_out = my_buffer.size();
+        my_zstr.strm.next_out = my_buffer.data();
         int ret = inflate(&(my_zstr.strm), Z_NO_FLUSH);
 
         switch (ret) {
