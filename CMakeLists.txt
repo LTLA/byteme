@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 
 project(byteme
-    VERSION 1.1.0
+    VERSION 1.2.0
     DESCRIPTION "No-frills byte streaming from file"
     LANGUAGES CXX)
 
@@ -53,5 +53,10 @@ configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake.in
     "${CMAKE_CURRENT_BINARY_DIR}/ltla_bytemeConfig.cmake"
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/ltla_byteme)
 
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/ltla_bytemeConfigVersion.cmake
+    COMPATIBILITY SameMajorVersion)
+
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/ltla_bytemeConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/ltla_bytemeConfigVersion.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/ltla_byteme)
