@@ -56,6 +56,7 @@ private:
     Pointer_ my_reader;
 
     void refill() {
+        my_overall += my_available;
         skip_zero_buffers(my_reader, my_available);
         my_ptr = reinterpret_cast<const Type_*>(my_reader->buffer());
         my_current = 0;
@@ -88,7 +89,6 @@ public:
             return true;
         }
 
-        my_overall += my_available;
         refill();
         return my_available > 0; // Check that we haven't reached the end of the reader.
     }
@@ -140,7 +140,6 @@ public:
             } else {
                 number -= leftover;
                 std::copy(start, my_ptr + my_available, output);
-                my_overall += my_available;
                 refill();
 
                 okay = (my_available > 0);
@@ -169,46 +168,69 @@ class PerByteParallel {
 private:
     size_t my_current = 0;
     size_t my_available = 0;
-    size_t my_next_available = 0;
     size_t my_overall = 0;
 
     Pointer_ my_reader;
 
-private:
-    bool my_use_meanwhile;
-    std::thread my_meanwhile;
-    std::exception_ptr my_thread_err = nullptr;
     std::vector<Type_> my_buffer;
+    size_t my_next_available = 0;
+    bool my_finished = false;
 
-    void refill() {
-        auto ptr = reinterpret_cast<const Type_*>(my_reader->buffer());
-        my_available = my_next_available;
+private:
+    std::thread my_thread;
+    std::exception_ptr my_thread_err = nullptr;
+    std::mutex my_mut;
+    std::condition_variable my_cv;
+    bool my_ready_input, my_ready_output;
 
-        // If next_available == 0, this must mean that we reached the end, 
-        // so we don't bother spinning up a new thread to test that.
-        my_use_meanwhile = my_next_available > 0;
-        if (my_use_meanwhile) {
-            my_buffer.resize(my_available);
-            std::copy(ptr, ptr + my_available, my_buffer.begin());
+    void thread_loop() {
+        while (!my_finished) {
+            std::unique_lock lck(my_mut);
+            my_cv.wait(lck, [&]() { return my_ready_input; });
+            my_ready_input = false;
 
-            my_meanwhile = std::thread([&]() -> void {
-                try {
-                    skip_zero_buffers(my_reader, my_next_available);
-                } catch (...) {
-                    my_thread_err = std::current_exception();
-                }
-            });
+            if (my_finished) { // an explicit kill signal from the destructor, see below.
+                break;
+            }
+
+            try {
+                skip_zero_buffers(my_reader, my_next_available);
+                my_finished = my_next_available == 0; // see the definition of skip_zero_buffers().
+            } catch (...) {
+                my_thread_err = std::current_exception();
+                my_finished = true;
+            }
+
+            my_ready_output = true;
+            lck.unlock();
+            my_cv.notify_one();
         }
-
-        my_current = 0;
     }
 
-    void join_and_refill() {
-        my_meanwhile.join();
+private:
+    void refill() {
+        std::unique_lock lck(my_mut);
+        my_cv.wait(lck, [&]() { return my_ready_output; });
+
         if (my_thread_err) {
             std::rethrow_exception(my_thread_err);
         }
-        refill();
+
+        my_overall += my_available;
+
+        auto ptr = reinterpret_cast<const Type_*>(my_reader->buffer());
+        my_available = my_next_available;
+        my_buffer.resize(my_available);
+        my_current = 0;
+
+        std::copy(ptr, ptr + my_available, my_buffer.begin());
+        my_ready_input = true;
+        my_ready_output = false;
+
+        lck.unlock();
+        if (!my_finished) {
+            my_cv.notify_one();
+        }
     }
 
 public:
@@ -216,7 +238,11 @@ public:
      * @copydoc PerByte::PerByte()
      */
     PerByteParallel(Pointer_ reader) : my_reader(std::move(reader)) {
+        my_ready_input = false;
+        my_thread = std::thread([&]() { thread_loop(); });
+
         skip_zero_buffers(my_reader, my_next_available);
+        my_ready_output = true; // run the first iteration of refill().
         refill();
     }
 
@@ -224,11 +250,13 @@ public:
      * @cond
      */
     ~PerByteParallel() {
-        // Avoid a dangling thread if we need to destroy this prematurely,
-        // e.g., because the caller encountered an exception.
-        if (my_use_meanwhile) {
-            my_meanwhile.join();
+        if (!my_finished) {
+            std::lock_guard lck(my_mut);
+            my_finished = true;
+            my_ready_input = true;
+            my_cv.notify_one();
         }
+        my_thread.join();
     }
     /**
      * @endcond
@@ -250,11 +278,10 @@ public:
             return true;
         }
 
-        my_overall += my_available;
-        if (!my_use_meanwhile) {
+        if (my_finished) {
             return false;
         }
-        join_and_refill();
+        refill();
 
         return my_available > 0; // confirm there's actually bytes to extract in the next round.
     }
@@ -305,12 +332,12 @@ public:
                 number -= leftover;
                 std::copy(start, my_buffer.data() + my_available, output);
 
-                my_overall += my_available;
-                if (!my_use_meanwhile) {
+                if (my_finished) {
+                    my_current += leftover;
                     okay = false;
                     break;
                 }
-                join_and_refill();
+                refill();
 
                 okay = (my_available > 0);
                 if (number == 0 || !okay) {
