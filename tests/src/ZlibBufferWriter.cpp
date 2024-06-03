@@ -22,7 +22,8 @@ protected:
         auto path = byteme::temp_file_path("temp_");
         {
             std::ofstream dump(path, std::ios::binary);
-            dump.write(reinterpret_cast<const char*>(writer.output.data()), writer.output.size());
+            auto& output = writer.get_output();
+            dump.write(reinterpret_cast<const char*>(output.data()), output.size());
         }
 
         gzFile ohandle = gzopen(path.c_str(), "r");

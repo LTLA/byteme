@@ -21,12 +21,13 @@ namespace byteme {
 class RawBufferWriter : public Writer {
 public:
     /**
-     * @param n Initial size of the output buffer to reserve.
+     * @param reserve Initial size of the output buffer to reserve.
      */
-    RawBufferWriter(size_t n = 0) {
-        output.reserve(n);
+    RawBufferWriter(size_t reserve = 0) {
+        output.reserve(reserve);
     }
 
+public:
     using Writer::write;
 
     void write(const unsigned char* buffer, size_t n) {
@@ -35,11 +36,23 @@ public:
 
     void finish() {}
 
+public:
     /**
-     * Contents of the output buffer.
-     * This should only be accessed after `finish()` is called.
+     * @cond
      */
+    // Exposed for back-compatibility only.
     std::vector<unsigned char> output;
+    /**
+     * @endcond
+     */
+
+    /**
+     * @return Contents of the output buffer.
+     * This should only be used after `finish()` is called.
+     */
+    std::vector<unsigned char>& get_output() {
+        return output;
+    }
 };
 
 }

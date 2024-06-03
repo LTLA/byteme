@@ -26,40 +26,40 @@ class SomeBufferReader : public Reader {
 public:
     /**
      * @param[in] buffer Pointer to an array containing the possibly compressed data.
-     * @param len Length of the `buffer` array.
+     * @param length Length of the `buffer` array.
      * @param buffer_size Size of the buffer to use for decompression.
      */
-    SomeBufferReader(const unsigned char* buffer, size_t len, size_t buffer_size = 65536) {
-        if (is_zlib(buffer, len) || is_gzip(buffer, len)) {
-            source.reset(new ZlibBufferReader(buffer, len, 3, buffer_size));
+    SomeBufferReader(const unsigned char* buffer, size_t length, size_t buffer_size = 65536) {
+        if (is_zlib(buffer, length) || is_gzip(buffer, length)) {
+            my_source.reset(new ZlibBufferReader(buffer, length, 3, buffer_size));
         } else {
-            source.reset(new RawBufferReader(buffer, len));
+            my_source.reset(new RawBufferReader(buffer, length));
         }
     }
 
     /**
      * @param[in] buffer Pointer to an array containing the possibly compressed data.
-     * @param len Length of the `buffer` array.
+     * @param length Length of the `buffer` array.
      * @param buffer_size Size of the buffer to use for decompression.
      */
-    SomeBufferReader(const char* buffer, size_t len, size_t buffer_size = 65536) :
-        SomeBufferReader(reinterpret_cast<const unsigned char*>(buffer), len, buffer_size) {}
+    SomeBufferReader(const char* buffer, size_t length, size_t buffer_size = 65536) :
+        SomeBufferReader(reinterpret_cast<const unsigned char*>(buffer), length, buffer_size) {}
 
 public:
     bool load() {
-        return source->load();
+        return my_source->load();
     }
 
     const unsigned char* buffer() const {
-        return source->buffer();
+        return my_source->buffer();
     }
 
     size_t available() const {
-        return source->available();
+        return my_source->available();
     }
 
 private:
-    std::unique_ptr<Reader> source;
+    std::unique_ptr<Reader> my_source;
 };
 
 }

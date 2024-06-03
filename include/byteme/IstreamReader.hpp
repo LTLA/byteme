@@ -29,19 +29,19 @@ public:
      * @param input Pointer to an input stream.
      * @param buffer_size Size of the buffer to use for reading.
      */
-    IstreamReader(Pointer_ input, size_t buffer_size = 65536) : ptr(std::move(input)), buffer_(buffer_size) {}
+    IstreamReader(Pointer_ input, size_t buffer_size = 65536) : my_input(std::move(input)), my_buffer(buffer_size) {}
 
     bool load() {
-        if (!okay) {
+        if (!my_okay) {
             return false;
         }
 
-        ptr->read(reinterpret_cast<char*>(buffer_.data()), buffer_.size());
-        read = ptr->gcount();
+        my_input->read(reinterpret_cast<char*>(my_buffer.data()), my_buffer.size());
+        my_read = my_input->gcount();
 
-        if (read < buffer_.size()) {
-            if (ptr->eof()) {
-                okay = false;
+        if (my_read < my_buffer.size()) {
+            if (my_input->eof()) {
+                my_okay = false;
             } else {
                 throw std::runtime_error("failed to finish reading the input stream");
             }
@@ -51,18 +51,18 @@ public:
     }
 
     const unsigned char* buffer() const {
-        return buffer_.data();
+        return my_buffer.data();
     }
 
     size_t available() const {
-        return read;
+        return my_read;
     }
 
 private:
-    Pointer_ ptr;
-    std::vector<unsigned char> buffer_;
-    size_t read = 0;
-    bool okay = true;
+    Pointer_ my_input;
+    std::vector<unsigned char> my_buffer;
+    size_t my_read = 0;
+    bool my_okay = true;
 };
 
 }
