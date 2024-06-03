@@ -113,19 +113,29 @@ TEST_P(PerByteTest, Parallel) {
     byteme::PerByteParallel extractor(&reader);
 
     std::string observed;
+    std::vector<int> positions;
     while (extractor.valid()) {
-        observed += extractor.get();
+        if (extractor.get() == '\n') {
+            positions.push_back(extractor.position());
+        } else {
+            observed += extractor.get();
+        }
         bool still_valid = extractor.advance();
         EXPECT_EQ(still_valid, extractor.valid());
     }
 
+    std::vector<int> expected_pos;
     std::string expected;
+    int counter = 0;
     for (const auto& x : contents) {
         expected += x;
-        expected += "\n";
+        counter += x.size();
+        expected_pos.push_back(counter);
+        ++counter;
     }
 
     EXPECT_EQ(observed, expected);
+    EXPECT_EQ(positions, expected_pos);
 }
 
 TEST_P(PerByteTest, ParallelDestruction) {
@@ -133,7 +143,7 @@ TEST_P(PerByteTest, ParallelDestruction) {
     auto path = dump_file(contents);
     byteme::RawFileReader reader(path, GetParam());
 
-    // Get enough hits to trigger the next (parallelized) chunk read.
+    // Get enough hits to trigger the next (parallelized) chunk read, but not enough to read through the entire string.
     {
         byteme::PerByteParallel extractor(&reader);
         size_t limit = GetParam();
