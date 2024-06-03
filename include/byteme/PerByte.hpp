@@ -211,6 +211,7 @@ private:
     void refill() {
         std::unique_lock lck(my_mut);
         my_cv.wait(lck, [&]() { return my_ready_output; });
+        my_ready_output = false;
 
         if (my_thread_err) {
             std::rethrow_exception(my_thread_err);
@@ -225,7 +226,6 @@ private:
 
         std::copy(ptr, ptr + my_available, my_buffer.begin());
         my_ready_input = true;
-        my_ready_output = false;
 
         lck.unlock();
         if (!my_finished) {
