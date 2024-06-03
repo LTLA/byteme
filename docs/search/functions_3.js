@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['extract_0',['extract',['../structbyteme_1_1PerByte.html#affcd05c1239ea015f2ecc864a7ee38f3',1,'byteme::PerByte::extract()'],['../structbyteme_1_1PerByteParallel.html#a1a18719ef0dc00cf0f0735afdb7761cd',1,'byteme::PerByteParallel::extract()']]]
+  ['extract_0',['extract',['../classbyteme_1_1PerByte.html#a948f500bf0efb8d7f185715e609d5f16',1,'byteme::PerByte::extract()'],['../classbyteme_1_1PerByteParallel.html#a83a9f0dc44c7fdb90fe86e7fdaa5d626',1,'byteme::PerByteParallel::extract()']]]
 ];
