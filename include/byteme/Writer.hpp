@@ -46,7 +46,7 @@ public:
     /**
      * Write a null-terminated C-string to the output sink.
      *
-     * @param[in] Pointer to the string to be written.
+     * @param[in] x Pointer to the string to be written.
      */
     void write(const char* x) {
         write(reinterpret_cast<const unsigned char*>(x), std::strlen(x));

@@ -64,7 +64,7 @@ private:
 
 public:
     /**
-     * @param r A (possibly smart) pointer to a `Reader` object.
+     * @param reader A (possibly smart) pointer to a `Reader` object.
      */
     PerByte(Pointer_ reader) : my_reader(std::move(reader)) {
         refill();
@@ -117,8 +117,8 @@ public:
      * while the return value of the final `advance()` is returned as the second pair element.
      *
      * @param number Number of bytes to extract.
-     * @param[out] output Pointer to an output buffer of length `n`.
-     * This is filled with up to `n` bytes from the source.
+     * @param[out] output Pointer to an output buffer of length `number`.
+     * This is filled with up to `number` bytes from the source.
      *
      * @return Pair containing (1) the number of bytes that were successfully read into `output`,
      * and (2) whether there are any more bytes available in the source for future `get()` or `extract()` calls.
@@ -307,9 +307,9 @@ public:
      * The number of successful iterations is returned in the output as the first pair element,
      * while the return value of the final `advance()` is returned as the second pair element.
      *
-     * @param n Number of bytes to extract.
-     * @param[out] output Pointer to an output buffer of length `n`.
-     * This is filled with up to `n` bytes from the source.
+     * @param number Number of bytes to extract.
+     * @param[out] output Pointer to an output buffer of length `number`.
+     * This is filled with up to `number` bytes from the source.
      *
      * @return Pair containing (1) the number of bytes that were successfully read into `output`,
      * and (2) whether there are any more bytes available in the source for future `get()` or `extract()` calls.
