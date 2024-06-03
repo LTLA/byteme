@@ -157,7 +157,7 @@ template&lt;typename Type_  = char, class Pointer_  = Reader*&gt; </div>
 <p></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">r</td><td>A (possibly smart) pointer to a <code><a class="el" href="classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source.">Reader</a></code> object.    </td></tr>
+    <tr><td class="paramname">reader</td><td>A (possibly smart) pointer to a <code><a class="el" href="classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source.">Reader</a></code> object.    </td></tr>
   </table>
   </dd>
 </dl>
@@ -227,8 +227,8 @@ template&lt;typename Type_  = char, class Pointer_  = Reader*&gt; </div>
 <p>Extract up to <code>number</code> bytes from the <code><a class="el" href="classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source.">Reader</a></code> source and store them in the <code>output</code>. This is equivalent to (but more efficient than) calling <code><a class="el" href="#a1a0e9a739d270ed970292726a4723b96">get()</a></code> and then <code><a class="el" href="#a29a16a1bd5ff330b57a9686564a91687">advance()</a></code> up to <code>number</code> times, only iterating while the return value of <code><a class="el" href="#a29a16a1bd5ff330b57a9686564a91687">advance()</a></code> is still true. The number of successful iterations is returned in the output as the first pair element, while the return value of the final <code><a class="el" href="#a29a16a1bd5ff330b57a9686564a91687">advance()</a></code> is returned as the second pair element.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">n</td><td>Number of bytes to extract. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Pointer to an output buffer of length <code>n</code>. This is filled with up to <code>n</code> bytes from the source.</td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">number</td><td>Number of bytes to extract. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Pointer to an output buffer of length <code>number</code>. This is filled with up to <code>number</code> bytes from the source.</td></tr>
   </table>
   </dd>
 </dl>
