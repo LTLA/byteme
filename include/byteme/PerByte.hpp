@@ -253,9 +253,10 @@ public:
      */
     ~PerByteParallel() {
         if (!my_finished) {
-            std::lock_guard lck(my_mut);
+            std::unique_lock lck(my_mut);
             my_finished = true;
             my_ready_input = true;
+            lck.unlock(); // releasing the lock so that the notified thread doesn't immediately block.
             my_cv.notify_one();
         }
         my_thread.join();

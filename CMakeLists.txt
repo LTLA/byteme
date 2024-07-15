@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 
 project(byteme
-    VERSION 1.2.1
+    VERSION 1.2.2
     DESCRIPTION "No-frills byte streaming from file"
     LANGUAGES CXX)
 
