@@ -22,7 +22,7 @@ namespace byteme {
  * This class will automatically detect whether `path` refers to a text file or a Gzip-compressed file, based on its initial magic numbers.
  * After that, it will dispatch appropriately to `RawFileReader` or `GzipFileReader` respectively.
  */
-class SomeFileReader : public Reader {
+class SomeFileReader final : public Reader {
 public:
     /**
      * @param path Path to the file.

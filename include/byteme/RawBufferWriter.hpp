@@ -18,7 +18,7 @@ namespace byteme {
  * This class will append bytes to an internal instance of a `std::vector` without any further transformations.
  * Not much else to say here.
  */
-class RawBufferWriter : public Writer {
+class RawBufferWriter final : public Writer {
 public:
     /**
      * @param reserve Initial size of the output buffer to reserve.

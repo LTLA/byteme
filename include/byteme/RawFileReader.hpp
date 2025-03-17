@@ -22,7 +22,7 @@ namespace byteme {
  * This is basically a simple wrapper around `FILE` structures, with correct closing and error checking.
  * Mostly provided because I always forget how to interact with `ifstream` objects when I want a sequence of bytes.
  */
-class RawFileReader : public Reader {
+class RawFileReader final : public Reader {
 public:
     /**
      * @param path Path to the file.

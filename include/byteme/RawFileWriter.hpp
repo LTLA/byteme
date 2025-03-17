@@ -22,7 +22,7 @@ namespace byteme {
  * This class will write bytes to a file without any further transformations.
  * It is basically a simple wrapper around `FILE` structures, with correct closing and error checking.
  */
-class RawFileWriter : public Writer {
+class RawFileWriter final : public Writer {
 public:
     /**
      * @param path Path to the file.

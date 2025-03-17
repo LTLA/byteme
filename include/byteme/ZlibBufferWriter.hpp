@@ -19,7 +19,7 @@ namespace byteme {
  *
  * This is basically a wrapper around Zlib's deflate method, with correct closing and error checking.
  */
-class ZlibBufferWriter : public Writer {
+class ZlibBufferWriter final : public Writer {
 private:
     /**
      * @cond

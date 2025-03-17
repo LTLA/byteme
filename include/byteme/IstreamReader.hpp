@@ -23,7 +23,7 @@ namespace byteme {
  * mostly to avoid having to remember the correct way to check for end of file.
  */
 template<class Pointer_ = std::istream*>
-class IstreamReader : public Reader {
+class IstreamReader final : public Reader {
 public:
     /**
      * @param input Pointer to an input stream.

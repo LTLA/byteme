@@ -21,7 +21,7 @@ namespace byteme {
  * This is just a wrapper around `std::ostream::write` for compatibility.
  */
 template<class Pointer_ = std::ostream*>
-class OstreamWriter : public Writer {
+class OstreamWriter final : public Writer {
 public:
     /**
      * @param output Pointer to an output stream.

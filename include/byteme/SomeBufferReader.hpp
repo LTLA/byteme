@@ -22,7 +22,7 @@ namespace byteme {
  * This class will automatically detect whether `buffer` refers to a text or Gzip/Zlib-compressed buffer, based on the initial magic numbers.
  * After that, it will dispatch appropriately to `RawBufferReader` or `ZlibBufferReader` respectively.
  */
-class SomeBufferReader : public Reader {
+class SomeBufferReader final : public Reader {
 public:
     /**
      * @param[in] buffer Pointer to an array containing the possibly compressed data.

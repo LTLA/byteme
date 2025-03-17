@@ -19,7 +19,7 @@ namespace byteme {
  *
  * This is basically a wrapper around Zlib's inflate method, with correct closing and error checking.
  */
-class ZlibBufferReader : public Reader {
+class ZlibBufferReader final : public Reader {
 private:
     /**
      * @cond

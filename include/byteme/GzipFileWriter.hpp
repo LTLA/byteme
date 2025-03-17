@@ -19,7 +19,7 @@ namespace byteme {
  *
  * This is basically a wrapper around Zlib's `gzFile` with correct closing and error checking.
  */
-class GzipFileWriter : public Writer {
+class GzipFileWriter final : public Writer {
 public:
     /**
      * @param path Path to the file.

@@ -18,7 +18,7 @@ namespace byteme {
  * This is basically the same as `RawBufferReader` except that chunks of bytes are returned on every `load()` call.
  * It is primarily intended for use in tests of **byteme** callers, to ensure that downstream algorithms behave correctly with respect to chunked reads.
  */
-class ChunkedBufferReader : public byteme::Reader {
+class ChunkedBufferReader final : public byteme::Reader {
 public:
     /**
      * @param[in] buffer Pointer to an array of bytes, usually containing text.

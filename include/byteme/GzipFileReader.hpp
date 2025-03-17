@@ -21,7 +21,7 @@ namespace byteme {
  *
  * This is basically a wrapper around Zlib's `gzFile` with correct closing and error checking.
  */
-class GzipFileReader : public Reader {
+class GzipFileReader final : public Reader {
 public:
     /**
      * @param path Path to the file.
