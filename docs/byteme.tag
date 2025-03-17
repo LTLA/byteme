@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-<tagfile doxygen_version="1.12.0">
+<tagfile doxygen_version="1.13.2">
   <compound kind="file">
     <name>byteme.hpp</name>
     <path>byteme/</path>
