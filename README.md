@@ -28,17 +28,6 @@ while (reader.load()) {
 }
 ```
 
-Users may prefer to wrap this in a `PerByte` instance for byte-by-byte access:
-
-```cpp
-byteme::PerByte pb(std::make_unique<byteme::GzipFileReader>(filepath));
-auto valid = pb.valid();
-while (valid) {
-    auto x = pb.get();
-    valid = pb.advance();
-}
-```
-
 To write bytes, create the desired `Writer` class and supply an array of bytes until completion.
 
 ```cpp
@@ -101,6 +90,50 @@ if (some_condition) {
 }
 
 byteme::PerByte<char, decltype(ptr)> pb(std::move(ptr));
+```
+
+## Reading byte-by-byte
+
+Users may prefer to wrap the `Reader` in a `PerByteSerial` instance to access one input byte at a time.
+This avoids the boilerplate of managing all of the other (yet-to-be-used) bytes from `available()`.
+
+```cpp
+byteme::PerByteSerial<char> pb(std::make_unique<byteme::GzipFileReader>(filepath));
+auto valid = pb.valid();
+while (valid) {
+    char x = pb.get();
+    // Do something with 'x'.
+    valid = pb.advance();
+}
+```
+
+We can also extract a range of bytes:
+
+```cpp
+byteme::PerByteSerial<unsigned char> pb(std::make_unique<byteme::GzipFileReader>(filepath));
+while (valid) {
+    int32_t value;
+    auto outcome = pb.extract(reinterpret_cast<unsigned char*>(&value), sizeof(int32_t)); 
+    if (outcome.first != sizeof(int32_t)) {
+        // uh oh, not enough bytes.
+    } else {
+        // do something with the extracted integer.
+    }
+    valid = outcome.second;
+}
+```
+
+We can even perform the reading in a separate thread via the `PerByteParallel` class.
+This allows the (possibly expensive) disk IO operations to be performed in parallel to the user-level parsing.
+
+```cpp
+byteme::PerByteParallel<char> pb(std::make_unique<byteme::GzipFileReader>(filepath));
+auto valid = pb.valid();
+while (valid) {
+    char x = pb.get();
+    // Do something with 'x'.
+    valid = pb.advance();
+}
 ```
 
 ## Building projects

@@ -21,11 +21,11 @@ namespace byteme {
 /**
  * @cond
  */
-template<class Pointer_>
-void skip_zero_buffers(Pointer_& reader, size_t& available) {
+template<class Reader_>
+void skip_zero_buffers(Reader_& reader, size_t& available) {
     available = 0;
-    while (reader->load()) {
-        available = reader->available(); // continue collecting bytes if a zero-length buffer is returned without load() returning false.
+    while (reader.load()) {
+        available = reader.available(); // continue collecting bytes if a zero-length buffer is returned without load() returning false.
         if (available) {
             break;
         }
@@ -39,46 +39,50 @@ void skip_zero_buffers(Pointer_& reader, size_t& available) {
  */
 
 /**
- * @brief Perform byte-by-byte extraction from a `Reader` source.
+ * @brief Interface for byte-by-byte extraction from a `Reader` source.
  *
- * @tparam Type_ Character type to return, usually `char` for text or `unsigned char` for binary.
- * @tparam Pointer_ A (possibly smart) non-`const` pointer to a `Reader`.
+ * @tparam Type_ Type of the output bytes, usually `char` for text or `unsigned char` for binary.
  *
  * This wraps a `Reader` so that developers can avoid the boilerplate of managing blocks of bytes,
  * when all they want is to iterate over the bytes of the input.
  */
-template<typename Type_ = char, class Pointer_ = Reader*>
-class PerByte {
+template<typename Type_>
+class PerByteInterface {
+public:
+    /**
+     * @cond
+     */
+    PerByteInterface() = default;
+    PerByteInterface(PerByteInterface&&) = delete;
+    PerByteInterface(const PerByteInterface&) = delete; // not copyable.
+    PerByteInterface& operator=(PerByteInterface&&) = delete;
+    PerByteInterface& operator=(const PerByteInterface&) = delete; // not copyable.
+    virtual ~PerByteInterface() = default;
+    /**
+     * @endcond
+     */
+
+protected:
+    /**
+     * Pointer to an array of bytes, to be set by `refill()` whenever `available > 0`.
+     */
+    const Type_* ptr = nullptr;
+
+    /**
+     * Length of the array at `ptr`.
+     */
+    size_t available = 0;
+
+    /**
+     * Set `ptr` and `available` to refer to an array of new bytes from a `Reader`.
+     */
+    virtual void refill() = 0;
+
 private:
-    const Type_* my_ptr = nullptr;
-    size_t my_available = 0;
     size_t my_current = 0;
     size_t my_overall = 0;
 
-    Pointer_ my_reader;
-
-    void refill() {
-        my_overall += my_available;
-        skip_zero_buffers(my_reader, my_available);
-        my_ptr = reinterpret_cast<const Type_*>(my_reader->buffer());
-        my_current = 0;
-    }
-
 public:
-    /**
-     * @param reader A (possibly smart) pointer to a `Reader` object.
-     */
-    PerByte(Pointer_ reader) : my_reader(std::move(reader)) {
-        refill();
-    }
-
-    /**
-     * @return Whether this instance still has bytes to be read.
-     */
-    bool valid() const {
-        return my_current < my_available;
-    }
-
     /**
      * Advance to the next byte, possibly reading a new chunk from the supplied `Reader`.
      * This should only be called if `valid()` is `true`.
@@ -87,12 +91,14 @@ public:
      */
     bool advance() {
         ++my_current;
-        if (my_current < my_available) {
+        if (my_current < available) {
             return true;
         }
 
+        my_current = 0;
+        my_overall += available;
         refill();
-        return my_available > 0; // Check that we haven't reached the end of the reader.
+        return available > 0; // Check that we haven't reached the end of the reader.
     }
 
     /**
@@ -101,7 +107,7 @@ public:
      * This should only be called if `valid()` is `true`.
      */
     Type_ get() const {
-        return my_ptr[my_current];
+        return ptr[my_current];
     }
 
     /**
@@ -111,6 +117,14 @@ public:
         return my_overall + my_current;
     }
 
+    /**
+     * @return Whether this instance still has bytes to be read.
+     */
+    bool valid() const {
+        return my_current < available;
+    }
+
+public:
     /**
      * Extract up to `number` bytes from the `Reader` source and store them in the `output`.
      * This is equivalent to (but more efficient than) calling `get()` and then `advance()` up to `number` times,
@@ -130,21 +144,24 @@ public:
         bool okay = true;
 
         while (1) {
-            auto start = my_ptr + my_current;
-            auto leftover = my_available - my_current;
+            auto start = ptr + my_current;
+            auto leftover = available - my_current;
 
             if (leftover > number) {
                 my_current += number;
                 number = 0;
-                std::copy(start, my_ptr + my_current, output);
+                std::copy(start, ptr + my_current, output);
                 break;
 
             } else {
                 number -= leftover;
-                std::copy(start, my_ptr + my_available, output);
+                std::copy(start, ptr + available, output);
+
+                my_current = 0;
+                my_overall += available;
                 refill();
 
-                okay = (my_available > 0);
+                okay = (available > 0);
                 if (number == 0 || !okay) {
                     break;
                 }
@@ -156,97 +173,71 @@ public:
     }
 };
 
+
 /**
- * @brief Perform parallelized byte-by-byte extraction from a `Reader` source.
+ * @brief Serial byte-by-byte extraction from a `Reader` source.
  *
- * @tparam Type_ Character type to return, usually `char` for text or `unsigned char` for binary.
- * @tparam Pointer_ A (possibly smart) non-`const` pointer to a `Reader`.
+ * @tparam Type_ Type of the output bytes, usually `char` for text or `unsigned char` for binary.
+ * @tparam Reader_ Class for a source of input bytes, satisfying the `Reader` interface.
+ * This can also be a concrete `Reader` subclass to enable devirtualization. 
  *
- * This is much like `PerByte` except that the `Reader`'s loading operation is called in a separate thread,
- * thus allowing the caller to parse the bytes of the current chunk in parallel.
+ * This wraps a `Reader` so that developers can avoid the boilerplate of managing blocks of bytes,
+ * when all they want is to iterate over the bytes of the input.
  */
-template<typename Type_ = char, class Pointer_ = Reader*>
-class PerByteParallel {
-private:
-    size_t my_current = 0;
-    size_t my_available = 0;
-    size_t my_overall = 0;
-
-    Pointer_ my_reader;
-
-    std::vector<Type_> my_buffer;
-    size_t my_next_available = 0;
-    bool my_finished = false;
-
-private:
-    std::thread my_thread;
-    std::exception_ptr my_thread_err = nullptr;
-    std::mutex my_mut;
-    std::condition_variable my_cv;
-    bool my_ready_input, my_ready_output;
-
-    void thread_loop() {
-        while (!my_finished) {
-            std::unique_lock lck(my_mut);
-            my_cv.wait(lck, [&]() { return my_ready_input; });
-            my_ready_input = false;
-
-            if (my_finished) { // an explicit kill signal from the destructor, see below.
-                break;
-            }
-
-            try {
-                skip_zero_buffers(my_reader, my_next_available);
-                my_finished = my_next_available == 0; // see the definition of skip_zero_buffers().
-            } catch (...) {
-                my_thread_err = std::current_exception();
-                my_finished = true;
-            }
-
-            my_ready_output = true;
-            lck.unlock();
-            my_cv.notify_one();
-        }
-    }
-
-private:
-    void refill() {
-        std::unique_lock lck(my_mut);
-        my_cv.wait(lck, [&]() { return my_ready_output; });
-        my_ready_output = false;
-
-        if (my_thread_err) {
-            std::rethrow_exception(my_thread_err);
-        }
-
-        my_overall += my_available;
-
-        auto ptr = reinterpret_cast<const Type_*>(my_reader->buffer());
-        my_available = my_next_available;
-        my_buffer.resize(my_available);
-        my_current = 0;
-
-        std::copy(ptr, ptr + my_available, my_buffer.begin());
-        my_ready_input = true;
-
-        lck.unlock();
-        if (!my_finished) {
-            my_cv.notify_one();
-        }
-    }
-
+template<typename Type_, class Reader_ = Reader>
+class PerByteSerial final : public PerByteInterface<Type_> {
 public:
     /**
-     * @copydoc PerByte::PerByte()
+     * @param reader Pointer to a source of input bytes.
      */
-    PerByteParallel(Pointer_ reader) : my_reader(std::move(reader)) {
+    PerByteSerial(std::unique_ptr<Reader_> reader) : my_reader(std::move(reader)) {
+        refill();
+    }
+
+    /**
+     * @param reader Pointer to a source of input bytes.
+     */
+    PerByteSerial(Reader_* reader) : PerByteSerial(std::unique_ptr<Reader_>(reader)) {}
+
+private:
+    std::unique_ptr<Reader_> my_reader;
+
+protected:
+    void refill() {
+        skip_zero_buffers(*my_reader, this->available);
+        this->ptr = reinterpret_cast<const Type_*>(my_reader->buffer());
+    }
+};
+
+/**
+ * @brief Parallelized byte-by-byte extraction from a `Reader` source.
+ *
+ * @tparam Type_ Type of the output bytes, usually `char` for text or `unsigned char` for binary.
+ * @tparam Reader_ Class for a source of input bytes, satisfying the `Reader` interface.
+ * This can also be a concrete `Reader` subclass to enable devirtualization. 
+ *
+ * This is much like `PerByteSerial` except that the `Reader_`'s loading operation is called in a separate thread,
+ * thus allowing the caller to parse the bytes of the current chunk in parallel.
+ */
+template<typename Type_, class Reader_ = Reader>
+class PerByteParallel final : public PerByteInterface<Type_> {
+public:
+    /**
+     * @param reader Pointer to a source of input bytes.
+     */
+    PerByteParallel(std::unique_ptr<Reader_> reader) : my_reader(std::move(reader)) {
         my_ready_input = false;
         my_thread = std::thread([&]() { thread_loop(); });
 
-        skip_zero_buffers(my_reader, my_next_available);
+        skip_zero_buffers(*my_reader, my_next_available);
         my_ready_output = true; // run the first iteration of refill().
         refill();
     }
+
+    /**
+     * @param reader Pointer to a source of input bytes.
+     */
+    PerByteParallel(Reader_* reader) : PerByteParallel(std::unique_ptr<Reader_>(reader)) {}
 
     /**
      * @cond
@@ -265,92 +256,69 @@ public:
      * @endcond
      */
 
-    /**
-     * @copydoc PerByte::valid()
-     */
-    bool valid() const {
-        return my_current < my_available;
-    }
+private:
+    std::unique_ptr<Reader_> my_reader;
+    std::vector<Type_> my_buffer;
+    size_t my_next_available = 0;
+    bool my_finished = false;
 
-    /**
-     * @copydoc PerByte::advance()
-     */
-    bool advance() {
-        ++my_current;
-        if (my_current < my_available) {
-            return true;
-        }
+private:
+    std::thread my_thread;
+    std::exception_ptr my_thread_err = nullptr;
+    std::mutex my_mut;
+    std::condition_variable my_cv;
+    bool my_ready_input, my_ready_output;
 
-        if (my_finished) {
-            return false;
-        }
-        refill();
+    void thread_loop() {
+        while (!my_finished) {
+            std::unique_lock lck(my_mut);
+            my_cv.wait(lck, [&]() { return my_ready_input; });
+            my_ready_input = false;
 
-        return my_available > 0; // confirm there's actually bytes to extract in the next round.
-    }
-
-    /**
-     * @copydoc PerByte::get()
-     */
-    Type_ get() const {
-        return my_buffer[my_current];
-    }
-
-    /**
-     * @copydoc PerByte::position()
-     */
-    size_t position() const {
-        return my_overall + my_current;
-    }
-
-    /**
-     * Extract up to `number` bytes from the `Reader` source and store them in the `output`.
-     * This is equivalent to (but more efficient than) calling `get()` and then `advance()` up to `number` times,
-     * only iterating while the return value of `advance()` is still true.
-     * The number of successful iterations is returned in the output as the first pair element,
-     * while the return value of the final `advance()` is returned as the second pair element.
-     *
-     * @param number Number of bytes to extract.
-     * @param[out] output Pointer to an output buffer of length `number`.
-     * This is filled with up to `number` bytes from the source.
-     *
-     * @return Pair containing (1) the number of bytes that were successfully read into `output`,
-     * and (2) whether there are any more bytes available in the source for future `get()` or `extract()` calls.
-     */
-    std::pair<size_t, bool> extract(size_t number, Type_* output) {
-        size_t original = number;
-        bool okay = true;
-
-        while (1) {
-            auto start = my_buffer.data() + my_current;
-            auto leftover = my_available - my_current;
-
-            if (leftover > number) {
-                my_current += number;
-                number = 0;
-                std::copy(start, my_buffer.data() + my_current, output);
+            if (my_finished) { // an explicit kill signal from the destructor.
                 break;
-
-            } else {
-                number -= leftover;
-                std::copy(start, my_buffer.data() + my_available, output);
-
-                if (my_finished) {
-                    my_current += leftover;
-                    okay = false;
-                    break;
-                }
-                refill();
-
-                okay = (my_available > 0);
-                if (number == 0 || !okay) {
-                    break;
-                }
-                output += leftover;
             }
+
+            try {
+                skip_zero_buffers(*my_reader, my_next_available);
+                my_finished = my_next_available == 0; // see the definition of skip_zero_buffers().
+            } catch (...) {
+                my_thread_err = std::current_exception();
+                my_finished = true;
+            }
+
+            my_ready_output = true;
+            lck.unlock();
+            my_cv.notify_one();
+        }
+    }
+
+protected:
+    void refill() {
+        if (my_finished) {
+            this->ptr = nullptr;
+            this->available = 0;
+            return;
         }
 
-        return std::make_pair(original - number, okay);
+        std::unique_lock lck(my_mut);
+        my_cv.wait(lck, [&]() { return my_ready_output; });
+        my_ready_output = false;
+        if (my_thread_err) {
+            std::rethrow_exception(my_thread_err);
+        }
+
+        auto rptr = reinterpret_cast<const Type_*>(my_reader->buffer());
+        this->available = my_next_available;
+        my_buffer.resize(this->available);
+        std::copy_n(rptr, this->available, my_buffer.data());
+        this->ptr = my_buffer.data();
+
+        my_ready_input = true;
+        lck.unlock();
+        if (!my_finished) {
+            my_cv.notify_one();
+        }
     }
 };
 

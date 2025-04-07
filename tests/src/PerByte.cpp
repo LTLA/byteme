@@ -23,9 +23,7 @@ TEST_P(PerByteTest, Basic) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto path = dump_file(contents);
 
-    byteme::RawFileReader reader(path, GetParam());
-    byteme::PerByte extractor(&reader);
-
+    byteme::PerByteSerial<char> extractor(new byteme::RawFileReader(path, GetParam()));
     std::string observed;
     std::vector<int> positions;
     while (extractor.valid()) {
@@ -68,9 +66,7 @@ TEST_P(PerByteTest, Extraction) {
     std::vector<int> extract_widths { 10, 20, 100 };
 
     for (auto w : extract_widths) {
-        byteme::RawFileReader reader(path, GetParam());
-        byteme::PerByte extractor(&reader);
-
+        byteme::PerByteSerial<char> extractor(new byteme::RawFileReader(path, GetParam()));
         std::string observed;
         std::vector<char> buffer(w);
         while (1) {
@@ -89,8 +85,7 @@ TEST_P(PerByteTest, SmartPointer) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto path = dump_file(contents);
 
-    byteme::PerByte extractor(std::make_unique<byteme::RawFileReader>(path, GetParam()));
-
+    byteme::PerByteSerial<char> extractor(std::make_unique<byteme::RawFileReader>(path, GetParam()));
     std::vector<std::string> observed(1);
     while (extractor.valid()) {
         if (extractor.get() == '\n') {
@@ -109,9 +104,7 @@ TEST_P(PerByteTest, Parallel) {
     std::vector<std::string> contents { "Ochite iku sunadokei bakari miteru yo", "Sakasama ni sureba hora mata hajimaru yo", "Kizanda dake susumu jikan ni", "Itsuka boku mo haireru kana" };
     auto path = dump_file(contents);
 
-    byteme::RawFileReader reader(path, GetParam());
-    byteme::PerByteParallel extractor(&reader);
-
+    byteme::PerByteParallel<char> extractor(new byteme::RawFileReader(path, GetParam()));
     std::string observed;
     std::vector<int> positions;
     while (extractor.valid()) {
@@ -141,11 +134,10 @@ TEST_P(PerByteTest, Parallel) {
 TEST_P(PerByteTest, ParallelDestruction) {
     std::vector<std::string> contents { "Kimi dake ga sugisatta saka no tochuu wa", "Atataka na hidamari ga ikutsu mo dekiteta", "Boku hitori ga koko de yasashii", "Atatakasa o omoikaeshiteru" };
     auto path = dump_file(contents);
-    byteme::RawFileReader reader(path, GetParam());
 
     // Get enough hits to trigger the next (parallelized) chunk read, but not enough to read through the entire string.
     {
-        byteme::PerByteParallel extractor(&reader);
+        byteme::PerByteParallel<char> extractor(new byteme::RawFileReader(path, GetParam()));
         size_t limit = GetParam();
         for (size_t i = 0; i < limit + 10 && extractor.valid(); ++i) {
             extractor.get();
@@ -160,7 +152,7 @@ TEST_P(PerByteTest, ParallelSmartPointer) {
     auto path = dump_file(contents);
 
     // Passing in a unique pointer.
-    byteme::PerByteParallel extractor(std::make_unique<byteme::RawFileReader>(path, GetParam()));
+    byteme::PerByteParallel<char> extractor(std::make_unique<byteme::RawFileReader>(path, GetParam()));
 
     std::vector<std::string> observed(1);
     while (extractor.valid()) {
@@ -187,11 +179,8 @@ TEST_P(PerByteTest, ParallelExtraction) {
     }
 
     std::vector<int> extract_widths { 10, 20, 100 };
-
     for (auto w : extract_widths) {
-        byteme::RawFileReader reader(path, GetParam());
-        byteme::PerByteParallel extractor(&reader);
-
+        byteme::PerByteParallel<char> extractor(new byteme::RawFileReader(path, GetParam()));
         std::string observed;
         std::vector<char> buffer(w);
         while (1) {
