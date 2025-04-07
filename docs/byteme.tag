@@ -45,7 +45,8 @@
     <name>PerByte.hpp</name>
     <path>byteme/</path>
     <filename>PerByte_8hpp.html</filename>
-    <class kind="class">byteme::PerByte</class>
+    <class kind="class">byteme::PerByteInterface</class>
+    <class kind="class">byteme::PerByteSerial</class>
     <class kind="class">byteme::PerByteParallel</class>
     <namespace>byteme</namespace>
   </compound>
@@ -342,99 +343,120 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>byteme::PerByte</name>
-    <filename>classbyteme_1_1PerByte.html</filename>
+    <name>byteme::PerByteInterface</name>
+    <filename>classbyteme_1_1PerByteInterface.html</filename>
     <templarg>typename Type_</templarg>
-    <templarg>class Pointer_</templarg>
-    <member kind="function">
-      <type></type>
-      <name>PerByte</name>
-      <anchorfile>classbyteme_1_1PerByte.html</anchorfile>
-      <anchor>a3ce08a7c7d915293ba571841e66a29ba</anchor>
-      <arglist>(Pointer_ reader)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>valid</name>
-      <anchorfile>classbyteme_1_1PerByte.html</anchorfile>
-      <anchor>a69828af5d6f2f64d8bf331066815917c</anchor>
-      <arglist>() const</arglist>
-    </member>
     <member kind="function">
       <type>bool</type>
       <name>advance</name>
-      <anchorfile>classbyteme_1_1PerByte.html</anchorfile>
-      <anchor>ae505a5be32c2f79313a779d32190e25f</anchor>
+      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
+      <anchor>a6c32b7ee63b692c12a58ce1fa3173799</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>Type_</type>
       <name>get</name>
-      <anchorfile>classbyteme_1_1PerByte.html</anchorfile>
-      <anchor>a58d1dabde5c62dd9235c0509e8072061</anchor>
+      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
+      <anchor>a647e6ee2e9c7683f162b22d0a51dc3e5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>position</name>
-      <anchorfile>classbyteme_1_1PerByte.html</anchorfile>
-      <anchor>a003b805b826d56dd8117be66bbcc0d34</anchor>
+      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
+      <anchor>a83cdbb17126f57a3fad173c5ea466803</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>valid</name>
+      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
+      <anchor>a4f9b6fb5ceb70240c2729a8f7bd15efc</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>std::pair&lt; size_t, bool &gt;</type>
       <name>extract</name>
-      <anchorfile>classbyteme_1_1PerByte.html</anchorfile>
-      <anchor>a948f500bf0efb8d7f185715e609d5f16</anchor>
+      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
+      <anchor>a51322af98ae071c58453ccec232ad526</anchor>
       <arglist>(size_t number, Type_ *output)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="pure">
+      <type>virtual void</type>
+      <name>refill</name>
+      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
+      <anchor>a8cb67ac7c5517d17adb6fe88b803516d</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>const Type_ *</type>
+      <name>ptr</name>
+      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
+      <anchor>a3caa25b9f0daa42d425de8c98c70a59d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>size_t</type>
+      <name>available</name>
+      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
+      <anchor>a31640353ee2336a966d2267a0f982c8c</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>byteme::PerByteParallel</name>
     <filename>classbyteme_1_1PerByteParallel.html</filename>
     <templarg>typename Type_</templarg>
-    <templarg>class Pointer_</templarg>
+    <templarg>class Reader_</templarg>
+    <base>byteme::PerByteInterface&lt; Type_ &gt;</base>
     <member kind="function">
       <type></type>
       <name>PerByteParallel</name>
       <anchorfile>classbyteme_1_1PerByteParallel.html</anchorfile>
-      <anchor>af8b6d8751483f0505569e0d739f4e834</anchor>
-      <arglist>(Pointer_ reader)</arglist>
+      <anchor>aa3058db8252ffe19d16a3bed42d1abb1</anchor>
+      <arglist>(std::unique_ptr&lt; Reader_ &gt; reader)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
-      <name>valid</name>
+      <type></type>
+      <name>PerByteParallel</name>
       <anchorfile>classbyteme_1_1PerByteParallel.html</anchorfile>
-      <anchor>adf2beca863938a062dc172b7c656a85c</anchor>
-      <arglist>() const</arglist>
+      <anchor>a0273f79aa3dcc97d5bbdf74070a2c813</anchor>
+      <arglist>(Reader_ *reader)</arglist>
     </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>advance</name>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>refill</name>
       <anchorfile>classbyteme_1_1PerByteParallel.html</anchorfile>
-      <anchor>a29a16a1bd5ff330b57a9686564a91687</anchor>
+      <anchor>a3fcaea3cd5fbd6e72e6432ddced29fbd</anchor>
       <arglist>()</arglist>
     </member>
+  </compound>
+  <compound kind="class">
+    <name>byteme::PerByteSerial</name>
+    <filename>classbyteme_1_1PerByteSerial.html</filename>
+    <templarg>typename Type_</templarg>
+    <templarg>class Reader_</templarg>
+    <base>byteme::PerByteInterface&lt; Type_ &gt;</base>
     <member kind="function">
-      <type>Type_</type>
-      <name>get</name>
-      <anchorfile>classbyteme_1_1PerByteParallel.html</anchorfile>
-      <anchor>a1a0e9a739d270ed970292726a4723b96</anchor>
-      <arglist>() const</arglist>
+      <type></type>
+      <name>PerByteSerial</name>
+      <anchorfile>classbyteme_1_1PerByteSerial.html</anchorfile>
+      <anchor>a09443165b4f1eaa748016d1ccfde962e</anchor>
+      <arglist>(std::unique_ptr&lt; Reader_ &gt; reader)</arglist>
     </member>
     <member kind="function">
-      <type>size_t</type>
-      <name>position</name>
-      <anchorfile>classbyteme_1_1PerByteParallel.html</anchorfile>
-      <anchor>a68b5d094fa7ac5ddd74ca116e9f28ccd</anchor>
-      <arglist>() const</arglist>
+      <type></type>
+      <name>PerByteSerial</name>
+      <anchorfile>classbyteme_1_1PerByteSerial.html</anchorfile>
+      <anchor>a54cacbb15d0b09c1846bb0b55aa4dc59</anchor>
+      <arglist>(Reader_ *reader)</arglist>
     </member>
-    <member kind="function">
-      <type>std::pair&lt; size_t, bool &gt;</type>
-      <name>extract</name>
-      <anchorfile>classbyteme_1_1PerByteParallel.html</anchorfile>
-      <anchor>a83a9f0dc44c7fdb90fe86e7fdaa5d626</anchor>
-      <arglist>(size_t number, Type_ *output)</arglist>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>refill</name>
+      <anchorfile>classbyteme_1_1PerByteSerial.html</anchorfile>
+      <anchor>a2857fc81b94832188db130a234f82129</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -864,8 +886,9 @@
     <class kind="class">byteme::GzipFileWriter</class>
     <class kind="class">byteme::IstreamReader</class>
     <class kind="class">byteme::OstreamWriter</class>
-    <class kind="class">byteme::PerByte</class>
+    <class kind="class">byteme::PerByteInterface</class>
     <class kind="class">byteme::PerByteParallel</class>
+    <class kind="class">byteme::PerByteSerial</class>
     <class kind="class">byteme::RawBufferReader</class>
     <class kind="class">byteme::RawBufferWriter</class>
     <class kind="class">byteme::RawFileReader</class>

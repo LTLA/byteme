@@ -9,5 +9,6 @@ var searchData=
   ['rawfilewriter_6',['RawFileWriter',['../classbyteme_1_1RawFileWriter.html',1,'byteme::RawFileWriter'],['../classbyteme_1_1RawFileWriter.html#aec0092b0773fa4510ac45ad2e3612d71',1,'byteme::RawFileWriter::RawFileWriter(const char *path, size_t buffer_size=65536)'],['../classbyteme_1_1RawFileWriter.html#a4702fdac7150872c7bf98618f5eb6372',1,'byteme::RawFileWriter::RawFileWriter(const std::string &amp;path, size_t buffer_size=65536)']]],
   ['rawfilewriter_2ehpp_7',['RawFileWriter.hpp',['../RawFileWriter_8hpp.html',1,'']]],
   ['reader_8',['Reader',['../classbyteme_1_1Reader.html',1,'byteme']]],
-  ['reader_2ehpp_9',['Reader.hpp',['../Reader_8hpp.html',1,'']]]
+  ['reader_2ehpp_9',['Reader.hpp',['../Reader_8hpp.html',1,'']]],
+  ['refill_10',['refill',['../classbyteme_1_1PerByteInterface.html#a8cb67ac7c5517d17adb6fe88b803516d',1,'byteme::PerByteInterface::refill()'],['../classbyteme_1_1PerByteSerial.html#a2857fc81b94832188db130a234f82129',1,'byteme::PerByteSerial::refill()'],['../classbyteme_1_1PerByteParallel.html#a3fcaea3cd5fbd6e72e6432ddced29fbd',1,'byteme::PerByteParallel::refill()']]]
 ];
