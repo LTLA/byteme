@@ -19,7 +19,7 @@ TEST(UmbrellaTest, Basic) {
     gzwrite(ohandle, stuff.c_str(), stuff.size());
     gzclose(ohandle);
 
-    byteme::GzipFileReader reader(gzname.c_str(), 20);
+    byteme::GzipFileReader reader(gzname.c_str(), {});
     auto lines = read_lines(reader);
     EXPECT_EQ(lines, contents);
 }

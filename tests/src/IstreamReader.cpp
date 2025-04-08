@@ -19,7 +19,12 @@ TEST_P(IstreamReaderTest, Basic) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     std::istringstream is(dump_buffer(contents));
 
-    byteme::IstreamReader reader(&is, GetParam());
+    byteme::IstreamReader reader(&is, [&]{
+        byteme::IstreamReaderOptions iopt;
+        iopt.buffer_size = GetParam();
+        return iopt;
+    }());
+
     auto lines = read_lines(reader);
     EXPECT_EQ(lines, contents);
 }
@@ -28,7 +33,12 @@ TEST_P(IstreamReaderTest, Empty) {
     std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
     std::istringstream is(dump_buffer(contents));
 
-    byteme::IstreamReader reader(&is, GetParam());
+    byteme::IstreamReader reader(&is, [&]{
+        byteme::IstreamReaderOptions iopt;
+        iopt.buffer_size = GetParam();
+        return iopt;
+    }());
+
     auto lines = read_lines(reader);
     EXPECT_EQ(lines, contents);
 }
@@ -37,7 +47,12 @@ TEST_P(IstreamReaderTest, TooLong) {
     std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
     std::istringstream is(dump_buffer(contents));
 
-    byteme::IstreamReader reader(&is, GetParam());
+    byteme::IstreamReader reader(&is, [&]{
+        byteme::IstreamReaderOptions iopt;
+        iopt.buffer_size = GetParam();
+        return iopt;
+    }());
+
     auto lines = read_lines(reader);
     EXPECT_EQ(lines, contents);
 }

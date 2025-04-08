@@ -35,7 +35,7 @@ public:
      * @param options Further options.
      */
     RawBufferWriter(const RawBufferWriterOptions& options) {
-        output.reserve(reserve);
+        output.reserve(options.reserve);
     }
 
 public:

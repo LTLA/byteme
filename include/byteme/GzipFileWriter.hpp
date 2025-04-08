@@ -42,7 +42,7 @@ public:
      * @param path Path to the file.
      * @param options Further options.
      */
-    GzipFileWriter(const char* path, const GzipFileWriteOptions& options) : my_gzfile(path, "wb") {
+    GzipFileWriter(const char* path, const GzipFileWriterOptions& options) : my_gzfile(path, "wb") {
         if (gzbuffer(my_gzfile.handle, options.buffer_size)) {
             throw std::runtime_error("failed to set the Gzip compression buffer");
         }
