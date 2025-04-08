@@ -30,7 +30,7 @@ TEST_P(GzipFileReaderTest, Basic) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto path = dump_file(contents);
 
-    byteme::GzipFileReader reader(path, [&]{
+    byteme::GzipFileReader reader(path.c_str(), [&]{
         byteme::GzipFileReaderOptions opt;
         opt.buffer_size = GetParam();
         return opt;
@@ -44,7 +44,7 @@ TEST_P(GzipFileReaderTest, Empty) {
     std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
     auto path = dump_file(contents);
 
-    byteme::GzipFileReader reader(path, [&]{
+    byteme::GzipFileReader reader(path.c_str(), [&]{
         byteme::GzipFileReaderOptions opt;
         opt.buffer_size = GetParam();
         return opt;
@@ -58,7 +58,7 @@ TEST_P(GzipFileReaderTest, TooLong) {
     std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
     auto path = dump_file(contents);
 
-    byteme::GzipFileReader reader(path, [&]{
+    byteme::GzipFileReader reader(path.c_str(), [&]{
         byteme::GzipFileReaderOptions opt;
         opt.buffer_size = GetParam();
         return opt;
@@ -72,7 +72,7 @@ TEST_P(GzipFileReaderTest, SomeFileWorks) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto path = dump_file(contents);
 
-    byteme::SomeFileReader reader(path, [&]{
+    byteme::SomeFileReader reader(path.c_str(), [&]{
         byteme::SomeFileReaderOptions opt;
         opt.buffer_size = GetParam();
         return opt;
@@ -94,7 +94,7 @@ TEST_F(GzipFileReaderTest, Moveable) {
 
     // Move constructor.
     {
-        byteme::GzipFileReader reader(path, {});
+        byteme::GzipFileReader reader(path.c_str(), {});
         byteme::GzipFileReader other(std::move(reader));
         auto lines = read_lines(other);
         EXPECT_EQ(lines, contents);
@@ -102,7 +102,7 @@ TEST_F(GzipFileReaderTest, Moveable) {
 
     // Move assignment.
     {
-        byteme::GzipFileReader reader(path, {});
+        byteme::GzipFileReader reader(path.c_str(), {});
         byteme::GzipFileReader other = std::move(reader);
         auto lines = read_lines(other);
         EXPECT_EQ(lines, contents);

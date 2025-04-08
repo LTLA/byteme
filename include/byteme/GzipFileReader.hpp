@@ -4,7 +4,6 @@
 #include "zlib.h"
 #include <stdexcept>
 #include <vector>
-#include <string>
 #include "SelfClosingGzFile.hpp"
 #include "Reader.hpp"
 
@@ -39,12 +38,6 @@ public:
      * @param options Further options.
      */
     GzipFileReader(const char* path, const GzipFileReaderOptions& options) : my_gzfile(path, "rb"), my_buffer(options.buffer_size) {}
-
-    /**
-     * @param path Path to the file.
-     * @param options Further options.
-     */
-    GzipFileReader(const std::string& path, const GzipFileReaderOptions& options) : GzipFileReader(path.c_str(), options) {}
 
 public:
     bool load() {

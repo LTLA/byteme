@@ -13,7 +13,7 @@ class GzipFileWriterTest : public ::testing::TestWithParam<int> {
 protected:
     auto dump_file(const std::vector<std::string>& contents, size_t buffer_size) {
         auto path = byteme::temp_file_path("text");
-        byteme::GzipFileWriter writer(path, [&]{
+        byteme::GzipFileWriter writer(path.c_str(), [&]{
             byteme::GzipFileWriterOptions opt;
             opt.buffer_size = buffer_size;
             return opt;

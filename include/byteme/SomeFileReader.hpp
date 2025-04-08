@@ -58,12 +58,6 @@ public:
         }
     }
 
-    /**
-     * @param path Path to the file.
-     * @param options Further options.
-     */
-    SomeFileReader(const std::string& path, const SomeFileReaderOptions& options) : SomeFileReader(path.c_str(), options) {}
-
 public:
     bool load() {
         return my_source->load();

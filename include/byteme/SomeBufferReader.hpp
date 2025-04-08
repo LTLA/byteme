@@ -50,14 +50,6 @@ public:
         }
     }
 
-    /**
-     * @param[in] buffer Pointer to an array containing the possibly compressed data.
-     * @param length Length of the `buffer` array.
-     * @param options Further options.
-     */
-    SomeBufferReader(const char* buffer, size_t length, const SomeBufferReaderOptions& options) :
-        SomeBufferReader(reinterpret_cast<const unsigned char*>(buffer), length, options) {}
-
 public:
     bool load() {
         return my_source->load();

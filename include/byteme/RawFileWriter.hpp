@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <stdexcept>
-#include <string>
 #include <cstdio>
 #include "Writer.hpp"
 #include "SelfClosingFILE.hpp"
@@ -44,12 +43,6 @@ public:
             throw std::runtime_error("failed to set a buffer size for file writing");
         }
     }
-
-    /**
-     * @param path Path to the file.
-     * @param options Further options.
-     */
-    RawFileWriter(const std::string& path, const RawFileWriterOptions& options) : RawFileWriter(path.c_str(), options) {}
 
 public:
     using Writer::write;

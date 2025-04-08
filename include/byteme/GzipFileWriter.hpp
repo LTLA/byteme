@@ -3,7 +3,6 @@
 
 #include <stdexcept>
 #include <vector>
-#include <string>
 #include "Writer.hpp"
 
 /**
@@ -50,12 +49,6 @@ public:
             throw std::runtime_error("failed to set the Gzip compression parameters");
         }
     }
-
-    /**
-     * @param path Path to the file.
-     * @param options Further options.
-     */
-    GzipFileWriter(const std::string& path, const GzipFileWriterOptions& options) : GzipFileWriter(path.c_str(), options) {}
 
 public:
     using Writer::write;

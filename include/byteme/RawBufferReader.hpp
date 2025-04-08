@@ -21,16 +21,10 @@ namespace byteme {
 class RawBufferReader final : public Reader {
 public:
     /**
-     * @param[in] buffer Pointer to an array of bytes, usually containing text.
+     * @param[in] buffer Pointer to an array of bytes. 
      * @param length Length of the buffer.
      */
     RawBufferReader(const unsigned char* buffer, size_t length) : my_buffer(buffer), my_length(length) {}
-
-    /**
-     * @param[in] buffer Pointer to an array of bytes, usually containing text.
-     * @param length Length of the buffer.
-     */
-    RawBufferReader(const char* buffer, size_t length) : RawBufferReader(reinterpret_cast<const unsigned char*>(buffer), length) {}
 
 public:
     bool load() {

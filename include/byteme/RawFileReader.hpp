@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <stdexcept>
-#include <string>
 #include <cstdio>
 #include "Reader.hpp"
 #include "SelfClosingFILE.hpp"
@@ -40,12 +39,6 @@ public:
      * @param options Further options.
      */
     RawFileReader(const char* path, const RawFileReaderOptions& options) : my_file(path, "rb"), my_buffer(options.buffer_size) {}
-
-    /**
-     * @param path Path to the file.
-     * @param options Further options.
-     */
-    RawFileReader(const std::string& path, const RawFileReaderOptions& options) : RawFileReader(path.c_str(), options) {}
 
 public:
     bool load() {
