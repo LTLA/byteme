@@ -1,0 +1,19 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="5,195,116,220"/>
+<area shape="rect" id="Node000001" href="$classbyteme_1_1ChunkedBufferReader.html" title="Read chunks of bytes from a raw buffer." alt="" coords="164,5,359,31"/>
+<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="69,179,82,147,102,109,129,72,162,40,182,29,184,34,165,44,133,75,107,112,87,149,74,181"/>
+<area shape="rect" id="Node000002" href="$classbyteme_1_1GzipFileReader.html" title="Read uncompressed bytes from a Gzip&#45;compressed file." alt="" coords="183,55,340,80"/>
+<area shape="poly" id="edge4_Node000000_Node000002" title=" " alt="" coords="76,180,112,134,136,111,162,91,188,79,190,83,165,95,139,115,116,138,80,183"/>
+<area shape="rect" id="Node000003" href="$classbyteme_1_1IstreamReader.html" title="Read bytes from a std::istream." alt="" coords="184,104,338,145"/>
+<area shape="poly" id="edge5_Node000000_Node000003" title=" " alt="" coords="99,185,163,154,192,143,194,148,165,159,101,189"/>
+<area shape="rect" id="Node000004" href="$classbyteme_1_1RawBufferReader.html" title="Read bytes from a raw buffer, usually text." alt="" coords="176,169,346,195"/>
+<area shape="poly" id="edge6_Node000000_Node000004" title=" " alt="" coords="131,196,175,190,176,196,132,201"/>
+<area shape="rect" id="Node000005" href="$classbyteme_1_1RawFileReader.html" title="Read bytes from a file, usually text." alt="" coords="183,219,340,244"/>
+<area shape="poly" id="edge7_Node000000_Node000005" title=" " alt="" coords="131,213,182,219,182,225,130,218"/>
+<area shape="rect" id="Node000006" href="$classbyteme_1_1SomeBufferReader.html" title="Read a buffer that may or may not be Gzip/Zlib&#45;compressed." alt="" coords="172,268,350,294"/>
+<area shape="poly" id="edge8_Node000000_Node000006" title=" " alt="" coords="100,226,165,254,199,265,197,270,163,259,98,230"/>
+<area shape="rect" id="Node000007" href="$classbyteme_1_1SomeFileReader.html" title="Read a file that may or may not be Gzipped." alt="" coords="179,317,344,343"/>
+<area shape="poly" id="edge9_Node000000_Node000007" title=" " alt="" coords="83,231,119,269,141,288,165,304,189,314,187,319,162,309,138,292,115,273,79,234"/>
+<area shape="rect" id="Node000008" href="$classbyteme_1_1ZlibBufferReader.html" title="Read and decompress bytes from a Zlib&#45;compressed buffer." alt="" coords="179,367,344,392"/>
+<area shape="poly" id="edge10_Node000000_Node000008" title=" " alt="" coords="75,233,110,295,135,327,165,353,185,364,182,368,162,358,131,330,105,298,71,236"/>
+</map>

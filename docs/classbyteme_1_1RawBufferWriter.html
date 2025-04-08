@@ -124,8 +124,8 @@ Collaboration diagram for byteme::RawBufferWriter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af52cf05755d5330d60813dc6ef9e5752" id="r_af52cf05755d5330d60813dc6ef9e5752"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af52cf05755d5330d60813dc6ef9e5752">RawBufferWriter</a> (size_t reserve=0)</td></tr>
-<tr class="separator:af52cf05755d5330d60813dc6ef9e5752"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2536f89eb9c6a58a68269abfa907f3bd" id="r_a2536f89eb9c6a58a68269abfa907f3bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2536f89eb9c6a58a68269abfa907f3bd">RawBufferWriter</a> (const <a class="el" href="structbyteme_1_1RawBufferWriterOptions.html">RawBufferWriterOptions</a> &amp;options)</td></tr>
+<tr class="separator:a2536f89eb9c6a58a68269abfa907f3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af48cfca7172a4e12afb75a9a59045295" id="r_af48cfca7172a4e12afb75a9a59045295"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af48cfca7172a4e12afb75a9a59045295">write</a> (const unsigned char *buffer, size_t n)</td></tr>
 <tr class="separator:af48cfca7172a4e12afb75a9a59045295"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f5da6446f98b72afcdbbcf504e10512" id="r_a9f5da6446f98b72afcdbbcf504e10512"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f5da6446f98b72afcdbbcf504e10512">finish</a> ()</td></tr>
@@ -150,8 +150,8 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Write bytes to a raw buffer. </p>
 <p>This class will append bytes to an internal instance of a <code>std::vector</code> without any further transformations. Not much else to say here. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af52cf05755d5330d60813dc6ef9e5752" name="af52cf05755d5330d60813dc6ef9e5752"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af52cf05755d5330d60813dc6ef9e5752">&#9670;&#160;</a></span>RawBufferWriter()</h2>
+<a id="a2536f89eb9c6a58a68269abfa907f3bd" name="a2536f89eb9c6a58a68269abfa907f3bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2536f89eb9c6a58a68269abfa907f3bd">&#9670;&#160;</a></span>RawBufferWriter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,7 +162,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">byteme::RawBufferWriter::RawBufferWriter </td>
           <td>(</td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>reserve</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="structbyteme_1_1RawBufferWriterOptions.html">RawBufferWriterOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -174,7 +174,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">reserve</td><td>Initial size of the output buffer to reserve. </td></tr>
+    <tr><td class="paramname">options</td><td>Further options. </td></tr>
   </table>
   </dd>
 </dl>

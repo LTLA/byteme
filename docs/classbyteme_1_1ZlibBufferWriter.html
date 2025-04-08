@@ -124,8 +124,8 @@ Collaboration diagram for byteme::ZlibBufferWriter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a07c41d2092ad91f3ed63bde1a3f0ff9c" id="r_a07c41d2092ad91f3ed63bde1a3f0ff9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07c41d2092ad91f3ed63bde1a3f0ff9c">ZlibBufferWriter</a> (int mode=2, int compression_level=6, size_t buffer_size=65536)</td></tr>
-<tr class="separator:a07c41d2092ad91f3ed63bde1a3f0ff9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09d7572eb0c546087fb66c13aa8e2d84" id="r_a09d7572eb0c546087fb66c13aa8e2d84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09d7572eb0c546087fb66c13aa8e2d84">ZlibBufferWriter</a> (const <a class="el" href="structbyteme_1_1ZlibBufferWriterOptions.html">ZlibBufferWriterOptions</a> &amp;options)</td></tr>
+<tr class="separator:a09d7572eb0c546087fb66c13aa8e2d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab227f7b9f62f0bfa7ae2a1a20a7fabd1" id="r_ab227f7b9f62f0bfa7ae2a1a20a7fabd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab227f7b9f62f0bfa7ae2a1a20a7fabd1">write</a> (const unsigned char *buffer, size_t n)</td></tr>
 <tr class="separator:ab227f7b9f62f0bfa7ae2a1a20a7fabd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a192a702db3794bf64766b0cee7ab4fac" id="r_a192a702db3794bf64766b0cee7ab4fac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a192a702db3794bf64766b0cee7ab4fac">finish</a> ()</td></tr>
@@ -150,8 +150,8 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Compress and write bytes to a Zlib-compressed buffer. </p>
 <p>This is basically a wrapper around Zlib's deflate method, with correct closing and error checking. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a07c41d2092ad91f3ed63bde1a3f0ff9c" name="a07c41d2092ad91f3ed63bde1a3f0ff9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07c41d2092ad91f3ed63bde1a3f0ff9c">&#9670;&#160;</a></span>ZlibBufferWriter()</h2>
+<a id="a09d7572eb0c546087fb66c13aa8e2d84" name="a09d7572eb0c546087fb66c13aa8e2d84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09d7572eb0c546087fb66c13aa8e2d84">&#9670;&#160;</a></span>ZlibBufferWriter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,17 +162,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">byteme::ZlibBufferWriter::ZlibBufferWriter </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>mode</em></span><span class="paramdefsep"> = </span><span class="paramdefval">2</span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const <a class="el" href="structbyteme_1_1ZlibBufferWriterOptions.html">ZlibBufferWriterOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>compression_level</em></span><span class="paramdefsep"> = </span><span class="paramdefval">6</span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>buffer_size</em></span><span class="paramdefsep"> = </span><span class="paramdefval">65536</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -183,9 +174,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mode</td><td>Compression mod of the stream - DEFLATE (0), Zlib (1) or Gzip (2). </td></tr>
-    <tr><td class="paramname">compression_level</td><td>Compression level from 1 to 9. Larger values improve compression at the cost of speed. </td></tr>
-    <tr><td class="paramname">buffer_size</td><td>Size of the compression buffer in bytes. Larger values improve speed at the cost of memory. </td></tr>
+    <tr><td class="paramname">options</td><td>Further options. </td></tr>
   </table>
   </dd>
 </dl>

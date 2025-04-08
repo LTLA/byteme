@@ -124,8 +124,8 @@ Collaboration diagram for byteme::ZlibBufferReader:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab710f262473d4e675dfad66d1fb1885a" id="r_ab710f262473d4e675dfad66d1fb1885a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab710f262473d4e675dfad66d1fb1885a">ZlibBufferReader</a> (const unsigned char *<a class="el" href="#add07b8eea79991fc364205667b90a00b">buffer</a>, size_t length, int mode=3, size_t buffer_size=65536)</td></tr>
-<tr class="separator:ab710f262473d4e675dfad66d1fb1885a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add23d171366a292cda13243a7d9384db" id="r_add23d171366a292cda13243a7d9384db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add23d171366a292cda13243a7d9384db">ZlibBufferReader</a> (const unsigned char *<a class="el" href="#add07b8eea79991fc364205667b90a00b">buffer</a>, size_t length, const <a class="el" href="structbyteme_1_1ZlibBufferReaderOptions.html">ZlibBufferReaderOptions</a> &amp;options)</td></tr>
+<tr class="separator:add23d171366a292cda13243a7d9384db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7205cb26d279ca957ada858598a86a3" id="r_ad7205cb26d279ca957ada858598a86a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7205cb26d279ca957ada858598a86a3">load</a> ()</td></tr>
 <tr class="separator:ad7205cb26d279ca957ada858598a86a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add07b8eea79991fc364205667b90a00b" id="r_add07b8eea79991fc364205667b90a00b"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add07b8eea79991fc364205667b90a00b">buffer</a> () const</td></tr>
@@ -138,8 +138,8 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Read and decompress bytes from a Zlib-compressed buffer. </p>
 <p>This is basically a wrapper around Zlib's inflate method, with correct closing and error checking. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab710f262473d4e675dfad66d1fb1885a" name="ab710f262473d4e675dfad66d1fb1885a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab710f262473d4e675dfad66d1fb1885a">&#9670;&#160;</a></span>ZlibBufferReader()</h2>
+<a id="add23d171366a292cda13243a7d9384db" name="add23d171366a292cda13243a7d9384db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add23d171366a292cda13243a7d9384db">&#9670;&#160;</a></span>ZlibBufferReader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -160,12 +160,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>mode</em></span><span class="paramdefsep"> = </span><span class="paramdefval">3</span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>buffer_size</em></span><span class="paramdefsep"> = </span><span class="paramdefval">65536</span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="structbyteme_1_1ZlibBufferReaderOptions.html">ZlibBufferReaderOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -178,8 +173,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">buffer</td><td>Pointer to an array containing the compressed data. </td></tr>
     <tr><td class="paramname">length</td><td>Length of the <code>buffer</code> array. </td></tr>
-    <tr><td class="paramname">mode</td><td>Compression of the stream - DEFLATE (0), Zlib (1) or Gzip (2). Default of 3 will auto-detect between Zlib and Gzip based on the headers. </td></tr>
-    <tr><td class="paramname">buffer_size</td><td>Size of the buffer to use for reading. </td></tr>
+    <tr><td class="paramname">options</td><td>Further options. </td></tr>
   </table>
   </dd>
 </dl>

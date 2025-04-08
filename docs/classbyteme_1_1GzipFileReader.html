@@ -124,10 +124,10 @@ Collaboration diagram for byteme::GzipFileReader:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac6fba0ca5a6b14614286503060bf0381" id="r_ac6fba0ca5a6b14614286503060bf0381"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6fba0ca5a6b14614286503060bf0381">GzipFileReader</a> (const char *path, size_t buffer_size=65536)</td></tr>
-<tr class="separator:ac6fba0ca5a6b14614286503060bf0381"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80a27441b6d4428c56a0daecf1507fa5" id="r_a80a27441b6d4428c56a0daecf1507fa5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80a27441b6d4428c56a0daecf1507fa5">GzipFileReader</a> (const std::string &amp;path, size_t buffer_size=65536)</td></tr>
-<tr class="separator:a80a27441b6d4428c56a0daecf1507fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecf4eebc3a244525b2c71a269d112800" id="r_aecf4eebc3a244525b2c71a269d112800"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecf4eebc3a244525b2c71a269d112800">GzipFileReader</a> (const char *path, const <a class="el" href="structbyteme_1_1GzipFileReaderOptions.html">GzipFileReaderOptions</a> &amp;options)</td></tr>
+<tr class="separator:aecf4eebc3a244525b2c71a269d112800"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a313d21e0703a330096c24f4166823e5f" id="r_a313d21e0703a330096c24f4166823e5f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a313d21e0703a330096c24f4166823e5f">GzipFileReader</a> (const std::string &amp;path, const <a class="el" href="structbyteme_1_1GzipFileReaderOptions.html">GzipFileReaderOptions</a> &amp;options)</td></tr>
+<tr class="separator:a313d21e0703a330096c24f4166823e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa077d794ad9e305842adf83311906b8a" id="r_aa077d794ad9e305842adf83311906b8a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa077d794ad9e305842adf83311906b8a">load</a> ()</td></tr>
 <tr class="separator:aa077d794ad9e305842adf83311906b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ebdbb98c1f78cb78883fccb11701bfd" id="r_a5ebdbb98c1f78cb78883fccb11701bfd"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ebdbb98c1f78cb78883fccb11701bfd">buffer</a> () const</td></tr>
@@ -140,8 +140,8 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Read uncompressed bytes from a Gzip-compressed file. </p>
 <p>This is basically a wrapper around Zlib's <code>gzFile</code> with correct closing and error checking. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac6fba0ca5a6b14614286503060bf0381" name="ac6fba0ca5a6b14614286503060bf0381"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6fba0ca5a6b14614286503060bf0381">&#9670;&#160;</a></span>GzipFileReader() <span class="overload">[1/2]</span></h2>
+<a id="aecf4eebc3a244525b2c71a269d112800" name="aecf4eebc3a244525b2c71a269d112800"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecf4eebc3a244525b2c71a269d112800">&#9670;&#160;</a></span>GzipFileReader() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -157,7 +157,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>buffer_size</em></span><span class="paramdefsep"> = </span><span class="paramdefval">65536</span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="structbyteme_1_1GzipFileReaderOptions.html">GzipFileReaderOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -169,15 +169,15 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>Path to the file. </td></tr>
-    <tr><td class="paramname">buffer_size</td><td>Size of the buffer to use for reading. </td></tr>
+    <tr><td class="paramname">options</td><td>Further options. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a80a27441b6d4428c56a0daecf1507fa5" name="a80a27441b6d4428c56a0daecf1507fa5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80a27441b6d4428c56a0daecf1507fa5">&#9670;&#160;</a></span>GzipFileReader() <span class="overload">[2/2]</span></h2>
+<a id="a313d21e0703a330096c24f4166823e5f" name="a313d21e0703a330096c24f4166823e5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a313d21e0703a330096c24f4166823e5f">&#9670;&#160;</a></span>GzipFileReader() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,7 +193,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>buffer_size</em></span><span class="paramdefsep"> = </span><span class="paramdefval">65536</span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="structbyteme_1_1GzipFileReaderOptions.html">GzipFileReaderOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -205,7 +205,7 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>Path to the file. </td></tr>
-    <tr><td class="paramname">buffer_size</td><td>Size of the buffer to use for reading. </td></tr>
+    <tr><td class="paramname">options</td><td>Further options. </td></tr>
   </table>
   </dd>
 </dl>
