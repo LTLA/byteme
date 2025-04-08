@@ -15,6 +15,28 @@
 namespace byteme {
 
 /**
+ * @brief Options for the `ZlibBufferWriter` constructor.
+ */
+struct ZlibBufferWriterOptions {
+    /**
+     * Compression of the stream - DEFLATE (0), Zlib (1) or Gzip (2).
+     */
+    int mode = 2;
+
+    /**
+     * Compression level, from 1 to 9.
+     * Larger values improve compression at the cost of speed.
+     */
+    int compression_level = 6;
+
+    /**
+     * Size of the buffer to use when reading from disk.
+     * Larger values usually reduce computational time at the cost of increased memory usage.
+     */
+    size_t buffer_size = 65536;
+};
+
+/**
  * @brief Compress and write bytes to a Zlib-compressed buffer.
  *
  * This is basically a wrapper around Zlib's deflate method, with correct closing and error checking.
@@ -71,13 +93,9 @@ private:
 
 public:
     /**
-     * @param mode Compression mod of the stream - DEFLATE (0), Zlib (1) or Gzip (2).
-     * @param compression_level Compression level from 1 to 9.
-     * Larger values improve compression at the cost of speed.
-     * @param buffer_size Size of the compression buffer in bytes.
-     * Larger values improve speed at the cost of memory.
+     * @param options Further options.
      */
-    ZlibBufferWriter(int mode = 2, int compression_level = 6, size_t buffer_size = 65536) : my_zstr(mode, compression_level), my_holding(buffer_size) {}
+    ZlibBufferWriter(const ZlibBufferWriterOptions& options) : my_zstr(options.mode, options.compression_level), my_holding(options.buffer_size) {}
 
 public:
     using Writer::write;

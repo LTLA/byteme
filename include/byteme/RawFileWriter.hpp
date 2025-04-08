@@ -17,6 +17,17 @@
 namespace byteme {
 
 /**
+ * @brief Options for the `RawFileWriter` constructor.
+ */
+struct RawFileWriterOptions {
+    /**
+     * Size of the buffer to use when writing to disk.
+     * Larger values usually reduce computational time at the cost of increased memory usage.
+     */
+    size_t buffer_size = 65536;
+};
+
+/**
  * @brief Write bytes to a file.
  *
  * This class will write bytes to a file without any further transformations.
@@ -26,19 +37,19 @@ class RawFileWriter final : public Writer {
 public:
     /**
      * @param path Path to the file.
-     * @param buffer_size Size of the buffer to use for writing.
+     * @param options Further options.
      */
-    RawFileWriter(const char* path, size_t buffer_size = 65536) : my_file(path, "wb") {
-        if (std::setvbuf(my_file.handle, nullptr, _IOFBF, buffer_size)) {
+    RawFileWriter(const char* path, const RawFileWriterOptions& options) : my_file(path, "wb") {
+        if (std::setvbuf(my_file.handle, nullptr, _IOFBF, options.buffer_size)) {
             throw std::runtime_error("failed to set a buffer size for file writing");
         }
     }
 
     /**
      * @param path Path to the file.
-     * @param buffer_size Size of the buffer to use for writing.
+     * @param options Further options.
      */
-    RawFileWriter(const std::string& path, size_t buffer_size = 65536) : RawFileWriter(path.c_str(), buffer_size) {}
+    RawFileWriter(const std::string& path, const RawFileWriterOptions& options) : RawFileWriter(path.c_str(), options) {}
 
 public:
     using Writer::write;

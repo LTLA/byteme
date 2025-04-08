@@ -15,6 +15,23 @@
 namespace byteme {
 
 /**
+ * @brief Options for `GzipFileWriter` construction.
+ */
+struct GzipFileWriterOptions {
+    /**
+     * Gzip compression level, from 1 to 9.
+     * Larger values improve compression efficiency at the cost of some computational work.
+     */
+    int compression_level = 6;
+
+    /**
+     * Size of the internal buffer to pass to Zlib. 
+     * Larger values usually reduce computational time at the cost of increased memory usage.
+     */
+    size_t buffer_size = 65536;
+};
+
+/**
  * @brief Write uncompressed bytes to a Gzip-compressed file.
  *
  * This is basically a wrapper around Zlib's `gzFile` with correct closing and error checking.
@@ -23,24 +40,22 @@ class GzipFileWriter final : public Writer {
 public:
     /**
      * @param path Path to the file.
-     * @param compression_level Gzip compression level. 
-     * @param buffer_size Size of the internal buffer. 
+     * @param options Further options.
      */
-    GzipFileWriter(const char* path, int compression_level = 6, size_t buffer_size = 65536) : my_gzfile(path, "wb") {
-        if (gzbuffer(my_gzfile.handle, buffer_size)) {
+    GzipFileWriter(const char* path, const GzipFileWriteOptions& options) : my_gzfile(path, "wb") {
+        if (gzbuffer(my_gzfile.handle, options.buffer_size)) {
             throw std::runtime_error("failed to set the Gzip compression buffer");
         }
-        if (gzsetparams(my_gzfile.handle, compression_level, Z_DEFAULT_STRATEGY) != Z_OK) {
+        if (gzsetparams(my_gzfile.handle, options.compression_level, Z_DEFAULT_STRATEGY) != Z_OK) {
             throw std::runtime_error("failed to set the Gzip compression parameters");
         }
     }
 
     /**
      * @param path Path to the file.
-     * @param compression_level Gzip compression level. 
-     * @param buffer_size Size of the buffer to use for reading.
+     * @param options Further options.
      */
-    GzipFileWriter(const std::string& path, int compression_level = 6, size_t buffer_size = 65536) : GzipFileWriter(path.c_str(), compression_level, buffer_size) {}
+    GzipFileWriter(const std::string& path, const GzipFileWriterOptions& options) : GzipFileWriter(path.c_str(), options) {}
 
 public:
     using Writer::write;

@@ -13,6 +13,17 @@
 namespace byteme {
 
 /**
+ * @brief Options for the `RawBufferWriter` constructor.
+ */
+struct RawBufferWriterOptions {
+    /**
+     * Initial size of the output buffer to reserve.
+     * Setting this to an estimate of the total number of written bytes may avoid unnecessary memory allocations.
+     */
+    size_t reserve = 0;
+};
+
+/**
  * @brief Write bytes to a raw buffer.
  *
  * This class will append bytes to an internal instance of a `std::vector` without any further transformations.
@@ -21,9 +32,9 @@ namespace byteme {
 class RawBufferWriter final : public Writer {
 public:
     /**
-     * @param reserve Initial size of the output buffer to reserve.
+     * @param options Further options.
      */
-    RawBufferWriter(size_t reserve = 0) {
+    RawBufferWriter(const RawBufferWriterOptions& options) {
         output.reserve(reserve);
     }
 

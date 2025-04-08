@@ -17,6 +17,17 @@
 namespace byteme {
 
 /**
+ * @brief Options for the `RawFileReader` constructor.
+ */
+struct RawFileReaderOptions {
+    /**
+     * Size of the buffer to use when reading from disk.
+     * Larger values usually reduce computational time at the cost of increased memory usage.
+     */
+    size_t buffer_size = 65536;
+};
+
+/**
  * @brief Read bytes from a file, usually text.
  *
  * This is basically a simple wrapper around `FILE` structures, with correct closing and error checking.
@@ -26,15 +37,15 @@ class RawFileReader final : public Reader {
 public:
     /**
      * @param path Path to the file.
-     * @param buffer_size Size of the buffer to use for reading.
+     * @param options Further options.
      */
-    RawFileReader(const char* path, size_t buffer_size = 65536) : my_file(path, "rb"), my_buffer(buffer_size) {}
+    RawFileReader(const char* path, const RawFileReaderOptions& options) : my_file(path, "rb"), my_buffer(options.buffer_size) {}
 
     /**
      * @param path Path to the file.
-     * @param buffer_size Size of the buffer to use for reading.
+     * @param options Further options.
      */
-    RawFileReader(const std::string& path, size_t buffer_size = 65536) : RawFileReader(path.c_str(), buffer_size) {}
+    RawFileReader(const std::string& path, const RawFileReaderOptions& options) : RawFileReader(path.c_str(), options) {}
 
 public:
     bool load() {

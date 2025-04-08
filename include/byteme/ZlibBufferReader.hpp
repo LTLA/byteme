@@ -15,6 +15,23 @@
 namespace byteme {
 
 /**
+ * @brief Options for the `ZlibBufferReader` constructor.
+ */
+struct ZlibBufferReaderOptions {
+    /**
+     * Compression of the stream - DEFLATE (0), Zlib (1) or Gzip (2).
+     * Default of 3 will auto-detect between Zlib and Gzip based on the headers.
+     */
+    int mode = 3;
+
+    /**
+     * Size of the buffer to use when reading from disk.
+     * Larger values usually reduce computational time at the cost of increased memory usage.
+     */
+    size_t buffer_size = 65536;
+};
+
+/**
  * @brief Read and decompress bytes from a Zlib-compressed buffer.
  *
  * This is basically a wrapper around Zlib's inflate method, with correct closing and error checking.
@@ -78,11 +95,11 @@ public:
     /**
      * @param buffer Pointer to an array containing the compressed data.
      * @param length Length of the `buffer` array.
-     * @param mode Compression of the stream - DEFLATE (0), Zlib (1) or Gzip (2).
-     * Default of 3 will auto-detect between Zlib and Gzip based on the headers.
-     * @param buffer_size Size of the buffer to use for reading.
+     * @param options Further options.
      */
-    ZlibBufferReader(const unsigned char* buffer, size_t length, int mode = 3, size_t buffer_size = 65536) : my_zstr(mode), my_buffer(buffer_size) {
+    ZlibBufferReader(const unsigned char* buffer, size_t length, const ZlibBufferReaderOptions& options) : 
+        my_zstr(options.mode), my_buffer(options.buffer_size)
+    {
         my_zstr.strm.avail_in = length;
         my_zstr.strm.next_in = const_cast<unsigned char*>(buffer); // cast is purely for C compatibility.
     }

@@ -29,6 +29,7 @@ public:
      */
     OstreamWriter(Pointer_ output) : my_output(std::move(output)) {}
 
+public:
     using Writer::write;
 
     void write(const unsigned char* buffer, size_t n) {
