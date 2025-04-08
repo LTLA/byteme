@@ -126,8 +126,6 @@ Collaboration diagram for byteme::GzipFileWriter:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad3b9a74789a8182cc40f3ba2d4edf306" id="r_ad3b9a74789a8182cc40f3ba2d4edf306"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3b9a74789a8182cc40f3ba2d4edf306">GzipFileWriter</a> (const char *path, const <a class="el" href="structbyteme_1_1GzipFileWriterOptions.html">GzipFileWriterOptions</a> &amp;options)</td></tr>
 <tr class="separator:ad3b9a74789a8182cc40f3ba2d4edf306"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a591fc7d7aebbd064e2810cd1b39b33" id="r_a0a591fc7d7aebbd064e2810cd1b39b33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a591fc7d7aebbd064e2810cd1b39b33">GzipFileWriter</a> (const std::string &amp;path, const <a class="el" href="structbyteme_1_1GzipFileWriterOptions.html">GzipFileWriterOptions</a> &amp;options)</td></tr>
-<tr class="separator:a0a591fc7d7aebbd064e2810cd1b39b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7408c1f7ad682e65113d94705f4f0997" id="r_a7408c1f7ad682e65113d94705f4f0997"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7408c1f7ad682e65113d94705f4f0997">write</a> (const unsigned char *buffer, size_t n)</td></tr>
 <tr class="separator:a7408c1f7ad682e65113d94705f4f0997"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add2b71c32bcd4cc6e2e6443d4219ffb3" id="r_add2b71c32bcd4cc6e2e6443d4219ffb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add2b71c32bcd4cc6e2e6443d4219ffb3">finish</a> ()</td></tr>
@@ -151,7 +149,7 @@ Public Member Functions</h2></td></tr>
 <p>This is basically a wrapper around Zlib's <code>gzFile</code> with correct closing and error checking. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad3b9a74789a8182cc40f3ba2d4edf306" name="ad3b9a74789a8182cc40f3ba2d4edf306"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3b9a74789a8182cc40f3ba2d4edf306">&#9670;&#160;</a></span>GzipFileWriter() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3b9a74789a8182cc40f3ba2d4edf306">&#9670;&#160;</a></span>GzipFileWriter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,42 +161,6 @@ Public Member Functions</h2></td></tr>
           <td class="memname">byteme::GzipFileWriter::GzipFileWriter </td>
           <td>(</td>
           <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structbyteme_1_1GzipFileWriterOptions.html">GzipFileWriterOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">path</td><td>Path to the file. </td></tr>
-    <tr><td class="paramname">options</td><td>Further options. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a0a591fc7d7aebbd064e2810cd1b39b33" name="a0a591fc7d7aebbd064e2810cd1b39b33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a591fc7d7aebbd064e2810cd1b39b33">&#9670;&#160;</a></span>GzipFileWriter() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">byteme::GzipFileWriter::GzipFileWriter </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

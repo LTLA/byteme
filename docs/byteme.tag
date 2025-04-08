@@ -188,13 +188,6 @@
       <arglist>(const char *path, const GzipFileReaderOptions &amp;options)</arglist>
     </member>
     <member kind="function">
-      <type></type>
-      <name>GzipFileReader</name>
-      <anchorfile>classbyteme_1_1GzipFileReader.html</anchorfile>
-      <anchor>a313d21e0703a330096c24f4166823e5f</anchor>
-      <arglist>(const std::string &amp;path, const GzipFileReaderOptions &amp;options)</arglist>
-    </member>
-    <member kind="function">
       <type>bool</type>
       <name>load</name>
       <anchorfile>classbyteme_1_1GzipFileReader.html</anchorfile>
@@ -237,13 +230,6 @@
       <anchorfile>classbyteme_1_1GzipFileWriter.html</anchorfile>
       <anchor>ad3b9a74789a8182cc40f3ba2d4edf306</anchor>
       <arglist>(const char *path, const GzipFileWriterOptions &amp;options)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>GzipFileWriter</name>
-      <anchorfile>classbyteme_1_1GzipFileWriter.html</anchorfile>
-      <anchor>a0a591fc7d7aebbd064e2810cd1b39b33</anchor>
-      <arglist>(const std::string &amp;path, const GzipFileWriterOptions &amp;options)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -521,13 +507,6 @@
       <arglist>(const unsigned char *buffer, size_t length)</arglist>
     </member>
     <member kind="function">
-      <type></type>
-      <name>RawBufferReader</name>
-      <anchorfile>classbyteme_1_1RawBufferReader.html</anchorfile>
-      <anchor>acb412b1fa76c1f74b4b9a1e34846d96c</anchor>
-      <arglist>(const char *buffer, size_t length)</arglist>
-    </member>
-    <member kind="function">
       <type>bool</type>
       <name>load</name>
       <anchorfile>classbyteme_1_1RawBufferReader.html</anchorfile>
@@ -626,13 +605,6 @@
       <arglist>(const char *path, const RawFileReaderOptions &amp;options)</arglist>
     </member>
     <member kind="function">
-      <type></type>
-      <name>RawFileReader</name>
-      <anchorfile>classbyteme_1_1RawFileReader.html</anchorfile>
-      <anchor>af16f1948048c3faf32f527877c2c3c6e</anchor>
-      <arglist>(const std::string &amp;path, const RawFileReaderOptions &amp;options)</arglist>
-    </member>
-    <member kind="function">
       <type>bool</type>
       <name>load</name>
       <anchorfile>classbyteme_1_1RawFileReader.html</anchorfile>
@@ -675,13 +647,6 @@
       <anchorfile>classbyteme_1_1RawFileWriter.html</anchorfile>
       <anchor>a85b813251f5ce733364d3b02914ad209</anchor>
       <arglist>(const char *path, const RawFileWriterOptions &amp;options)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>RawFileWriter</name>
-      <anchorfile>classbyteme_1_1RawFileWriter.html</anchorfile>
-      <anchor>af786c288e010e90b5fcfcfd7016311b2</anchor>
-      <arglist>(const std::string &amp;path, const RawFileWriterOptions &amp;options)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -767,13 +732,6 @@
       <arglist>(const unsigned char *buffer, size_t length, const SomeBufferReaderOptions &amp;options)</arglist>
     </member>
     <member kind="function">
-      <type></type>
-      <name>SomeBufferReader</name>
-      <anchorfile>classbyteme_1_1SomeBufferReader.html</anchorfile>
-      <anchor>a96703aa2902bb8f10e6c4e80391e22ad</anchor>
-      <arglist>(const char *buffer, size_t length, const SomeBufferReaderOptions &amp;options)</arglist>
-    </member>
-    <member kind="function">
       <type>bool</type>
       <name>load</name>
       <anchorfile>classbyteme_1_1SomeBufferReader.html</anchorfile>
@@ -816,13 +774,6 @@
       <anchorfile>classbyteme_1_1SomeFileReader.html</anchorfile>
       <anchor>a68b58b4cdeb04b1747db643b69880787</anchor>
       <arglist>(const char *path, const SomeFileReaderOptions &amp;options)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>SomeFileReader</name>
-      <anchorfile>classbyteme_1_1SomeFileReader.html</anchorfile>
-      <anchor>a47c7a56729d3917e4eaca7807add458d</anchor>
-      <arglist>(const std::string &amp;path, const SomeFileReaderOptions &amp;options)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>

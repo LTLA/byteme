@@ -126,8 +126,6 @@ Collaboration diagram for byteme::RawFileWriter:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a85b813251f5ce733364d3b02914ad209" id="r_a85b813251f5ce733364d3b02914ad209"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85b813251f5ce733364d3b02914ad209">RawFileWriter</a> (const char *path, const <a class="el" href="structbyteme_1_1RawFileWriterOptions.html">RawFileWriterOptions</a> &amp;options)</td></tr>
 <tr class="separator:a85b813251f5ce733364d3b02914ad209"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af786c288e010e90b5fcfcfd7016311b2" id="r_af786c288e010e90b5fcfcfd7016311b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af786c288e010e90b5fcfcfd7016311b2">RawFileWriter</a> (const std::string &amp;path, const <a class="el" href="structbyteme_1_1RawFileWriterOptions.html">RawFileWriterOptions</a> &amp;options)</td></tr>
-<tr class="separator:af786c288e010e90b5fcfcfd7016311b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7293d0c49e244bdcedeb49bbd023fba" id="r_ae7293d0c49e244bdcedeb49bbd023fba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7293d0c49e244bdcedeb49bbd023fba">write</a> (const unsigned char *buffer, size_t n)</td></tr>
 <tr class="separator:ae7293d0c49e244bdcedeb49bbd023fba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cf864429e6b353e3d8a715ccdc4d535" id="r_a5cf864429e6b353e3d8a715ccdc4d535"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cf864429e6b353e3d8a715ccdc4d535">finish</a> ()</td></tr>
@@ -151,7 +149,7 @@ Public Member Functions</h2></td></tr>
 <p>This class will write bytes to a file without any further transformations. It is basically a simple wrapper around <code>FILE</code> structures, with correct closing and error checking. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a85b813251f5ce733364d3b02914ad209" name="a85b813251f5ce733364d3b02914ad209"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85b813251f5ce733364d3b02914ad209">&#9670;&#160;</a></span>RawFileWriter() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a85b813251f5ce733364d3b02914ad209">&#9670;&#160;</a></span>RawFileWriter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,42 +161,6 @@ Public Member Functions</h2></td></tr>
           <td class="memname">byteme::RawFileWriter::RawFileWriter </td>
           <td>(</td>
           <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structbyteme_1_1RawFileWriterOptions.html">RawFileWriterOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">path</td><td>Path to the file. </td></tr>
-    <tr><td class="paramname">options</td><td>Further options. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="af786c288e010e90b5fcfcfd7016311b2" name="af786c288e010e90b5fcfcfd7016311b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af786c288e010e90b5fcfcfd7016311b2">&#9670;&#160;</a></span>RawFileWriter() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">byteme::RawFileWriter::RawFileWriter </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

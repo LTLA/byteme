@@ -126,8 +126,6 @@ Collaboration diagram for byteme::SomeFileReader:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a68b58b4cdeb04b1747db643b69880787" id="r_a68b58b4cdeb04b1747db643b69880787"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68b58b4cdeb04b1747db643b69880787">SomeFileReader</a> (const char *path, const <a class="el" href="structbyteme_1_1SomeFileReaderOptions.html">SomeFileReaderOptions</a> &amp;options)</td></tr>
 <tr class="separator:a68b58b4cdeb04b1747db643b69880787"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47c7a56729d3917e4eaca7807add458d" id="r_a47c7a56729d3917e4eaca7807add458d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47c7a56729d3917e4eaca7807add458d">SomeFileReader</a> (const std::string &amp;path, const <a class="el" href="structbyteme_1_1SomeFileReaderOptions.html">SomeFileReaderOptions</a> &amp;options)</td></tr>
-<tr class="separator:a47c7a56729d3917e4eaca7807add458d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac811bf5ceb6ee162201821403835b8bf" id="r_ac811bf5ceb6ee162201821403835b8bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac811bf5ceb6ee162201821403835b8bf">load</a> ()</td></tr>
 <tr class="separator:ac811bf5ceb6ee162201821403835b8bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88e3abc2c4f024f0003e8589e425033b" id="r_a88e3abc2c4f024f0003e8589e425033b"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88e3abc2c4f024f0003e8589e425033b">buffer</a> () const</td></tr>
@@ -141,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <p>This class will automatically detect whether <code>path</code> refers to a text file or a Gzip-compressed file, based on its initial magic numbers. After that, it will dispatch appropriately to <code><a class="el" href="classbyteme_1_1RawFileReader.html" title="Read bytes from a file, usually text.">RawFileReader</a></code> or <code><a class="el" href="classbyteme_1_1GzipFileReader.html" title="Read uncompressed bytes from a Gzip-compressed file.">GzipFileReader</a></code> respectively. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a68b58b4cdeb04b1747db643b69880787" name="a68b58b4cdeb04b1747db643b69880787"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68b58b4cdeb04b1747db643b69880787">&#9670;&#160;</a></span>SomeFileReader() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a68b58b4cdeb04b1747db643b69880787">&#9670;&#160;</a></span>SomeFileReader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -153,42 +151,6 @@ Public Member Functions</h2></td></tr>
           <td class="memname">byteme::SomeFileReader::SomeFileReader </td>
           <td>(</td>
           <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structbyteme_1_1SomeFileReaderOptions.html">SomeFileReaderOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">path</td><td>Path to the file. </td></tr>
-    <tr><td class="paramname">options</td><td>Further options. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a47c7a56729d3917e4eaca7807add458d" name="a47c7a56729d3917e4eaca7807add458d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47c7a56729d3917e4eaca7807add458d">&#9670;&#160;</a></span>SomeFileReader() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">byteme::SomeFileReader::SomeFileReader </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

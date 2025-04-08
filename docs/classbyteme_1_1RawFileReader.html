@@ -126,8 +126,6 @@ Collaboration diagram for byteme::RawFileReader:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8408ecd4c0c0d0c03d84b205f941f8d2" id="r_a8408ecd4c0c0d0c03d84b205f941f8d2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8408ecd4c0c0d0c03d84b205f941f8d2">RawFileReader</a> (const char *path, const <a class="el" href="structbyteme_1_1RawFileReaderOptions.html">RawFileReaderOptions</a> &amp;options)</td></tr>
 <tr class="separator:a8408ecd4c0c0d0c03d84b205f941f8d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af16f1948048c3faf32f527877c2c3c6e" id="r_af16f1948048c3faf32f527877c2c3c6e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af16f1948048c3faf32f527877c2c3c6e">RawFileReader</a> (const std::string &amp;path, const <a class="el" href="structbyteme_1_1RawFileReaderOptions.html">RawFileReaderOptions</a> &amp;options)</td></tr>
-<tr class="separator:af16f1948048c3faf32f527877c2c3c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1477482100fb90bc49d743ea0339d885" id="r_a1477482100fb90bc49d743ea0339d885"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1477482100fb90bc49d743ea0339d885">load</a> ()</td></tr>
 <tr class="separator:a1477482100fb90bc49d743ea0339d885"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4d96df0332cc6b55f7c2702d87c6797" id="r_ae4d96df0332cc6b55f7c2702d87c6797"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4d96df0332cc6b55f7c2702d87c6797">buffer</a> () const</td></tr>
@@ -141,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <p>This is basically a simple wrapper around <code>FILE</code> structures, with correct closing and error checking. Mostly provided because I always forget how to interact with <code>ifstream</code> objects when I want a sequence of bytes. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8408ecd4c0c0d0c03d84b205f941f8d2" name="a8408ecd4c0c0d0c03d84b205f941f8d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8408ecd4c0c0d0c03d84b205f941f8d2">&#9670;&#160;</a></span>RawFileReader() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8408ecd4c0c0d0c03d84b205f941f8d2">&#9670;&#160;</a></span>RawFileReader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -153,42 +151,6 @@ Public Member Functions</h2></td></tr>
           <td class="memname">byteme::RawFileReader::RawFileReader </td>
           <td>(</td>
           <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structbyteme_1_1RawFileReaderOptions.html">RawFileReaderOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">path</td><td>Path to the file. </td></tr>
-    <tr><td class="paramname">options</td><td>Further options. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="af16f1948048c3faf32f527877c2c3c6e" name="af16f1948048c3faf32f527877c2c3c6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af16f1948048c3faf32f527877c2c3c6e">&#9670;&#160;</a></span>RawFileReader() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">byteme::RawFileReader::RawFileReader </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

@@ -126,8 +126,6 @@ Collaboration diagram for byteme::SomeBufferReader:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a08a5a4a1af849dc94a64c88002bde548" id="r_a08a5a4a1af849dc94a64c88002bde548"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08a5a4a1af849dc94a64c88002bde548">SomeBufferReader</a> (const unsigned char *<a class="el" href="#a845dc3ba53b3ec9fde4edf1ef3c9b2ab">buffer</a>, size_t length, const <a class="el" href="structbyteme_1_1SomeBufferReaderOptions.html">SomeBufferReaderOptions</a> &amp;options)</td></tr>
 <tr class="separator:a08a5a4a1af849dc94a64c88002bde548"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96703aa2902bb8f10e6c4e80391e22ad" id="r_a96703aa2902bb8f10e6c4e80391e22ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96703aa2902bb8f10e6c4e80391e22ad">SomeBufferReader</a> (const char *<a class="el" href="#a845dc3ba53b3ec9fde4edf1ef3c9b2ab">buffer</a>, size_t length, const <a class="el" href="structbyteme_1_1SomeBufferReaderOptions.html">SomeBufferReaderOptions</a> &amp;options)</td></tr>
-<tr class="separator:a96703aa2902bb8f10e6c4e80391e22ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12ae0af8ee14ca87e9e2fed95e3ed4ae" id="r_a12ae0af8ee14ca87e9e2fed95e3ed4ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12ae0af8ee14ca87e9e2fed95e3ed4ae">load</a> ()</td></tr>
 <tr class="separator:a12ae0af8ee14ca87e9e2fed95e3ed4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a845dc3ba53b3ec9fde4edf1ef3c9b2ab" id="r_a845dc3ba53b3ec9fde4edf1ef3c9b2ab"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a845dc3ba53b3ec9fde4edf1ef3c9b2ab">buffer</a> () const</td></tr>
@@ -141,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <p>This class will automatically detect whether <code>buffer</code> refers to a text or Gzip/Zlib-compressed buffer, based on the initial magic numbers. After that, it will dispatch appropriately to <code><a class="el" href="classbyteme_1_1RawBufferReader.html" title="Read bytes from a raw buffer, usually text.">RawBufferReader</a></code> or <code><a class="el" href="classbyteme_1_1ZlibBufferReader.html" title="Read and decompress bytes from a Zlib-compressed buffer.">ZlibBufferReader</a></code> respectively. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a08a5a4a1af849dc94a64c88002bde548" name="a08a5a4a1af849dc94a64c88002bde548"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08a5a4a1af849dc94a64c88002bde548">&#9670;&#160;</a></span>SomeBufferReader() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a08a5a4a1af849dc94a64c88002bde548">&#9670;&#160;</a></span>SomeBufferReader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -153,48 +151,6 @@ Public Member Functions</h2></td></tr>
           <td class="memname">byteme::SomeBufferReader::SomeBufferReader </td>
           <td>(</td>
           <td class="paramtype">const unsigned char *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structbyteme_1_1SomeBufferReaderOptions.html">SomeBufferReaderOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Pointer to an array containing the possibly compressed data. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">length</td><td>Length of the <code>buffer</code> array. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">options</td><td>Further options. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a96703aa2902bb8f10e6c4e80391e22ad" name="a96703aa2902bb8f10e6c4e80391e22ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96703aa2902bb8f10e6c4e80391e22ad">&#9670;&#160;</a></span>SomeBufferReader() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">byteme::SomeBufferReader::SomeBufferReader </td>
-          <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

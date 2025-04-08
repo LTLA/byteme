@@ -126,8 +126,6 @@ Collaboration diagram for byteme::RawBufferReader:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a52edfb966cd7ce5db47ba2cbb3cd245d" id="r_a52edfb966cd7ce5db47ba2cbb3cd245d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52edfb966cd7ce5db47ba2cbb3cd245d">RawBufferReader</a> (const unsigned char *<a class="el" href="#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a>, size_t length)</td></tr>
 <tr class="separator:a52edfb966cd7ce5db47ba2cbb3cd245d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb412b1fa76c1f74b4b9a1e34846d96c" id="r_acb412b1fa76c1f74b4b9a1e34846d96c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb412b1fa76c1f74b4b9a1e34846d96c">RawBufferReader</a> (const char *<a class="el" href="#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a>, size_t length)</td></tr>
-<tr class="separator:acb412b1fa76c1f74b4b9a1e34846d96c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6405fcb9973d2836019db1d294a4d0cf" id="r_a6405fcb9973d2836019db1d294a4d0cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6405fcb9973d2836019db1d294a4d0cf">load</a> ()</td></tr>
 <tr class="separator:a6405fcb9973d2836019db1d294a4d0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b38a2b7acc6c2e2f07cf2981053f8e3" id="r_a9b38a2b7acc6c2e2f07cf2981053f8e3"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b38a2b7acc6c2e2f07cf2981053f8e3">buffer</a> () const</td></tr>
@@ -141,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <p>This is a wrapper around an input buffer, provided for consistency with the other <code>*Reader</code> classes. We assume that the lifetime of the data in the <code>buffer</code> pointer exceeds the lifetime of the instance. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a52edfb966cd7ce5db47ba2cbb3cd245d" name="a52edfb966cd7ce5db47ba2cbb3cd245d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52edfb966cd7ce5db47ba2cbb3cd245d">&#9670;&#160;</a></span>RawBufferReader() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a52edfb966cd7ce5db47ba2cbb3cd245d">&#9670;&#160;</a></span>RawBufferReader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,43 +166,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Pointer to an array of bytes, usually containing text. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">length</td><td>Length of the buffer. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="acb412b1fa76c1f74b4b9a1e34846d96c" name="acb412b1fa76c1f74b4b9a1e34846d96c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb412b1fa76c1f74b4b9a1e34846d96c">&#9670;&#160;</a></span>RawBufferReader() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">byteme::RawBufferReader::RawBufferReader </td>
-          <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Pointer to an array of bytes, usually containing text. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Pointer to an array of bytes. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">length</td><td>Length of the buffer. </td></tr>
   </table>
   </dd>
