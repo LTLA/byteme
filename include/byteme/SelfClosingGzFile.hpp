@@ -7,7 +7,8 @@
 
 namespace byteme {
 
-struct SelfClosingGzFile {
+class SelfClosingGzFile {
+public:
     SelfClosingGzFile(const char* path, const char* mode) : handle(gzopen(path, mode)) {
         if (!handle) {
             throw std::runtime_error("failed to open file at '" + std::string(path) + "'");

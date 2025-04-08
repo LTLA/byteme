@@ -7,7 +7,7 @@
 
 namespace byteme {
 
-struct SelfClosingFILE {
+class SelfClosingFILE {
 public:
     SelfClosingFILE(const char * path, const char* mode) : handle(std::fopen(path, mode)) {
         if (!handle) {
