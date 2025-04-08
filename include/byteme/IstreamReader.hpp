@@ -1,9 +1,9 @@
 #ifndef BYTEME_ISTREAM_READER_HPP
 #define BYTEME_ISTREAM_READER_HPP
 
-#include <istream>
 #include <vector>
 #include <stdexcept>
+#include <memory>
 #include "Reader.hpp"
 
 /**
@@ -28,19 +28,19 @@ struct IstreamReaderOptions {
 /**
  * @brief Read bytes from a `std::istream`.
  *
- * @tparam Pointer_ A (possibly smart) pointer to an `std::istream` object.
+ * @tparam Stream_ Class providing an input stream of bytes, satisfying the `std::istream` interface.
  *
  * This is just a wrapper around `std::istream::read`,
  * mostly to avoid having to remember the correct way to check for end of file.
  */
-template<class Pointer_ = std::istream*>
+template<class Stream_>
 class IstreamReader final : public Reader {
 public:
     /**
      * @param input Pointer to an input stream.
      * @param options Further options.
      */
-    IstreamReader(Pointer_ input, const IstreamReaderOptions& options) : my_input(std::move(input)), my_buffer(options.buffer_size) {}
+    IstreamReader(std::unique_ptr<Stream_> input, const IstreamReaderOptions& options) : my_input(std::move(input)), my_buffer(options.buffer_size) {}
 
 public:
     bool load() {
@@ -71,7 +71,7 @@ public:
     }
 
 private:
-    Pointer_ my_input;
+    std::unique_ptr<Stream_> my_input;
     std::vector<unsigned char> my_buffer;
     size_t my_read = 0;
     bool my_okay = true;

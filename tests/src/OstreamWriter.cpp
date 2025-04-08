@@ -10,8 +10,7 @@ class OstreamWriterTest : public ::testing::Test {
 protected:    
     auto dump_file(const std::vector<std::string>& contents) {
         auto path = byteme::temp_file_path("text");
-        std::ofstream ostr(path);
-        byteme::OstreamWriter writer(&ostr);
+        byteme::OstreamWriter writer(std::make_unique<std::ofstream>(path));
 
         for (const auto& c : contents) {
             writer.write(c);
