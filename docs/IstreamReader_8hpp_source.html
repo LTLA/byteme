@@ -96,9 +96,9 @@ $(function(){ initResizable(false); });
 <a href="IstreamReader_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef BYTEME_ISTREAM_READER_HPP</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define BYTEME_ISTREAM_READER_HPP</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;istream&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="Reader_8hpp.html">Reader.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
@@ -109,15 +109,15 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>};</div>
 </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> Po<span class="keywordtype">int</span>er_ = std::istream*&gt;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> Stream_&gt;</div>
 <div class="foldopen" id="foldopen00037" data-start="{" data-end="};">
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classbyteme_1_1IstreamReader.html">   37</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1IstreamReader.html">IstreamReader</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1Reader.html">Reader</a> {</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classbyteme_1_1IstreamReader.html#a19247e8caa4d21b5195556a0bf776aa6">   43</a></span>    <a class="code hl_function" href="classbyteme_1_1IstreamReader.html#a19247e8caa4d21b5195556a0bf776aa6">IstreamReader</a>(Pointer_ input, <span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1IstreamReaderOptions.html">IstreamReaderOptions</a>&amp; options) : my_input(std::move(input)), my_buffer(options.buffer_size) {}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classbyteme_1_1IstreamReader.html#a844163757389afa421e5038004656fd2">   43</a></span>    <a class="code hl_function" href="classbyteme_1_1IstreamReader.html#a844163757389afa421e5038004656fd2">IstreamReader</a>(std::unique_ptr&lt;Stream_&gt; input, <span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1IstreamReaderOptions.html">IstreamReaderOptions</a>&amp; options) : my_input(std::move(input)), my_buffer(options.buffer_size) {}</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classbyteme_1_1IstreamReader.html#aa09922b5fa256cca3ced445206e9a6dd">   46</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classbyteme_1_1IstreamReader.html#aa09922b5fa256cca3ced445206e9a6dd">load</a>() {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classbyteme_1_1IstreamReader.html#a8a65e95f5b293f99ffba775ebd7126f1">   46</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classbyteme_1_1IstreamReader.html#a8a65e95f5b293f99ffba775ebd7126f1">load</a>() {</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">if</span> (!my_okay) {</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        }</div>
@@ -138,19 +138,19 @@ $(function(){ initResizable(false); });
 </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
 <div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classbyteme_1_1IstreamReader.html#a35ce4f9a45b6331d11be9cceb23ff80a">   65</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1IstreamReader.html#a35ce4f9a45b6331d11be9cceb23ff80a">buffer</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classbyteme_1_1IstreamReader.html#a429f1775660640b3adfca9efbfc231e2">   65</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1IstreamReader.html#a429f1775660640b3adfca9efbfc231e2">buffer</a>()<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> my_buffer.data();</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
 </div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
 <div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classbyteme_1_1IstreamReader.html#a52f73d6079ea22af024bd074e6de8c79">   69</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="classbyteme_1_1IstreamReader.html#a52f73d6079ea22af024bd074e6de8c79">available</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classbyteme_1_1IstreamReader.html#a34b032d7056463f3dbd7e7524a8cda7c">   69</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="classbyteme_1_1IstreamReader.html#a34b032d7056463f3dbd7e7524a8cda7c">available</a>()<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">return</span> my_read;</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
 </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    Pointer_ my_input;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    std::unique_ptr&lt;Stream_&gt; my_input;</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    std::vector&lt;unsigned char&gt; my_buffer;</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">size_t</span> my_read = 0;</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">bool</span> my_okay = <span class="keyword">true</span>;</div>
@@ -162,10 +162,10 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aReader_8hpp_html"><div class="ttname"><a href="Reader_8hpp.html">Reader.hpp</a></div><div class="ttdoc">Read an input source.</div></div>
 <div class="ttc" id="aclassbyteme_1_1IstreamReader_html"><div class="ttname"><a href="classbyteme_1_1IstreamReader.html">byteme::IstreamReader</a></div><div class="ttdoc">Read bytes from a std::istream.</div><div class="ttdef"><b>Definition</b> IstreamReader.hpp:37</div></div>
-<div class="ttc" id="aclassbyteme_1_1IstreamReader_html_a19247e8caa4d21b5195556a0bf776aa6"><div class="ttname"><a href="classbyteme_1_1IstreamReader.html#a19247e8caa4d21b5195556a0bf776aa6">byteme::IstreamReader::IstreamReader</a></div><div class="ttdeci">IstreamReader(Pointer_ input, const IstreamReaderOptions &amp;options)</div><div class="ttdef"><b>Definition</b> IstreamReader.hpp:43</div></div>
-<div class="ttc" id="aclassbyteme_1_1IstreamReader_html_a35ce4f9a45b6331d11be9cceb23ff80a"><div class="ttname"><a href="classbyteme_1_1IstreamReader.html#a35ce4f9a45b6331d11be9cceb23ff80a">byteme::IstreamReader::buffer</a></div><div class="ttdeci">const unsigned char * buffer() const</div><div class="ttdef"><b>Definition</b> IstreamReader.hpp:65</div></div>
-<div class="ttc" id="aclassbyteme_1_1IstreamReader_html_a52f73d6079ea22af024bd074e6de8c79"><div class="ttname"><a href="classbyteme_1_1IstreamReader.html#a52f73d6079ea22af024bd074e6de8c79">byteme::IstreamReader::available</a></div><div class="ttdeci">size_t available() const</div><div class="ttdef"><b>Definition</b> IstreamReader.hpp:69</div></div>
-<div class="ttc" id="aclassbyteme_1_1IstreamReader_html_aa09922b5fa256cca3ced445206e9a6dd"><div class="ttname"><a href="classbyteme_1_1IstreamReader.html#aa09922b5fa256cca3ced445206e9a6dd">byteme::IstreamReader::load</a></div><div class="ttdeci">bool load()</div><div class="ttdef"><b>Definition</b> IstreamReader.hpp:46</div></div>
+<div class="ttc" id="aclassbyteme_1_1IstreamReader_html_a34b032d7056463f3dbd7e7524a8cda7c"><div class="ttname"><a href="classbyteme_1_1IstreamReader.html#a34b032d7056463f3dbd7e7524a8cda7c">byteme::IstreamReader::available</a></div><div class="ttdeci">size_t available() const</div><div class="ttdef"><b>Definition</b> IstreamReader.hpp:69</div></div>
+<div class="ttc" id="aclassbyteme_1_1IstreamReader_html_a429f1775660640b3adfca9efbfc231e2"><div class="ttname"><a href="classbyteme_1_1IstreamReader.html#a429f1775660640b3adfca9efbfc231e2">byteme::IstreamReader::buffer</a></div><div class="ttdeci">const unsigned char * buffer() const</div><div class="ttdef"><b>Definition</b> IstreamReader.hpp:65</div></div>
+<div class="ttc" id="aclassbyteme_1_1IstreamReader_html_a844163757389afa421e5038004656fd2"><div class="ttname"><a href="classbyteme_1_1IstreamReader.html#a844163757389afa421e5038004656fd2">byteme::IstreamReader::IstreamReader</a></div><div class="ttdeci">IstreamReader(std::unique_ptr&lt; Stream_ &gt; input, const IstreamReaderOptions &amp;options)</div><div class="ttdef"><b>Definition</b> IstreamReader.hpp:43</div></div>
+<div class="ttc" id="aclassbyteme_1_1IstreamReader_html_a8a65e95f5b293f99ffba775ebd7126f1"><div class="ttname"><a href="classbyteme_1_1IstreamReader.html#a8a65e95f5b293f99ffba775ebd7126f1">byteme::IstreamReader::load</a></div><div class="ttdeci">bool load()</div><div class="ttdef"><b>Definition</b> IstreamReader.hpp:46</div></div>
 <div class="ttc" id="aclassbyteme_1_1Reader_html"><div class="ttname"><a href="classbyteme_1_1Reader.html">byteme::Reader</a></div><div class="ttdoc">Virtual class for reading bytes from a source.</div><div class="ttdef"><b>Definition</b> Reader.hpp:15</div></div>
 <div class="ttc" id="anamespacebyteme_html"><div class="ttname"><a href="namespacebyteme.html">byteme</a></div><div class="ttdoc">Simple byte readers and writers.</div></div>
 <div class="ttc" id="astructbyteme_1_1IstreamReaderOptions_html"><div class="ttname"><a href="structbyteme_1_1IstreamReaderOptions.html">byteme::IstreamReaderOptions</a></div><div class="ttdoc">Options for IstreamReader construction.</div><div class="ttdef"><b>Definition</b> IstreamReader.hpp:20</div></div>
