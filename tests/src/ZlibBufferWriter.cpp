@@ -11,7 +11,13 @@
 class ZlibBufferWriterTest : public ::testing::TestWithParam<std::tuple<int, size_t> > {
 protected:
     std::string roundtrip(const std::vector<std::string>& contents, int level, size_t chunk) {
-        byteme::ZlibBufferWriter writer(2, level, chunk);
+        byteme::ZlibBufferWriter writer([&]{
+            byteme::ZlibBufferWriterOptions zopt;
+            zopt.mode = 2;
+            zopt.compression_level = level;
+            zopt.buffer_size = chunk;
+            return zopt;
+        }());
 
         for (const auto& c : contents) {
             writer.write(c);
@@ -90,12 +96,25 @@ INSTANTIATE_TEST_SUITE_P(
 );
 
 TEST(ZlibBufferWriterExtraTests, OtherModes) {
-    byteme::ZlibBufferWriter writer1(0); // deflate
-    byteme::ZlibBufferWriter writer2(1); // zlib
+    byteme::ZlibBufferWriter writer1([&]{
+        byteme::ZlibBufferWriterOptions opt;
+        opt.mode = 0; // deflate
+        return opt;
+    }());
+
+    byteme::ZlibBufferWriter writer2([&]{
+        byteme::ZlibBufferWriterOptions opt;
+        opt.mode = 1; // zlib
+        return opt;
+    }());
 
     EXPECT_ANY_THROW(
         try {
-            byteme::ZlibBufferWriter writer(5);
+            byteme::ZlibBufferWriter writer([&]{
+                byteme::ZlibBufferWriterOptions opt;
+                opt.mode = 5;
+                return opt;
+            }());
         } catch (std::exception& e) {
             EXPECT_THAT(e.what(), ::testing::HasSubstr("unknown Zlib compression"));
             throw e;

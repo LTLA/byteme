@@ -6,9 +6,14 @@
 
 class RawFileWriterTest : public ::testing::TestWithParam<int> {
 protected:
-    auto dump_file(const std::vector<std::string>& contents, size_t chunk) {
+    auto dump_file(const std::vector<std::string>& contents, size_t buffer_size) {
         auto path = byteme::temp_file_path("text");
-        byteme::RawFileWriter writer(path, chunk);
+        byteme::RawFileWriter writer(path, [&]{
+            byteme::RawFileWriterOptions ropt;
+            ropt.buffer_size = buffer_size;
+            return ropt;
+        }());
+
         for (const auto& c : contents) {
             writer.write(c);
             writer.write('\n');
@@ -55,6 +60,7 @@ TEST_P(RawFileWriterTest, TooLong) {
     auto path = dump_file(contents, GetParam());
     auto roundtrip = cat(path);
     auto expected = combine(contents);
+    EXPECT_EQ(expected, roundtrip);
 }
 
 INSTANTIATE_TEST_SUITE_P(

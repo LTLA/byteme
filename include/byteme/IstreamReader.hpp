@@ -15,6 +15,17 @@
 namespace byteme {
 
 /**
+ * @brief Options for `IstreamReader` construction.
+ */
+struct IstreamReaderOptions {
+    /**
+     * Size of the internal buffer to fill from the stream.
+     * Larger values usually reduce computational time at the cost of increased memory usage.
+     */
+    size_t buffer_size = 65536;
+};
+
+/**
  * @brief Read bytes from a `std::istream`.
  *
  * @tparam Pointer_ A (possibly smart) pointer to an `std::istream` object.
@@ -27,10 +38,11 @@ class IstreamReader final : public Reader {
 public:
     /**
      * @param input Pointer to an input stream.
-     * @param buffer_size Size of the buffer to use for reading.
+     * @param options Further options.
      */
-    IstreamReader(Pointer_ input, size_t buffer_size = 65536) : my_input(std::move(input)), my_buffer(buffer_size) {}
+    IstreamReader(Pointer_ input, const IstreamReaderOptions& options) : my_input(std::move(input)), my_buffer(options.buffer_size) {}
 
+public:
     bool load() {
         if (!my_okay) {
             return false;

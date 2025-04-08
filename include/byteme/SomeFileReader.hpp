@@ -17,6 +17,17 @@
 namespace byteme {
 
 /**
+ * @brief Options for the `SomeFileReader` constructor.
+ */
+struct SomeFileReaderOptions {
+    /**
+     * Size of the buffer to use when reading from disk.
+     * Larger values usually reduce computational time at the cost of increased memory usage.
+     */
+    size_t buffer_size = 65536;
+};
+
+/**
  * @brief Read a file that may or may not be Gzipped.
  *
  * This class will automatically detect whether `path` refers to a text file or a Gzip-compressed file, based on its initial magic numbers.
@@ -26,9 +37,9 @@ class SomeFileReader final : public Reader {
 public:
     /**
      * @param path Path to the file.
-     * @param buffer_size Size of the buffer to use for reading.
+     * @param options Further options.
      */
-    SomeFileReader(const char* path, size_t buffer_size = 65536) { 
+    SomeFileReader(const char* path, const SomeFileReaderOptions& options) { 
         unsigned char header[3];
         size_t read;
         {
@@ -37,17 +48,21 @@ public:
         }
 
         if (is_gzip(header, read)) {
-            my_source.reset(new GzipFileReader(path, buffer_size));
+            GzipFileReaderOptions gopt;
+            gopt.buffer_size = options.buffer_size;
+            my_source.reset(new GzipFileReader(path, gopt));
         } else {
-            my_source.reset(new RawFileReader(path, buffer_size));
+            RawFileReaderOptions ropt;
+            ropt.buffer_size = options.buffer_size;
+            my_source.reset(new RawFileReader(path, ropt));
         }
     }
 
     /**
      * @param path Path to the file.
-     * @param buffer_size Size of the buffer to use for reading.
+     * @param options Further options.
      */
-    SomeFileReader(const std::string& path, size_t buffer_size = 65536) : SomeFileReader(path.c_str(), buffer_size) {}
+    SomeFileReader(const std::string& path, const SomeFileReaderOptions& options) : SomeFileReader(path.c_str(), options) {}
 
 public:
     bool load() {

@@ -11,9 +11,14 @@
 
 class GzipFileWriterTest : public ::testing::TestWithParam<int> {
 protected:
-    auto dump_file(const std::vector<std::string>& contents, size_t chunk) {
+    auto dump_file(const std::vector<std::string>& contents, size_t buffer_size) {
         auto path = byteme::temp_file_path("text");
-        byteme::GzipFileWriter writer(path, 6, chunk);
+        byteme::GzipFileWriter writer(path, [&]{
+            byteme::GzipFileWriterOptions opt;
+            opt.buffer_size = buffer_size;
+            return opt;
+        }());
+
         for (const auto& c : contents) {
             writer.write(c);
             writer.write('\n');
@@ -22,7 +27,7 @@ protected:
         return path;
     }
 
-    std::string zcat(const std::string& path) { 
+    static std::string zcat(const std::string& path) { 
         auto handle = gzopen(path.c_str(), "r");
         std::vector<unsigned char> everything(10000); // some large number.
         auto read = gzread(handle, everything.data(), everything.size());
@@ -30,7 +35,7 @@ protected:
         return std::string(ptr, ptr + read);
     }
 
-    std::string combine(const std::vector<std::string>& contents) {
+    static std::string combine(const std::vector<std::string>& contents) {
         std::string ex;
         for (const auto& x : contents) {
             ex += x;

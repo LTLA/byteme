@@ -5,7 +5,7 @@
 class RawBufferWriterTest : public ::testing::Test {
 protected:
     std::vector<unsigned char> roundtrip(const std::vector<std::string>& contents) {
-        byteme::RawBufferWriter writer;
+        byteme::RawBufferWriter writer({});
         for (const auto& x : contents) {
             writer.write(x);
             writer.write('\n');
@@ -47,7 +47,7 @@ TEST_F(RawBufferWriterTest, Empty) {
 }
 
 TEST_F(RawBufferWriterTest, ArrayCheck) {
-    byteme::RawBufferWriter writer;
+    byteme::RawBufferWriter writer({});
     std::string expected("Gloria in excelsis deo");
     writer.write(expected.c_str());
     writer.finish();

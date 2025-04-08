@@ -18,7 +18,8 @@ To read bytes, create an instance of the desired `Reader` class and loop until n
 ```cpp
 #include "byteme/byteme.hpp"
 
-byteme::GzipFileReader reader(filepath); 
+const char* filepath = "input.gz";
+byteme::GzipFileReader reader(filepath, {}); 
 
 while (reader.load()) {
     const unsigned char * buffer = reader.buffer();
@@ -40,7 +41,7 @@ std::vector<std::string> lyrics {
     "Tooku naru yo"
 };
 
-byteme::GzipFileWriter writer("something.gz", 6);
+byteme::GzipFileWriter writer("something.gz", {});
 const char newline = '\n';
 for (const auto& line : lyrics) {
     writer.write(reinterpret_cast<const unsigned char*>(line.c_str()), line.size());
@@ -82,14 +83,39 @@ The different subclasses can be switched at compile time via templating, or at r
 #include "byteme/byteme.hpp"
 #include <memory>
 
+std::vector<unsigned char> input_buffer;
+auto buffer = input_buffer.data();
+size_t length = input_buffer.size();
+
 std::unique_ptr<byteme::Reader> ptr;
 if (some_condition) {
-    ptr.reset(new ZlibBufferReader(buffer, length));
+    ptr.reset(new byteme::ZlibBufferReader(buffer, length, {}));
 } else {
-    ptr.reset(new RawBufferReader(buffer, length));
+    ptr.reset(new byteme::RawBufferReader(buffer, length, {}));
 }
 
-byteme::PerByte<char, decltype(ptr)> pb(std::move(ptr));
+if (ptr->load()) {
+    auto bufptr = ptr->buffer();
+    auto available = ptr->available();
+    /* Do something with the buffer. */
+}
+```
+
+Most of the `Reader` and `Writer` constructors will also accept a matching `Options` instance to fine-tune their behavior.
+
+```cpp
+// For readers.
+byteme::ZlibBufferReaderOptions zopt;
+zopt.buffer_size = 8096;
+zopt.mode = 2; // Gzip
+byteme::ZlibBufferReader zreader(buffer, length, zopt);
+
+// For writers.
+byteme::ZlibBufferWriterOptions zwopt;
+zwopt.buffer_size = 8096;
+zwopt.mode = 0; // DEFLATE
+zwopt.compression_level = 9;
+byteme::ZlibBufferReader zwriter(zwopt);
 ```
 
 ## Reading byte-by-byte
@@ -98,7 +124,7 @@ Users may prefer to wrap the `Reader` in a `PerByteSerial` instance to access on
 This avoids the boilerplate of managing all of the other (yet-to-be-used) bytes from `available()`.
 
 ```cpp
-byteme::PerByteSerial<char> pb(std::make_unique<byteme::GzipFileReader>(filepath));
+byteme::PerByteSerial<char> pb(new byteme::GzipFileReader(filepath, {}));
 auto valid = pb.valid();
 while (valid) {
     char x = pb.get();
@@ -110,7 +136,7 @@ while (valid) {
 We can also extract a range of bytes:
 
 ```cpp
-byteme::PerByteSerial<unsigned char> pb(std::make_unique<byteme::GzipFileReader>(filepath));
+byteme::PerByteSerial<unsigned char> pb(new byteme::GzipFileReader(filepath, {}));
 while (valid) {
     int32_t value;
     auto outcome = pb.extract(reinterpret_cast<unsigned char*>(&value), sizeof(int32_t)); 
@@ -127,7 +153,7 @@ We can even perform the reading in a separate thread via the `PerByteParallel` c
 This allows the (possibly expensive) disk IO operations to be performed in parallel to the user-level parsing.
 
 ```cpp
-byteme::PerByteParallel<char> pb(std::make_unique<byteme::GzipFileReader>(filepath));
+byteme::PerByteParallel<char> pb(new byteme::GzipFileReader(filepath, {}));
 auto valid = pb.valid();
 while (valid) {
     char x = pb.get();

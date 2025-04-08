@@ -17,6 +17,17 @@
 namespace byteme {
 
 /**
+ * @brief Options for `GzipFileReader` construction.
+ */
+struct GzipFileReaderOptions {
+    /**
+     * Size of the buffer for Zlib decompression.
+     * Larger values usually reduce computational time at the cost of increased memory usage.
+     */
+    size_t buffer_size = 65536;
+};
+
+/**
  * @brief Read uncompressed bytes from a Gzip-compressed file.
  *
  * This is basically a wrapper around Zlib's `gzFile` with correct closing and error checking.
@@ -25,15 +36,15 @@ class GzipFileReader final : public Reader {
 public:
     /**
      * @param path Path to the file.
-     * @param buffer_size Size of the buffer to use for reading.
+     * @param options Further options.
      */
-    GzipFileReader(const char* path, size_t buffer_size = 65536) : my_gzfile(path, "rb"), my_buffer(buffer_size) {}
+    GzipFileReader(const char* path, const GzipFileReaderOptions& options) : my_gzfile(path, "rb"), my_buffer(options.buffer_size) {}
 
     /**
      * @param path Path to the file.
-     * @param buffer_size Size of the buffer to use for reading.
+     * @param options Further options.
      */
-    GzipFileReader(const std::string& path, size_t buffer_size = 65536) : GzipFileReader(path.c_str(), buffer_size) {}
+    GzipFileReader(const std::string& path, const GzipFileReaderOptions& options) : GzipFileReader(path.c_str(), options) {}
 
 public:
     bool load() {
