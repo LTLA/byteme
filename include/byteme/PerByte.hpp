@@ -194,11 +194,6 @@ public:
         refill();
     }
 
-    /**
-     * @param reader Pointer to a source of input bytes.
-     */
-    PerByteSerial(Reader_* reader) : PerByteSerial(std::unique_ptr<Reader_>(reader)) {}
-
 private:
     std::unique_ptr<Reader_> my_reader;
 
@@ -233,11 +228,6 @@ public:
         my_ready_output = true; // run the first iteration of refill().
         refill();
     }
-
-    /**
-     * @param reader Pointer to a source of input bytes.
-     */
-    PerByteParallel(Reader_* reader) : PerByteParallel(std::unique_ptr<Reader_>(reader)) {}
 
     /**
      * @cond

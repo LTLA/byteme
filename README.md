@@ -124,7 +124,8 @@ Users may prefer to wrap the `Reader` in a `PerByteSerial` instance to access on
 This avoids the boilerplate of managing all of the other (yet-to-be-used) bytes from `available()`.
 
 ```cpp
-byteme::PerByteSerial<char> pb(new byteme::GzipFileReader(filepath, {}));
+auto reader = std::make_unique<byteme::GzipFileReader>(filepath, {})
+byteme::PerByteSerial<char> pb(std::move(reader));
 auto valid = pb.valid();
 while (valid) {
     char x = pb.get();
@@ -136,7 +137,8 @@ while (valid) {
 We can also extract a range of bytes:
 
 ```cpp
-byteme::PerByteSerial<unsigned char> pb(new byteme::GzipFileReader(filepath, {}));
+auto reader = std::make_unique<byteme::GzipFileReader>(filepath, {})
+byteme::PerByteSerial<unsigned char> pb(std::move(reader));
 while (valid) {
     int32_t value;
     auto outcome = pb.extract(reinterpret_cast<unsigned char*>(&value), sizeof(int32_t)); 
@@ -153,7 +155,8 @@ We can even perform the reading in a separate thread via the `PerByteParallel` c
 This allows the (possibly expensive) disk IO operations to be performed in parallel to the user-level parsing.
 
 ```cpp
-byteme::PerByteParallel<char> pb(new byteme::GzipFileReader(filepath, {}));
+auto reader = std::make_unique<byteme::GzipFileReader>(filepath, {})
+byteme::PerByteParallel<char> pb(std::move(reader));
 auto valid = pb.valid();
 while (valid) {
     char x = pb.get();
