@@ -452,13 +452,6 @@
       <anchor>aa3058db8252ffe19d16a3bed42d1abb1</anchor>
       <arglist>(std::unique_ptr&lt; Reader_ &gt; reader)</arglist>
     </member>
-    <member kind="function">
-      <type></type>
-      <name>PerByteParallel</name>
-      <anchorfile>classbyteme_1_1PerByteParallel.html</anchorfile>
-      <anchor>a0273f79aa3dcc97d5bbdf74070a2c813</anchor>
-      <arglist>(Reader_ *reader)</arglist>
-    </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>refill</name>
@@ -479,13 +472,6 @@
       <anchorfile>classbyteme_1_1PerByteSerial.html</anchorfile>
       <anchor>a09443165b4f1eaa748016d1ccfde962e</anchor>
       <arglist>(std::unique_ptr&lt; Reader_ &gt; reader)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PerByteSerial</name>
-      <anchorfile>classbyteme_1_1PerByteSerial.html</anchorfile>
-      <anchor>a54cacbb15d0b09c1846bb0b55aa4dc59</anchor>
-      <arglist>(Reader_ *reader)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>

@@ -224,120 +224,116 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    }</div>
 </div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classbyteme_1_1PerByteSerial.html#a54cacbb15d0b09c1846bb0b55aa4dc59">  200</a></span>    <a class="code hl_function" href="classbyteme_1_1PerByteSerial.html#a54cacbb15d0b09c1846bb0b55aa4dc59">PerByteSerial</a>(Reader_* reader) : <a class="code hl_class" href="classbyteme_1_1PerByteSerial.html">PerByteSerial</a>(std::unique_ptr&lt;Reader_&gt;(reader)) {}</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    std::unique_ptr&lt;Reader_&gt; my_reader;</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="keyword">protected</span>:</div>
-<div class="foldopen" id="foldopen00206" data-start="{" data-end="}">
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="classbyteme_1_1PerByteSerial.html#a2857fc81b94832188db130a234f82129">  206</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1PerByteSerial.html#a2857fc81b94832188db130a234f82129">refill</a>() {</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        skip_zero_buffers(*my_reader, this-&gt;available);</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        this-&gt;<a class="code hl_variable" href="classbyteme_1_1PerByteInterface.html#a3caa25b9f0daa42d425de8c98c70a59d">ptr</a> = <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>Type_*<span class="keyword">&gt;</span>(my_reader-&gt;buffer());</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    }</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    std::unique_ptr&lt;Reader_&gt; my_reader;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="keyword">protected</span>:</div>
+<div class="foldopen" id="foldopen00201" data-start="{" data-end="}">
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classbyteme_1_1PerByteSerial.html#a2857fc81b94832188db130a234f82129">  201</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1PerByteSerial.html#a2857fc81b94832188db130a234f82129">refill</a>() {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        skip_zero_buffers(*my_reader, this-&gt;available);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        this-&gt;<a class="code hl_variable" href="classbyteme_1_1PerByteInterface.html#a3caa25b9f0daa42d425de8c98c70a59d">ptr</a> = <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>Type_*<span class="keyword">&gt;</span>(my_reader-&gt;buffer());</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    }</div>
 </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>};</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>};</div>
 </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type_, <span class="keyword">class</span> Reader_ = Reader&gt;</div>
-<div class="foldopen" id="foldopen00223" data-start="{" data-end="};">
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classbyteme_1_1PerByteParallel.html">  223</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1PerByteParallel.html">PerByteParallel</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1PerByteInterface.html">PerByteInterface</a>&lt;Type_&gt; {</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00228" data-start="{" data-end="}">
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="classbyteme_1_1PerByteParallel.html#aa3058db8252ffe19d16a3bed42d1abb1">  228</a></span>    <a class="code hl_function" href="classbyteme_1_1PerByteParallel.html#aa3058db8252ffe19d16a3bed42d1abb1">PerByteParallel</a>(std::unique_ptr&lt;Reader_&gt; reader) : my_reader(std::move(reader)) {</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        my_ready_input = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        my_thread = std::thread([&amp;]() { thread_loop(); });</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type_, <span class="keyword">class</span> Reader_ = Reader&gt;</div>
+<div class="foldopen" id="foldopen00218" data-start="{" data-end="};">
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classbyteme_1_1PerByteParallel.html">  218</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1PerByteParallel.html">PerByteParallel</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1PerByteInterface.html">PerByteInterface</a>&lt;Type_&gt; {</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00223" data-start="{" data-end="}">
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classbyteme_1_1PerByteParallel.html#aa3058db8252ffe19d16a3bed42d1abb1">  223</a></span>    <a class="code hl_function" href="classbyteme_1_1PerByteParallel.html#aa3058db8252ffe19d16a3bed42d1abb1">PerByteParallel</a>(std::unique_ptr&lt;Reader_&gt; reader) : my_reader(std::move(reader)) {</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        my_ready_input = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        my_thread = std::thread([&amp;]() { thread_loop(); });</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        skip_zero_buffers(*my_reader, my_next_available);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        my_ready_output = <span class="keyword">true</span>; <span class="comment">// run the first iteration of refill().</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <a class="code hl_function" href="classbyteme_1_1PerByteParallel.html#a3fcaea3cd5fbd6e72e6432ddced29fbd">refill</a>();</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    }</div>
+</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        skip_zero_buffers(*my_reader, my_next_available);</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        my_ready_output = <span class="keyword">true</span>; <span class="comment">// run the first iteration of refill().</span></div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <a class="code hl_function" href="classbyteme_1_1PerByteParallel.html#a3fcaea3cd5fbd6e72e6432ddced29fbd">refill</a>();</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    }</div>
-</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="classbyteme_1_1PerByteParallel.html#a0273f79aa3dcc97d5bbdf74070a2c813">  240</a></span>    <a class="code hl_function" href="classbyteme_1_1PerByteParallel.html#a0273f79aa3dcc97d5bbdf74070a2c813">PerByteParallel</a>(Reader_* reader) : <a class="code hl_class" href="classbyteme_1_1PerByteParallel.html">PerByteParallel</a>(std::unique_ptr&lt;Reader_&gt;(reader)) {}</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <a class="code hl_class" href="classbyteme_1_1PerByteParallel.html">~PerByteParallel</a>() {</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        <span class="keywordflow">if</span> (!my_finished) {</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>            std::unique_lock lck(my_mut);</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>            my_finished = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>            my_ready_input = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>            lck.unlock(); <span class="comment">// releasing the lock so that the notified thread doesn&#39;t immediately block.</span></div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>            my_cv.notify_one();</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        }</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        my_thread.join();</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    }</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    std::unique_ptr&lt;Reader_&gt; my_reader;</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    std::vector&lt;Type_&gt; my_buffer;</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordtype">size_t</span> my_next_available = 0;</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keywordtype">bool</span> my_finished = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    std::thread my_thread;</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    std::exception_ptr my_thread_err = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    std::mutex my_mut;</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    std::condition_variable my_cv;</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordtype">bool</span> my_ready_input, my_ready_output;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <a class="code hl_class" href="classbyteme_1_1PerByteParallel.html">~PerByteParallel</a>() {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        <span class="keywordflow">if</span> (!my_finished) {</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>            std::unique_lock lck(my_mut);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>            my_finished = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>            my_ready_input = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>            lck.unlock(); <span class="comment">// releasing the lock so that the notified thread doesn&#39;t immediately block.</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>            my_cv.notify_one();</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        }</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        my_thread.join();</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    }</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    std::unique_ptr&lt;Reader_&gt; my_reader;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    std::vector&lt;Type_&gt; my_buffer;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordtype">size_t</span> my_next_available = 0;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keywordtype">bool</span> my_finished = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    std::thread my_thread;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    std::exception_ptr my_thread_err = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    std::mutex my_mut;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    std::condition_variable my_cv;</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keywordtype">bool</span> my_ready_input, my_ready_output;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordtype">void</span> thread_loop() {</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <span class="keywordflow">while</span> (!my_finished) {</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>            std::unique_lock lck(my_mut);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            my_cv.wait(lck, [&amp;]() { <span class="keywordflow">return</span> my_ready_input; });</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>            my_ready_input = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>            <span class="keywordflow">if</span> (my_finished) { <span class="comment">// an explicit kill signal from the destructor.</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>            }</div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="keywordtype">void</span> thread_loop() {</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        <span class="keywordflow">while</span> (!my_finished) {</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            std::unique_lock lck(my_mut);</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            my_cv.wait(lck, [&amp;]() { <span class="keywordflow">return</span> my_ready_input; });</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>            my_ready_input = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            <span class="keywordflow">if</span> (my_finished) { <span class="comment">// an explicit kill signal from the destructor.</span></div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>            }</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>            <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                skip_zero_buffers(*my_reader, my_next_available);</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                my_finished = my_next_available == 0; <span class="comment">// see the definition of skip_zero_buffers().</span></div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>            } <span class="keywordflow">catch</span> (...) {</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>                my_thread_err = std::current_exception();</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                my_finished = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>            }</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>            my_ready_output = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>            lck.unlock();</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>            my_cv.notify_one();</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        }</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    }</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="keyword">protected</span>:</div>
-<div class="foldopen" id="foldopen00297" data-start="{" data-end="}">
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="classbyteme_1_1PerByteParallel.html#a3fcaea3cd5fbd6e72e6432ddced29fbd">  297</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1PerByteParallel.html#a3fcaea3cd5fbd6e72e6432ddced29fbd">refill</a>() {</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>        <span class="keywordflow">if</span> (my_finished) {</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>            this-&gt;<a class="code hl_variable" href="classbyteme_1_1PerByteInterface.html#a3caa25b9f0daa42d425de8c98c70a59d">ptr</a> = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>            this-&gt;available = 0;</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        }</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>        std::unique_lock lck(my_mut);</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>        my_cv.wait(lck, [&amp;]() { <span class="keywordflow">return</span> my_ready_output; });</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>        my_ready_output = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        <span class="keywordflow">if</span> (my_thread_err) {</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>            std::rethrow_exception(my_thread_err);</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        }</div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        <span class="keyword">auto</span> rptr = <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>Type_*<span class="keyword">&gt;</span>(my_reader-&gt;buffer());</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        this-&gt;available = my_next_available;</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        my_buffer.resize(this-&gt;available);</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        std::copy_n(rptr, this-&gt;available, my_buffer.data());</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        this-&gt;<a class="code hl_variable" href="classbyteme_1_1PerByteInterface.html#a3caa25b9f0daa42d425de8c98c70a59d">ptr</a> = my_buffer.data();</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                skip_zero_buffers(*my_reader, my_next_available);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>                my_finished = my_next_available == 0; <span class="comment">// see the definition of skip_zero_buffers().</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                my_thread_err = std::current_exception();</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>                my_finished = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            }</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>            my_ready_output = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>            lck.unlock();</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>            my_cv.notify_one();</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        }</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    }</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="keyword">protected</span>:</div>
+<div class="foldopen" id="foldopen00287" data-start="{" data-end="}">
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="classbyteme_1_1PerByteParallel.html#a3fcaea3cd5fbd6e72e6432ddced29fbd">  287</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1PerByteParallel.html#a3fcaea3cd5fbd6e72e6432ddced29fbd">refill</a>() {</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>        <span class="keywordflow">if</span> (my_finished) {</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>            this-&gt;<a class="code hl_variable" href="classbyteme_1_1PerByteInterface.html#a3caa25b9f0daa42d425de8c98c70a59d">ptr</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>            this-&gt;available = 0;</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        }</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>        std::unique_lock lck(my_mut);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>        my_cv.wait(lck, [&amp;]() { <span class="keywordflow">return</span> my_ready_output; });</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        my_ready_output = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        <span class="keywordflow">if</span> (my_thread_err) {</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>            std::rethrow_exception(my_thread_err);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        }</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>        <span class="keyword">auto</span> rptr = <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>Type_*<span class="keyword">&gt;</span>(my_reader-&gt;buffer());</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        this-&gt;available = my_next_available;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>        my_buffer.resize(this-&gt;available);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>        std::copy_n(rptr, this-&gt;available, my_buffer.data());</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>        this-&gt;<a class="code hl_variable" href="classbyteme_1_1PerByteInterface.html#a3caa25b9f0daa42d425de8c98c70a59d">ptr</a> = my_buffer.data();</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        my_ready_input = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        lck.unlock();</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        <span class="keywordflow">if</span> (!my_finished) {</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>            my_cv.notify_one();</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        }</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    }</div>
+</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>};</div>
+</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>}</div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        my_ready_input = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        lck.unlock();</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>        <span class="keywordflow">if</span> (!my_finished) {</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>            my_cv.notify_one();</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        }</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    }</div>
-</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>};</div>
-</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>}</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aReader_8hpp_html"><div class="ttname"><a href="Reader_8hpp.html">Reader.hpp</a></div><div class="ttdoc">Read an input source.</div></div>
 <div class="ttc" id="aclassbyteme_1_1PerByteInterface_html"><div class="ttname"><a href="classbyteme_1_1PerByteInterface.html">byteme::PerByteInterface</a></div><div class="ttdoc">Interface for byte-by-byte extraction from a Reader source.</div><div class="ttdef"><b>Definition</b> PerByte.hpp:50</div></div>
 <div class="ttc" id="aclassbyteme_1_1PerByteInterface_html_a31640353ee2336a966d2267a0f982c8c"><div class="ttname"><a href="classbyteme_1_1PerByteInterface.html#a31640353ee2336a966d2267a0f982c8c">byteme::PerByteInterface::available</a></div><div class="ttdeci">size_t available</div><div class="ttdef"><b>Definition</b> PerByte.hpp:74</div></div>
@@ -348,14 +344,12 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="aclassbyteme_1_1PerByteInterface_html_a6c32b7ee63b692c12a58ce1fa3173799"><div class="ttname"><a href="classbyteme_1_1PerByteInterface.html#a6c32b7ee63b692c12a58ce1fa3173799">byteme::PerByteInterface::advance</a></div><div class="ttdeci">bool advance()</div><div class="ttdef"><b>Definition</b> PerByte.hpp:92</div></div>
 <div class="ttc" id="aclassbyteme_1_1PerByteInterface_html_a83cdbb17126f57a3fad173c5ea466803"><div class="ttname"><a href="classbyteme_1_1PerByteInterface.html#a83cdbb17126f57a3fad173c5ea466803">byteme::PerByteInterface::position</a></div><div class="ttdeci">size_t position() const</div><div class="ttdef"><b>Definition</b> PerByte.hpp:116</div></div>
 <div class="ttc" id="aclassbyteme_1_1PerByteInterface_html_a8cb67ac7c5517d17adb6fe88b803516d"><div class="ttname"><a href="classbyteme_1_1PerByteInterface.html#a8cb67ac7c5517d17adb6fe88b803516d">byteme::PerByteInterface::refill</a></div><div class="ttdeci">virtual void refill()=0</div></div>
-<div class="ttc" id="aclassbyteme_1_1PerByteParallel_html"><div class="ttname"><a href="classbyteme_1_1PerByteParallel.html">byteme::PerByteParallel</a></div><div class="ttdoc">Parallelized byte-by-byte extraction from a Reader source.</div><div class="ttdef"><b>Definition</b> PerByte.hpp:223</div></div>
-<div class="ttc" id="aclassbyteme_1_1PerByteParallel_html_a0273f79aa3dcc97d5bbdf74070a2c813"><div class="ttname"><a href="classbyteme_1_1PerByteParallel.html#a0273f79aa3dcc97d5bbdf74070a2c813">byteme::PerByteParallel::PerByteParallel</a></div><div class="ttdeci">PerByteParallel(Reader_ *reader)</div><div class="ttdef"><b>Definition</b> PerByte.hpp:240</div></div>
-<div class="ttc" id="aclassbyteme_1_1PerByteParallel_html_a3fcaea3cd5fbd6e72e6432ddced29fbd"><div class="ttname"><a href="classbyteme_1_1PerByteParallel.html#a3fcaea3cd5fbd6e72e6432ddced29fbd">byteme::PerByteParallel::refill</a></div><div class="ttdeci">void refill()</div><div class="ttdef"><b>Definition</b> PerByte.hpp:297</div></div>
-<div class="ttc" id="aclassbyteme_1_1PerByteParallel_html_aa3058db8252ffe19d16a3bed42d1abb1"><div class="ttname"><a href="classbyteme_1_1PerByteParallel.html#aa3058db8252ffe19d16a3bed42d1abb1">byteme::PerByteParallel::PerByteParallel</a></div><div class="ttdeci">PerByteParallel(std::unique_ptr&lt; Reader_ &gt; reader)</div><div class="ttdef"><b>Definition</b> PerByte.hpp:228</div></div>
+<div class="ttc" id="aclassbyteme_1_1PerByteParallel_html"><div class="ttname"><a href="classbyteme_1_1PerByteParallel.html">byteme::PerByteParallel</a></div><div class="ttdoc">Parallelized byte-by-byte extraction from a Reader source.</div><div class="ttdef"><b>Definition</b> PerByte.hpp:218</div></div>
+<div class="ttc" id="aclassbyteme_1_1PerByteParallel_html_a3fcaea3cd5fbd6e72e6432ddced29fbd"><div class="ttname"><a href="classbyteme_1_1PerByteParallel.html#a3fcaea3cd5fbd6e72e6432ddced29fbd">byteme::PerByteParallel::refill</a></div><div class="ttdeci">void refill()</div><div class="ttdef"><b>Definition</b> PerByte.hpp:287</div></div>
+<div class="ttc" id="aclassbyteme_1_1PerByteParallel_html_aa3058db8252ffe19d16a3bed42d1abb1"><div class="ttname"><a href="classbyteme_1_1PerByteParallel.html#aa3058db8252ffe19d16a3bed42d1abb1">byteme::PerByteParallel::PerByteParallel</a></div><div class="ttdeci">PerByteParallel(std::unique_ptr&lt; Reader_ &gt; reader)</div><div class="ttdef"><b>Definition</b> PerByte.hpp:223</div></div>
 <div class="ttc" id="aclassbyteme_1_1PerByteSerial_html"><div class="ttname"><a href="classbyteme_1_1PerByteSerial.html">byteme::PerByteSerial</a></div><div class="ttdoc">Serial byte-by-byte extraction from a Reader source.</div><div class="ttdef"><b>Definition</b> PerByte.hpp:188</div></div>
 <div class="ttc" id="aclassbyteme_1_1PerByteSerial_html_a09443165b4f1eaa748016d1ccfde962e"><div class="ttname"><a href="classbyteme_1_1PerByteSerial.html#a09443165b4f1eaa748016d1ccfde962e">byteme::PerByteSerial::PerByteSerial</a></div><div class="ttdeci">PerByteSerial(std::unique_ptr&lt; Reader_ &gt; reader)</div><div class="ttdef"><b>Definition</b> PerByte.hpp:193</div></div>
-<div class="ttc" id="aclassbyteme_1_1PerByteSerial_html_a2857fc81b94832188db130a234f82129"><div class="ttname"><a href="classbyteme_1_1PerByteSerial.html#a2857fc81b94832188db130a234f82129">byteme::PerByteSerial::refill</a></div><div class="ttdeci">void refill()</div><div class="ttdef"><b>Definition</b> PerByte.hpp:206</div></div>
-<div class="ttc" id="aclassbyteme_1_1PerByteSerial_html_a54cacbb15d0b09c1846bb0b55aa4dc59"><div class="ttname"><a href="classbyteme_1_1PerByteSerial.html#a54cacbb15d0b09c1846bb0b55aa4dc59">byteme::PerByteSerial::PerByteSerial</a></div><div class="ttdeci">PerByteSerial(Reader_ *reader)</div><div class="ttdef"><b>Definition</b> PerByte.hpp:200</div></div>
+<div class="ttc" id="aclassbyteme_1_1PerByteSerial_html_a2857fc81b94832188db130a234f82129"><div class="ttname"><a href="classbyteme_1_1PerByteSerial.html#a2857fc81b94832188db130a234f82129">byteme::PerByteSerial::refill</a></div><div class="ttdeci">void refill()</div><div class="ttdef"><b>Definition</b> PerByte.hpp:201</div></div>
 <div class="ttc" id="anamespacebyteme_html"><div class="ttname"><a href="namespacebyteme.html">byteme</a></div><div class="ttdoc">Simple byte readers and writers.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
