@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <exception>
 #include <type_traits>
+#include <memory>
 
 #include "Reader.hpp"
 
@@ -178,24 +179,25 @@ public:
  * @brief Serial byte-by-byte extraction from a `Reader` source.
  *
  * @tparam Type_ Type of the output bytes, usually `char` for text or `unsigned char` for binary.
- * @tparam Reader_ Class for a source of input bytes, satisfying the `Reader` interface.
- * This can also be a concrete `Reader` subclass to enable devirtualization. 
+ * @tparam Pointer_ Pointer to a class that serves as a source of input bytes.
+ * The pointed-to class should satisfy the `Reader` interface; it may also be a concrete `Reader` subclass to enable devirtualization. 
+ * Either a smart or raw pointer may be supplied depending on how the caller wants to manage the lifetime of the pointed-to object. 
  *
  * This wraps a `Reader` so that developers can avoid the boilerplate of managing blocks of bytes,
  * when all they want is to iterate over the bytes of the input.
  */
-template<typename Type_, class Reader_ = Reader>
+template<typename Type_, class Pointer_ = std::unique_ptr<Reader> >
 class PerByteSerial final : public PerByteInterface<Type_> {
 public:
     /**
      * @param reader Pointer to a source of input bytes.
      */
-    PerByteSerial(std::unique_ptr<Reader_> reader) : my_reader(std::move(reader)) {
+    PerByteSerial(Pointer_ reader) : my_reader(std::move(reader)) {
         refill();
     }
 
 private:
-    std::unique_ptr<Reader_> my_reader;
+    Pointer_ my_reader;
 
 protected:
     void refill() {
@@ -208,19 +210,20 @@ protected:
  * @brief Parallelized byte-by-byte extraction from a `Reader` source.
  *
  * @tparam Type_ Type of the output bytes, usually `char` for text or `unsigned char` for binary.
- * @tparam Reader_ Class for a source of input bytes, satisfying the `Reader` interface.
- * This can also be a concrete `Reader` subclass to enable devirtualization. 
+ * @tparam Pointer_ Pointer to a class that serves as a source of input bytes.
+ * The pointed-to class should satisfy the `Reader` interface; it may also be a concrete `Reader` subclass to enable devirtualization. 
+ * Either a smart or raw pointer may be supplied depending on how the caller wants to manage the lifetime of the pointed-to object. 
  *
  * This is much like `PerByteSerial` except that the `Reader_`'s loading operation is called in a separate thread,
  * thus allowing the caller to parse the bytes of the current chunk in parallel.
  */
-template<typename Type_, class Reader_ = Reader>
+template<typename Type_, class Pointer_ = std::unique_ptr<Reader> >
 class PerByteParallel final : public PerByteInterface<Type_> {
 public:
     /**
      * @param reader Pointer to a source of input bytes.
      */
-    PerByteParallel(std::unique_ptr<Reader_> reader) : my_reader(std::move(reader)) {
+    PerByteParallel(Pointer_ reader) : my_reader(std::move(reader)) {
         my_ready_input = false;
         my_thread = std::thread([&]() { thread_loop(); });
 
@@ -247,7 +250,7 @@ public:
      */
 
 private:
-    std::unique_ptr<Reader_> my_reader;
+    Pointer_ my_reader;
     std::vector<Type_> my_buffer;
     size_t my_next_available = 0;
     bool my_finished = false;

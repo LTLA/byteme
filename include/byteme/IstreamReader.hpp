@@ -28,19 +28,21 @@ struct IstreamReaderOptions {
 /**
  * @brief Read bytes from a `std::istream`.
  *
- * @tparam Stream_ Class providing an input stream of bytes, satisfying the `std::istream` interface.
+ * @tparam Pointer_ Pointer to a class providing an input stream of bytes, satisfying the `std::istream` interface.
+ * This is most typically a `std::unique_ptr<std::istream> >` but a concrete subclass may also be used to encourage compiler devirtualization.
+ * Either a raw or smart pointer may be used depending on how the lifetime of the pointed-to object is managed.
  *
  * This is just a wrapper around `std::istream::read`,
  * mostly to avoid having to remember the correct way to check for end of file.
  */
-template<class Stream_>
+template<class Pointer_>
 class IstreamReader final : public Reader {
 public:
     /**
      * @param input Pointer to an input stream.
      * @param options Further options.
      */
-    IstreamReader(std::unique_ptr<Stream_> input, const IstreamReaderOptions& options) : my_input(std::move(input)), my_buffer(options.buffer_size) {}
+    IstreamReader(Pointer_ input, const IstreamReaderOptions& options) : my_input(std::move(input)), my_buffer(options.buffer_size) {}
 
 public:
     bool load() {
@@ -71,7 +73,7 @@ public:
     }
 
 private:
-    std::unique_ptr<Stream_> my_input;
+    Pointer_ my_input;
     std::vector<unsigned char> my_buffer;
     size_t my_read = 0;
     bool my_okay = true;

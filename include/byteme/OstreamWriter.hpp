@@ -17,16 +17,18 @@ namespace byteme {
  * @brief Read bytes from a `std::ostream`.
  *
  * @tparam Stream_ Class providing an output stream of bytes, satisfying the `std::ostream` interface.
+ * This is most typically a `std::unique_ptr<std::ostream> >` but a concrete subclass may also be used to encourage compiler devirtualization.
+ * Either a raw or smart pointer may be used depending on how the lifetime of the pointed-to object is managed.
  *
  * This is just a wrapper around `std::ostream::write` for compatibility.
  */
-template<class Stream_>
+template<class Pointer_>
 class OstreamWriter final : public Writer {
 public:
     /**
      * @param output Pointer to an output stream.
      */
-    OstreamWriter(std::unique_ptr<Stream_> output) : my_output(std::move(output)) {}
+    OstreamWriter(Pointer_ output) : my_output(std::move(output)) {}
 
 public:
     using Writer::write;
@@ -46,7 +48,7 @@ public:
     }
 
 private:
-    std::unique_ptr<Stream_> my_output;
+    Pointer_ my_output;
 };
 
 }
