@@ -1,7 +1,7 @@
 <map id="byteme::PerByteInterface&lt; Type_ &gt;" name="byteme::PerByteInterface&lt; Type_ &gt;">
-<area shape="rect" id="Node000001" title="Interface for byte&#45;by&#45;byte extraction from a Reader source." alt="" coords="89,5,256,46"/>
-<area shape="rect" id="Node000002" href="$classbyteme_1_1PerByteParallel.html" title="Parallelized byte&#45;by&#45;byte extraction from a Reader source." alt="" coords="5,94,164,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,59,106,95,103,92,140,55"/>
-<area shape="rect" id="Node000003" href="$classbyteme_1_1PerByteSerial.html" title="Serial byte&#45;by&#45;byte extraction from a Reader source." alt="" coords="188,94,336,135"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="206,55,243,92,240,95,202,59"/>
+<area shape="rect" id="Node000001" title="Interface for byte&#45;by&#45;byte extraction from a Reader source." alt="" coords="5,39,172,79"/>
+<area shape="rect" id="Node000002" href="$classbyteme_1_1PerByteParallel.html" title="Parallelized byte&#45;by&#45;byte extraction from a Reader source." alt="" coords="220,5,378,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,41,219,36,219,41,187,46"/>
+<area shape="rect" id="Node000003" href="$classbyteme_1_1PerByteSerial.html" title="Serial byte&#45;by&#45;byte extraction from a Reader source." alt="" coords="225,71,373,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,71,225,77,224,82,187,77"/>
 </map>

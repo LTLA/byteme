@@ -1,4 +1,4 @@
-<map id="byteme::IstreamReader&lt; Stream_ &gt;" name="byteme::IstreamReader&lt; Stream_ &gt;">
+<map id="byteme::IstreamReader&lt; Pointer_ &gt;" name="byteme::IstreamReader&lt; Pointer_ &gt;">
 <area shape="rect" id="Node000001" title="Read bytes from a std::istream." alt="" coords="5,79,160,120"/>
 <area shape="rect" id="Node000002" href="$classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="27,5,138,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,46,85,79,80,79,80,46"/>

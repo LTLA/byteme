@@ -288,34 +288,34 @@
   <compound kind="class">
     <name>byteme::IstreamReader</name>
     <filename>classbyteme_1_1IstreamReader.html</filename>
-    <templarg>class Stream_</templarg>
+    <templarg>class Pointer_</templarg>
     <base>byteme::Reader</base>
     <member kind="function">
       <type></type>
       <name>IstreamReader</name>
       <anchorfile>classbyteme_1_1IstreamReader.html</anchorfile>
-      <anchor>a844163757389afa421e5038004656fd2</anchor>
-      <arglist>(std::unique_ptr&lt; Stream_ &gt; input, const IstreamReaderOptions &amp;options)</arglist>
+      <anchor>a19247e8caa4d21b5195556a0bf776aa6</anchor>
+      <arglist>(Pointer_ input, const IstreamReaderOptions &amp;options)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>load</name>
       <anchorfile>classbyteme_1_1IstreamReader.html</anchorfile>
-      <anchor>a8a65e95f5b293f99ffba775ebd7126f1</anchor>
+      <anchor>aa09922b5fa256cca3ced445206e9a6dd</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>const unsigned char *</type>
       <name>buffer</name>
       <anchorfile>classbyteme_1_1IstreamReader.html</anchorfile>
-      <anchor>a429f1775660640b3adfca9efbfc231e2</anchor>
+      <anchor>a35ce4f9a45b6331d11be9cceb23ff80a</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>available</name>
       <anchorfile>classbyteme_1_1IstreamReader.html</anchorfile>
-      <anchor>a34b032d7056463f3dbd7e7524a8cda7c</anchor>
+      <anchor>a52f73d6079ea22af024bd074e6de8c79</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
@@ -333,27 +333,27 @@
   <compound kind="class">
     <name>byteme::OstreamWriter</name>
     <filename>classbyteme_1_1OstreamWriter.html</filename>
-    <templarg>class Stream_</templarg>
+    <templarg>class Pointer_</templarg>
     <base>byteme::Writer</base>
     <member kind="function">
       <type></type>
       <name>OstreamWriter</name>
       <anchorfile>classbyteme_1_1OstreamWriter.html</anchorfile>
-      <anchor>a8e20e2f55551362e3c534f6c5476af8e</anchor>
-      <arglist>(std::unique_ptr&lt; Stream_ &gt; output)</arglist>
+      <anchor>a3cbc4a7eec70e40dd6a1c370f165084c</anchor>
+      <arglist>(Pointer_ output)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>write</name>
       <anchorfile>classbyteme_1_1OstreamWriter.html</anchorfile>
-      <anchor>aff447eaedc55ca07a5d5874ab8573418</anchor>
+      <anchor>ad6dfbb6fb76c395c0f334ce6f9de7f81</anchor>
       <arglist>(const unsigned char *buffer, size_t n)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>finish</name>
       <anchorfile>classbyteme_1_1OstreamWriter.html</anchorfile>
-      <anchor>a1ee0dc46121b5cf43832924f4f74b15b</anchor>
+      <anchor>accafb6643fbd952a9c036e14b3bf3cb7</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -443,20 +443,20 @@
     <name>byteme::PerByteParallel</name>
     <filename>classbyteme_1_1PerByteParallel.html</filename>
     <templarg>typename Type_</templarg>
-    <templarg>class Reader_</templarg>
+    <templarg>class Pointer_</templarg>
     <base>byteme::PerByteInterface&lt; Type_ &gt;</base>
     <member kind="function">
       <type></type>
       <name>PerByteParallel</name>
       <anchorfile>classbyteme_1_1PerByteParallel.html</anchorfile>
-      <anchor>aa3058db8252ffe19d16a3bed42d1abb1</anchor>
-      <arglist>(std::unique_ptr&lt; Reader_ &gt; reader)</arglist>
+      <anchor>af8b6d8751483f0505569e0d739f4e834</anchor>
+      <arglist>(Pointer_ reader)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>refill</name>
       <anchorfile>classbyteme_1_1PerByteParallel.html</anchorfile>
-      <anchor>a3fcaea3cd5fbd6e72e6432ddced29fbd</anchor>
+      <anchor>aa7e9be70da45b85254a16e5e1c47e036</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -464,20 +464,20 @@
     <name>byteme::PerByteSerial</name>
     <filename>classbyteme_1_1PerByteSerial.html</filename>
     <templarg>typename Type_</templarg>
-    <templarg>class Reader_</templarg>
+    <templarg>class Pointer_</templarg>
     <base>byteme::PerByteInterface&lt; Type_ &gt;</base>
     <member kind="function">
       <type></type>
       <name>PerByteSerial</name>
       <anchorfile>classbyteme_1_1PerByteSerial.html</anchorfile>
-      <anchor>a09443165b4f1eaa748016d1ccfde962e</anchor>
-      <arglist>(std::unique_ptr&lt; Reader_ &gt; reader)</arglist>
+      <anchor>a1eea419c3dacadb8612b360e159025d2</anchor>
+      <arglist>(Pointer_ reader)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>refill</name>
       <anchorfile>classbyteme_1_1PerByteSerial.html</anchorfile>
-      <anchor>a2857fc81b94832188db130a234f82129</anchor>
+      <anchor>ae6424f8d002deb991f21f2812b103705</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
