@@ -41,7 +41,7 @@ public:
     SelfClosingFILE& operator=(const SelfClosingFILE&) = delete;
 
 public:
-    FILE* handle;
+    std::FILE* handle;
 };
 
 }
