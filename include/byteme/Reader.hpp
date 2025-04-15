@@ -1,6 +1,8 @@
 #ifndef BYTEME_READER_HPP
 #define BYTEME_READER_HPP
 
+#include <cstddef>
+
 /**
  * @file Reader.hpp
  *
@@ -40,7 +42,7 @@ public:
      *
      * @return Number of available bytes in `buffer()`.
      */
-    virtual size_t available() const = 0;
+    virtual std::size_t available() const = 0;
 };
 
 }

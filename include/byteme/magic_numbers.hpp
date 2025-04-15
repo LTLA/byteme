@@ -1,10 +1,12 @@
 #ifndef BYTEME_MAGIC_NUMBERS_HPP
 #define BYTEME_MAGIC_NUMBERS_HPP
 
+#include <cstddef>
+
 namespace byteme {
 
 template<typename T>
-bool is_zlib(const T* values, size_t n) {
+bool is_zlib(const T* values, std::size_t n) {
     if (n >= 2 && static_cast<unsigned char>(values[0]) == 0x78) {
         auto level = static_cast<unsigned char>(values[1]);
         // From https://en.wikipedia.org/wiki/List_of_file_signatures
@@ -16,7 +18,7 @@ bool is_zlib(const T* values, size_t n) {
 }
 
 template<typename T>
-bool is_gzip(const T* values, size_t n) {
+bool is_gzip(const T* values, std::size_t n) {
     // ommitting the 0x08 requirement as Gzip could be used with non-DEFLATE algorithms.
     return (n >= 2 && static_cast<unsigned char>(values[0]) == 0x1f && static_cast<unsigned char>(values[1]) == 0x8b);
 }

@@ -1,9 +1,12 @@
 #ifndef BYTEME_ZLIB_BUFFER_WRITER_HPP
 #define BYTEME_ZLIB_BUFFER_WRITER_HPP
 
-#include "zlib.h"
 #include <stdexcept>
 #include <vector>
+#include <cstddef>
+
+#include "zlib.h"
+
 #include "Writer.hpp"
 
 /**
@@ -33,7 +36,7 @@ struct ZlibBufferWriterOptions {
      * Size of the buffer to use when reading from disk.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    size_t buffer_size = 65536;
+    std::size_t buffer_size = 65536;
 };
 
 /**
@@ -100,7 +103,7 @@ public:
 public:
     using Writer::write;
 
-    void write(const unsigned char* buffer, size_t n) {
+    void write(const unsigned char* buffer, std::size_t n) {
         my_zstr.strm.next_in = const_cast<unsigned char*>(buffer); // for C compatibility.
         my_zstr.strm.avail_in = n;
         dump(Z_NO_FLUSH);
@@ -121,7 +124,7 @@ private:
             my_zstr.strm.avail_out = my_holding.size();
             my_zstr.strm.next_out = my_holding.data();
             deflate(&(my_zstr.strm), flag); // no need to check, see https://zlib.net/zlib_how.html.
-            size_t compressed = my_holding.size() - my_zstr.strm.avail_out;
+            std::size_t compressed = my_holding.size() - my_zstr.strm.avail_out;
             output.insert(output.end(), my_holding.begin(), my_holding.begin() + compressed);
         } while (my_zstr.strm.avail_out == 0);
     }

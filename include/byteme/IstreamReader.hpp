@@ -4,6 +4,8 @@
 #include <vector>
 #include <stdexcept>
 #include <memory>
+#include <cstddef>
+
 #include "Reader.hpp"
 
 /**
@@ -22,7 +24,7 @@ struct IstreamReaderOptions {
      * Size of the internal buffer to fill from the stream.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    size_t buffer_size = 65536;
+    std::size_t buffer_size = 65536;
 };
 
 /**
@@ -68,14 +70,14 @@ public:
         return my_buffer.data();
     }
 
-    size_t available() const {
+    std::size_t available() const {
         return my_read;
     }
 
 private:
     Pointer_ my_input;
     std::vector<unsigned char> my_buffer;
-    size_t my_read = 0;
+    std::size_t my_read = 0;
     bool my_okay = true;
 };
 

@@ -1,8 +1,10 @@
 #ifndef BYTEME_RAW_BUFFER_WRITER_HPP
 #define BYTEME_RAW_BUFFER_WRITER_HPP
 
-#include "Writer.hpp"
+#include <cstddef>
 #include <vector>
+
+#include "Writer.hpp"
 
 /**
  * @file RawBufferWriter.hpp
@@ -20,7 +22,7 @@ struct RawBufferWriterOptions {
      * Initial size of the output buffer to reserve.
      * Setting this to an estimate of the total number of written bytes may avoid unnecessary memory allocations.
      */
-    size_t reserve = 0;
+    std::size_t reserve = 0;
 };
 
 /**
@@ -41,7 +43,7 @@ public:
 public:
     using Writer::write;
 
-    void write(const unsigned char* buffer, size_t n) {
+    void write(const unsigned char* buffer, std::size_t n) {
         output.insert(output.end(), buffer, buffer + n);
     }
 

@@ -1,9 +1,12 @@
 #ifndef BYTEME_ZLIB_BUFFER_READER_HPP
 #define BYTEME_ZLIB_BUFFER_READER_HPP
 
-#include "zlib.h"
 #include <stdexcept>
 #include <vector>
+#include <cstddef>
+
+#include "zlib.h"
+
 #include "Reader.hpp"
 
 /**
@@ -28,7 +31,7 @@ struct ZlibBufferReaderOptions {
      * Size of the buffer to use when reading from disk.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    size_t buffer_size = 65536;
+    std::size_t buffer_size = 65536;
 };
 
 /**
@@ -97,7 +100,7 @@ public:
      * @param length Length of the `buffer` array.
      * @param options Further options.
      */
-    ZlibBufferReader(const unsigned char* buffer, size_t length, const ZlibBufferReaderOptions& options) : 
+    ZlibBufferReader(const unsigned char* buffer, std::size_t length, const ZlibBufferReaderOptions& options) : 
         my_zstr(options.mode), my_buffer(options.buffer_size)
     {
         my_zstr.strm.avail_in = length;
@@ -145,14 +148,14 @@ public:
         return my_buffer.data();
     }
 
-    size_t available() const {
+    std::size_t available() const {
         return my_read;
     }
 
 private:
     ZStream my_zstr;
     std::vector<unsigned char> my_buffer;
-    size_t my_read = 0;
+    std::size_t my_read = 0;
     bool my_okay = true;
 };
 

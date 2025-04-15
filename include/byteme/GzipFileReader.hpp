@@ -1,9 +1,12 @@
 #ifndef BYTEME_GZIP_FILE_READER_HPP
 #define BYTEME_GZIP_FILE_READER_HPP
 
-#include "zlib.h"
+#include <cstddef>
 #include <stdexcept>
 #include <vector>
+
+#include "zlib.h"
+
 #include "SelfClosingGzFile.hpp"
 #include "Reader.hpp"
 
@@ -23,7 +26,7 @@ struct GzipFileReaderOptions {
      * Size of the buffer for Zlib decompression.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    size_t buffer_size = 65536;
+    std::size_t buffer_size = 65536;
 };
 
 /**
@@ -58,14 +61,14 @@ public:
         return my_buffer.data();
     }
 
-    size_t available() const {
+    std::size_t available() const {
         return my_read;
     }
 
 private:
     SelfClosingGzFile my_gzfile;
     std::vector<unsigned char> my_buffer;
-    size_t my_read = 0;
+    std::size_t my_read = 0;
 };
 
 }

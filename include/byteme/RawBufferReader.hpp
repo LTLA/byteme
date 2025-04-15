@@ -2,6 +2,8 @@
 #define BYTEME_RAW_BUFFER_READER_HPP
 
 #include <algorithm>
+#include <cstddef>
+
 #include "Reader.hpp"
 
 /**
@@ -24,7 +26,7 @@ public:
      * @param[in] buffer Pointer to an array of bytes. 
      * @param length Length of the buffer.
      */
-    RawBufferReader(const unsigned char* buffer, size_t length) : my_buffer(buffer), my_length(length) {}
+    RawBufferReader(const unsigned char* buffer, std::size_t length) : my_buffer(buffer), my_length(length) {}
 
 public:
     bool load() {
@@ -39,13 +41,13 @@ public:
         return my_buffer;
     }
 
-    size_t available() const {
+    std::size_t available() const {
         return my_length;
     }
 
 private:
     const unsigned char* my_buffer;
-    size_t my_length;
+    std::size_t my_length;
     bool my_used = false;
 };
 

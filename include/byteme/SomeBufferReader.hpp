@@ -1,12 +1,14 @@
 #ifndef BYTEME_SOME_BUFFER_READER_HPP
 #define BYTEME_SOME_BUFFER_READER_HPP
 
+#include <cstddef>
+#include <memory>
+#include <cstdio>
+
 #include "Reader.hpp"
 #include "RawBufferReader.hpp"
 #include "ZlibBufferReader.hpp"
 #include "magic_numbers.hpp"
-#include <memory>
-#include <cstdio>
 
 /**
  * @file SomeBufferReader.hpp
@@ -24,7 +26,7 @@ struct SomeBufferReaderOptions {
      * Size of the buffer to use when reading from disk.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    size_t buffer_size = 65536;
+    std::size_t buffer_size = 65536;
 };
 
 /**
@@ -40,7 +42,7 @@ public:
      * @param length Length of the `buffer` array.
      * @param options Further options.
      */
-    SomeBufferReader(const unsigned char* buffer, size_t length, const SomeBufferReaderOptions& options) {
+    SomeBufferReader(const unsigned char* buffer, std::size_t length, const SomeBufferReaderOptions& options) {
         if (is_zlib(buffer, length) || is_gzip(buffer, length)) {
             ZlibBufferReaderOptions zopt;
             zopt.buffer_size = options.buffer_size;
@@ -59,7 +61,7 @@ public:
         return my_source->buffer();
     }
 
-    size_t available() const {
+    std::size_t available() const {
         return my_source->available();
     }
 

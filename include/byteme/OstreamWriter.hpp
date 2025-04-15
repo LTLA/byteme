@@ -3,6 +3,8 @@
 
 #include <memory>
 #include <stdexcept>
+#include <cstddef>
+
 #include "Writer.hpp"
 
 /**
@@ -33,7 +35,7 @@ public:
 public:
     using Writer::write;
 
-    void write(const unsigned char* buffer, size_t n) {
+    void write(const unsigned char* buffer, std::size_t n) {
         my_output->write(reinterpret_cast<const char*>(buffer), n);
         if (!(my_output->good())) {
             throw std::runtime_error("failed to write to arbitrary output stream");

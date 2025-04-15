@@ -1,12 +1,14 @@
 #ifndef BYTEME_SOME_FILE_READER_HPP
 #define BYTEME_SOME_FILE_READER_HPP
 
+#include <memory>
+#include <cstdio>
+#include <cstddef>
+
 #include "Reader.hpp"
 #include "RawFileReader.hpp"
 #include "GzipFileReader.hpp"
 #include "magic_numbers.hpp"
-#include <memory>
-#include <cstdio>
 
 /**
  * @file SomeFileReader.hpp
@@ -24,7 +26,7 @@ struct SomeFileReaderOptions {
      * Size of the buffer to use when reading from disk.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    size_t buffer_size = 65536;
+    std::size_t buffer_size = 65536;
 };
 
 /**
@@ -41,7 +43,7 @@ public:
      */
     SomeFileReader(const char* path, const SomeFileReaderOptions& options) { 
         unsigned char header[3];
-        size_t read;
+        std::size_t read;
         {
             SelfClosingFILE file(path, "rb");
             read = std::fread(header, sizeof(unsigned char), 3, file.handle);
@@ -67,7 +69,7 @@ public:
         return my_source->buffer();
     }
 
-    size_t available() const {
+    std::size_t available() const {
         return my_source->available();
     }
 

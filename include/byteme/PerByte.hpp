@@ -14,6 +14,7 @@
 #include <exception>
 #include <type_traits>
 #include <memory>
+#include <cstddef>
 
 #include "Reader.hpp"
 
@@ -23,7 +24,7 @@ namespace byteme {
  * @cond
  */
 template<class Reader_>
-void skip_zero_buffers(Reader_& reader, size_t& available) {
+void skip_zero_buffers(Reader_& reader, std::size_t& available) {
     available = 0;
     while (reader.load()) {
         available = reader.available(); // continue collecting bytes if a zero-length buffer is returned without load() returning false.
@@ -72,7 +73,7 @@ protected:
     /**
      * Length of the array at `ptr`.
      */
-    size_t available = 0;
+    std::size_t available = 0;
 
     /**
      * Set `ptr` and `available` to refer to an array of new bytes from a `Reader`.
@@ -80,8 +81,11 @@ protected:
     virtual void refill() = 0;
 
 private:
-    size_t my_current = 0;
-    size_t my_overall = 0;
+    std::size_t my_current = 0;
+
+    // Standard guarantees this to be at least 64 bits, which is more than that of size_t.
+    // We don't use uint64_t because that might not be defined by the implementation.
+    unsigned long long my_overall = 0;
 
 public:
     /**
@@ -114,7 +118,7 @@ public:
     /**
      * @return The position of the current byte since the start of the input.
      */
-    size_t position() const {
+    unsigned long long position() const {
         return my_overall + my_current;
     }
 
@@ -140,8 +144,8 @@ public:
      * @return Pair containing (1) the number of bytes that were successfully read into `output`,
      * and (2) whether there are any more bytes available in the source for future `get()` or `extract()` calls.
      */
-    std::pair<size_t, bool> extract(size_t number, Type_* output) {
-        size_t original = number;
+    std::pair<std::size_t, bool> extract(std::size_t number, Type_* output) {
+        std::size_t original = number;
         bool okay = true;
 
         while (1) {
@@ -252,7 +256,7 @@ public:
 private:
     Pointer_ my_reader;
     std::vector<Type_> my_buffer;
-    size_t my_next_available = 0;
+    std::size_t my_next_available = 0;
     bool my_finished = false;
 
 private:

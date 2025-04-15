@@ -31,14 +31,14 @@ namespace byteme {
  * The file itself is created at that location, though this may not be thread-safe.
  *
  * This function is wholly intended for unit testing in **byteme** and downstream libraries.
- * Production use should use OS-specific thread-safe alternatives such as `mkstemp()`. 
+ * Production code should use OS-specific thread-safe alternatives such as `mkstemp()`. 
  */
 inline std::string temp_file_path(const std::string& prefix, const std::string& ext) {
     auto path = fs::temp_directory_path();
     path.append(prefix);
     
     // Hopefully, we create a new seed when the function re-runs.
-    uint64_t seed;
+    std::uint64_t seed;
     try {
         std::random_device rd;
         seed = rd();
