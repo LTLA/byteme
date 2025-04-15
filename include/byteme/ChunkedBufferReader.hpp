@@ -29,14 +29,6 @@ public:
         my_position = -my_chunk_size; // deliberate underflow so that load() overflows to zero.
     }
 
-    /**
-     * @param[in] buffer Pointer to an array of bytes, usually containing text.
-     * @param length Length of the buffer.
-     * @param chunk_size Size of each chunk in bytes.
-     */
-    ChunkedBufferReader(const char* buffer, size_t length, size_t chunk_size) : 
-        ChunkedBufferReader(reinterpret_cast<const unsigned char*>(buffer), length, chunk_size) {}
-
 public:
     bool load() {
         my_position += my_chunk_size; 
