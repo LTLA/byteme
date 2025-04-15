@@ -122,8 +122,8 @@ Inheritance diagram for byteme::Writer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a58d7347c900dfd9df0b28b68ae34ca1b" id="r_a58d7347c900dfd9df0b28b68ae34ca1b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58d7347c900dfd9df0b28b68ae34ca1b">write</a> (const unsigned char *buffer, size_t n)=0</td></tr>
-<tr class="separator:a58d7347c900dfd9df0b28b68ae34ca1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fee63f29e632dd029eff3c8e06020a0" id="r_a8fee63f29e632dd029eff3c8e06020a0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fee63f29e632dd029eff3c8e06020a0">write</a> (const unsigned char *buffer, std::size_t n)=0</td></tr>
+<tr class="separator:a8fee63f29e632dd029eff3c8e06020a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8317429c5645d0e447a4207091953164" id="r_a8317429c5645d0e447a4207091953164"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8317429c5645d0e447a4207091953164">finish</a> ()=0</td></tr>
 <tr class="separator:a8317429c5645d0e447a4207091953164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ecb1ea0461dfdb0f11dcadfb6fcc9fb" id="r_a1ecb1ea0461dfdb0f11dcadfb6fcc9fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ecb1ea0461dfdb0f11dcadfb6fcc9fb">write</a> (const std::string &amp;x)</td></tr>
@@ -158,7 +158,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Indicate that the writing has finished and that the relevant clean-up (buffer flushing, file closing, etc.) should be performed. This should be called exactly once, after which no further calls to <code><a class="el" href="#a58d7347c900dfd9df0b28b68ae34ca1b">write()</a></code> or <code><a class="el" href="#a8317429c5645d0e447a4207091953164">finish()</a></code> should be performed. </p>
+<p>Indicate that the writing has finished and that the relevant clean-up (buffer flushing, file closing, etc.) should be performed. This should be called exactly once, after which no further calls to <code><a class="el" href="#a8fee63f29e632dd029eff3c8e06020a0">write()</a></code> or <code><a class="el" href="#a8317429c5645d0e447a4207091953164">finish()</a></code> should be performed. </p>
 
 <p>Implemented in <a class="el" href="classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3">byteme::GzipFileWriter</a>, <a class="el" href="classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7">byteme::OstreamWriter&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferWriter.html#a9f5da6446f98b72afcdbbcf504e10512">byteme::RawBufferWriter</a>, <a class="el" href="classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535">byteme::RawFileWriter</a>, and <a class="el" href="classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac">byteme::ZlibBufferWriter</a>.</p>
 
@@ -260,8 +260,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a58d7347c900dfd9df0b28b68ae34ca1b" name="a58d7347c900dfd9df0b28b68ae34ca1b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58d7347c900dfd9df0b28b68ae34ca1b">&#9670;&#160;</a></span>write() <span class="overload">[4/4]</span></h2>
+<a id="a8fee63f29e632dd029eff3c8e06020a0" name="a8fee63f29e632dd029eff3c8e06020a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fee63f29e632dd029eff3c8e06020a0">&#9670;&#160;</a></span>write() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -277,7 +277,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -295,7 +295,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileWriter.html#a7408c1f7ad682e65113d94705f4f0997">byteme::GzipFileWriter</a>, <a class="el" href="classbyteme_1_1OstreamWriter.html#ad6dfbb6fb76c395c0f334ce6f9de7f81">byteme::OstreamWriter&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferWriter.html#af48cfca7172a4e12afb75a9a59045295">byteme::RawBufferWriter</a>, <a class="el" href="classbyteme_1_1RawFileWriter.html#ae7293d0c49e244bdcedeb49bbd023fba">byteme::RawFileWriter</a>, and <a class="el" href="classbyteme_1_1ZlibBufferWriter.html#ab227f7b9f62f0bfa7ae2a1a20a7fabd1">byteme::ZlibBufferWriter</a>.</p>
+<p>Implemented in <a class="el" href="classbyteme_1_1GzipFileWriter.html#a8fee63f29e632dd029eff3c8e06020a0">byteme::GzipFileWriter</a>, <a class="el" href="classbyteme_1_1OstreamWriter.html#abdc25527304a9a7d006a56005bc22b84">byteme::OstreamWriter&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferWriter.html#a64f231b9bd5ce618ccf78ec9f0a5f0cc">byteme::RawBufferWriter</a>, <a class="el" href="classbyteme_1_1RawFileWriter.html#a8fee63f29e632dd029eff3c8e06020a0">byteme::RawFileWriter</a>, and <a class="el" href="classbyteme_1_1ZlibBufferWriter.html#a7cb49e8471cfc494af1341e16f81403a">byteme::ZlibBufferWriter</a>.</p>
 
 </div>
 </div>

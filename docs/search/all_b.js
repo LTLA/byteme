@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rawbufferreader_0',['RawBufferReader',['../classbyteme_1_1RawBufferReader.html',1,'byteme::RawBufferReader'],['../classbyteme_1_1RawBufferReader.html#a52edfb966cd7ce5db47ba2cbb3cd245d',1,'byteme::RawBufferReader::RawBufferReader()']]],
+  ['rawbufferreader_0',['RawBufferReader',['../classbyteme_1_1RawBufferReader.html',1,'byteme::RawBufferReader'],['../classbyteme_1_1RawBufferReader.html#a80988c695311f5ebd52680bf93f92847',1,'byteme::RawBufferReader::RawBufferReader()']]],
   ['rawbufferreader_2ehpp_1',['RawBufferReader.hpp',['../RawBufferReader_8hpp.html',1,'']]],
   ['rawbufferwriter_2',['RawBufferWriter',['../classbyteme_1_1RawBufferWriter.html',1,'byteme::RawBufferWriter'],['../classbyteme_1_1RawBufferWriter.html#a2536f89eb9c6a58a68269abfa907f3bd',1,'byteme::RawBufferWriter::RawBufferWriter()']]],
   ['rawbufferwriter_2ehpp_3',['RawBufferWriter.hpp',['../RawBufferWriter_8hpp.html',1,'']]],
@@ -14,5 +14,5 @@ var searchData=
   ['reader_11',['Reader',['../classbyteme_1_1Reader.html',1,'byteme']]],
   ['reader_2ehpp_12',['Reader.hpp',['../Reader_8hpp.html',1,'']]],
   ['refill_13',['refill',['../classbyteme_1_1PerByteInterface.html#a8cb67ac7c5517d17adb6fe88b803516d',1,'byteme::PerByteInterface::refill()'],['../classbyteme_1_1PerByteSerial.html#ae6424f8d002deb991f21f2812b103705',1,'byteme::PerByteSerial::refill()'],['../classbyteme_1_1PerByteParallel.html#aa7e9be70da45b85254a16e5e1c47e036',1,'byteme::PerByteParallel::refill()']]],
-  ['reserve_14',['reserve',['../structbyteme_1_1RawBufferWriterOptions.html#ad4302569f8c1ba99c3776c70a5f1faf0',1,'byteme::RawBufferWriterOptions']]]
+  ['reserve_14',['reserve',['../structbyteme_1_1RawBufferWriterOptions.html#ace854857d6b1b607ff4fedca07d05e1b',1,'byteme::RawBufferWriterOptions']]]
 ];

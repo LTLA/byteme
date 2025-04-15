@@ -122,12 +122,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6c32b7ee63b692c12a58ce1fa3173799"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a647e6ee2e9c7683f162b22d0a51dc3e5" id="r_a647e6ee2e9c7683f162b22d0a51dc3e5"><td class="memItemLeft" align="right" valign="top">Type_&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a647e6ee2e9c7683f162b22d0a51dc3e5">get</a> () const</td></tr>
 <tr class="separator:a647e6ee2e9c7683f162b22d0a51dc3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83cdbb17126f57a3fad173c5ea466803" id="r_a83cdbb17126f57a3fad173c5ea466803"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83cdbb17126f57a3fad173c5ea466803">position</a> () const</td></tr>
-<tr class="separator:a83cdbb17126f57a3fad173c5ea466803"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a374c2a658715b357ebe9511fdf772169" id="r_a374c2a658715b357ebe9511fdf772169"><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a374c2a658715b357ebe9511fdf772169">position</a> () const</td></tr>
+<tr class="separator:a374c2a658715b357ebe9511fdf772169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f9b6fb5ceb70240c2729a8f7bd15efc" id="r_a4f9b6fb5ceb70240c2729a8f7bd15efc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f9b6fb5ceb70240c2729a8f7bd15efc">valid</a> () const</td></tr>
 <tr class="separator:a4f9b6fb5ceb70240c2729a8f7bd15efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51322af98ae071c58453ccec232ad526" id="r_a51322af98ae071c58453ccec232ad526"><td class="memItemLeft" align="right" valign="top">std::pair&lt; size_t, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51322af98ae071c58453ccec232ad526">extract</a> (size_t number, Type_ *output)</td></tr>
-<tr class="separator:a51322af98ae071c58453ccec232ad526"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c61a374f234ea6051f015133d91a44c" id="r_a8c61a374f234ea6051f015133d91a44c"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::size_t, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c61a374f234ea6051f015133d91a44c">extract</a> (std::size_t number, Type_ *output)</td></tr>
+<tr class="separator:a8c61a374f234ea6051f015133d91a44c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -138,8 +138,8 @@ Protected Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a3caa25b9f0daa42d425de8c98c70a59d" id="r_a3caa25b9f0daa42d425de8c98c70a59d"><td class="memItemLeft" align="right" valign="top">const Type_ *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3caa25b9f0daa42d425de8c98c70a59d">ptr</a> = nullptr</td></tr>
 <tr class="separator:a3caa25b9f0daa42d425de8c98c70a59d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31640353ee2336a966d2267a0f982c8c" id="r_a31640353ee2336a966d2267a0f982c8c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31640353ee2336a966d2267a0f982c8c">available</a> = 0</td></tr>
-<tr class="separator:a31640353ee2336a966d2267a0f982c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad36144d41d84d50d9fe4a5e7207d44a2" id="r_ad36144d41d84d50d9fe4a5e7207d44a2"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad36144d41d84d50d9fe4a5e7207d44a2">available</a> = 0</td></tr>
+<tr class="separator:ad36144d41d84d50d9fe4a5e7207d44a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Type_&gt;<br />
@@ -181,8 +181,8 @@ template&lt;typename Type_ &gt; </div>
 
 </div>
 </div>
-<a id="a51322af98ae071c58453ccec232ad526" name="a51322af98ae071c58453ccec232ad526"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51322af98ae071c58453ccec232ad526">&#9670;&#160;</a></span>extract()</h2>
+<a id="a8c61a374f234ea6051f015133d91a44c" name="a8c61a374f234ea6051f015133d91a44c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c61a374f234ea6051f015133d91a44c">&#9670;&#160;</a></span>extract()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,9 +193,9 @@ template&lt;typename Type_ &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::pair&lt; size_t, bool &gt; <a class="el" href="classbyteme_1_1PerByteInterface.html">byteme::PerByteInterface</a>&lt; Type_ &gt;::extract </td>
+          <td class="memname">std::pair&lt; std::size_t, bool &gt; <a class="el" href="classbyteme_1_1PerByteInterface.html">byteme::PerByteInterface</a>&lt; Type_ &gt;::extract </td>
           <td>(</td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>number</em></span>, </td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>number</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -217,7 +217,7 @@ template&lt;typename Type_ &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Pair containing (1) the number of bytes that were successfully read into <code>output</code>, and (2) whether there are any more bytes available in the source for future <code><a class="el" href="#a647e6ee2e9c7683f162b22d0a51dc3e5">get()</a></code> or <code><a class="el" href="#a51322af98ae071c58453ccec232ad526">extract()</a></code> calls. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pair containing (1) the number of bytes that were successfully read into <code>output</code>, and (2) whether there are any more bytes available in the source for future <code><a class="el" href="#a647e6ee2e9c7683f162b22d0a51dc3e5">get()</a></code> or <code><a class="el" href="#a8c61a374f234ea6051f015133d91a44c">extract()</a></code> calls. </dd></dl>
 
 </div>
 </div>
@@ -250,8 +250,8 @@ template&lt;typename Type_ &gt; </div>
 
 </div>
 </div>
-<a id="a83cdbb17126f57a3fad173c5ea466803" name="a83cdbb17126f57a3fad173c5ea466803"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83cdbb17126f57a3fad173c5ea466803">&#9670;&#160;</a></span>position()</h2>
+<a id="a374c2a658715b357ebe9511fdf772169" name="a374c2a658715b357ebe9511fdf772169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a374c2a658715b357ebe9511fdf772169">&#9670;&#160;</a></span>position()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -262,7 +262,7 @@ template&lt;typename Type_ &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t <a class="el" href="classbyteme_1_1PerByteInterface.html">byteme::PerByteInterface</a>&lt; Type_ &gt;::position </td>
+          <td class="memname">unsigned long long <a class="el" href="classbyteme_1_1PerByteInterface.html">byteme::PerByteInterface</a>&lt; Type_ &gt;::position </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -337,8 +337,8 @@ template&lt;typename Type_ &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a31640353ee2336a966d2267a0f982c8c" name="a31640353ee2336a966d2267a0f982c8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31640353ee2336a966d2267a0f982c8c">&#9670;&#160;</a></span>available</h2>
+<a id="ad36144d41d84d50d9fe4a5e7207d44a2" name="ad36144d41d84d50d9fe4a5e7207d44a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad36144d41d84d50d9fe4a5e7207d44a2">&#9670;&#160;</a></span>available</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -349,7 +349,7 @@ template&lt;typename Type_ &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t <a class="el" href="classbyteme_1_1PerByteInterface.html">byteme::PerByteInterface</a>&lt; Type_ &gt;::available = 0</td>
+          <td class="memname">std::size_t <a class="el" href="classbyteme_1_1PerByteInterface.html">byteme::PerByteInterface</a>&lt; Type_ &gt;::available = 0</td>
         </tr>
       </table>
   </td>

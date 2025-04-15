@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rawbufferreader_0',['RawBufferReader',['../classbyteme_1_1RawBufferReader.html#a52edfb966cd7ce5db47ba2cbb3cd245d',1,'byteme::RawBufferReader']]],
+  ['rawbufferreader_0',['RawBufferReader',['../classbyteme_1_1RawBufferReader.html#a80988c695311f5ebd52680bf93f92847',1,'byteme::RawBufferReader']]],
   ['rawbufferwriter_1',['RawBufferWriter',['../classbyteme_1_1RawBufferWriter.html#a2536f89eb9c6a58a68269abfa907f3bd',1,'byteme::RawBufferWriter']]],
   ['rawfilereader_2',['RawFileReader',['../classbyteme_1_1RawFileReader.html#a8408ecd4c0c0d0c03d84b205f941f8d2',1,'byteme::RawFileReader']]],
   ['rawfilewriter_3',['RawFileWriter',['../classbyteme_1_1RawFileWriter.html#a85b813251f5ce733364d3b02914ad209',1,'byteme::RawFileWriter']]],

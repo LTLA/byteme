@@ -124,22 +124,22 @@ Collaboration diagram for byteme::ZlibBufferReader:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:add23d171366a292cda13243a7d9384db" id="r_add23d171366a292cda13243a7d9384db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add23d171366a292cda13243a7d9384db">ZlibBufferReader</a> (const unsigned char *<a class="el" href="#add07b8eea79991fc364205667b90a00b">buffer</a>, size_t length, const <a class="el" href="structbyteme_1_1ZlibBufferReaderOptions.html">ZlibBufferReaderOptions</a> &amp;options)</td></tr>
-<tr class="separator:add23d171366a292cda13243a7d9384db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cd5f4e25a1b3744237f6e6811d231dd" id="r_a3cd5f4e25a1b3744237f6e6811d231dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cd5f4e25a1b3744237f6e6811d231dd">ZlibBufferReader</a> (const unsigned char *<a class="el" href="#add07b8eea79991fc364205667b90a00b">buffer</a>, std::size_t length, const <a class="el" href="structbyteme_1_1ZlibBufferReaderOptions.html">ZlibBufferReaderOptions</a> &amp;options)</td></tr>
+<tr class="separator:a3cd5f4e25a1b3744237f6e6811d231dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7205cb26d279ca957ada858598a86a3" id="r_ad7205cb26d279ca957ada858598a86a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7205cb26d279ca957ada858598a86a3">load</a> ()</td></tr>
 <tr class="separator:ad7205cb26d279ca957ada858598a86a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add07b8eea79991fc364205667b90a00b" id="r_add07b8eea79991fc364205667b90a00b"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add07b8eea79991fc364205667b90a00b">buffer</a> () const</td></tr>
 <tr class="separator:add07b8eea79991fc364205667b90a00b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2317cd92892fafe298dec159ce3938d1" id="r_a2317cd92892fafe298dec159ce3938d1"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2317cd92892fafe298dec159ce3938d1">available</a> () const</td></tr>
-<tr class="separator:a2317cd92892fafe298dec159ce3938d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88472a87f0377b162a308a73dc965dbd" id="r_a88472a87f0377b162a308a73dc965dbd"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88472a87f0377b162a308a73dc965dbd">available</a> () const</td></tr>
+<tr class="separator:a88472a87f0377b162a308a73dc965dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classbyteme_1_1Reader"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classbyteme_1_1Reader')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classbyteme_1_1Reader.html">byteme::Reader</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Read and decompress bytes from a Zlib-compressed buffer. </p>
 <p>This is basically a wrapper around Zlib's inflate method, with correct closing and error checking. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="add23d171366a292cda13243a7d9384db" name="add23d171366a292cda13243a7d9384db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add23d171366a292cda13243a7d9384db">&#9670;&#160;</a></span>ZlibBufferReader()</h2>
+<a id="a3cd5f4e25a1b3744237f6e6811d231dd" name="a3cd5f4e25a1b3744237f6e6811d231dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cd5f4e25a1b3744237f6e6811d231dd">&#9670;&#160;</a></span>ZlibBufferReader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +155,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>, </td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -181,8 +181,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2317cd92892fafe298dec159ce3938d1" name="a2317cd92892fafe298dec159ce3938d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2317cd92892fafe298dec159ce3938d1">&#9670;&#160;</a></span>available()</h2>
+<a id="a88472a87f0377b162a308a73dc965dbd" name="a88472a87f0377b162a308a73dc965dbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88472a87f0377b162a308a73dc965dbd">&#9670;&#160;</a></span>available()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,7 +191,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t byteme::ZlibBufferReader::available </td>
+          <td class="memname">std::size_t byteme::ZlibBufferReader::available </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -206,7 +206,7 @@ Public Member Functions</h2></td></tr>
 <p>This method should only be called after <code><a class="el" href="#ad7205cb26d279ca957ada858598a86a3">load()</a></code> has been called and returns <code>true</code>. The return value is generally expected to be positive; however, it is possible to return a zero. Note that zero values should not be interpreted as the end of the source, which is strictly only defined by <code><a class="el" href="#ad7205cb26d279ca957ada858598a86a3">load()</a></code> returning <code>false</code>.</p>
 <dl class="section return"><dt>Returns</dt><dd>Number of available bytes in <code><a class="el" href="#add07b8eea79991fc364205667b90a00b">buffer()</a></code>. </dd></dl>
 
-<p>Implements <a class="el" href="classbyteme_1_1Reader.html#a9a09114f17cef5b01171fd97dd0306b0">byteme::Reader</a>.</p>
+<p>Implements <a class="el" href="classbyteme_1_1Reader.html#a0a07c8fe8e3d19294537900fe47419f3">byteme::Reader</a>.</p>
 
 </div>
 </div>
@@ -233,7 +233,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This method should only be called after <code><a class="el" href="#ad7205cb26d279ca957ada858598a86a3">load()</a></code> has been called and returns <code>true</code>.</p>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the start of an array containing the available bytes. The number of available bytes is provided in <code><a class="el" href="#a2317cd92892fafe298dec159ce3938d1">available()</a></code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the start of an array containing the available bytes. The number of available bytes is provided in <code><a class="el" href="#a88472a87f0377b162a308a73dc965dbd">available()</a></code>. </dd></dl>
 
 <p>Implements <a class="el" href="classbyteme_1_1Reader.html#a5b1d291e37d73e5e1dcb6219915c28f0">byteme::Reader</a>.</p>
 

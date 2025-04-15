@@ -126,8 +126,8 @@ Collaboration diagram for byteme::RawBufferWriter:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2536f89eb9c6a58a68269abfa907f3bd" id="r_a2536f89eb9c6a58a68269abfa907f3bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2536f89eb9c6a58a68269abfa907f3bd">RawBufferWriter</a> (const <a class="el" href="structbyteme_1_1RawBufferWriterOptions.html">RawBufferWriterOptions</a> &amp;options)</td></tr>
 <tr class="separator:a2536f89eb9c6a58a68269abfa907f3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af48cfca7172a4e12afb75a9a59045295" id="r_af48cfca7172a4e12afb75a9a59045295"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af48cfca7172a4e12afb75a9a59045295">write</a> (const unsigned char *buffer, size_t n)</td></tr>
-<tr class="separator:af48cfca7172a4e12afb75a9a59045295"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64f231b9bd5ce618ccf78ec9f0a5f0cc" id="r_a64f231b9bd5ce618ccf78ec9f0a5f0cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64f231b9bd5ce618ccf78ec9f0a5f0cc">write</a> (const unsigned char *buffer, std::size_t n)</td></tr>
+<tr class="separator:a64f231b9bd5ce618ccf78ec9f0a5f0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f5da6446f98b72afcdbbcf504e10512" id="r_a9f5da6446f98b72afcdbbcf504e10512"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f5da6446f98b72afcdbbcf504e10512">finish</a> ()</td></tr>
 <tr class="separator:a9f5da6446f98b72afcdbbcf504e10512"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77085bb097a701c3b132f1278df923b8" id="r_a77085bb097a701c3b132f1278df923b8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; unsigned char &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77085bb097a701c3b132f1278df923b8">get_output</a> ()</td></tr>
@@ -204,7 +204,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Indicate that the writing has finished and that the relevant clean-up (buffer flushing, file closing, etc.) should be performed. This should be called exactly once, after which no further calls to <code><a class="el" href="#af48cfca7172a4e12afb75a9a59045295">write()</a></code> or <code><a class="el" href="#a9f5da6446f98b72afcdbbcf504e10512">finish()</a></code> should be performed. </p>
+<p>Indicate that the writing has finished and that the relevant clean-up (buffer flushing, file closing, etc.) should be performed. This should be called exactly once, after which no further calls to <code><a class="el" href="#a64f231b9bd5ce618ccf78ec9f0a5f0cc">write()</a></code> or <code><a class="el" href="#a9f5da6446f98b72afcdbbcf504e10512">finish()</a></code> should be performed. </p>
 
 <p>Implements <a class="el" href="classbyteme_1_1Writer.html#a8317429c5645d0e447a4207091953164">byteme::Writer</a>.</p>
 
@@ -332,8 +332,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af48cfca7172a4e12afb75a9a59045295" name="af48cfca7172a4e12afb75a9a59045295"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af48cfca7172a4e12afb75a9a59045295">&#9670;&#160;</a></span>write() <span class="overload">[4/4]</span></h2>
+<a id="a64f231b9bd5ce618ccf78ec9f0a5f0cc" name="a64f231b9bd5ce618ccf78ec9f0a5f0cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64f231b9bd5ce618ccf78ec9f0a5f0cc">&#9670;&#160;</a></span>write() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -349,7 +349,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -367,7 +367,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classbyteme_1_1Writer.html#a58d7347c900dfd9df0b28b68ae34ca1b">byteme::Writer</a>.</p>
+<p>Implements <a class="el" href="classbyteme_1_1Writer.html#a8fee63f29e632dd029eff3c8e06020a0">byteme::Writer</a>.</p>
 
 </div>
 </div>

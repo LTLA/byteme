@@ -107,7 +107,7 @@ $(function(){ initResizable(false); });
 <div class="line">    <span class="comment">/* Do something with the available bytes in the buffer */</span></div>
 <div class="line">}</div>
 <div class="ttc" id="abyteme_8hpp_html"><div class="ttname"><a href="byteme_8hpp.html">byteme.hpp</a></div><div class="ttdoc">Umbrella header for all byteme classes.</div></div>
-<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html">byteme::GzipFileReader</a></div><div class="ttdoc">Read uncompressed bytes from a Gzip-compressed file.</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:34</div></div>
+<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html">byteme::GzipFileReader</a></div><div class="ttdoc">Read uncompressed bytes from a Gzip-compressed file.</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:37</div></div>
 </div><!-- fragment --><p>To write bytes, create the desired <code>Writer</code> class and supply an array of bytes until completion.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="byteme_8hpp.html">byteme/byteme.hpp</a>&quot;</span></div>
 <div class="line"> </div>
@@ -184,28 +184,28 @@ $(function(){ initResizable(false); });
 <div class="line">    <span class="keyword">auto</span> available = ptr-&gt;available();</div>
 <div class="line">    <span class="comment">/* Do something with the buffer. */</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aclassbyteme_1_1RawBufferReader_html"><div class="ttname"><a href="classbyteme_1_1RawBufferReader.html">byteme::RawBufferReader</a></div><div class="ttdoc">Read bytes from a raw buffer, usually text.</div><div class="ttdef"><b>Definition</b> RawBufferReader.hpp:21</div></div>
-<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html">byteme::ZlibBufferReader</a></div><div class="ttdoc">Read and decompress bytes from a Zlib-compressed buffer.</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:39</div></div>
+<div class="ttc" id="aclassbyteme_1_1RawBufferReader_html"><div class="ttname"><a href="classbyteme_1_1RawBufferReader.html">byteme::RawBufferReader</a></div><div class="ttdoc">Read bytes from a raw buffer, usually text.</div><div class="ttdef"><b>Definition</b> RawBufferReader.hpp:23</div></div>
+<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html">byteme::ZlibBufferReader</a></div><div class="ttdoc">Read and decompress bytes from a Zlib-compressed buffer.</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:42</div></div>
 </div><!-- fragment --><p>Most of the <code>Reader</code> and <code>Writer</code> constructors will also accept a matching <code>Options</code> instance to fine-tune their behavior.</p>
 <div class="fragment"><div class="line"><span class="comment">// For readers.</span></div>
 <div class="line"><a class="code hl_struct" href="structbyteme_1_1ZlibBufferReaderOptions.html">byteme::ZlibBufferReaderOptions</a> zopt;</div>
-<div class="line">zopt.<a class="code hl_variable" href="structbyteme_1_1ZlibBufferReaderOptions.html#ac3172450c8c2353e495292b62fc7f540">buffer_size</a> = 8096;</div>
+<div class="line">zopt.<a class="code hl_variable" href="structbyteme_1_1ZlibBufferReaderOptions.html#ac5780ce7c036cc541c644241d307bf0a">buffer_size</a> = 8096;</div>
 <div class="line">zopt.<a class="code hl_variable" href="structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b">mode</a> = 2; <span class="comment">// Gzip</span></div>
 <div class="line"><a class="code hl_class" href="classbyteme_1_1ZlibBufferReader.html">byteme::ZlibBufferReader</a> zreader(buffer, length, zopt);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// For writers.</span></div>
 <div class="line"><a class="code hl_struct" href="structbyteme_1_1ZlibBufferWriterOptions.html">byteme::ZlibBufferWriterOptions</a> zwopt;</div>
-<div class="line">zwopt.<a class="code hl_variable" href="structbyteme_1_1ZlibBufferWriterOptions.html#a1679400e6f3331f9848b5b8d0d42a0da">buffer_size</a> = 8096;</div>
+<div class="line">zwopt.<a class="code hl_variable" href="structbyteme_1_1ZlibBufferWriterOptions.html#ae3577ab909e788c1cfffaebafc9994c0">buffer_size</a> = 8096;</div>
 <div class="line">zwopt.<a class="code hl_variable" href="structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c">mode</a> = 0; <span class="comment">// DEFLATE</span></div>
 <div class="line">zwopt.<a class="code hl_variable" href="structbyteme_1_1ZlibBufferWriterOptions.html#a31ad029c8bd29c6edfe6e1228ee2aab7">compression_level</a> = 9;</div>
 <div class="line"><a class="code hl_class" href="classbyteme_1_1ZlibBufferReader.html">byteme::ZlibBufferReader</a> zwriter(zwopt);</div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html">byteme::ZlibBufferReaderOptions</a></div><div class="ttdoc">Options for the ZlibBufferReader constructor.</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:20</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html_a4b41fdc7bbf4749d4dd3c70c783dc32b"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b">byteme::ZlibBufferReaderOptions::mode</a></div><div class="ttdeci">int mode</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:25</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html_ac3172450c8c2353e495292b62fc7f540"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html#ac3172450c8c2353e495292b62fc7f540">byteme::ZlibBufferReaderOptions::buffer_size</a></div><div class="ttdeci">size_t buffer_size</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:31</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html">byteme::ZlibBufferWriterOptions</a></div><div class="ttdoc">Options for the ZlibBufferWriter constructor.</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:20</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_a1679400e6f3331f9848b5b8d0d42a0da"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#a1679400e6f3331f9848b5b8d0d42a0da">byteme::ZlibBufferWriterOptions::buffer_size</a></div><div class="ttdeci">size_t buffer_size</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:36</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_a31ad029c8bd29c6edfe6e1228ee2aab7"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#a31ad029c8bd29c6edfe6e1228ee2aab7">byteme::ZlibBufferWriterOptions::compression_level</a></div><div class="ttdeci">int compression_level</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:30</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_a58534c4abd7686ce1c7ae7a0c32c140c"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c">byteme::ZlibBufferWriterOptions::mode</a></div><div class="ttdeci">int mode</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:24</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html">byteme::ZlibBufferReaderOptions</a></div><div class="ttdoc">Options for the ZlibBufferReader constructor.</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:23</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html_a4b41fdc7bbf4749d4dd3c70c783dc32b"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b">byteme::ZlibBufferReaderOptions::mode</a></div><div class="ttdeci">int mode</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:28</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html_ac5780ce7c036cc541c644241d307bf0a"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html#ac5780ce7c036cc541c644241d307bf0a">byteme::ZlibBufferReaderOptions::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:34</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html">byteme::ZlibBufferWriterOptions</a></div><div class="ttdoc">Options for the ZlibBufferWriter constructor.</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:23</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_a31ad029c8bd29c6edfe6e1228ee2aab7"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#a31ad029c8bd29c6edfe6e1228ee2aab7">byteme::ZlibBufferWriterOptions::compression_level</a></div><div class="ttdeci">int compression_level</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:33</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_a58534c4abd7686ce1c7ae7a0c32c140c"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c">byteme::ZlibBufferWriterOptions::mode</a></div><div class="ttdeci">int mode</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:27</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_ae3577ab909e788c1cfffaebafc9994c0"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#ae3577ab909e788c1cfffaebafc9994c0">byteme::ZlibBufferWriterOptions::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:39</div></div>
 </div><!-- fragment --><h1>Reading byte-by-byte</h1>
 <p>Users may prefer to wrap the <code>Reader</code> in a <code>PerByteSerial</code> instance to access one input byte at a time. This avoids the boilerplate of managing all of the other (yet-to-be-used) bytes from <code>available()</code>.</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> reader = std::make_unique&lt;byteme::GzipFileReader&gt;(filepath, {})</div>
@@ -216,7 +216,7 @@ $(function(){ initResizable(false); });
 <div class="line">    <span class="comment">// Do something with &#39;x&#39;.</span></div>
 <div class="line">    valid = pb.advance();</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassbyteme_1_1PerByteSerial_html"><div class="ttname"><a href="classbyteme_1_1PerByteSerial.html">byteme::PerByteSerial</a></div><div class="ttdoc">Serial byte-by-byte extraction from a Reader source.</div><div class="ttdef"><b>Definition</b> PerByte.hpp:190</div></div>
+<div class="ttc" id="aclassbyteme_1_1PerByteSerial_html"><div class="ttname"><a href="classbyteme_1_1PerByteSerial.html">byteme::PerByteSerial</a></div><div class="ttdoc">Serial byte-by-byte extraction from a Reader source.</div><div class="ttdef"><b>Definition</b> PerByte.hpp:194</div></div>
 </div><!-- fragment --><p>We can also extract a range of bytes:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> reader = std::make_unique&lt;byteme::GzipFileReader&gt;(filepath, {})</div>
 <div class="line"><a class="code hl_class" href="classbyteme_1_1PerByteSerial.html">byteme::PerByteSerial&lt;unsigned char&gt;</a> pb(std::move(reader));</div>
@@ -239,7 +239,7 @@ $(function(){ initResizable(false); });
 <div class="line">    <span class="comment">// Do something with &#39;x&#39;.</span></div>
 <div class="line">    valid = pb.advance();</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassbyteme_1_1PerByteParallel_html"><div class="ttname"><a href="classbyteme_1_1PerByteParallel.html">byteme::PerByteParallel</a></div><div class="ttdoc">Parallelized byte-by-byte extraction from a Reader source.</div><div class="ttdef"><b>Definition</b> PerByte.hpp:221</div></div>
+<div class="ttc" id="aclassbyteme_1_1PerByteParallel_html"><div class="ttname"><a href="classbyteme_1_1PerByteParallel.html">byteme::PerByteParallel</a></div><div class="ttdoc">Parallelized byte-by-byte extraction from a Reader source.</div><div class="ttdef"><b>Definition</b> PerByte.hpp:225</div></div>
 </div><!-- fragment --><h1>Building projects</h1>
 <h2>CMake using <code>FetchContent</code></h2>
 <p>If you're using CMake, you just need to add something like this to your <code>CMakeLists.txt</code>:</p>

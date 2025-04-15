@@ -126,8 +126,8 @@ Collaboration diagram for byteme::OstreamWriter&lt; Pointer_ &gt;:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3cbc4a7eec70e40dd6a1c370f165084c" id="r_a3cbc4a7eec70e40dd6a1c370f165084c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cbc4a7eec70e40dd6a1c370f165084c">OstreamWriter</a> (Pointer_ output)</td></tr>
 <tr class="separator:a3cbc4a7eec70e40dd6a1c370f165084c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6dfbb6fb76c395c0f334ce6f9de7f81" id="r_ad6dfbb6fb76c395c0f334ce6f9de7f81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6dfbb6fb76c395c0f334ce6f9de7f81">write</a> (const unsigned char *buffer, size_t n)</td></tr>
-<tr class="separator:ad6dfbb6fb76c395c0f334ce6f9de7f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdc25527304a9a7d006a56005bc22b84" id="r_abdc25527304a9a7d006a56005bc22b84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdc25527304a9a7d006a56005bc22b84">write</a> (const unsigned char *buffer, std::size_t n)</td></tr>
+<tr class="separator:abdc25527304a9a7d006a56005bc22b84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:accafb6643fbd952a9c036e14b3bf3cb7" id="r_accafb6643fbd952a9c036e14b3bf3cb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accafb6643fbd952a9c036e14b3bf3cb7">finish</a> ()</td></tr>
 <tr class="separator:accafb6643fbd952a9c036e14b3bf3cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ecb1ea0461dfdb0f11dcadfb6fcc9fb" id="r_a1ecb1ea0461dfdb0f11dcadfb6fcc9fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ecb1ea0461dfdb0f11dcadfb6fcc9fb">write</a> (const std::string &amp;x)</td></tr>
@@ -213,7 +213,7 @@ template&lt;class Pointer_ &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Indicate that the writing has finished and that the relevant clean-up (buffer flushing, file closing, etc.) should be performed. This should be called exactly once, after which no further calls to <code><a class="el" href="#ad6dfbb6fb76c395c0f334ce6f9de7f81">write()</a></code> or <code><a class="el" href="#accafb6643fbd952a9c036e14b3bf3cb7">finish()</a></code> should be performed. </p>
+<p>Indicate that the writing has finished and that the relevant clean-up (buffer flushing, file closing, etc.) should be performed. This should be called exactly once, after which no further calls to <code><a class="el" href="#abdc25527304a9a7d006a56005bc22b84">write()</a></code> or <code><a class="el" href="#accafb6643fbd952a9c036e14b3bf3cb7">finish()</a></code> should be performed. </p>
 
 <p>Implements <a class="el" href="classbyteme_1_1Writer.html#a8317429c5645d0e447a4207091953164">byteme::Writer</a>.</p>
 
@@ -321,8 +321,8 @@ template&lt;class Pointer_ &gt; </div>
 
 </div>
 </div>
-<a id="ad6dfbb6fb76c395c0f334ce6f9de7f81" name="ad6dfbb6fb76c395c0f334ce6f9de7f81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6dfbb6fb76c395c0f334ce6f9de7f81">&#9670;&#160;</a></span>write() <span class="overload">[4/4]</span></h2>
+<a id="abdc25527304a9a7d006a56005bc22b84" name="abdc25527304a9a7d006a56005bc22b84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdc25527304a9a7d006a56005bc22b84">&#9670;&#160;</a></span>write() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -340,7 +340,7 @@ template&lt;class Pointer_ &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -358,7 +358,7 @@ template&lt;class Pointer_ &gt; </div>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classbyteme_1_1Writer.html#a58d7347c900dfd9df0b28b68ae34ca1b">byteme::Writer</a>.</p>
+<p>Implements <a class="el" href="classbyteme_1_1Writer.html#a8fee63f29e632dd029eff3c8e06020a0">byteme::Writer</a>.</p>
 
 </div>
 </div>

@@ -259,7 +259,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Path to a new file in an appropriate temporary directory with a unique name. The file itself is created at that location, though this may not be thread-safe.</dd></dl>
-<p>This function is wholly intended for unit testing in <b>byteme</b> and downstream libraries. Production use should use OS-specific thread-safe alternatives such as <code>mkstemp()</code>. </p>
+<p>This function is wholly intended for unit testing in <b>byteme</b> and downstream libraries. Production code should use OS-specific thread-safe alternatives such as <code>mkstemp()</code>. </p>
 
 </div>
 </div>

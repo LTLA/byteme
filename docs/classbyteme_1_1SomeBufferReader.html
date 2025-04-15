@@ -124,22 +124,22 @@ Collaboration diagram for byteme::SomeBufferReader:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a08a5a4a1af849dc94a64c88002bde548" id="r_a08a5a4a1af849dc94a64c88002bde548"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08a5a4a1af849dc94a64c88002bde548">SomeBufferReader</a> (const unsigned char *<a class="el" href="#a845dc3ba53b3ec9fde4edf1ef3c9b2ab">buffer</a>, size_t length, const <a class="el" href="structbyteme_1_1SomeBufferReaderOptions.html">SomeBufferReaderOptions</a> &amp;options)</td></tr>
-<tr class="separator:a08a5a4a1af849dc94a64c88002bde548"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42b6d367e5f83e2b59eba87f29f4000f" id="r_a42b6d367e5f83e2b59eba87f29f4000f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42b6d367e5f83e2b59eba87f29f4000f">SomeBufferReader</a> (const unsigned char *<a class="el" href="#a845dc3ba53b3ec9fde4edf1ef3c9b2ab">buffer</a>, std::size_t length, const <a class="el" href="structbyteme_1_1SomeBufferReaderOptions.html">SomeBufferReaderOptions</a> &amp;options)</td></tr>
+<tr class="separator:a42b6d367e5f83e2b59eba87f29f4000f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12ae0af8ee14ca87e9e2fed95e3ed4ae" id="r_a12ae0af8ee14ca87e9e2fed95e3ed4ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12ae0af8ee14ca87e9e2fed95e3ed4ae">load</a> ()</td></tr>
 <tr class="separator:a12ae0af8ee14ca87e9e2fed95e3ed4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a845dc3ba53b3ec9fde4edf1ef3c9b2ab" id="r_a845dc3ba53b3ec9fde4edf1ef3c9b2ab"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a845dc3ba53b3ec9fde4edf1ef3c9b2ab">buffer</a> () const</td></tr>
 <tr class="separator:a845dc3ba53b3ec9fde4edf1ef3c9b2ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c5300a163ff203723ab87454b4bce6d" id="r_a8c5300a163ff203723ab87454b4bce6d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c5300a163ff203723ab87454b4bce6d">available</a> () const</td></tr>
-<tr class="separator:a8c5300a163ff203723ab87454b4bce6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1483046d3c70ca76b23df7bb5ae869b6" id="r_a1483046d3c70ca76b23df7bb5ae869b6"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1483046d3c70ca76b23df7bb5ae869b6">available</a> () const</td></tr>
+<tr class="separator:a1483046d3c70ca76b23df7bb5ae869b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classbyteme_1_1Reader"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classbyteme_1_1Reader')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classbyteme_1_1Reader.html">byteme::Reader</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Read a buffer that may or may not be Gzip/Zlib-compressed. </p>
 <p>This class will automatically detect whether <code>buffer</code> refers to a text or Gzip/Zlib-compressed buffer, based on the initial magic numbers. After that, it will dispatch appropriately to <code><a class="el" href="classbyteme_1_1RawBufferReader.html" title="Read bytes from a raw buffer, usually text.">RawBufferReader</a></code> or <code><a class="el" href="classbyteme_1_1ZlibBufferReader.html" title="Read and decompress bytes from a Zlib-compressed buffer.">ZlibBufferReader</a></code> respectively. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a08a5a4a1af849dc94a64c88002bde548" name="a08a5a4a1af849dc94a64c88002bde548"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08a5a4a1af849dc94a64c88002bde548">&#9670;&#160;</a></span>SomeBufferReader()</h2>
+<a id="a42b6d367e5f83e2b59eba87f29f4000f" name="a42b6d367e5f83e2b59eba87f29f4000f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42b6d367e5f83e2b59eba87f29f4000f">&#9670;&#160;</a></span>SomeBufferReader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +155,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>, </td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -181,8 +181,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8c5300a163ff203723ab87454b4bce6d" name="a8c5300a163ff203723ab87454b4bce6d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c5300a163ff203723ab87454b4bce6d">&#9670;&#160;</a></span>available()</h2>
+<a id="a1483046d3c70ca76b23df7bb5ae869b6" name="a1483046d3c70ca76b23df7bb5ae869b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1483046d3c70ca76b23df7bb5ae869b6">&#9670;&#160;</a></span>available()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,7 +191,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t byteme::SomeBufferReader::available </td>
+          <td class="memname">std::size_t byteme::SomeBufferReader::available </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -206,7 +206,7 @@ Public Member Functions</h2></td></tr>
 <p>This method should only be called after <code><a class="el" href="#a12ae0af8ee14ca87e9e2fed95e3ed4ae">load()</a></code> has been called and returns <code>true</code>. The return value is generally expected to be positive; however, it is possible to return a zero. Note that zero values should not be interpreted as the end of the source, which is strictly only defined by <code><a class="el" href="#a12ae0af8ee14ca87e9e2fed95e3ed4ae">load()</a></code> returning <code>false</code>.</p>
 <dl class="section return"><dt>Returns</dt><dd>Number of available bytes in <code><a class="el" href="#a845dc3ba53b3ec9fde4edf1ef3c9b2ab">buffer()</a></code>. </dd></dl>
 
-<p>Implements <a class="el" href="classbyteme_1_1Reader.html#a9a09114f17cef5b01171fd97dd0306b0">byteme::Reader</a>.</p>
+<p>Implements <a class="el" href="classbyteme_1_1Reader.html#a0a07c8fe8e3d19294537900fe47419f3">byteme::Reader</a>.</p>
 
 </div>
 </div>
@@ -233,7 +233,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This method should only be called after <code><a class="el" href="#a12ae0af8ee14ca87e9e2fed95e3ed4ae">load()</a></code> has been called and returns <code>true</code>.</p>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the start of an array containing the available bytes. The number of available bytes is provided in <code><a class="el" href="#a8c5300a163ff203723ab87454b4bce6d">available()</a></code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the start of an array containing the available bytes. The number of available bytes is provided in <code><a class="el" href="#a1483046d3c70ca76b23df7bb5ae869b6">available()</a></code>. </dd></dl>
 
 <p>Implements <a class="el" href="classbyteme_1_1Reader.html#a5b1d291e37d73e5e1dcb6219915c28f0">byteme::Reader</a>.</p>
 

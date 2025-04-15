@@ -132,14 +132,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a60671d10f28ce83fa256d7342c769ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b1d291e37d73e5e1dcb6219915c28f0" id="r_a5b1d291e37d73e5e1dcb6219915c28f0"><td class="memItemLeft" align="right" valign="top">virtual const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b1d291e37d73e5e1dcb6219915c28f0">buffer</a> () const =0</td></tr>
 <tr class="separator:a5b1d291e37d73e5e1dcb6219915c28f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a09114f17cef5b01171fd97dd0306b0" id="r_a9a09114f17cef5b01171fd97dd0306b0"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a09114f17cef5b01171fd97dd0306b0">available</a> () const =0</td></tr>
-<tr class="separator:a9a09114f17cef5b01171fd97dd0306b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a07c8fe8e3d19294537900fe47419f3" id="r_a0a07c8fe8e3d19294537900fe47419f3"><td class="memItemLeft" align="right" valign="top">virtual std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a07c8fe8e3d19294537900fe47419f3">available</a> () const =0</td></tr>
+<tr class="separator:a0a07c8fe8e3d19294537900fe47419f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Virtual class for reading bytes from a source. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9a09114f17cef5b01171fd97dd0306b0" name="a9a09114f17cef5b01171fd97dd0306b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a09114f17cef5b01171fd97dd0306b0">&#9670;&#160;</a></span>available()</h2>
+<a id="a0a07c8fe8e3d19294537900fe47419f3" name="a0a07c8fe8e3d19294537900fe47419f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a07c8fe8e3d19294537900fe47419f3">&#9670;&#160;</a></span>available()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -148,7 +148,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual size_t byteme::Reader::available </td>
+          <td class="memname">virtual std::size_t byteme::Reader::available </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -163,7 +163,7 @@ Public Member Functions</h2></td></tr>
 <p>This method should only be called after <code><a class="el" href="#a60671d10f28ce83fa256d7342c769ba5">load()</a></code> has been called and returns <code>true</code>. The return value is generally expected to be positive; however, it is possible to return a zero. Note that zero values should not be interpreted as the end of the source, which is strictly only defined by <code><a class="el" href="#a60671d10f28ce83fa256d7342c769ba5">load()</a></code> returning <code>false</code>.</p>
 <dl class="section return"><dt>Returns</dt><dd>Number of available bytes in <code><a class="el" href="#a5b1d291e37d73e5e1dcb6219915c28f0">buffer()</a></code>. </dd></dl>
 
-<p>Implemented in <a class="el" href="classbyteme_1_1ChunkedBufferReader.html#af4159e974920585c143d57f52a0e8464">byteme::ChunkedBufferReader</a>, <a class="el" href="classbyteme_1_1GzipFileReader.html#a16d150b28d80163e4cda48583cbf4c74">byteme::GzipFileReader</a>, <a class="el" href="classbyteme_1_1IstreamReader.html#a52f73d6079ea22af024bd074e6de8c79">byteme::IstreamReader&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferReader.html#aa7e496c2f99981b0e3724e804ba0f3b5">byteme::RawBufferReader</a>, <a class="el" href="classbyteme_1_1RawFileReader.html#acd21606c899971a36f9a8b2112982c39">byteme::RawFileReader</a>, <a class="el" href="classbyteme_1_1SomeBufferReader.html#a8c5300a163ff203723ab87454b4bce6d">byteme::SomeBufferReader</a>, <a class="el" href="classbyteme_1_1SomeFileReader.html#ae2bc3e4bcbf088dc674859f145294b96">byteme::SomeFileReader</a>, and <a class="el" href="classbyteme_1_1ZlibBufferReader.html#a2317cd92892fafe298dec159ce3938d1">byteme::ZlibBufferReader</a>.</p>
+<p>Implemented in <a class="el" href="classbyteme_1_1ChunkedBufferReader.html#a0dc333af0182619295fea3c6552f249d">byteme::ChunkedBufferReader</a>, <a class="el" href="classbyteme_1_1GzipFileReader.html#a0c63d436beea2481673c1af005c23bdc">byteme::GzipFileReader</a>, <a class="el" href="classbyteme_1_1IstreamReader.html#abdce776f6f2a32b518bd9b95b5442e32">byteme::IstreamReader&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferReader.html#ac3f402bd16a6e73fe8c3cf09b6d2c348">byteme::RawBufferReader</a>, <a class="el" href="classbyteme_1_1RawFileReader.html#aabba8af8c7ba6e8c8702c5a588a2efeb">byteme::RawFileReader</a>, <a class="el" href="classbyteme_1_1SomeBufferReader.html#a1483046d3c70ca76b23df7bb5ae869b6">byteme::SomeBufferReader</a>, <a class="el" href="classbyteme_1_1SomeFileReader.html#ab8f1b0e7eb9655d973006170a1e8fb9b">byteme::SomeFileReader</a>, and <a class="el" href="classbyteme_1_1ZlibBufferReader.html#a88472a87f0377b162a308a73dc965dbd">byteme::ZlibBufferReader</a>.</p>
 
 </div>
 </div>
@@ -190,7 +190,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This method should only be called after <code><a class="el" href="#a60671d10f28ce83fa256d7342c769ba5">load()</a></code> has been called and returns <code>true</code>.</p>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the start of an array containing the available bytes. The number of available bytes is provided in <code><a class="el" href="#a9a09114f17cef5b01171fd97dd0306b0">available()</a></code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the start of an array containing the available bytes. The number of available bytes is provided in <code><a class="el" href="#a0a07c8fe8e3d19294537900fe47419f3">available()</a></code>. </dd></dl>
 
 <p>Implemented in <a class="el" href="classbyteme_1_1ChunkedBufferReader.html#afffa05cf40a60a82c01f0f546e78e65c">byteme::ChunkedBufferReader</a>, <a class="el" href="classbyteme_1_1GzipFileReader.html#a5ebdbb98c1f78cb78883fccb11701bfd">byteme::GzipFileReader</a>, <a class="el" href="classbyteme_1_1IstreamReader.html#a35ce4f9a45b6331d11be9cceb23ff80a">byteme::IstreamReader&lt; Pointer_ &gt;</a>, <a class="el" href="classbyteme_1_1RawBufferReader.html#a9b38a2b7acc6c2e2f07cf2981053f8e3">byteme::RawBufferReader</a>, <a class="el" href="classbyteme_1_1RawFileReader.html#ae4d96df0332cc6b55f7c2702d87c6797">byteme::RawFileReader</a>, <a class="el" href="classbyteme_1_1SomeBufferReader.html#a845dc3ba53b3ec9fde4edf1ef3c9b2ab">byteme::SomeBufferReader</a>, <a class="el" href="classbyteme_1_1SomeFileReader.html#a88e3abc2c4f024f0003e8589e425033b">byteme::SomeFileReader</a>, and <a class="el" href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">byteme::ZlibBufferReader</a>.</p>
 
