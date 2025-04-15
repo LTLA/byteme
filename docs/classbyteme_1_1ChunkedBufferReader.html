@@ -126,8 +126,6 @@ Collaboration diagram for byteme::ChunkedBufferReader:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af708f65b9ab92834408bb591d30b65f3" id="r_af708f65b9ab92834408bb591d30b65f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af708f65b9ab92834408bb591d30b65f3">ChunkedBufferReader</a> (const unsigned char *<a class="el" href="#afffa05cf40a60a82c01f0f546e78e65c">buffer</a>, size_t length, size_t chunk_size)</td></tr>
 <tr class="separator:af708f65b9ab92834408bb591d30b65f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39e73da2644e5f924dedf581a8002056" id="r_a39e73da2644e5f924dedf581a8002056"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39e73da2644e5f924dedf581a8002056">ChunkedBufferReader</a> (const char *<a class="el" href="#afffa05cf40a60a82c01f0f546e78e65c">buffer</a>, size_t length, size_t chunk_size)</td></tr>
-<tr class="separator:a39e73da2644e5f924dedf581a8002056"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5f68b4486a3346e6ae062bf1a105226" id="r_ae5f68b4486a3346e6ae062bf1a105226"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5f68b4486a3346e6ae062bf1a105226">load</a> ()</td></tr>
 <tr class="separator:ae5f68b4486a3346e6ae062bf1a105226"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afffa05cf40a60a82c01f0f546e78e65c" id="r_afffa05cf40a60a82c01f0f546e78e65c"><td class="memItemLeft" align="right" valign="top">const unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afffa05cf40a60a82c01f0f546e78e65c">buffer</a> () const</td></tr>
@@ -141,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <p>This is basically the same as <code><a class="el" href="classbyteme_1_1RawBufferReader.html" title="Read bytes from a raw buffer, usually text.">RawBufferReader</a></code> except that chunks of bytes are returned on every <code><a class="el" href="#ae5f68b4486a3346e6ae062bf1a105226">load()</a></code> call. It is primarily intended for use in tests of <b>byteme</b> callers, to ensure that downstream algorithms behave correctly with respect to chunked reads. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af708f65b9ab92834408bb591d30b65f3" name="af708f65b9ab92834408bb591d30b65f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af708f65b9ab92834408bb591d30b65f3">&#9670;&#160;</a></span>ChunkedBufferReader() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af708f65b9ab92834408bb591d30b65f3">&#9670;&#160;</a></span>ChunkedBufferReader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -153,48 +151,6 @@ Public Member Functions</h2></td></tr>
           <td class="memname">byteme::ChunkedBufferReader::ChunkedBufferReader </td>
           <td>(</td>
           <td class="paramtype">const unsigned char *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>chunk_size</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Pointer to an array of bytes, usually containing text. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">length</td><td>Length of the buffer. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">chunk_size</td><td>Size of each chunk in bytes. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a39e73da2644e5f924dedf581a8002056" name="a39e73da2644e5f924dedf581a8002056"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39e73da2644e5f924dedf581a8002056">&#9670;&#160;</a></span>ChunkedBufferReader() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">byteme::ChunkedBufferReader::ChunkedBufferReader </td>
-          <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

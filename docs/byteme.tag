@@ -148,13 +148,6 @@
       <arglist>(const unsigned char *buffer, size_t length, size_t chunk_size)</arglist>
     </member>
     <member kind="function">
-      <type></type>
-      <name>ChunkedBufferReader</name>
-      <anchorfile>classbyteme_1_1ChunkedBufferReader.html</anchorfile>
-      <anchor>a39e73da2644e5f924dedf581a8002056</anchor>
-      <arglist>(const char *buffer, size_t length, size_t chunk_size)</arglist>
-    </member>
-    <member kind="function">
       <type>bool</type>
       <name>load</name>
       <anchorfile>classbyteme_1_1ChunkedBufferReader.html</anchorfile>
