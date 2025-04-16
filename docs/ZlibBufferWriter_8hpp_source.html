@@ -103,127 +103,126 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;zlib.h&quot;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="Writer_8hpp.html">Writer.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;check_buffer_size.hpp&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferWriterOptions.html">   24</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbyteme_1_1ZlibBufferWriterOptions.html">ZlibBufferWriterOptions</a> {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c">   28</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c">mode</a> = 2;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferWriterOptions.html#a31ad029c8bd29c6edfe6e1228ee2aab7">   34</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structbyteme_1_1ZlibBufferWriterOptions.html#a31ad029c8bd29c6edfe6e1228ee2aab7">compression_level</a> = 6;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferWriterOptions.html#ae3577ab909e788c1cfffaebafc9994c0">   40</a></span>    std::size_t <a class="code hl_variable" href="structbyteme_1_1ZlibBufferWriterOptions.html#ae3577ab909e788c1cfffaebafc9994c0">buffer_size</a> = 65536;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferWriterOptions.html">   23</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbyteme_1_1ZlibBufferWriterOptions.html">ZlibBufferWriterOptions</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c">   27</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c">mode</a> = 2;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferWriterOptions.html#a31ad029c8bd29c6edfe6e1228ee2aab7">   33</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structbyteme_1_1ZlibBufferWriterOptions.html#a31ad029c8bd29c6edfe6e1228ee2aab7">compression_level</a> = 6;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferWriterOptions.html#ae3577ab909e788c1cfffaebafc9994c0">   39</a></span>    std::size_t <a class="code hl_variable" href="structbyteme_1_1ZlibBufferWriterOptions.html#ae3577ab909e788c1cfffaebafc9994c0">buffer_size</a> = 65536;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="foldopen" id="foldopen00048" data-start="{" data-end="};">
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferWriter.html">   48</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1ZlibBufferWriter.html">ZlibBufferWriter</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1Writer.html">Writer</a> {</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">struct </span>ZStream {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        ZStream(<span class="keywordtype">int</span> mode, <span class="keywordtype">int</span> level) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            strm.zalloc = Z_NULL;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            strm.zfree = Z_NULL;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            strm.opaque = Z_NULL;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            strm.avail_in = 0;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            strm.next_in = Z_NULL;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="comment">// Check out https://zlib.net/manual.html for the constants.</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordtype">int</span> windowBits;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            <span class="keywordflow">if</span> (mode == 0) { <span class="comment">// deflate</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                windowBits = -15;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == 1) { <span class="comment">// Zlib</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                windowBits = 15;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == 2) { <span class="comment">// Gzip</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                windowBits = 16 + 15;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;unknown Zlib compression mode supplied&quot;</span>);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            } </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="keywordtype">int</span> ret = deflateInit2(&amp;strm, level, Z_DEFLATED, windowBits, 8, Z_DEFAULT_STRATEGY);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="keywordflow">if</span> (ret != Z_OK) {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to initialize Zlib buffer compression&quot;</span>);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            }</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        ~ZStream() {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            deflateEnd(&amp;strm);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="comment">// Delete the remaining constructors.</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        ZStream(<span class="keyword">const</span> ZStream&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        ZStream(ZStream&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        ZStream&amp; operator=(<span class="keyword">const</span> ZStream&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        ZStream&amp; operator=(ZStream&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        z_stream strm;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    };</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferWriter.html#a09d7572eb0c546087fb66c13aa8e2d84">  102</a></span>    <a class="code hl_function" href="classbyteme_1_1ZlibBufferWriter.html#a09d7572eb0c546087fb66c13aa8e2d84">ZlibBufferWriter</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1ZlibBufferWriterOptions.html">ZlibBufferWriterOptions</a>&amp; options) : my_zstr(options.mode, options.compression_level), my_holding(check_buffer_size(options.buffer_size)) {}</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">using </span><a class="code hl_function" href="classbyteme_1_1Writer.html#a8fee63f29e632dd029eff3c8e06020a0">Writer::write</a>;</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="foldopen" id="foldopen00107" data-start="{" data-end="}">
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferWriter.html#a7cb49e8471cfc494af1341e16f81403a">  107</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1ZlibBufferWriter.html#a7cb49e8471cfc494af1341e16f81403a">write</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, std::size_t n) {</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        my_zstr.strm.next_in = <span class="keyword">const_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(buffer); <span class="comment">// for C compatibility.</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        my_zstr.strm.avail_in = n;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        dump(Z_NO_FLUSH);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="};">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferWriter.html">   47</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1ZlibBufferWriter.html">ZlibBufferWriter</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1Writer.html">Writer</a> {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">struct </span>ZStream {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        ZStream(<span class="keywordtype">int</span> mode, <span class="keywordtype">int</span> level) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            strm.zalloc = Z_NULL;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            strm.zfree = Z_NULL;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            strm.opaque = Z_NULL;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            strm.avail_in = 0;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            strm.next_in = Z_NULL;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="comment">// Check out https://zlib.net/manual.html for the constants.</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keywordtype">int</span> windowBits;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordflow">if</span> (mode == 0) { <span class="comment">// deflate</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                windowBits = -15;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == 1) { <span class="comment">// Zlib</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                windowBits = 15;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == 2) { <span class="comment">// Gzip</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                windowBits = 16 + 15;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;unknown Zlib compression mode supplied&quot;</span>);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            } </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="keywordtype">int</span> ret = deflateInit2(&amp;strm, level, Z_DEFLATED, windowBits, 8, Z_DEFAULT_STRATEGY);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="keywordflow">if</span> (ret != Z_OK) {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to initialize Zlib buffer compression&quot;</span>);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        ~ZStream() {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            deflateEnd(&amp;strm);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="comment">// Delete the remaining constructors.</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        ZStream(<span class="keyword">const</span> ZStream&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        ZStream(ZStream&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        ZStream&amp; operator=(<span class="keyword">const</span> ZStream&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        ZStream&amp; operator=(ZStream&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        z_stream strm;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    };</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferWriter.html#a09d7572eb0c546087fb66c13aa8e2d84">  101</a></span>    <a class="code hl_function" href="classbyteme_1_1ZlibBufferWriter.html#a09d7572eb0c546087fb66c13aa8e2d84">ZlibBufferWriter</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1ZlibBufferWriterOptions.html">ZlibBufferWriterOptions</a>&amp; options) : my_zstr(options.mode, options.compression_level), my_holding(options.buffer_size) {}</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">using </span><a class="code hl_function" href="classbyteme_1_1Writer.html#a8fee63f29e632dd029eff3c8e06020a0">Writer::write</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferWriter.html#a7cb49e8471cfc494af1341e16f81403a">  106</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1ZlibBufferWriter.html#a7cb49e8471cfc494af1341e16f81403a">write</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, std::size_t n) {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        my_zstr.strm.next_in = <span class="keyword">const_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(buffer); <span class="comment">// for C compatibility.</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        my_zstr.strm.avail_in = n;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        dump(Z_NO_FLUSH);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
 </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="foldopen" id="foldopen00113" data-start="{" data-end="}">
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac">  113</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac">finish</a>() {</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        my_zstr.strm.next_in = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        my_zstr.strm.avail_in = 0;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        dump(Z_FINISH);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="foldopen" id="foldopen00112" data-start="{" data-end="}">
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac">  112</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac">finish</a>() {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        my_zstr.strm.next_in = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        my_zstr.strm.avail_in = 0;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        dump(Z_FINISH);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
 </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    ZStream my_zstr;</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    std::vector&lt;unsigned char&gt; my_holding;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordtype">void</span> dump(<span class="keywordtype">int</span> flag) {</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keywordflow">do</span> {</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            my_zstr.strm.avail_out = my_holding.size();</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            my_zstr.strm.next_out = my_holding.data();</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            deflate(&amp;(my_zstr.strm), flag); <span class="comment">// no need to check, see https://zlib.net/zlib_how.html.</span></div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            std::size_t compressed = my_holding.size() - my_zstr.strm.avail_out;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            output.insert(output.end(), my_holding.begin(), my_holding.begin() + compressed);</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        } <span class="keywordflow">while</span> (my_zstr.strm.avail_out == 0);</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    }</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// Exposed for back-compatibility only.</span></div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    std::vector&lt;unsigned char&gt; output;</div>
-<div class="foldopen" id="foldopen00147" data-start="{" data-end="}">
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferWriter.html#ac0c286b480ef272974c3ee3d4209ec0e">  147</a></span>    std::vector&lt;unsigned char&gt;&amp; <a class="code hl_function" href="classbyteme_1_1ZlibBufferWriter.html#ac0c286b480ef272974c3ee3d4209ec0e">get_output</a>() {</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">return</span> output;</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    ZStream my_zstr;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    std::vector&lt;unsigned char&gt; my_holding;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordtype">void</span> dump(<span class="keywordtype">int</span> flag) {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">do</span> {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            my_zstr.strm.avail_out = my_holding.size();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            my_zstr.strm.next_out = my_holding.data();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            deflate(&amp;(my_zstr.strm), flag); <span class="comment">// no need to check, see https://zlib.net/zlib_how.html.</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            std::size_t compressed = my_holding.size() - my_zstr.strm.avail_out;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            output.insert(output.end(), my_holding.begin(), my_holding.begin() + compressed);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        } <span class="keywordflow">while</span> (my_zstr.strm.avail_out == 0);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="comment">// Exposed for back-compatibility only.</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    std::vector&lt;unsigned char&gt; output;</div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="}">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferWriter.html#ac0c286b480ef272974c3ee3d4209ec0e">  146</a></span>    std::vector&lt;unsigned char&gt;&amp; <a class="code hl_function" href="classbyteme_1_1ZlibBufferWriter.html#ac0c286b480ef272974c3ee3d4209ec0e">get_output</a>() {</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="keywordflow">return</span> output;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
 </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>};</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>};</div>
 </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>}</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>}</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aWriter_8hpp_html"><div class="ttname"><a href="Writer_8hpp.html">Writer.hpp</a></div><div class="ttdoc">Write to an output sink.</div></div>
 <div class="ttc" id="aclassbyteme_1_1Writer_html"><div class="ttname"><a href="classbyteme_1_1Writer.html">byteme::Writer</a></div><div class="ttdoc">Virtual class for writing bytes to a sink.</div><div class="ttdef"><b>Definition</b> Writer.hpp:19</div></div>
 <div class="ttc" id="aclassbyteme_1_1Writer_html_a8fee63f29e632dd029eff3c8e06020a0"><div class="ttname"><a href="classbyteme_1_1Writer.html#a8fee63f29e632dd029eff3c8e06020a0">byteme::Writer::write</a></div><div class="ttdeci">virtual void write(const unsigned char *buffer, std::size_t n)=0</div></div>
-<div class="ttc" id="aclassbyteme_1_1ZlibBufferWriter_html"><div class="ttname"><a href="classbyteme_1_1ZlibBufferWriter.html">byteme::ZlibBufferWriter</a></div><div class="ttdoc">Compress and write bytes to a Zlib-compressed buffer.</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:48</div></div>
-<div class="ttc" id="aclassbyteme_1_1ZlibBufferWriter_html_a09d7572eb0c546087fb66c13aa8e2d84"><div class="ttname"><a href="classbyteme_1_1ZlibBufferWriter.html#a09d7572eb0c546087fb66c13aa8e2d84">byteme::ZlibBufferWriter::ZlibBufferWriter</a></div><div class="ttdeci">ZlibBufferWriter(const ZlibBufferWriterOptions &amp;options)</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:102</div></div>
-<div class="ttc" id="aclassbyteme_1_1ZlibBufferWriter_html_a192a702db3794bf64766b0cee7ab4fac"><div class="ttname"><a href="classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac">byteme::ZlibBufferWriter::finish</a></div><div class="ttdeci">void finish()</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:113</div></div>
-<div class="ttc" id="aclassbyteme_1_1ZlibBufferWriter_html_a7cb49e8471cfc494af1341e16f81403a"><div class="ttname"><a href="classbyteme_1_1ZlibBufferWriter.html#a7cb49e8471cfc494af1341e16f81403a">byteme::ZlibBufferWriter::write</a></div><div class="ttdeci">void write(const unsigned char *buffer, std::size_t n)</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:107</div></div>
-<div class="ttc" id="aclassbyteme_1_1ZlibBufferWriter_html_ac0c286b480ef272974c3ee3d4209ec0e"><div class="ttname"><a href="classbyteme_1_1ZlibBufferWriter.html#ac0c286b480ef272974c3ee3d4209ec0e">byteme::ZlibBufferWriter::get_output</a></div><div class="ttdeci">std::vector&lt; unsigned char &gt; &amp; get_output()</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:147</div></div>
+<div class="ttc" id="aclassbyteme_1_1ZlibBufferWriter_html"><div class="ttname"><a href="classbyteme_1_1ZlibBufferWriter.html">byteme::ZlibBufferWriter</a></div><div class="ttdoc">Compress and write bytes to a Zlib-compressed buffer.</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:47</div></div>
+<div class="ttc" id="aclassbyteme_1_1ZlibBufferWriter_html_a09d7572eb0c546087fb66c13aa8e2d84"><div class="ttname"><a href="classbyteme_1_1ZlibBufferWriter.html#a09d7572eb0c546087fb66c13aa8e2d84">byteme::ZlibBufferWriter::ZlibBufferWriter</a></div><div class="ttdeci">ZlibBufferWriter(const ZlibBufferWriterOptions &amp;options)</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:101</div></div>
+<div class="ttc" id="aclassbyteme_1_1ZlibBufferWriter_html_a192a702db3794bf64766b0cee7ab4fac"><div class="ttname"><a href="classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac">byteme::ZlibBufferWriter::finish</a></div><div class="ttdeci">void finish()</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:112</div></div>
+<div class="ttc" id="aclassbyteme_1_1ZlibBufferWriter_html_a7cb49e8471cfc494af1341e16f81403a"><div class="ttname"><a href="classbyteme_1_1ZlibBufferWriter.html#a7cb49e8471cfc494af1341e16f81403a">byteme::ZlibBufferWriter::write</a></div><div class="ttdeci">void write(const unsigned char *buffer, std::size_t n)</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:106</div></div>
+<div class="ttc" id="aclassbyteme_1_1ZlibBufferWriter_html_ac0c286b480ef272974c3ee3d4209ec0e"><div class="ttname"><a href="classbyteme_1_1ZlibBufferWriter.html#ac0c286b480ef272974c3ee3d4209ec0e">byteme::ZlibBufferWriter::get_output</a></div><div class="ttdeci">std::vector&lt; unsigned char &gt; &amp; get_output()</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:146</div></div>
 <div class="ttc" id="anamespacebyteme_html"><div class="ttname"><a href="namespacebyteme.html">byteme</a></div><div class="ttdoc">Simple byte readers and writers.</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html">byteme::ZlibBufferWriterOptions</a></div><div class="ttdoc">Options for the ZlibBufferWriter constructor.</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:24</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_a31ad029c8bd29c6edfe6e1228ee2aab7"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#a31ad029c8bd29c6edfe6e1228ee2aab7">byteme::ZlibBufferWriterOptions::compression_level</a></div><div class="ttdeci">int compression_level</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:34</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_a58534c4abd7686ce1c7ae7a0c32c140c"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c">byteme::ZlibBufferWriterOptions::mode</a></div><div class="ttdeci">int mode</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:28</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_ae3577ab909e788c1cfffaebafc9994c0"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#ae3577ab909e788c1cfffaebafc9994c0">byteme::ZlibBufferWriterOptions::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:40</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html">byteme::ZlibBufferWriterOptions</a></div><div class="ttdoc">Options for the ZlibBufferWriter constructor.</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:23</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_a31ad029c8bd29c6edfe6e1228ee2aab7"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#a31ad029c8bd29c6edfe6e1228ee2aab7">byteme::ZlibBufferWriterOptions::compression_level</a></div><div class="ttdeci">int compression_level</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:33</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_a58534c4abd7686ce1c7ae7a0c32c140c"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c">byteme::ZlibBufferWriterOptions::mode</a></div><div class="ttdeci">int mode</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:27</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferWriterOptions_html_ae3577ab909e788c1cfffaebafc9994c0"><div class="ttname"><a href="structbyteme_1_1ZlibBufferWriterOptions.html#ae3577ab909e788c1cfffaebafc9994c0">byteme::ZlibBufferWriterOptions::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> ZlibBufferWriter.hpp:39</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
