@@ -36,10 +36,16 @@ public:
     using Writer::write;
 
     void write(const unsigned char* buffer, std::size_t n) {
-        my_output->write(reinterpret_cast<const char*>(buffer), n);
-        if (!(my_output->good())) {
-            throw std::runtime_error("failed to write to arbitrary output stream");
-        }
+        safe_write<std::streamsize, false>(
+            reinterpret_cast<const char*>(buffer),
+            n,
+            [&](const char* ptr0, std::streamsize n0) -> void {
+                my_output->write(ptr0, n0);
+                if (!(my_output->good())) {
+                    throw std::runtime_error("failed to write to arbitrary output stream");
+                }
+            }
+        );
     }
 
     void finish() {

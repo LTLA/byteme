@@ -3,7 +3,9 @@
 
 #include <stdexcept>
 #include <vector>
+
 #include "Writer.hpp"
+#include "check_buffer_size.hpp"
 
 /**
  * @file GzipFileWriter.hpp
@@ -42,7 +44,8 @@ public:
      * @param options Further options.
      */
     GzipFileWriter(const char* path, const GzipFileWriterOptions& options) : my_gzfile(path, "wb") {
-        if (gzbuffer(my_gzfile.handle, options.buffer_size)) {
+        std::size_t buffer_size = check_buffer_size<unsigned>(options.buffer_size); // constrained for the gzbuffer interface.
+        if (gzbuffer(my_gzfile.handle, buffer_size)) {
             throw std::runtime_error("failed to set the Gzip compression buffer");
         }
         if (gzsetparams(my_gzfile.handle, options.compression_level, Z_DEFAULT_STRATEGY) != Z_OK) {
@@ -54,12 +57,16 @@ public:
     using Writer::write;
 
     void write(const unsigned char* buffer, std::size_t n) {
-        if (n) {
-            std::size_t ok = gzwrite(my_gzfile.handle, buffer, n);
-            if (ok != n) {
-                throw std::runtime_error("failed to write to the Gzip-compressed file");
+        safe_write<unsigned, true>(
+            buffer,
+            n,
+            [&](const unsigned char* buffer0, unsigned n0) -> void { 
+                auto ok = gzwrite(my_gzfile.handle, buffer0, n0);
+                if (ok <= 0) {
+                    throw std::runtime_error("failed to write to the Gzip-compressed file");
+                }
             }
-        }
+        );
     }
 
     void finish() {

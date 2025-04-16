@@ -7,6 +7,7 @@
 
 #include "zlib.h"
 
+#include "check_buffer_size.hpp"
 #include "SelfClosingGzFile.hpp"
 #include "Reader.hpp"
 
@@ -40,7 +41,14 @@ public:
      * @param path Path to the file.
      * @param options Further options.
      */
-    GzipFileReader(const char* path, const GzipFileReaderOptions& options) : my_gzfile(path, "rb"), my_buffer(options.buffer_size) {}
+    GzipFileReader(const char* path, const GzipFileReaderOptions& options) : 
+        my_gzfile(path, "rb"),
+        my_buffer(
+            check_buffer_size<unsigned>( // constrained for the gzread interface.
+                check_buffer_size(options.buffer_size)
+            )
+        )
+    {}
 
 public:
     bool load() {

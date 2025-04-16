@@ -1,5 +1,8 @@
 #include <gtest/gtest.h>
 
+#include <cstdint>
+#include <vector>
+
 #include "read_lines.h"
 
 #include "byteme/temp_file_path.hpp"
@@ -22,6 +25,52 @@ TEST(Miscellaneous, Umbrella) {
     byteme::GzipFileReader reader(gzname.c_str(), {});
     auto lines = read_lines(reader);
     EXPECT_EQ(lines, contents);
+}
+
+TEST(Miscellaneous, CheckBufferSize) {
+    EXPECT_FALSE(byteme::exceeds_cap<int8_t>(10));
+    EXPECT_TRUE(byteme::exceeds_cap<int8_t>(1000));
+
+    EXPECT_EQ(byteme::check_buffer_size<uint8_t>(10), 10);
+    EXPECT_EQ(byteme::check_buffer_size<uint8_t>(1000), 255);
+
+    EXPECT_EQ(byteme::check_buffer_size(10), 10);
+    EXPECT_EQ(byteme::check_buffer_size(10000), 10000);
+
+    std::vector<unsigned char> buffers(1000);
+    int counter = 0;
+    for (auto& b : buffers) {
+        b = counter % std::numeric_limits<unsigned char>::max();
+        ++counter;
+    }
+
+    {
+        std::vector<unsigned char> reference;
+        byteme::safe_write<uint8_t, false>(
+            buffers.data(),
+            static_cast<int>(buffers.size()),
+            [&](const unsigned char* b, int n) -> void {
+                reference.insert(reference.end(), b, b + n);
+            }
+        );
+        EXPECT_EQ(buffers, reference);
+    }
+
+    for (int i = 0; i < 2; ++i) {
+        std::vector<unsigned char> reference;
+        byteme::safe_write<uint8_t, true>(
+            buffers.data(),
+            (i ? 0 : static_cast<unsigned>(buffers.size())),
+            [&](const unsigned char* b, unsigned n) -> void {
+                reference.insert(reference.end(), b, b + n);
+            }
+        );
+        if (i) {
+            EXPECT_TRUE(reference.empty());
+        } else {
+            EXPECT_EQ(buffers, reference);
+        }
+    }
 }
 
 TEST(Miscellaneous, MagicNumbers) {

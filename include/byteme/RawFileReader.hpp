@@ -8,6 +8,7 @@
 
 #include "Reader.hpp"
 #include "SelfClosingFILE.hpp"
+#include "check_buffer_size.hpp"
 
 /**
  * @file RawFileReader.hpp
@@ -40,7 +41,10 @@ public:
      * @param path Path to the file.
      * @param options Further options.
      */
-    RawFileReader(const char* path, const RawFileReaderOptions& options) : my_file(path, "rb"), my_buffer(options.buffer_size) {}
+    RawFileReader(const char* path, const RawFileReaderOptions& options) :
+        my_file(path, "rb"),
+        my_buffer(check_buffer_size(options.buffer_size))
+    {}
 
 public:
     bool load() {

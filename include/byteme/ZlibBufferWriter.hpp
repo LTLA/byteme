@@ -8,6 +8,7 @@
 #include "zlib.h"
 
 #include "Writer.hpp"
+#include "check_buffer_size.hpp"
 
 /**
  * @file ZlibBufferWriter.hpp
@@ -98,15 +99,29 @@ public:
     /**
      * @param options Further options.
      */
-    ZlibBufferWriter(const ZlibBufferWriterOptions& options) : my_zstr(options.mode, options.compression_level), my_holding(options.buffer_size) {}
+    ZlibBufferWriter(const ZlibBufferWriterOptions& options) : 
+        my_zstr(options.mode, options.compression_level),
+        my_holding(
+            check_buffer_size<decltype(decltype(ZStream::strm)::avail_out)>( // constrained for the z_stream interface.
+                check_buffer_size(options.buffer_size)
+            )
+        )
+    {}
 
 public:
     using Writer::write;
 
     void write(const unsigned char* buffer, std::size_t n) {
-        my_zstr.strm.next_in = const_cast<unsigned char*>(buffer); // for C compatibility.
-        my_zstr.strm.avail_in = n;
-        dump(Z_NO_FLUSH);
+        typedef decltype(decltype(ZStream::strm)::avail_in) Size; // constrained for the z_stream interface.
+        safe_write<Size, false>(
+            buffer,
+            n,
+            [&](const unsigned char* buffer0, Size n0) -> void {
+                my_zstr.strm.next_in = const_cast<unsigned char*>(buffer0); // for C compatibility.
+                my_zstr.strm.avail_in = n0;
+                dump(Z_NO_FLUSH);
+            }
+        );
     }
 
     void finish() {

@@ -5,6 +5,8 @@
 #include <cstring>
 #include <cstddef>
 
+#include "check_buffer_size.hpp"
+
 /**
  * @file Writer.hpp
  *
@@ -41,7 +43,14 @@ public:
      * @param x String to be written.
      */
     void write(const std::string& x) {
-        write(reinterpret_cast<const unsigned char*>(x.c_str()), x.size());
+        // Protect against cases where size_t < string::size_type.
+        safe_write<std::size_t, false>(
+            reinterpret_cast<const unsigned char*>(x.c_str()),
+            x.size(),
+            [&](const unsigned char* ptr0, std::size_t n0) -> void {
+                write(ptr0, n0);
+            }
+        );
     }
 
     /**

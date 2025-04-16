@@ -8,6 +8,7 @@
 #include "zlib.h"
 
 #include "Reader.hpp"
+#include "check_buffer_size.hpp"
 
 /**
  * @file ZlibBufferReader.hpp
@@ -101,7 +102,12 @@ public:
      * @param options Further options.
      */
     ZlibBufferReader(const unsigned char* buffer, std::size_t length, const ZlibBufferReaderOptions& options) : 
-        my_zstr(options.mode), my_buffer(options.buffer_size)
+        my_zstr(options.mode),
+        my_buffer(
+            check_buffer_size<decltype(decltype(ZStream::strm)::avail_out)>(
+                check_buffer_size(options.buffer_size)
+            )
+        )
     {
         my_zstr.strm.avail_in = length;
         my_zstr.strm.next_in = const_cast<unsigned char*>(buffer); // cast is purely for C compatibility.

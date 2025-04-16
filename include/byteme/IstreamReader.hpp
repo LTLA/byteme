@@ -7,6 +7,7 @@
 #include <cstddef>
 
 #include "Reader.hpp"
+#include "check_buffer_size.hpp"
 
 /**
  * @file IstreamReader.hpp
@@ -44,7 +45,14 @@ public:
      * @param input Pointer to an input stream.
      * @param options Further options.
      */
-    IstreamReader(Pointer_ input, const IstreamReaderOptions& options) : my_input(std::move(input)), my_buffer(options.buffer_size) {}
+    IstreamReader(Pointer_ input, const IstreamReaderOptions& options) : 
+        my_input(std::move(input)),
+        my_buffer(
+            check_buffer_size<std::streamsize>( // for istream::read().
+                check_buffer_size(options.buffer_size)
+            )
+        )
+    {}
 
 public:
     bool load() {
