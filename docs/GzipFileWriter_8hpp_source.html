@@ -98,74 +98,81 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="Writer_8hpp.html">Writer.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structbyteme_1_1GzipFileWriterOptions.html">   19</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbyteme_1_1GzipFileWriterOptions.html">GzipFileWriterOptions</a> {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structbyteme_1_1GzipFileWriterOptions.html#a9072c378aefb629c314f80ff8b77a964">   24</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structbyteme_1_1GzipFileWriterOptions.html#a9072c378aefb629c314f80ff8b77a964">compression_level</a> = 6;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structbyteme_1_1GzipFileWriterOptions.html#aaf57dd67e045ba2d7e2263340a88c60b">   30</a></span>    std::size_t <a class="code hl_variable" href="structbyteme_1_1GzipFileWriterOptions.html#aaf57dd67e045ba2d7e2263340a88c60b">buffer_size</a> = 65536;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="Writer_8hpp.html">Writer.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;check_buffer_size.hpp&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structbyteme_1_1GzipFileWriterOptions.html">   21</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbyteme_1_1GzipFileWriterOptions.html">GzipFileWriterOptions</a> {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structbyteme_1_1GzipFileWriterOptions.html#a9072c378aefb629c314f80ff8b77a964">   26</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structbyteme_1_1GzipFileWriterOptions.html#a9072c378aefb629c314f80ff8b77a964">compression_level</a> = 6;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structbyteme_1_1GzipFileWriterOptions.html#aaf57dd67e045ba2d7e2263340a88c60b">   32</a></span>    std::size_t <a class="code hl_variable" href="structbyteme_1_1GzipFileWriterOptions.html#aaf57dd67e045ba2d7e2263340a88c60b">buffer_size</a> = 65536;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>};</div>
 </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileWriter.html">   38</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1GzipFileWriter.html">GzipFileWriter</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1Writer.html">Writer</a> {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileWriter.html#ad3b9a74789a8182cc40f3ba2d4edf306">   44</a></span>    <a class="code hl_function" href="classbyteme_1_1GzipFileWriter.html#ad3b9a74789a8182cc40f3ba2d4edf306">GzipFileWriter</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1GzipFileWriterOptions.html">GzipFileWriterOptions</a>&amp; options) : my_gzfile(path, <span class="stringliteral">&quot;wb&quot;</span>) {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">if</span> (gzbuffer(my_gzfile.handle, options.<a class="code hl_variable" href="structbyteme_1_1GzipFileWriterOptions.html#aaf57dd67e045ba2d7e2263340a88c60b">buffer_size</a>)) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            throw std::runtime_error(<span class="stringliteral">&quot;failed to set the Gzip compression buffer&quot;</span>);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        }</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        if (gzsetparams(my_gzfile.handle, options.<a class="code hl_variable" href="structbyteme_1_1GzipFileWriterOptions.html#a9072c378aefb629c314f80ff8b77a964">compression_level</a>, Z_DEFAULT_STRATEGY) != Z_OK) {</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            throw std::runtime_error(<span class="stringliteral">&quot;failed to set the Gzip compression parameters&quot;</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileWriter.html">   40</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1GzipFileWriter.html">GzipFileWriter</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1Writer.html">Writer</a> {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileWriter.html#ad3b9a74789a8182cc40f3ba2d4edf306">   46</a></span>    <a class="code hl_function" href="classbyteme_1_1GzipFileWriter.html#ad3b9a74789a8182cc40f3ba2d4edf306">GzipFileWriter</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1GzipFileWriterOptions.html">GzipFileWriterOptions</a>&amp; options) : my_gzfile(path, <span class="stringliteral">&quot;wb&quot;</span>) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        std::size_t buffer_size = check_buffer_size&lt;unsigned&gt;(options.<a class="code hl_variable" href="structbyteme_1_1GzipFileWriterOptions.html#aaf57dd67e045ba2d7e2263340a88c60b">buffer_size</a>); <span class="comment">// constrained for the gzbuffer interface.</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">if</span> (gzbuffer(my_gzfile.handle, buffer_size)) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to set the Gzip compression buffer&quot;</span>);</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        }</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">if</span> (gzsetparams(my_gzfile.handle, options.<a class="code hl_variable" href="structbyteme_1_1GzipFileWriterOptions.html#a9072c378aefb629c314f80ff8b77a964">compression_level</a>, Z_DEFAULT_STRATEGY) != Z_OK) {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to set the Gzip compression parameters&quot;</span>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
 </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">using </span><a class="code hl_function" href="classbyteme_1_1Writer.html#a8fee63f29e632dd029eff3c8e06020a0">Writer::write</a>;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileWriter.html#a5d30e2b029f3a45433ac32d9074a3088">   56</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1GzipFileWriter.html#a5d30e2b029f3a45433ac32d9074a3088">write</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, std::size_t n) {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">if</span> (n) {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            std::size_t ok = gzwrite(my_gzfile.handle, buffer, n);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="keywordflow">if</span> (ok != n) {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to write to the Gzip-compressed file&quot;</span>);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            }</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        }</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
-</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3">   65</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3">finish</a>() {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        my_gzfile.closed = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (gzclose(my_gzfile.handle) != Z_OK) {</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to close the Gzip-compressed file after writing&quot;</span>);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">using </span><a class="code hl_function" href="classbyteme_1_1Writer.html#a8fee63f29e632dd029eff3c8e06020a0">Writer::write</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileWriter.html#a5d30e2b029f3a45433ac32d9074a3088">   59</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1GzipFileWriter.html#a5d30e2b029f3a45433ac32d9074a3088">write</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, std::size_t n) {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        safe_write&lt;unsigned, true&gt;(</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            buffer,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            n,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            [&amp;](<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer0, <span class="keywordtype">unsigned</span> n0) -&gt; <span class="keywordtype">void</span> { </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                <span class="keyword">auto</span> ok = gzwrite(my_gzfile.handle, buffer0, n0);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                <span class="keywordflow">if</span> (ok &lt;= 0) {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to write to the Gzip-compressed file&quot;</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        );</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
 </div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    SelfClosingGzFile my_gzfile;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>};</div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3">   72</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3">finish</a>() {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        my_gzfile.closed = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">if</span> (gzclose(my_gzfile.handle) != Z_OK) {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to close the Gzip-compressed file after writing&quot;</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
 </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    SelfClosingGzFile my_gzfile;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>};</div>
+</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>}</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aWriter_8hpp_html"><div class="ttname"><a href="Writer_8hpp.html">Writer.hpp</a></div><div class="ttdoc">Write to an output sink.</div></div>
-<div class="ttc" id="aclassbyteme_1_1GzipFileWriter_html"><div class="ttname"><a href="classbyteme_1_1GzipFileWriter.html">byteme::GzipFileWriter</a></div><div class="ttdoc">Write uncompressed bytes to a Gzip-compressed file.</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:38</div></div>
-<div class="ttc" id="aclassbyteme_1_1GzipFileWriter_html_a5d30e2b029f3a45433ac32d9074a3088"><div class="ttname"><a href="classbyteme_1_1GzipFileWriter.html#a5d30e2b029f3a45433ac32d9074a3088">byteme::GzipFileWriter::write</a></div><div class="ttdeci">void write(const unsigned char *buffer, std::size_t n)</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:56</div></div>
-<div class="ttc" id="aclassbyteme_1_1GzipFileWriter_html_ad3b9a74789a8182cc40f3ba2d4edf306"><div class="ttname"><a href="classbyteme_1_1GzipFileWriter.html#ad3b9a74789a8182cc40f3ba2d4edf306">byteme::GzipFileWriter::GzipFileWriter</a></div><div class="ttdeci">GzipFileWriter(const char *path, const GzipFileWriterOptions &amp;options)</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:44</div></div>
-<div class="ttc" id="aclassbyteme_1_1GzipFileWriter_html_add2b71c32bcd4cc6e2e6443d4219ffb3"><div class="ttname"><a href="classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3">byteme::GzipFileWriter::finish</a></div><div class="ttdeci">void finish()</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:65</div></div>
-<div class="ttc" id="aclassbyteme_1_1Writer_html"><div class="ttname"><a href="classbyteme_1_1Writer.html">byteme::Writer</a></div><div class="ttdoc">Virtual class for writing bytes to a sink.</div><div class="ttdef"><b>Definition</b> Writer.hpp:19</div></div>
+<div class="ttc" id="aclassbyteme_1_1GzipFileWriter_html"><div class="ttname"><a href="classbyteme_1_1GzipFileWriter.html">byteme::GzipFileWriter</a></div><div class="ttdoc">Write uncompressed bytes to a Gzip-compressed file.</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:40</div></div>
+<div class="ttc" id="aclassbyteme_1_1GzipFileWriter_html_a5d30e2b029f3a45433ac32d9074a3088"><div class="ttname"><a href="classbyteme_1_1GzipFileWriter.html#a5d30e2b029f3a45433ac32d9074a3088">byteme::GzipFileWriter::write</a></div><div class="ttdeci">void write(const unsigned char *buffer, std::size_t n)</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:59</div></div>
+<div class="ttc" id="aclassbyteme_1_1GzipFileWriter_html_ad3b9a74789a8182cc40f3ba2d4edf306"><div class="ttname"><a href="classbyteme_1_1GzipFileWriter.html#ad3b9a74789a8182cc40f3ba2d4edf306">byteme::GzipFileWriter::GzipFileWriter</a></div><div class="ttdeci">GzipFileWriter(const char *path, const GzipFileWriterOptions &amp;options)</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:46</div></div>
+<div class="ttc" id="aclassbyteme_1_1GzipFileWriter_html_add2b71c32bcd4cc6e2e6443d4219ffb3"><div class="ttname"><a href="classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3">byteme::GzipFileWriter::finish</a></div><div class="ttdeci">void finish()</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:72</div></div>
+<div class="ttc" id="aclassbyteme_1_1Writer_html"><div class="ttname"><a href="classbyteme_1_1Writer.html">byteme::Writer</a></div><div class="ttdoc">Virtual class for writing bytes to a sink.</div><div class="ttdef"><b>Definition</b> Writer.hpp:21</div></div>
 <div class="ttc" id="aclassbyteme_1_1Writer_html_a8fee63f29e632dd029eff3c8e06020a0"><div class="ttname"><a href="classbyteme_1_1Writer.html#a8fee63f29e632dd029eff3c8e06020a0">byteme::Writer::write</a></div><div class="ttdeci">virtual void write(const unsigned char *buffer, std::size_t n)=0</div></div>
 <div class="ttc" id="anamespacebyteme_html"><div class="ttname"><a href="namespacebyteme.html">byteme</a></div><div class="ttdoc">Simple byte readers and writers.</div></div>
-<div class="ttc" id="astructbyteme_1_1GzipFileWriterOptions_html"><div class="ttname"><a href="structbyteme_1_1GzipFileWriterOptions.html">byteme::GzipFileWriterOptions</a></div><div class="ttdoc">Options for GzipFileWriter construction.</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:19</div></div>
-<div class="ttc" id="astructbyteme_1_1GzipFileWriterOptions_html_a9072c378aefb629c314f80ff8b77a964"><div class="ttname"><a href="structbyteme_1_1GzipFileWriterOptions.html#a9072c378aefb629c314f80ff8b77a964">byteme::GzipFileWriterOptions::compression_level</a></div><div class="ttdeci">int compression_level</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:24</div></div>
-<div class="ttc" id="astructbyteme_1_1GzipFileWriterOptions_html_aaf57dd67e045ba2d7e2263340a88c60b"><div class="ttname"><a href="structbyteme_1_1GzipFileWriterOptions.html#aaf57dd67e045ba2d7e2263340a88c60b">byteme::GzipFileWriterOptions::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:30</div></div>
+<div class="ttc" id="astructbyteme_1_1GzipFileWriterOptions_html"><div class="ttname"><a href="structbyteme_1_1GzipFileWriterOptions.html">byteme::GzipFileWriterOptions</a></div><div class="ttdoc">Options for GzipFileWriter construction.</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:21</div></div>
+<div class="ttc" id="astructbyteme_1_1GzipFileWriterOptions_html_a9072c378aefb629c314f80ff8b77a964"><div class="ttname"><a href="structbyteme_1_1GzipFileWriterOptions.html#a9072c378aefb629c314f80ff8b77a964">byteme::GzipFileWriterOptions::compression_level</a></div><div class="ttdeci">int compression_level</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:26</div></div>
+<div class="ttc" id="astructbyteme_1_1GzipFileWriterOptions_html_aaf57dd67e045ba2d7e2263340a88c60b"><div class="ttname"><a href="structbyteme_1_1GzipFileWriterOptions.html#aaf57dd67e045ba2d7e2263340a88c60b">byteme::GzipFileWriterOptions::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> GzipFileWriter.hpp:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

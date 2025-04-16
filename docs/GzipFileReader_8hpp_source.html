@@ -102,71 +102,81 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;zlib.h&quot;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;SelfClosingGzFile.hpp&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="Reader_8hpp.html">Reader.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structbyteme_1_1GzipFileReaderOptions.html">   24</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbyteme_1_1GzipFileReaderOptions.html">GzipFileReaderOptions</a> {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structbyteme_1_1GzipFileReaderOptions.html#a17fe61919194f8e5fcb43e9c7be8ec26">   29</a></span>    std::size_t <a class="code hl_variable" href="structbyteme_1_1GzipFileReaderOptions.html#a17fe61919194f8e5fcb43e9c7be8ec26">buffer_size</a> = 65536;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;check_buffer_size.hpp&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;SelfClosingGzFile.hpp&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="Reader_8hpp.html">Reader.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structbyteme_1_1GzipFileReaderOptions.html">   25</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbyteme_1_1GzipFileReaderOptions.html">GzipFileReaderOptions</a> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structbyteme_1_1GzipFileReaderOptions.html#a17fe61919194f8e5fcb43e9c7be8ec26">   30</a></span>    std::size_t <a class="code hl_variable" href="structbyteme_1_1GzipFileReaderOptions.html#a17fe61919194f8e5fcb43e9c7be8ec26">buffer_size</a> = 65536;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
 </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="foldopen" id="foldopen00037" data-start="{" data-end="};">
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileReader.html">   37</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1GzipFileReader.html">GzipFileReader</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1Reader.html">Reader</a> {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileReader.html#aecf4eebc3a244525b2c71a269d112800">   43</a></span>    <a class="code hl_function" href="classbyteme_1_1GzipFileReader.html#aecf4eebc3a244525b2c71a269d112800">GzipFileReader</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1GzipFileReaderOptions.html">GzipFileReaderOptions</a>&amp; options) : my_gzfile(path, <span class="stringliteral">&quot;rb&quot;</span>), my_buffer(options.buffer_size) {}</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileReader.html#aa077d794ad9e305842adf83311906b8a">   46</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classbyteme_1_1GzipFileReader.html#aa077d794ad9e305842adf83311906b8a">load</a>() {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        my_read = gzread(my_gzfile.handle, my_buffer.data(), my_buffer.size());</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">if</span> (my_read) {</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        }</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">if</span> (!gzeof(my_gzfile.handle)) { </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <span class="keywordtype">int</span> dummy;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keywordflow">throw</span> std::runtime_error(gzerror(my_gzfile.handle, &amp;dummy));</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        }</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileReader.html">   38</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1GzipFileReader.html">GzipFileReader</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1Reader.html">Reader</a> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileReader.html#aecf4eebc3a244525b2c71a269d112800">   44</a></span>    <a class="code hl_function" href="classbyteme_1_1GzipFileReader.html#aecf4eebc3a244525b2c71a269d112800">GzipFileReader</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1GzipFileReaderOptions.html">GzipFileReaderOptions</a>&amp; options) : </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        my_gzfile(path, <span class="stringliteral">&quot;rb&quot;</span>),</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        my_buffer(</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            check_buffer_size&lt;unsigned&gt;( <span class="comment">// constrained for the gzread interface.</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                check_buffer_size(options.buffer_size)</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            )</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        )</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    {}</div>
 </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileReader.html#aa077d794ad9e305842adf83311906b8a">   54</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classbyteme_1_1GzipFileReader.html#aa077d794ad9e305842adf83311906b8a">load</a>() {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        my_read = gzread(my_gzfile.handle, my_buffer.data(), my_buffer.size());</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">if</span> (my_read) {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        }</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileReader.html#a5ebdbb98c1f78cb78883fccb11701bfd">   60</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1GzipFileReader.html#a5ebdbb98c1f78cb78883fccb11701bfd">buffer</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> my_buffer.data();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
-</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileReader.html#a0c63d436beea2481673c1af005c23bdc">   64</a></span>    std::size_t <a class="code hl_function" href="classbyteme_1_1GzipFileReader.html#a0c63d436beea2481673c1af005c23bdc">available</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">return</span> my_read;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">if</span> (!gzeof(my_gzfile.handle)) { </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keywordtype">int</span> dummy;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordflow">throw</span> std::runtime_error(gzerror(my_gzfile.handle, &amp;dummy));</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
 </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    SelfClosingGzFile my_gzfile;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    std::vector&lt;unsigned char&gt; my_buffer;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    std::size_t my_read = 0;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileReader.html#a5ebdbb98c1f78cb78883fccb11701bfd">   68</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1GzipFileReader.html#a5ebdbb98c1f78cb78883fccb11701bfd">buffer</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">return</span> my_buffer.data();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
 </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classbyteme_1_1GzipFileReader.html#a0c63d436beea2481673c1af005c23bdc">   72</a></span>    std::size_t <a class="code hl_function" href="classbyteme_1_1GzipFileReader.html#a0c63d436beea2481673c1af005c23bdc">available</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">return</span> my_read;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    SelfClosingGzFile my_gzfile;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    std::vector&lt;unsigned char&gt; my_buffer;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    std::size_t my_read = 0;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>};</div>
+</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aReader_8hpp_html"><div class="ttname"><a href="Reader_8hpp.html">Reader.hpp</a></div><div class="ttdoc">Read an input source.</div></div>
-<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html">byteme::GzipFileReader</a></div><div class="ttdoc">Read uncompressed bytes from a Gzip-compressed file.</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:37</div></div>
-<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html_a0c63d436beea2481673c1af005c23bdc"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html#a0c63d436beea2481673c1af005c23bdc">byteme::GzipFileReader::available</a></div><div class="ttdeci">std::size_t available() const</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:64</div></div>
-<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html_a5ebdbb98c1f78cb78883fccb11701bfd"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html#a5ebdbb98c1f78cb78883fccb11701bfd">byteme::GzipFileReader::buffer</a></div><div class="ttdeci">const unsigned char * buffer() const</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:60</div></div>
-<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html_aa077d794ad9e305842adf83311906b8a"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html#aa077d794ad9e305842adf83311906b8a">byteme::GzipFileReader::load</a></div><div class="ttdeci">bool load()</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:46</div></div>
-<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html_aecf4eebc3a244525b2c71a269d112800"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html#aecf4eebc3a244525b2c71a269d112800">byteme::GzipFileReader::GzipFileReader</a></div><div class="ttdeci">GzipFileReader(const char *path, const GzipFileReaderOptions &amp;options)</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:43</div></div>
+<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html">byteme::GzipFileReader</a></div><div class="ttdoc">Read uncompressed bytes from a Gzip-compressed file.</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:38</div></div>
+<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html_a0c63d436beea2481673c1af005c23bdc"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html#a0c63d436beea2481673c1af005c23bdc">byteme::GzipFileReader::available</a></div><div class="ttdeci">std::size_t available() const</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:72</div></div>
+<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html_a5ebdbb98c1f78cb78883fccb11701bfd"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html#a5ebdbb98c1f78cb78883fccb11701bfd">byteme::GzipFileReader::buffer</a></div><div class="ttdeci">const unsigned char * buffer() const</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:68</div></div>
+<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html_aa077d794ad9e305842adf83311906b8a"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html#aa077d794ad9e305842adf83311906b8a">byteme::GzipFileReader::load</a></div><div class="ttdeci">bool load()</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:54</div></div>
+<div class="ttc" id="aclassbyteme_1_1GzipFileReader_html_aecf4eebc3a244525b2c71a269d112800"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html#aecf4eebc3a244525b2c71a269d112800">byteme::GzipFileReader::GzipFileReader</a></div><div class="ttdeci">GzipFileReader(const char *path, const GzipFileReaderOptions &amp;options)</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:44</div></div>
 <div class="ttc" id="aclassbyteme_1_1Reader_html"><div class="ttname"><a href="classbyteme_1_1Reader.html">byteme::Reader</a></div><div class="ttdoc">Virtual class for reading bytes from a source.</div><div class="ttdef"><b>Definition</b> Reader.hpp:17</div></div>
 <div class="ttc" id="anamespacebyteme_html"><div class="ttname"><a href="namespacebyteme.html">byteme</a></div><div class="ttdoc">Simple byte readers and writers.</div></div>
-<div class="ttc" id="astructbyteme_1_1GzipFileReaderOptions_html"><div class="ttname"><a href="structbyteme_1_1GzipFileReaderOptions.html">byteme::GzipFileReaderOptions</a></div><div class="ttdoc">Options for GzipFileReader construction.</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:24</div></div>
-<div class="ttc" id="astructbyteme_1_1GzipFileReaderOptions_html_a17fe61919194f8e5fcb43e9c7be8ec26"><div class="ttname"><a href="structbyteme_1_1GzipFileReaderOptions.html#a17fe61919194f8e5fcb43e9c7be8ec26">byteme::GzipFileReaderOptions::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:29</div></div>
+<div class="ttc" id="astructbyteme_1_1GzipFileReaderOptions_html"><div class="ttname"><a href="structbyteme_1_1GzipFileReaderOptions.html">byteme::GzipFileReaderOptions</a></div><div class="ttdoc">Options for GzipFileReader construction.</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:25</div></div>
+<div class="ttc" id="astructbyteme_1_1GzipFileReaderOptions_html_a17fe61919194f8e5fcb43e9c7be8ec26"><div class="ttname"><a href="structbyteme_1_1GzipFileReaderOptions.html#a17fe61919194f8e5fcb43e9c7be8ec26">byteme::GzipFileReaderOptions::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

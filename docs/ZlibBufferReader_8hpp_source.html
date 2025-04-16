@@ -103,149 +103,155 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;zlib.h&quot;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="Reader_8hpp.html">Reader.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferReaderOptions.html">   23</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbyteme_1_1ZlibBufferReaderOptions.html">ZlibBufferReaderOptions</a> {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b">   28</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b">mode</a> = 3;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferReaderOptions.html#ac5780ce7c036cc541c644241d307bf0a">   34</a></span>    std::size_t <a class="code hl_variable" href="structbyteme_1_1ZlibBufferReaderOptions.html#ac5780ce7c036cc541c644241d307bf0a">buffer_size</a> = 65536;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>};</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;check_buffer_size.hpp&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferReaderOptions.html">   24</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbyteme_1_1ZlibBufferReaderOptions.html">ZlibBufferReaderOptions</a> {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b">   29</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b">mode</a> = 3;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structbyteme_1_1ZlibBufferReaderOptions.html#ac5780ce7c036cc541c644241d307bf0a">   35</a></span>    std::size_t <a class="code hl_variable" href="structbyteme_1_1ZlibBufferReaderOptions.html#ac5780ce7c036cc541c644241d307bf0a">buffer_size</a> = 65536;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
 </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferReader.html">   42</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1ZlibBufferReader.html">ZlibBufferReader</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1Reader.html">Reader</a> {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">struct </span>ZStream {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        ZStream(<span class="keywordtype">int</span> mode) {</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="comment">/* allocate inflate state */</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            strm.zalloc = Z_NULL;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            strm.zfree = Z_NULL;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            strm.opaque = Z_NULL;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            strm.avail_in = 0;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            strm.next_in = Z_NULL;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <span class="comment">/* See:</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">             * https://stackoverflow.com/questions/1838699/how-can-i-decompress-a-gzip-stream-with-zlib</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">             * https://stackoverflow.com/questions/29003909/why-is-a-different-zlib-window-bits-value-required-for-extraction-compared-with</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">             */</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="keywordtype">int</span> ret = 0;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keywordflow">if</span> (mode == 0) { <span class="comment">// DEFLATE</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                ret = inflateInit2(&amp;strm, -MAX_WBITS); </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == 1) { <span class="comment">// Zlib</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                ret = inflateInit2(&amp;strm, MAX_WBITS); </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == 2) { <span class="comment">// Gzip</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                ret = inflateInit2(&amp;strm, 16 + MAX_WBITS); </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == 3) { <span class="comment">// Gzip/Zlib auto-detected</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                ret = inflateInit2(&amp;strm, 32 + MAX_WBITS); </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;mode must be 0 (DEFLATE), 1 (Zlib), 2 (Gzip) or 3 (automatic)&quot;</span>);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="keywordflow">if</span> (ret != Z_OK) {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                <span class="keywordflow">throw</span> 1;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        }</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        ~ZStream() {</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            inflateEnd(&amp;strm);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        }</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="comment">// Delete the remaining constructors.</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        ZStream(<span class="keyword">const</span> ZStream&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        ZStream(ZStream&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        ZStream&amp; operator=(<span class="keyword">const</span> ZStream&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        ZStream&amp; operator=(ZStream&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        z_stream strm;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    };</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferReader.html#a3cd5f4e25a1b3744237f6e6811d231dd">  103</a></span>    <a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#a3cd5f4e25a1b3744237f6e6811d231dd">ZlibBufferReader</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">buffer</a>, std::size_t length, <span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1ZlibBufferReaderOptions.html">ZlibBufferReaderOptions</a>&amp; options) : </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        my_zstr(options.mode), my_buffer(options.buffer_size)</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    {</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        my_zstr.strm.avail_in = length;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        my_zstr.strm.next_in = <span class="keyword">const_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(<a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">buffer</a>); <span class="comment">// cast is purely for C compatibility.</span></div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferReader.html">   43</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1ZlibBufferReader.html">ZlibBufferReader</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1Reader.html">Reader</a> {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">struct </span>ZStream {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        ZStream(<span class="keywordtype">int</span> mode) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <span class="comment">/* allocate inflate state */</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            strm.zalloc = Z_NULL;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            strm.zfree = Z_NULL;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            strm.opaque = Z_NULL;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            strm.avail_in = 0;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            strm.next_in = Z_NULL;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="comment">/* See:</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">             * https://stackoverflow.com/questions/1838699/how-can-i-decompress-a-gzip-stream-with-zlib</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">             * https://stackoverflow.com/questions/29003909/why-is-a-different-zlib-window-bits-value-required-for-extraction-compared-with</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keywordtype">int</span> ret = 0;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordflow">if</span> (mode == 0) { <span class="comment">// DEFLATE</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                ret = inflateInit2(&amp;strm, -MAX_WBITS); </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == 1) { <span class="comment">// Zlib</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                ret = inflateInit2(&amp;strm, MAX_WBITS); </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == 2) { <span class="comment">// Gzip</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                ret = inflateInit2(&amp;strm, 16 + MAX_WBITS); </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == 3) { <span class="comment">// Gzip/Zlib auto-detected</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                ret = inflateInit2(&amp;strm, 32 + MAX_WBITS); </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;mode must be 0 (DEFLATE), 1 (Zlib), 2 (Gzip) or 3 (automatic)&quot;</span>);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="keywordflow">if</span> (ret != Z_OK) {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                <span class="keywordflow">throw</span> 1;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        ~ZStream() {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            inflateEnd(&amp;strm);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="comment">// Delete the remaining constructors.</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        ZStream(<span class="keyword">const</span> ZStream&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        ZStream(ZStream&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        ZStream&amp; operator=(<span class="keyword">const</span> ZStream&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        ZStream&amp; operator=(ZStream&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        z_stream strm;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    };</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferReader.html#a3cd5f4e25a1b3744237f6e6811d231dd">  104</a></span>    <a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#a3cd5f4e25a1b3744237f6e6811d231dd">ZlibBufferReader</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">buffer</a>, std::size_t length, <span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1ZlibBufferReaderOptions.html">ZlibBufferReaderOptions</a>&amp; options) : </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        my_zstr(options.mode),</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        my_buffer(</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            check_buffer_size&lt;decltype(decltype(ZStream::strm)::avail_out)&gt;(</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                check_buffer_size(options.buffer_size)</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            )</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        )</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        my_zstr.strm.avail_in = length;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        my_zstr.strm.next_in = <span class="keyword">const_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(<a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">buffer</a>); <span class="comment">// cast is purely for C compatibility.</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    }</div>
 </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00111" data-start="{" data-end="}">
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferReader.html#ad7205cb26d279ca957ada858598a86a3">  111</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#ad7205cb26d279ca957ada858598a86a3">load</a>() {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="comment">/* This function is stolen from the loop in &#39;inf()&#39; at</span></div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">         * http://www.zlib.net/zpipe.c, with some shuffling of code to make it</span></div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment">         * a bit more C++-like.</span></div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">         */</span></div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">if</span> (!my_okay) {</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        }</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="comment">// Not entirely sure why we need to check for this, but</span></div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="comment">// https://zlib.net/zpipe.c does it, and so will we; because not doing</span></div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="comment">// so seems to occasionally result in infinite loops.</span></div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keywordflow">if</span> (my_zstr.strm.avail_in == 0) {</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        }</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        my_zstr.strm.avail_out = my_buffer.size();</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        my_zstr.strm.next_out = my_buffer.data();</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordtype">int</span> ret = inflate(&amp;(my_zstr.strm), Z_NO_FLUSH);</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">switch</span> (ret) {</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            <span class="keywordflow">case</span> Z_STREAM_ERROR:</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            <span class="keywordflow">case</span> Z_NEED_DICT:</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            <span class="keywordflow">case</span> Z_DATA_ERROR:</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            <span class="keywordflow">case</span> Z_MEM_ERROR:</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;zlib error&quot;</span>);</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            <span class="keywordflow">case</span> Z_STREAM_END:</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                my_okay = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        }</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        my_read = my_buffer.size() - my_zstr.strm.avail_out;</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="}">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferReader.html#ad7205cb26d279ca957ada858598a86a3">  117</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#ad7205cb26d279ca957ada858598a86a3">load</a>() {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="comment">/* This function is stolen from the loop in &#39;inf()&#39; at</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment">         * http://www.zlib.net/zpipe.c, with some shuffling of code to make it</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment">         * a bit more C++-like.</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">if</span> (!my_okay) {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="comment">// Not entirely sure why we need to check for this, but</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="comment">// https://zlib.net/zpipe.c does it, and so will we; because not doing</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="comment">// so seems to occasionally result in infinite loops.</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordflow">if</span> (my_zstr.strm.avail_in == 0) {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        my_zstr.strm.avail_out = my_buffer.size();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        my_zstr.strm.next_out = my_buffer.data();</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordtype">int</span> ret = inflate(&amp;(my_zstr.strm), Z_NO_FLUSH);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="keywordflow">switch</span> (ret) {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>            <span class="keywordflow">case</span> Z_STREAM_ERROR:</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            <span class="keywordflow">case</span> Z_NEED_DICT:</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>            <span class="keywordflow">case</span> Z_DATA_ERROR:</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            <span class="keywordflow">case</span> Z_MEM_ERROR:</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;zlib error&quot;</span>);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            <span class="keywordflow">case</span> Z_STREAM_END:</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                my_okay = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        }</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        my_read = my_buffer.size() - my_zstr.strm.avail_out;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    }</div>
 </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
-<div class="foldopen" id="foldopen00147" data-start="{" data-end="}">
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">  147</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">buffer</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">return</span> my_buffer.data();</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    }</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="foldopen" id="foldopen00153" data-start="{" data-end="}">
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">  153</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">buffer</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keywordflow">return</span> my_buffer.data();</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    }</div>
 </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
-<div class="foldopen" id="foldopen00151" data-start="{" data-end="}">
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferReader.html#a88472a87f0377b162a308a73dc965dbd">  151</a></span>    std::size_t <a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#a88472a87f0377b162a308a73dc965dbd">available</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="keywordflow">return</span> my_read;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="foldopen" id="foldopen00157" data-start="{" data-end="}">
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="classbyteme_1_1ZlibBufferReader.html#a88472a87f0377b162a308a73dc965dbd">  157</a></span>    std::size_t <a class="code hl_function" href="classbyteme_1_1ZlibBufferReader.html#a88472a87f0377b162a308a73dc965dbd">available</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordflow">return</span> my_read;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    }</div>
 </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    ZStream my_zstr;</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    std::vector&lt;unsigned char&gt; my_buffer;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    std::size_t my_read = 0;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordtype">bool</span> my_okay = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>};</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    ZStream my_zstr;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    std::vector&lt;unsigned char&gt; my_buffer;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    std::size_t my_read = 0;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordtype">bool</span> my_okay = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>};</div>
 </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>}</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>}</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aReader_8hpp_html"><div class="ttname"><a href="Reader_8hpp.html">Reader.hpp</a></div><div class="ttdoc">Read an input source.</div></div>
 <div class="ttc" id="aclassbyteme_1_1Reader_html"><div class="ttname"><a href="classbyteme_1_1Reader.html">byteme::Reader</a></div><div class="ttdoc">Virtual class for reading bytes from a source.</div><div class="ttdef"><b>Definition</b> Reader.hpp:17</div></div>
-<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html">byteme::ZlibBufferReader</a></div><div class="ttdoc">Read and decompress bytes from a Zlib-compressed buffer.</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:42</div></div>
-<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html_a3cd5f4e25a1b3744237f6e6811d231dd"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html#a3cd5f4e25a1b3744237f6e6811d231dd">byteme::ZlibBufferReader::ZlibBufferReader</a></div><div class="ttdeci">ZlibBufferReader(const unsigned char *buffer, std::size_t length, const ZlibBufferReaderOptions &amp;options)</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:103</div></div>
-<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html_a88472a87f0377b162a308a73dc965dbd"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html#a88472a87f0377b162a308a73dc965dbd">byteme::ZlibBufferReader::available</a></div><div class="ttdeci">std::size_t available() const</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:151</div></div>
-<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html_ad7205cb26d279ca957ada858598a86a3"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html#ad7205cb26d279ca957ada858598a86a3">byteme::ZlibBufferReader::load</a></div><div class="ttdeci">bool load()</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:111</div></div>
-<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html_add07b8eea79991fc364205667b90a00b"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">byteme::ZlibBufferReader::buffer</a></div><div class="ttdeci">const unsigned char * buffer() const</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:147</div></div>
+<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html">byteme::ZlibBufferReader</a></div><div class="ttdoc">Read and decompress bytes from a Zlib-compressed buffer.</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:43</div></div>
+<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html_a3cd5f4e25a1b3744237f6e6811d231dd"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html#a3cd5f4e25a1b3744237f6e6811d231dd">byteme::ZlibBufferReader::ZlibBufferReader</a></div><div class="ttdeci">ZlibBufferReader(const unsigned char *buffer, std::size_t length, const ZlibBufferReaderOptions &amp;options)</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:104</div></div>
+<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html_a88472a87f0377b162a308a73dc965dbd"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html#a88472a87f0377b162a308a73dc965dbd">byteme::ZlibBufferReader::available</a></div><div class="ttdeci">std::size_t available() const</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:157</div></div>
+<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html_ad7205cb26d279ca957ada858598a86a3"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html#ad7205cb26d279ca957ada858598a86a3">byteme::ZlibBufferReader::load</a></div><div class="ttdeci">bool load()</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:117</div></div>
+<div class="ttc" id="aclassbyteme_1_1ZlibBufferReader_html_add07b8eea79991fc364205667b90a00b"><div class="ttname"><a href="classbyteme_1_1ZlibBufferReader.html#add07b8eea79991fc364205667b90a00b">byteme::ZlibBufferReader::buffer</a></div><div class="ttdeci">const unsigned char * buffer() const</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:153</div></div>
 <div class="ttc" id="anamespacebyteme_html"><div class="ttname"><a href="namespacebyteme.html">byteme</a></div><div class="ttdoc">Simple byte readers and writers.</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html">byteme::ZlibBufferReaderOptions</a></div><div class="ttdoc">Options for the ZlibBufferReader constructor.</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:23</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html_a4b41fdc7bbf4749d4dd3c70c783dc32b"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b">byteme::ZlibBufferReaderOptions::mode</a></div><div class="ttdeci">int mode</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:28</div></div>
-<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html_ac5780ce7c036cc541c644241d307bf0a"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html#ac5780ce7c036cc541c644241d307bf0a">byteme::ZlibBufferReaderOptions::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:34</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html">byteme::ZlibBufferReaderOptions</a></div><div class="ttdoc">Options for the ZlibBufferReader constructor.</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:24</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html_a4b41fdc7bbf4749d4dd3c70c783dc32b"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b">byteme::ZlibBufferReaderOptions::mode</a></div><div class="ttdeci">int mode</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:29</div></div>
+<div class="ttc" id="astructbyteme_1_1ZlibBufferReaderOptions_html_ac5780ce7c036cc541c644241d307bf0a"><div class="ttname"><a href="structbyteme_1_1ZlibBufferReaderOptions.html#ac5780ce7c036cc541c644241d307bf0a">byteme::ZlibBufferReaderOptions::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> ZlibBufferReader.hpp:35</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
