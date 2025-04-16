@@ -226,17 +226,17 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>write</name>
+      <anchorfile>classbyteme_1_1GzipFileWriter.html</anchorfile>
+      <anchor>a5d30e2b029f3a45433ac32d9074a3088</anchor>
+      <arglist>(const unsigned char *buffer, std::size_t n)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>finish</name>
       <anchorfile>classbyteme_1_1GzipFileWriter.html</anchorfile>
       <anchor>add2b71c32bcd4cc6e2e6443d4219ffb3</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>virtual void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1GzipFileWriter.html</anchorfile>
-      <anchor>a8fee63f29e632dd029eff3c8e06020a0</anchor>
-      <arglist>(const unsigned char *buffer, std::size_t n)=0</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -271,10 +271,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>size_t</type>
+      <type>std::size_t</type>
       <name>buffer_size</name>
       <anchorfile>structbyteme_1_1GzipFileWriterOptions.html</anchorfile>
-      <anchor>aff144c7d916d627e1342f7329a357218</anchor>
+      <anchor>aaf57dd67e045ba2d7e2263340a88c60b</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -629,17 +629,17 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>write</name>
+      <anchorfile>classbyteme_1_1RawFileWriter.html</anchorfile>
+      <anchor>aaa50768a47322b9bd793592fe6307bcc</anchor>
+      <arglist>(const unsigned char *buffer, std::size_t n)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>finish</name>
       <anchorfile>classbyteme_1_1RawFileWriter.html</anchorfile>
       <anchor>a5cf864429e6b353e3d8a715ccdc4d535</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>virtual void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1RawFileWriter.html</anchorfile>
-      <anchor>a8fee63f29e632dd029eff3c8e06020a0</anchor>
-      <arglist>(const unsigned char *buffer, std::size_t n)=0</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -667,10 +667,10 @@
     <name>byteme::RawFileWriterOptions</name>
     <filename>structbyteme_1_1RawFileWriterOptions.html</filename>
     <member kind="variable">
-      <type>size_t</type>
+      <type>std::size_t</type>
       <name>buffer_size</name>
       <anchorfile>structbyteme_1_1RawFileWriterOptions.html</anchorfile>
-      <anchor>a59d2967ccd2461e18872aae8c512f31f</anchor>
+      <anchor>a62c3dcedcda2cadc4da34392c4f26ee0</anchor>
       <arglist></arglist>
     </member>
   </compound>
