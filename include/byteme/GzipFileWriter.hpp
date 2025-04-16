@@ -27,7 +27,7 @@ struct GzipFileWriterOptions {
      * Size of the internal buffer to pass to Zlib. 
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    size_t buffer_size = 65536;
+    std::size_t buffer_size = 65536;
 };
 
 /**
@@ -53,9 +53,9 @@ public:
 public:
     using Writer::write;
 
-    void write(const unsigned char* buffer, size_t n) {
+    void write(const unsigned char* buffer, std::size_t n) {
         if (n) {
-            size_t ok = gzwrite(my_gzfile.handle, buffer, n);
+            std::size_t ok = gzwrite(my_gzfile.handle, buffer, n);
             if (ok != n) {
                 throw std::runtime_error("failed to write to the Gzip-compressed file");
             }

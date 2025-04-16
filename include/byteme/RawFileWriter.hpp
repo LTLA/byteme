@@ -23,7 +23,7 @@ struct RawFileWriterOptions {
      * Size of the buffer to use when writing to disk.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    size_t buffer_size = 65536;
+    std::size_t buffer_size = 65536;
 };
 
 /**
@@ -47,8 +47,8 @@ public:
 public:
     using Writer::write;
 
-    void write(const unsigned char* buffer, size_t n) {
-        size_t ok = std::fwrite(buffer, sizeof(unsigned char), n, my_file.handle);
+    void write(const unsigned char* buffer, std::size_t n) {
+        std::size_t ok = std::fwrite(buffer, sizeof(unsigned char), n, my_file.handle);
         if (ok < n) {
             throw std::runtime_error("failed to write raw binary file (fwrite error " + std::to_string(std::ferror(my_file.handle)) + ")");
         }
