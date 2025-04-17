@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <string>
 #include <stdexcept>
+#include <optional>
 
 namespace byteme {
 
@@ -43,6 +44,15 @@ public:
 public:
     std::FILE* handle;
 };
+
+inline void set_optional_bufsiz(SelfClosingFILE& file, const std::optional<std::size_t>& bufsiz) {
+    if (bufsiz.has_value()) {
+        if (std::setvbuf(file.handle, nullptr, _IOFBF, *(bufsiz))) {
+            throw std::runtime_error("failed to set a buffer size for file I/O");
+        }
+    }
+}
+
 
 }
 

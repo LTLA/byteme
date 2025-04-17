@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <cstdio>
 #include <cstddef>
+#include <optional>
 
 #include "Reader.hpp"
 #include "SelfClosingFILE.hpp"
@@ -23,10 +24,17 @@ namespace byteme {
  */
 struct RawFileReaderOptions {
     /**
-     * Size of the buffer to use when reading from disk.
+     * Size of the buffer in which to store the loaded file contents.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
     std::size_t buffer_size = 65536;
+
+    /**
+     * Size of the internal buffer used by `setvbuf()`.
+     * Larger values usually reduce computational time at the cost of increased memory usage.
+     * If no value is supplied, the default buffer size is not changed.
+     */
+    std::optional<unsigned> bufsiz;
 };
 
 /**
@@ -44,7 +52,9 @@ public:
     RawFileReader(const char* path, const RawFileReaderOptions& options) :
         my_file(path, "rb"),
         my_buffer(check_buffer_size(options.buffer_size))
-    {}
+    {
+        set_optional_bufsiz(my_file, options.bufsiz);
+    }
 
 public:
     bool load() {

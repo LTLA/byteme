@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 #include <vector>
+#include <optional>
 
 #include "Writer.hpp"
 #include "check_buffer_size.hpp"
@@ -26,10 +27,11 @@ struct GzipFileWriterOptions {
     int compression_level = 6;
 
     /**
-     * Size of the internal buffer to pass to Zlib. 
+     * Size of the internal buffer used by Zlib. 
      * Larger values usually reduce computational time at the cost of increased memory usage.
+     * If no value is supplied, the default buffer size for `gzbuffer()` is not changed.
      */
-    std::size_t buffer_size = 65536;
+    std::optional<unsigned> gzbuffer_size;
 };
 
 /**
@@ -44,10 +46,7 @@ public:
      * @param options Further options.
      */
     GzipFileWriter(const char* path, const GzipFileWriterOptions& options) : my_gzfile(path, "wb") {
-        std::size_t buffer_size = check_buffer_size<unsigned>(options.buffer_size); // constrained for the gzbuffer interface.
-        if (gzbuffer(my_gzfile.handle, buffer_size)) {
-            throw std::runtime_error("failed to set the Gzip compression buffer");
-        }
+        set_optional_gzbuffer_size(my_gzfile, options.gzbuffer_size);
         if (gzsetparams(my_gzfile.handle, options.compression_level, Z_DEFAULT_STRATEGY) != Z_OK) {
             throw std::runtime_error("failed to set the Gzip compression parameters");
         }

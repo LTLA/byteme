@@ -10,7 +10,7 @@ protected:
         auto path = byteme::temp_file_path("text");
         byteme::RawFileWriter writer(path.c_str(), [&]{
             byteme::RawFileWriterOptions ropt;
-            ropt.buffer_size = buffer_size;
+            ropt.bufsiz = buffer_size;
             return ropt;
         }());
 

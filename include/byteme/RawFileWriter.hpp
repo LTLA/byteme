@@ -4,6 +4,9 @@
 #include <vector>
 #include <stdexcept>
 #include <cstdio>
+#include <cstddef>
+#include <optional>
+
 #include "Writer.hpp"
 #include "SelfClosingFILE.hpp"
 
@@ -20,10 +23,11 @@ namespace byteme {
  */
 struct RawFileWriterOptions {
     /**
-     * Size of the buffer to use when writing to disk.
+     * Size of the internal buffer used by `setvbuf()`.
      * Larger values usually reduce computational time at the cost of increased memory usage.
+     * If no value is supplied, the default buffer size is not changed.
      */
-    std::size_t buffer_size = 65536;
+    std::optional<std::size_t> bufsiz;
 };
 
 /**
@@ -39,9 +43,7 @@ public:
      * @param options Further options.
      */
     RawFileWriter(const char* path, const RawFileWriterOptions& options) : my_file(path, "wb") {
-        if (std::setvbuf(my_file.handle, nullptr, _IOFBF, options.buffer_size)) {
-            throw std::runtime_error("failed to set a buffer size for file writing");
-        }
+        set_optional_bufsiz(my_file, options.bufsiz);
     }
 
 public:

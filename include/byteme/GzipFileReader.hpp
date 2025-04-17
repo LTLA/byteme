@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <stdexcept>
 #include <vector>
+#include <optional>
 
 #include "zlib.h"
 
@@ -24,10 +25,17 @@ namespace byteme {
  */
 struct GzipFileReaderOptions {
     /**
-     * Size of the buffer for Zlib decompression.
+     * Size of the buffer in which to store the decompressed data. 
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
     std::size_t buffer_size = 65536;
+
+    /**
+     * Size of the internal buffer used by Zlib.
+     * Larger values usually reduce computational time at the cost of increased memory usage.
+     * If no value is supplied, the default buffer size for `gzbuffer()` is not changed.
+     */
+    std::optional<unsigned> gzbuffer_size;
 };
 
 /**
@@ -50,7 +58,9 @@ public:
                 )
             )
         )
-    {}
+    {
+        set_optional_gzbuffer_size(my_gzfile, options.gzbuffer_size);
+    }
 
 public:
     bool load() {

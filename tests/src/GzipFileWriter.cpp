@@ -15,7 +15,7 @@ protected:
         auto path = byteme::temp_file_path("text");
         byteme::GzipFileWriter writer(path.c_str(), [&]{
             byteme::GzipFileWriterOptions opt;
-            opt.buffer_size = buffer_size;
+            opt.gzbuffer_size = buffer_size;
             return opt;
         }());
 
