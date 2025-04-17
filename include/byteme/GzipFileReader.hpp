@@ -44,25 +44,33 @@ public:
     GzipFileReader(const char* path, const GzipFileReaderOptions& options) : 
         my_gzfile(path, "rb"),
         my_buffer(
-            check_buffer_size<unsigned>( // constrained for the gzread interface.
-                check_buffer_size(options.buffer_size)
+            check_buffer_size<int>( // constrained for the gzread return type.
+                check_buffer_size<unsigned>( // constrained for the gzread argument type.
+                    check_buffer_size(options.buffer_size)
+                )
             )
         )
     {}
 
 public:
     bool load() {
-        my_read = gzread(my_gzfile.handle, my_buffer.data(), my_buffer.size());
-        if (my_read) {
-            return true;
+        if (my_finished) {
+            // We need to check the status explicitly because gzread()
+            // doesn't return an error for a truncated file.
+            check_status();
+            return false;
         }
 
-        if (!gzeof(my_gzfile.handle)) { 
-            int dummy;
-            throw std::runtime_error(gzerror(my_gzfile.handle, &dummy));
+        const std::size_t bufsize = my_buffer.size();
+        auto ret = gzread(my_gzfile.handle, my_buffer.data(), bufsize);
+        if (ret < 0) {
+            check_status();
+            return false;
         }
 
-        return false;
+        my_read = ret;
+        my_finished = (my_read < bufsize);
+        return true;
     }
 
     const unsigned char* buffer() const {
@@ -77,6 +85,16 @@ private:
     SelfClosingGzFile my_gzfile;
     std::vector<unsigned char> my_buffer;
     std::size_t my_read = 0;
+    bool my_finished = false;
+
+    void check_status() {
+        int status;
+        auto msg = gzerror(my_gzfile.handle, &status);
+        if (status != Z_OK) {
+            throw std::runtime_error(msg);
+        }
+    }
+
 };
 
 }
