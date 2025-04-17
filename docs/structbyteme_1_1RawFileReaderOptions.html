@@ -106,6 +106,8 @@ $(function(){ initResizable(false); });
 Public Attributes</h2></td></tr>
 <tr class="memitem:af6ef3890a745687b993cd2d1651ba373" id="r_af6ef3890a745687b993cd2d1651ba373"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6ef3890a745687b993cd2d1651ba373">buffer_size</a> = 65536</td></tr>
 <tr class="separator:af6ef3890a745687b993cd2d1651ba373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48e1dbc12841848ed6ead5b23270a1aa" id="r_a48e1dbc12841848ed6ead5b23270a1aa"><td class="memItemLeft" align="right" valign="top">std::optional&lt; unsigned &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48e1dbc12841848ed6ead5b23270a1aa">bufsiz</a></td></tr>
+<tr class="separator:a48e1dbc12841848ed6ead5b23270a1aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Options for the <code><a class="el" href="classbyteme_1_1RawFileReader.html" title="Read bytes from a file, usually text.">RawFileReader</a></code> constructor. </p>
@@ -121,7 +123,22 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Size of the buffer to use when reading from disk. Larger values usually reduce computational time at the cost of increased memory usage. </p>
+<p>Size of the buffer in which to store the loaded file contents. Larger values usually reduce computational time at the cost of increased memory usage. </p>
+
+</div>
+</div>
+<a id="a48e1dbc12841848ed6ead5b23270a1aa" name="a48e1dbc12841848ed6ead5b23270a1aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48e1dbc12841848ed6ead5b23270a1aa">&#9670;&#160;</a></span>bufsiz</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;unsigned&gt; byteme::RawFileReaderOptions::bufsiz</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Size of the internal buffer used by <code>setvbuf()</code>. Larger values usually reduce computational time at the cost of increased memory usage. If no value is supplied, the default buffer size is not changed. </p>
 
 </div>
 </div>

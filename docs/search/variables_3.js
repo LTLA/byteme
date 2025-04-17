@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mode_0',['mode',['../structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b',1,'byteme::ZlibBufferReaderOptions::mode'],['../structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c',1,'byteme::ZlibBufferWriterOptions::mode']]]
+  ['gzbuffer_5fsize_0',['gzbuffer_size',['../structbyteme_1_1GzipFileReaderOptions.html#a2b0db9ad5b08145bb99cab97d94bc716',1,'byteme::GzipFileReaderOptions::gzbuffer_size'],['../structbyteme_1_1GzipFileWriterOptions.html#ad3ae50598f977a1063e4cd9b438d2dcc',1,'byteme::GzipFileWriterOptions::gzbuffer_size']]]
 ];

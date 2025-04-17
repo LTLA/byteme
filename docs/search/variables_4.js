@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ptr_0',['ptr',['../classbyteme_1_1PerByteInterface.html#a3caa25b9f0daa42d425de8c98c70a59d',1,'byteme::PerByteInterface']]]
+  ['mode_0',['mode',['../structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b',1,'byteme::ZlibBufferReaderOptions::mode'],['../structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c',1,'byteme::ZlibBufferWriterOptions::mode']]]
 ];

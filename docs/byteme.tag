@@ -212,6 +212,13 @@
       <anchor>a17fe61919194f8e5fcb43e9c7be8ec26</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>std::optional&lt; unsigned &gt;</type>
+      <name>gzbuffer_size</name>
+      <anchorfile>structbyteme_1_1GzipFileReaderOptions.html</anchorfile>
+      <anchor>a2b0db9ad5b08145bb99cab97d94bc716</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>byteme::GzipFileWriter</name>
@@ -271,10 +278,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>std::size_t</type>
-      <name>buffer_size</name>
+      <type>std::optional&lt; unsigned &gt;</type>
+      <name>gzbuffer_size</name>
       <anchorfile>structbyteme_1_1GzipFileWriterOptions.html</anchorfile>
-      <anchor>aaf57dd67e045ba2d7e2263340a88c60b</anchor>
+      <anchor>ad3ae50598f977a1063e4cd9b438d2dcc</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -615,6 +622,13 @@
       <anchor>af6ef3890a745687b993cd2d1651ba373</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>std::optional&lt; unsigned &gt;</type>
+      <name>bufsiz</name>
+      <anchorfile>structbyteme_1_1RawFileReaderOptions.html</anchorfile>
+      <anchor>a48e1dbc12841848ed6ead5b23270a1aa</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>byteme::RawFileWriter</name>
@@ -667,10 +681,10 @@
     <name>byteme::RawFileWriterOptions</name>
     <filename>structbyteme_1_1RawFileWriterOptions.html</filename>
     <member kind="variable">
-      <type>std::size_t</type>
-      <name>buffer_size</name>
+      <type>std::optional&lt; std::size_t &gt;</type>
+      <name>bufsiz</name>
       <anchorfile>structbyteme_1_1RawFileWriterOptions.html</anchorfile>
-      <anchor>a62c3dcedcda2cadc4da34392c4f26ee0</anchor>
+      <anchor>a968198bb36d902d8f17aa0a6b1786ff4</anchor>
       <arglist></arglist>
     </member>
   </compound>

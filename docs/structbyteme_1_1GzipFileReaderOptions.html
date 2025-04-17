@@ -106,6 +106,8 @@ $(function(){ initResizable(false); });
 Public Attributes</h2></td></tr>
 <tr class="memitem:a17fe61919194f8e5fcb43e9c7be8ec26" id="r_a17fe61919194f8e5fcb43e9c7be8ec26"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17fe61919194f8e5fcb43e9c7be8ec26">buffer_size</a> = 65536</td></tr>
 <tr class="separator:a17fe61919194f8e5fcb43e9c7be8ec26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b0db9ad5b08145bb99cab97d94bc716" id="r_a2b0db9ad5b08145bb99cab97d94bc716"><td class="memItemLeft" align="right" valign="top">std::optional&lt; unsigned &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b0db9ad5b08145bb99cab97d94bc716">gzbuffer_size</a></td></tr>
+<tr class="separator:a2b0db9ad5b08145bb99cab97d94bc716"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Options for <code><a class="el" href="classbyteme_1_1GzipFileReader.html" title="Read uncompressed bytes from a Gzip-compressed file.">GzipFileReader</a></code> construction. </p>
@@ -121,7 +123,22 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Size of the buffer for Zlib decompression. Larger values usually reduce computational time at the cost of increased memory usage. </p>
+<p>Size of the buffer in which to store the decompressed data. Larger values usually reduce computational time at the cost of increased memory usage. </p>
+
+</div>
+</div>
+<a id="a2b0db9ad5b08145bb99cab97d94bc716" name="a2b0db9ad5b08145bb99cab97d94bc716"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b0db9ad5b08145bb99cab97d94bc716">&#9670;&#160;</a></span>gzbuffer_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;unsigned&gt; byteme::GzipFileReaderOptions::gzbuffer_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Size of the internal buffer used by Zlib. Larger values usually reduce computational time at the cost of increased memory usage. If no value is supplied, the default buffer size for <code>gzbuffer()</code> is not changed. </p>
 
 </div>
 </div>

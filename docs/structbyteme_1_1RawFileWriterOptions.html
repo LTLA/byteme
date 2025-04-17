@@ -104,24 +104,24 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a62c3dcedcda2cadc4da34392c4f26ee0" id="r_a62c3dcedcda2cadc4da34392c4f26ee0"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62c3dcedcda2cadc4da34392c4f26ee0">buffer_size</a> = 65536</td></tr>
-<tr class="separator:a62c3dcedcda2cadc4da34392c4f26ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a968198bb36d902d8f17aa0a6b1786ff4" id="r_a968198bb36d902d8f17aa0a6b1786ff4"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a968198bb36d902d8f17aa0a6b1786ff4">bufsiz</a></td></tr>
+<tr class="separator:a968198bb36d902d8f17aa0a6b1786ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Options for the <code><a class="el" href="classbyteme_1_1RawFileWriter.html" title="Write bytes to a file.">RawFileWriter</a></code> constructor. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="a62c3dcedcda2cadc4da34392c4f26ee0" name="a62c3dcedcda2cadc4da34392c4f26ee0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62c3dcedcda2cadc4da34392c4f26ee0">&#9670;&#160;</a></span>buffer_size</h2>
+<a id="a968198bb36d902d8f17aa0a6b1786ff4" name="a968198bb36d902d8f17aa0a6b1786ff4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a968198bb36d902d8f17aa0a6b1786ff4">&#9670;&#160;</a></span>bufsiz</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t byteme::RawFileWriterOptions::buffer_size = 65536</td>
+          <td class="memname">std::optional&lt;std::size_t&gt; byteme::RawFileWriterOptions::bufsiz</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Size of the buffer to use when writing to disk. Larger values usually reduce computational time at the cost of increased memory usage. </p>
+<p>Size of the internal buffer used by <code>setvbuf()</code>. Larger values usually reduce computational time at the cost of increased memory usage. If no value is supplied, the default buffer size is not changed. </p>
 
 </div>
 </div>

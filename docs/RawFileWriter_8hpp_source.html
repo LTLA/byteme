@@ -99,67 +99,68 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;cstdio&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="Writer_8hpp.html">Writer.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;SelfClosingFILE.hpp&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structbyteme_1_1RawFileWriterOptions.html">   21</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbyteme_1_1RawFileWriterOptions.html">RawFileWriterOptions</a> {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structbyteme_1_1RawFileWriterOptions.html#a62c3dcedcda2cadc4da34392c4f26ee0">   26</a></span>    std::size_t <a class="code hl_variable" href="structbyteme_1_1RawFileWriterOptions.html#a62c3dcedcda2cadc4da34392c4f26ee0">buffer_size</a> = 65536;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="Writer_8hpp.html">Writer.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;SelfClosingFILE.hpp&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structbyteme_1_1RawFileWriterOptions.html">   24</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbyteme_1_1RawFileWriterOptions.html">RawFileWriterOptions</a> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structbyteme_1_1RawFileWriterOptions.html#a968198bb36d902d8f17aa0a6b1786ff4">   30</a></span>    std::optional&lt;std::size_t&gt; <a class="code hl_variable" href="structbyteme_1_1RawFileWriterOptions.html#a968198bb36d902d8f17aa0a6b1786ff4">bufsiz</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
 </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawFileWriter.html">   35</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1RawFileWriter.html">RawFileWriter</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1Writer.html">Writer</a> {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawFileWriter.html#a85b813251f5ce733364d3b02914ad209">   41</a></span>    <a class="code hl_function" href="classbyteme_1_1RawFileWriter.html#a85b813251f5ce733364d3b02914ad209">RawFileWriter</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1RawFileWriterOptions.html">RawFileWriterOptions</a>&amp; options) : my_file(path, <span class="stringliteral">&quot;wb&quot;</span>) {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">if</span> (std::setvbuf(my_file.handle, <span class="keyword">nullptr</span>, _IOFBF, options.<a class="code hl_variable" href="structbyteme_1_1RawFileWriterOptions.html#a62c3dcedcda2cadc4da34392c4f26ee0">buffer_size</a>)) {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            throw std::runtime_error(<span class="stringliteral">&quot;failed to set a buffer size for file writing&quot;</span>);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        }</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawFileWriter.html">   39</a></span><span class="keyword">class </span><a class="code hl_class" href="classbyteme_1_1RawFileWriter.html">RawFileWriter</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classbyteme_1_1Writer.html">Writer</a> {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawFileWriter.html#a85b813251f5ce733364d3b02914ad209">   45</a></span>    <a class="code hl_function" href="classbyteme_1_1RawFileWriter.html#a85b813251f5ce733364d3b02914ad209">RawFileWriter</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keyword">const</span> <a class="code hl_struct" href="structbyteme_1_1RawFileWriterOptions.html">RawFileWriterOptions</a>&amp; options) : my_file(path, <span class="stringliteral">&quot;wb&quot;</span>) {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        set_optional_bufsiz(my_file, options.<a class="code hl_variable" href="structbyteme_1_1RawFileWriterOptions.html#a968198bb36d902d8f17aa0a6b1786ff4">bufsiz</a>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
 </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">using </span><a class="code hl_function" href="classbyteme_1_1Writer.html#a8fee63f29e632dd029eff3c8e06020a0">Writer::write</a>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawFileWriter.html#aaa50768a47322b9bd793592fe6307bcc">   50</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1RawFileWriter.html#aaa50768a47322b9bd793592fe6307bcc">write</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, std::size_t n) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        std::size_t ok = std::fwrite(buffer, <span class="keyword">sizeof</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>), n, my_file.handle);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">if</span> (ok &lt; n) {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to write raw binary file (fwrite error &quot;</span> + std::to_string(std::ferror(my_file.handle)) + <span class="stringliteral">&quot;)&quot;</span>);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        }</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">using </span><a class="code hl_function" href="classbyteme_1_1Writer.html#a8fee63f29e632dd029eff3c8e06020a0">Writer::write</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawFileWriter.html#aaa50768a47322b9bd793592fe6307bcc">   52</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1RawFileWriter.html#aaa50768a47322b9bd793592fe6307bcc">write</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, std::size_t n) {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        std::size_t ok = std::fwrite(buffer, <span class="keyword">sizeof</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>), n, my_file.handle);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">if</span> (ok &lt; n) {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to write raw binary file (fwrite error &quot;</span> + std::to_string(std::ferror(my_file.handle)) + <span class="stringliteral">&quot;)&quot;</span>);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
 </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535">   57</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535">finish</a>() {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">if</span> (std::fclose(my_file.handle)) {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to close raw binary file&quot;</span>);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        }</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        my_file.handle = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535">   59</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535">finish</a>() {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">if</span> (std::fclose(my_file.handle)) {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to close raw binary file&quot;</span>);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        my_file.handle = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
 </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    SelfClosingFILE my_file;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    SelfClosingFILE my_file;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>};</div>
 </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aWriter_8hpp_html"><div class="ttname"><a href="Writer_8hpp.html">Writer.hpp</a></div><div class="ttdoc">Write to an output sink.</div></div>
-<div class="ttc" id="aclassbyteme_1_1RawFileWriter_html"><div class="ttname"><a href="classbyteme_1_1RawFileWriter.html">byteme::RawFileWriter</a></div><div class="ttdoc">Write bytes to a file.</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:35</div></div>
-<div class="ttc" id="aclassbyteme_1_1RawFileWriter_html_a5cf864429e6b353e3d8a715ccdc4d535"><div class="ttname"><a href="classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535">byteme::RawFileWriter::finish</a></div><div class="ttdeci">void finish()</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:57</div></div>
-<div class="ttc" id="aclassbyteme_1_1RawFileWriter_html_a85b813251f5ce733364d3b02914ad209"><div class="ttname"><a href="classbyteme_1_1RawFileWriter.html#a85b813251f5ce733364d3b02914ad209">byteme::RawFileWriter::RawFileWriter</a></div><div class="ttdeci">RawFileWriter(const char *path, const RawFileWriterOptions &amp;options)</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:41</div></div>
-<div class="ttc" id="aclassbyteme_1_1RawFileWriter_html_aaa50768a47322b9bd793592fe6307bcc"><div class="ttname"><a href="classbyteme_1_1RawFileWriter.html#aaa50768a47322b9bd793592fe6307bcc">byteme::RawFileWriter::write</a></div><div class="ttdeci">void write(const unsigned char *buffer, std::size_t n)</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:50</div></div>
+<div class="ttc" id="aclassbyteme_1_1RawFileWriter_html"><div class="ttname"><a href="classbyteme_1_1RawFileWriter.html">byteme::RawFileWriter</a></div><div class="ttdoc">Write bytes to a file.</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:39</div></div>
+<div class="ttc" id="aclassbyteme_1_1RawFileWriter_html_a5cf864429e6b353e3d8a715ccdc4d535"><div class="ttname"><a href="classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535">byteme::RawFileWriter::finish</a></div><div class="ttdeci">void finish()</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:59</div></div>
+<div class="ttc" id="aclassbyteme_1_1RawFileWriter_html_a85b813251f5ce733364d3b02914ad209"><div class="ttname"><a href="classbyteme_1_1RawFileWriter.html#a85b813251f5ce733364d3b02914ad209">byteme::RawFileWriter::RawFileWriter</a></div><div class="ttdeci">RawFileWriter(const char *path, const RawFileWriterOptions &amp;options)</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:45</div></div>
+<div class="ttc" id="aclassbyteme_1_1RawFileWriter_html_aaa50768a47322b9bd793592fe6307bcc"><div class="ttname"><a href="classbyteme_1_1RawFileWriter.html#aaa50768a47322b9bd793592fe6307bcc">byteme::RawFileWriter::write</a></div><div class="ttdeci">void write(const unsigned char *buffer, std::size_t n)</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:52</div></div>
 <div class="ttc" id="aclassbyteme_1_1Writer_html"><div class="ttname"><a href="classbyteme_1_1Writer.html">byteme::Writer</a></div><div class="ttdoc">Virtual class for writing bytes to a sink.</div><div class="ttdef"><b>Definition</b> Writer.hpp:21</div></div>
 <div class="ttc" id="aclassbyteme_1_1Writer_html_a8fee63f29e632dd029eff3c8e06020a0"><div class="ttname"><a href="classbyteme_1_1Writer.html#a8fee63f29e632dd029eff3c8e06020a0">byteme::Writer::write</a></div><div class="ttdeci">virtual void write(const unsigned char *buffer, std::size_t n)=0</div></div>
 <div class="ttc" id="anamespacebyteme_html"><div class="ttname"><a href="namespacebyteme.html">byteme</a></div><div class="ttdoc">Simple byte readers and writers.</div></div>
-<div class="ttc" id="astructbyteme_1_1RawFileWriterOptions_html"><div class="ttname"><a href="structbyteme_1_1RawFileWriterOptions.html">byteme::RawFileWriterOptions</a></div><div class="ttdoc">Options for the RawFileWriter constructor.</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:21</div></div>
-<div class="ttc" id="astructbyteme_1_1RawFileWriterOptions_html_a62c3dcedcda2cadc4da34392c4f26ee0"><div class="ttname"><a href="structbyteme_1_1RawFileWriterOptions.html#a62c3dcedcda2cadc4da34392c4f26ee0">byteme::RawFileWriterOptions::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:26</div></div>
+<div class="ttc" id="astructbyteme_1_1RawFileWriterOptions_html"><div class="ttname"><a href="structbyteme_1_1RawFileWriterOptions.html">byteme::RawFileWriterOptions</a></div><div class="ttdoc">Options for the RawFileWriter constructor.</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:24</div></div>
+<div class="ttc" id="astructbyteme_1_1RawFileWriterOptions_html_a968198bb36d902d8f17aa0a6b1786ff4"><div class="ttname"><a href="structbyteme_1_1RawFileWriterOptions.html#a968198bb36d902d8f17aa0a6b1786ff4">byteme::RawFileWriterOptions::bufsiz</a></div><div class="ttdeci">std::optional&lt; std::size_t &gt; bufsiz</div><div class="ttdef"><b>Definition</b> RawFileWriter.hpp:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
