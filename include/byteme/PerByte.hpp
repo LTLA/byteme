@@ -143,6 +143,7 @@ public:
      *
      * @return Pair containing (1) the number of bytes that were successfully read into `output`,
      * and (2) whether there are any more bytes available in the source for future `get()` or `extract()` calls.
+     * If the first element is less than `number`, it can be assumed that no more bytes are available in the source (i.e., the second element will be false).
      */
     std::pair<std::size_t, bool> extract(std::size_t number, Type_* output) {
         std::size_t original = number;
