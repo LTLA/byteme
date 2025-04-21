@@ -217,7 +217,7 @@ template&lt;typename Type_ &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Pair containing (1) the number of bytes that were successfully read into <code>output</code>, and (2) whether there are any more bytes available in the source for future <code><a class="el" href="#a647e6ee2e9c7683f162b22d0a51dc3e5">get()</a></code> or <code><a class="el" href="#a8c61a374f234ea6051f015133d91a44c">extract()</a></code> calls. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pair containing (1) the number of bytes that were successfully read into <code>output</code>, and (2) whether there are any more bytes available in the source for future <code><a class="el" href="#a647e6ee2e9c7683f162b22d0a51dc3e5">get()</a></code> or <code><a class="el" href="#a8c61a374f234ea6051f015133d91a44c">extract()</a></code> calls. If the first element is less than <code>number</code>, it can be assumed that no more bytes are available in the source (i.e., the second element will be false). </dd></dl>
 
 </div>
 </div>
