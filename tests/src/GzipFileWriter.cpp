@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
 #include "read_lines.h"
+#include "temp_file_path.h"
 
-#include "byteme/temp_file_path.hpp"
 #include "byteme/SelfClosingGzFile.hpp"
 #include "byteme/GzipFileWriter.hpp"
 
@@ -12,7 +12,7 @@
 class GzipFileWriterTest : public ::testing::TestWithParam<int> {
 protected:
     auto dump_file(const std::vector<std::string>& contents, size_t buffer_size) {
-        auto path = byteme::temp_file_path("text");
+        auto path = temp_file_path("text");
         byteme::GzipFileWriter writer(path.c_str(), [&]{
             byteme::GzipFileWriterOptions opt;
             opt.gzbuffer_size = buffer_size;

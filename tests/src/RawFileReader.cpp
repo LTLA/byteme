@@ -1,15 +1,17 @@
 #include <gtest/gtest.h>
 
 #include "read_lines.h"
-#include "byteme/temp_file_path.hpp"
+#include "temp_file_path.h"
+
 #include "byteme/RawFileReader.hpp"
 #include "byteme/SomeFileReader.hpp"
+
 #include <fstream>
 
 class RawFileReaderTest : public ::testing::TestWithParam<int> {
 protected:    
     auto dump_file(const std::vector<std::string>& contents) {
-        auto path = byteme::temp_file_path("text");
+        auto path = temp_file_path("text");
         std::ofstream output(path);
         for (auto c : contents) {
             output << c << "\n";

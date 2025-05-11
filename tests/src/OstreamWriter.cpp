@@ -1,15 +1,16 @@
 #include <gtest/gtest.h>
 
 #include "read_lines.h"
+#include "temp_file_path.h"
+
 #include "byteme/OstreamWriter.hpp"
-#include "byteme/temp_file_path.hpp"
 
 #include <fstream>
 
 class OstreamWriterTest : public ::testing::Test {
 protected:    
     auto dump_file(const std::vector<std::string>& contents) {
-        auto path = byteme::temp_file_path("text");
+        auto path = temp_file_path("text");
         byteme::OstreamWriter writer(std::make_unique<std::ofstream>(path));
 
         for (const auto& c : contents) {

@@ -2,11 +2,12 @@
 #include <gmock/gmock.h>
 
 #include "read_lines.h"
+#include "temp_file_path.h"
 
-#include "byteme/temp_file_path.hpp"
 #include "byteme/ZlibBufferReader.hpp"
 #include "byteme/SomeBufferReader.hpp"
 #include "zlib.h"
+
 #include <fstream>
 
 class ZlibBufferReaderTest : public ::testing::TestWithParam<int> {
@@ -18,7 +19,7 @@ protected:
             stuff += '\n';
         }
 
-        auto gzname = byteme::temp_file_path("zlib");
+        auto gzname = temp_file_path("zlib");
         gzFile ohandle = gzopen(gzname.c_str(), "w");
         gzwrite(ohandle, stuff.c_str(), stuff.size());
         gzclose(ohandle);

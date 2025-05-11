@@ -2,10 +2,11 @@
 #include <gmock/gmock.h>
 
 #include "read_lines.h"
+#include "temp_file_path.h"
 
-#include "byteme/temp_file_path.hpp"
 #include "byteme/ZlibBufferWriter.hpp"
 #include "zlib.h"
+
 #include <fstream>
 
 class ZlibBufferWriterTest : public ::testing::TestWithParam<std::tuple<int, size_t> > {
@@ -25,7 +26,7 @@ protected:
         }
         writer.finish();
 
-        auto path = byteme::temp_file_path("temp_");
+        auto path = temp_file_path("temp_");
         {
             std::ofstream dump(path, std::ios::binary);
             auto& output = writer.get_output();

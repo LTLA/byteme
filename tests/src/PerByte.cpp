@@ -1,15 +1,17 @@
 #include <gtest/gtest.h>
 
+#include "temp_file_path.h"
+
 #include "byteme/PerByte.hpp"
-#include "byteme/temp_file_path.hpp"
 #include "byteme/RawFileReader.hpp"
+
 #include <fstream>
 #include <memory>
 
 class PerByteTest : public ::testing::TestWithParam<int> {
 protected:
     auto dump_file(const std::vector<std::string>& contents) {
-        auto path = byteme::temp_file_path("text");
+        auto path = temp_file_path("text");
         std::ofstream output(path);
         for (auto c : contents) {
             output << c << "\n";

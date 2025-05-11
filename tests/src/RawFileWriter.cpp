@@ -1,13 +1,15 @@
 #include <gtest/gtest.h>
 
-#include "byteme/temp_file_path.hpp"
+#include "temp_file_path.h"
+
 #include "byteme/RawFileWriter.hpp"
+
 #include <fstream>
 
 class RawFileWriterTest : public ::testing::TestWithParam<int> {
 protected:
     auto dump_file(const std::vector<std::string>& contents, size_t buffer_size) {
-        auto path = byteme::temp_file_path("text");
+        auto path = temp_file_path("text");
         byteme::RawFileWriter writer(path.c_str(), [&]{
             byteme::RawFileWriterOptions ropt;
             ropt.bufsiz = buffer_size;
