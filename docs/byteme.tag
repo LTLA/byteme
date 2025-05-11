@@ -108,12 +108,6 @@
     <namespace>byteme</namespace>
   </compound>
   <compound kind="file">
-    <name>temp_file_path.hpp</name>
-    <path>byteme/</path>
-    <filename>temp__file__path_8hpp.html</filename>
-    <namespace>byteme</namespace>
-  </compound>
-  <compound kind="file">
     <name>Writer.hpp</name>
     <path>byteme/</path>
     <filename>Writer_8hpp.html</filename>
@@ -1001,20 +995,6 @@
     <class kind="struct">byteme::ZlibBufferReaderOptions</class>
     <class kind="class">byteme::ZlibBufferWriter</class>
     <class kind="struct">byteme::ZlibBufferWriterOptions</class>
-    <member kind="function">
-      <type>std::string</type>
-      <name>temp_file_path</name>
-      <anchorfile>namespacebyteme.html</anchorfile>
-      <anchor>a06ff6bac0c55a089e31301408937b058</anchor>
-      <arglist>(const std::string &amp;prefix, const std::string &amp;ext)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>temp_file_path</name>
-      <anchorfile>namespacebyteme.html</anchorfile>
-      <anchor>a94163b5d4600eeacc222e31540453b01</anchor>
-      <arglist>(const std::string &amp;prefix)</arglist>
-    </member>
   </compound>
   <compound kind="page">
     <name>index</name>

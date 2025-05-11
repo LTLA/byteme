@@ -87,8 +87,7 @@ $(function(){ initResizable(false); });
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle"><div class="title">byteme Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -182,88 +181,10 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbyteme_1_1ZlibBufferWriterOptions.html">ZlibBufferWriterOptions</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for the <code><a class="el" href="classbyteme_1_1ZlibBufferWriter.html" title="Compress and write bytes to a Zlib-compressed buffer.">ZlibBufferWriter</a></code> constructor.  <a href="structbyteme_1_1ZlibBufferWriterOptions.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a06ff6bac0c55a089e31301408937b058" id="r_a06ff6bac0c55a089e31301408937b058"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06ff6bac0c55a089e31301408937b058">temp_file_path</a> (const std::string &amp;prefix, const std::string &amp;ext)</td></tr>
-<tr class="separator:a06ff6bac0c55a089e31301408937b058"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94163b5d4600eeacc222e31540453b01" id="r_a94163b5d4600eeacc222e31540453b01"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94163b5d4600eeacc222e31540453b01">temp_file_path</a> (const std::string &amp;prefix)</td></tr>
-<tr class="separator:a94163b5d4600eeacc222e31540453b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple byte readers and writers. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a94163b5d4600eeacc222e31540453b01" name="a94163b5d4600eeacc222e31540453b01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94163b5d4600eeacc222e31540453b01">&#9670;&#160;</a></span>temp_file_path() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string byteme::temp_file_path </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>prefix</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">prefix</td><td>Prefix of the basename of the file.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Path to a new file without any extension, see <code><a class="el" href="#a06ff6bac0c55a089e31301408937b058">temp_file_path()</a></code> for more details. </dd></dl>
-
-</div>
-</div>
-<a id="a06ff6bac0c55a089e31301408937b058" name="a06ff6bac0c55a089e31301408937b058"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06ff6bac0c55a089e31301408937b058">&#9670;&#160;</a></span>temp_file_path() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string byteme::temp_file_path </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>prefix</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>ext</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">prefix</td><td>Prefix of the basename of the file. </td></tr>
-    <tr><td class="paramname">ext</td><td>File extension.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Path to a new file in an appropriate temporary directory with a unique name. The file itself is created at that location, though this may not be thread-safe.</dd></dl>
-<p>This function is wholly intended for unit testing in <b>byteme</b> and downstream libraries. Production code should use OS-specific thread-safe alternatives such as <code>mkstemp()</code>. </p>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
