@@ -7,6 +7,12 @@
     <namespace>byteme</namespace>
   </compound>
   <compound kind="file">
+    <name>check_buffer_size.hpp</name>
+    <path>byteme/</path>
+    <filename>check__buffer__size_8hpp.html</filename>
+    <namespace>byteme</namespace>
+  </compound>
+  <compound kind="file">
     <name>ChunkedBufferReader.hpp</name>
     <path>byteme/</path>
     <filename>ChunkedBufferReader_8hpp.html</filename>
@@ -995,6 +1001,13 @@
     <class kind="struct">byteme::ZlibBufferReaderOptions</class>
     <class kind="class">byteme::ZlibBufferWriter</class>
     <class kind="struct">byteme::ZlibBufferWriterOptions</class>
+    <member kind="function">
+      <type>constexpr std::size_t</type>
+      <name>cap</name>
+      <anchorfile>namespacebyteme.html</anchorfile>
+      <anchor>a916e2e3e40ed982ff01b82736f942c94</anchor>
+      <arglist>(Size_ size)</arglist>
+    </member>
   </compound>
   <compound kind="page">
     <name>index</name>
