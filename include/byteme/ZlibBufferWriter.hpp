@@ -37,7 +37,7 @@ struct ZlibBufferWriterOptions {
      * Size of the buffer to use when reading from disk.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    std::size_t buffer_size = 65536;
+    std::size_t buffer_size = cap(65536);
 };
 
 /**

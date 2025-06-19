@@ -3,9 +3,18 @@
 
 #include <vector>
 #include <limits>
+#include <cstddef>
+
+/**
+ * @file check_buffer_size.hpp
+ * @brief Utilities to check the buffer sizes.
+ */
 
 namespace byteme {
 
+/**
+ * @cond
+ */
 template<typename Type_>
 constexpr typename std::make_unsigned<Type_>::type unsigned_max() {
     return std::numeric_limits<Type_>::max();
@@ -47,6 +56,28 @@ void safe_write(const Buffer_* buffer, BufSize_ n, Func_ fun) {
     }
 
     fun(buffer, n);
+}
+/**
+ * @endcond
+ */
+
+/**
+ * Cap an integer at the largest value that can be represented by a `std::size_t`.
+ * This avoids silent integer overflows, especially in the defaults of the various `*Options` classes.
+ *
+ * @tparam Size_ Integer type, typically for some buffer size. 
+ *
+ * @param size Non-negative integer specifying some kind of buffer size.
+ *
+ * @return `size` if it fits in a `std::size_t`, otherwise the largest value of a `std::size_t`.
+ */
+template<typename Size_>
+constexpr std::size_t cap(Size_ size) {
+    if (static_cast<typename std::make_unsigned<Size_>::type>(size) > unsigned_max<std::size_t>()) {
+        return unsigned_max<std::size_t>();
+    } else {
+        return size;
+    }
 }
 
 }
