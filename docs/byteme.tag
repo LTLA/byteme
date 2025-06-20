@@ -623,10 +623,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>std::optional&lt; unsigned &gt;</type>
+      <type>std::optional&lt; std::size_t &gt;</type>
       <name>bufsiz</name>
       <anchorfile>structbyteme_1_1RawFileReaderOptions.html</anchorfile>
-      <anchor>a48e1dbc12841848ed6ead5b23270a1aa</anchor>
+      <anchor>ade9c302249e5a2af16e9d5107dc649ab</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -1002,10 +1002,10 @@
     <class kind="class">byteme::ZlibBufferWriter</class>
     <class kind="struct">byteme::ZlibBufferWriterOptions</class>
     <member kind="function">
-      <type>constexpr std::size_t</type>
+      <type>constexpr Output_</type>
       <name>cap</name>
       <anchorfile>namespacebyteme.html</anchorfile>
-      <anchor>a916e2e3e40ed982ff01b82736f942c94</anchor>
+      <anchor>a6eed452f40aae5af9b40b75aa3105b56</anchor>
       <arglist>(Size_ size)</arglist>
     </member>
   </compound>
