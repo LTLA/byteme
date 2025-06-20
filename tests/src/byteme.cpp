@@ -27,14 +27,22 @@ TEST(Miscellaneous, Umbrella) {
 }
 
 TEST(Miscellaneous, CheckBufferSize) {
-    EXPECT_FALSE(byteme::exceeds_cap<int8_t>(10));
-    EXPECT_TRUE(byteme::exceeds_cap<int8_t>(1000));
+    EXPECT_FALSE(byteme::exceeds_cap<std::int8_t>(10));
+    EXPECT_TRUE(byteme::exceeds_cap<std::int8_t>(1000));
+    EXPECT_FALSE(byteme::exceeds_cap<std::size_t>(256));
 
-    EXPECT_EQ(byteme::check_buffer_size<uint8_t>(10), 10);
-    EXPECT_EQ(byteme::check_buffer_size<uint8_t>(1000), 255);
+    EXPECT_EQ(byteme::check_buffer_size<std::uint8_t>(10), 10);
+    EXPECT_EQ(byteme::check_buffer_size<std::uint8_t>(1000), 255);
+    EXPECT_EQ(byteme::check_buffer_size<std::int16_t>(1000), 1000);
+    EXPECT_EQ(byteme::check_buffer_size<std::int16_t>(40000), 32767);
+    EXPECT_EQ(byteme::check_buffer_size<std::uint16_t>(40000), 40000);
 
     EXPECT_EQ(byteme::check_buffer_size(10), 10);
     EXPECT_EQ(byteme::check_buffer_size(10000), 10000);
+
+    EXPECT_EQ(byteme::cap<std::size_t>(256), 256);
+    EXPECT_EQ(byteme::cap<std::size_t>(1000), 1000);
+    EXPECT_EQ(byteme::cap<std::uint8_t>(256), 255);
 
     std::vector<unsigned char> buffers(1000);
     int counter = 0;

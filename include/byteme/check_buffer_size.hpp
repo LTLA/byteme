@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <limits>
+#include <type_traits>
 #include <cstddef>
 
 /**
@@ -22,7 +23,12 @@ constexpr typename std::make_unsigned<Type_>::type unsigned_max() {
 
 template<typename Cap_>
 bool exceeds_cap(std::size_t buffer_size) {
-    return buffer_size > unsigned_max<Cap_>();
+    constexpr auto cap = unsigned_max<Cap_>();
+    if constexpr(std::numeric_limits<std::size_t>::max() > cap) {
+        return buffer_size > cap;
+    } else {
+        return false;
+    }
 }
 
 template<typename Cap_>
@@ -62,19 +68,21 @@ void safe_write(const Buffer_* buffer, BufSize_ n, Func_ fun) {
  */
 
 /**
- * Cap an integer at the largest value that can be represented by a `std::size_t`.
+ * Cap an input integer at the largest value that can be represented by a specified output type, typically a `std::size_t`.
  * This avoids silent integer overflows, especially in the defaults of the various `*Options` classes.
  *
- * @tparam Size_ Integer type, typically for some buffer size. 
+ * @tparam Output_ Unsigned integer type of the output.
+ * @tparam Input_ Integer type of the input.
  *
  * @param size Non-negative integer specifying some kind of buffer size.
  *
- * @return `size` if it fits in a `std::size_t`, otherwise the largest value of a `std::size_t`.
+ * @return `size` if it fits in an `Output_`, otherwise the largest value of an `Output_`.
  */
-template<typename Size_>
-constexpr std::size_t cap(Size_ size) {
-    if (static_cast<typename std::make_unsigned<Size_>::type>(size) > unsigned_max<std::size_t>()) {
-        return unsigned_max<std::size_t>();
+template<typename Output_, typename Size_>
+constexpr Output_ cap(Size_ size) {
+    constexpr auto cap = std::numeric_limits<Output_>::max();
+    if (static_cast<typename std::make_unsigned<Size_>::type>(size) > cap) {
+        return cap;
     } else {
         return size;
     }

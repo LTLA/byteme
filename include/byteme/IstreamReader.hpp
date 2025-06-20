@@ -25,7 +25,7 @@ struct IstreamReaderOptions {
      * Size of the internal buffer to fill from the stream.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    std::size_t buffer_size = cap(65536);
+    std::size_t buffer_size = cap<std::size_t>(65536);
 };
 
 /**
