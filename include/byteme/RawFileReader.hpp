@@ -34,7 +34,7 @@ struct RawFileReaderOptions {
      * Larger values usually reduce computational time at the cost of increased memory usage.
      * If no value is supplied, the default buffer size is not changed.
      */
-    std::optional<unsigned> bufsiz;
+    std::optional<std::size_t> bufsiz;
 };
 
 /**
