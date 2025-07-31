@@ -417,6 +417,13 @@
       <anchor>a8c61a374f234ea6051f015133d91a44c</anchor>
       <arglist>(std::size_t number, Type_ *output)</arglist>
     </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>advance_and_extract</name>
+      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
+      <anchor>ad6c881e08c93089e951e3ac3e64265d1</anchor>
+      <arglist>(std::size_t number, Type_ *output)</arglist>
+    </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>virtual void</type>
       <name>refill</name>

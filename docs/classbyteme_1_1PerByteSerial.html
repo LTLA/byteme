@@ -138,6 +138,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4f9b6fb5ceb70240c2729a8f7bd15efc inherit pub_methods_classbyteme_1_1PerByteInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c61a374f234ea6051f015133d91a44c inherit pub_methods_classbyteme_1_1PerByteInterface" id="r_a8c61a374f234ea6051f015133d91a44c"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::size_t, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1PerByteInterface.html#a8c61a374f234ea6051f015133d91a44c">extract</a> (std::size_t number, Type_ *output)</td></tr>
 <tr class="separator:a8c61a374f234ea6051f015133d91a44c inherit pub_methods_classbyteme_1_1PerByteInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6c881e08c93089e951e3ac3e64265d1 inherit pub_methods_classbyteme_1_1PerByteInterface" id="r_ad6c881e08c93089e951e3ac3e64265d1"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1PerByteInterface.html#ad6c881e08c93089e951e3ac3e64265d1">advance_and_extract</a> (std::size_t number, Type_ *output)</td></tr>
+<tr class="separator:ad6c881e08c93089e951e3ac3e64265d1 inherit pub_methods_classbyteme_1_1PerByteInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -191,7 +193,7 @@ template&lt;typename Type_ , class Pointer_  = std::unique_ptr&lt;Reader&gt;&gt;
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">reader</td><td>Pointer to a source of input bytes. </td></tr>
+    <tr><td class="paramname">reader</td><td>Pointer to a source of input bytes. It is assumed that <code><a class="el" href="classbyteme_1_1Reader.html#a60671d10f28ce83fa256d7342c769ba5">Reader::load()</a></code> has not previously returned <code>false</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -223,7 +225,7 @@ template&lt;typename Type_ , class Pointer_  = std::unique_ptr&lt;Reader&gt;&gt;
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set <code>ptr</code> and <code>available</code> to refer to an array of new bytes from a <code><a class="el" href="classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source.">Reader</a></code>. </p>
+<p>Set <code>ptr</code> and <code>available</code> to refer to an array of new bytes from a <code><a class="el" href="classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source.">Reader</a></code>. Implementations may assume that <code><a class="el" href="classbyteme_1_1Reader.html#a60671d10f28ce83fa256d7342c769ba5">Reader::load()</a></code> has not previously returned <code>false</code>. </p>
 
 <p>Implements <a class="el" href="classbyteme_1_1PerByteInterface.html#a8cb67ac7c5517d17adb6fe88b803516d">byteme::PerByteInterface&lt; Type_ &gt;</a>.</p>
 
