@@ -21,6 +21,7 @@ public:
     /**
      * Read the next chunk of bytes from the input source. 
      * To read the entire source, this function should be called repeatedly until `false` is returned.
+     * After returning `false` once, the behavior of subsequent calls is undefined.
      *
      * @return Boolean indicating whether the read was successful.
      * If `false`, it can be assumed that the end of the source was reached.

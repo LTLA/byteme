@@ -77,6 +77,7 @@ protected:
 
     /**
      * Set `ptr` and `available` to refer to an array of new bytes from a `Reader`.
+     * Implementations may assume that `Reader::load()` has not previously returned `false`.
      */
     virtual void refill() = 0;
 
@@ -134,8 +135,8 @@ public:
      * Extract up to `number` bytes from the `Reader` source and store them in the `output`.
      * This is equivalent to (but more efficient than) calling `get()` and then `advance()` up to `number` times,
      * only iterating while the return value of `advance()` is still true.
-     * The number of successful iterations is returned in the output as the first pair element,
-     * while the return value of the final `advance()` is returned as the second pair element.
+     * Users should only call this method if no previous call to `advance()` has returned `false` -
+     * or equivalently, no previous call to `extract()` has `false` in the second element of its return value.
      *
      * @param number Number of bytes to extract.
      * @param[out] output Pointer to an output buffer of length `number`.
@@ -143,7 +144,10 @@ public:
      *
      * @return Pair containing (1) the number of bytes that were successfully read into `output`,
      * and (2) whether there are any more bytes available in the source for future `get()` or `extract()` calls.
-     * If the first element is less than `number`, it can be assumed that no more bytes are available in the source (i.e., the second element will be false).
+     * The first value can be interpreted as the number of successful `get()`/`advance()` iterations,
+     * while the second value can be interpreted as the result of the final `advance()`. 
+     * If the first element is less than `number`, it can be assumed that no more bytes are available in the source (i.e., the second element must be false).
+     * Note that the converse is not true as it is possible to read `number` bytes and finish the source at the same time.
      */
     std::pair<std::size_t, bool> extract(std::size_t number, Type_* output) {
         std::size_t original = number;
@@ -245,6 +249,7 @@ class PerByteSerial final : public PerByteInterface<Type_> {
 public:
     /**
      * @param reader Pointer to a source of input bytes.
+     * It is assumed that `Reader::load()` has not previously returned `false`.
      */
     PerByteSerial(Pointer_ reader) : my_reader(std::move(reader)) {
         refill();
@@ -276,6 +281,7 @@ class PerByteParallel final : public PerByteInterface<Type_> {
 public:
     /**
      * @param reader Pointer to a source of input bytes.
+     * It is assumed that `Reader::load()` has not previously returned `false`.
      */
     PerByteParallel(Pointer_ reader) : my_reader(std::move(reader)) {
         my_ready_input = false;
