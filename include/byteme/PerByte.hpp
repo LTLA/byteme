@@ -177,6 +177,55 @@ public:
 
         return std::make_pair(original - number, okay);
     }
+
+    /**
+     * Advance to the next byte, extract up to `number` bytes from the `Reader` source and store them in the `output`.
+     * This is equivalent to (but more efficient than) calling `advance()` and then `get()` up to `number` times,
+     * only iterating while the return value of `advance()` is still true.
+     * Users should only call this method if `valid()` returns `true`.
+     * Note the distinction between this method and `extract()`, as the latter calls `get()` _before_ `advance()`.
+     *
+     * @param number Number of bytes to extract.
+     * @param[out] output Pointer to an output buffer of length `number`.
+     * This is filled with up to `number` bytes from the source.
+     *
+     * @return The number of bytes that were successfully read into `output`.
+     * The first element is less than `number` if and only if no more bytes are available in the source, i.e., `valid()` returns `false`.
+     * (This can also be interpreted as the last call to `advance()` returning `false` in a hypothetical iterative implementation.)
+     */
+    std::size_t advance_and_extract(std::size_t number, Type_* output) {
+        if (number == 0) {
+            return 0;
+        }
+        ++my_current;
+        std::size_t original = number;
+
+        while (1) {
+            auto start = ptr + my_current;
+            auto leftover = available - my_current;
+
+            if (leftover >= number) {
+                std::copy_n(start, number, output);
+                my_current += number - 1; // number must be positive at this point.
+                number = 0;
+                break;
+            } else {
+                number -= leftover; // number must be positive at this point.
+                std::copy(start, ptr + available, output);
+
+                my_current = 0;
+                my_overall += available;
+                refill();
+
+                if (available == 0) {
+                    break;
+                }
+                output += leftover;
+            }
+        }
+
+        return original - number;
+    }
 };
 
 
