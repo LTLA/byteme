@@ -22,7 +22,7 @@ TEST(Miscellaneous, Umbrella) {
     gzclose(ohandle);
 
     byteme::GzipFileReader reader(gzname.c_str(), {});
-    auto lines = read_lines(reader);
+    auto lines = read_lines(reader, 10);
     EXPECT_EQ(lines, contents);
 }
 

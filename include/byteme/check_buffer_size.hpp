@@ -46,6 +46,28 @@ inline std::size_t check_buffer_size(std::size_t buffer_size) {
     return check_buffer_size<typename std::vector<unsigned char>::size_type>(buffer_size);
 }
 
+template<typename Cap_, class Func_>
+std::size_t safe_read(unsigned char* buffer, std::size_t n, Func_ fun) {
+    std::size_t remaining = n;
+    constexpr auto total = std::numeric_limits<Cap_>::max();
+
+    while (remaining > static_cast<typename std::make_unsigned<Cap_>::type>(total)) {
+        auto read = fun(buffer, total);
+        static_assert(std::is_same<decltype(read), Cap_>::value);
+
+        remaining -= read;
+        buffer += read;
+        if (read < total) {
+            return n - remaining; 
+        }
+    }
+
+    auto extra = fun(buffer, remaining);
+    remaining -= extra;
+    return n - remaining;
+}
+
+
 template<typename Cap_, bool non_zero_, typename Buffer_, typename BufSize_, class Func_>
 void safe_write(const Buffer_* buffer, BufSize_ n, Func_ fun) {
     constexpr auto total = unsigned_max<Cap_>();

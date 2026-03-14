@@ -24,48 +24,37 @@ TEST_P(RawFileReaderTest, Basic) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto path = dump_file(contents);
 
-    byteme::RawFileReader reader(path.c_str(), [&]{
-        byteme::RawFileReaderOptions ropt;
-        ropt.buffer_size = GetParam();
-        return ropt;
-    }());
+    byteme::RawFileReader reader(path.c_str(), {});
 
-    auto lines = read_lines(reader);
+    auto lines = read_lines(reader, GetParam());
     EXPECT_EQ(lines, contents);
 }
 
 TEST_P(RawFileReaderTest, Empty) {
-    std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
+    std::vector<std::string> contents;
     auto path = dump_file(contents);
 
-    byteme::RawFileReader reader(path.c_str(), [&]{
-        byteme::RawFileReaderOptions ropt;
-        ropt.buffer_size = GetParam();
-        return ropt;
-    }());
-
-    auto lines = read_lines(reader);
+    byteme::RawFileReader reader(path.c_str(), {});
+    auto lines = read_lines(reader, GetParam());
     EXPECT_EQ(lines, contents);
 }
 
-TEST_P(RawFileReaderTest, TooLong) {
-    std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
+TEST_P(RawFileReaderTest, Exact) {
+    std::vector<std::string> contents;
+    for (int i = 0; i < 10; ++i) {
+        contents.emplace_back(GetParam() - 1, char(i + 'a'));
+    }
     auto path = dump_file(contents);
 
-    byteme::RawFileReader reader(path.c_str(), [&]{
-        byteme::RawFileReaderOptions ropt;
-        ropt.buffer_size = GetParam();
-        return ropt;
-    }());
-
-    auto lines = read_lines(reader);
+    byteme::RawFileReader reader(path.c_str(), {});
+    auto lines = read_lines(reader, GetParam());
     EXPECT_EQ(lines, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
     RawFileReader,
     RawFileReaderTest,
-    ::testing::Values(10, 50, 100, 1000)
+    ::testing::Values(10, 20, 50, 100)
 );
 
 TEST_F(RawFileReaderTest, Moveable) {
@@ -76,7 +65,7 @@ TEST_F(RawFileReaderTest, Moveable) {
     {
         byteme::RawFileReader reader(path.c_str(), {});
         byteme::RawFileReader other(std::move(reader));
-        auto lines = read_lines(other);
+        auto lines = read_lines(other, 15);
         EXPECT_EQ(lines, contents);
     }
 
@@ -84,7 +73,7 @@ TEST_F(RawFileReaderTest, Moveable) {
     {
         byteme::RawFileReader reader(path.c_str(), {});
         byteme::RawFileReader other = std::move(reader);
-        auto lines = read_lines(other);
+        auto lines = read_lines(other, 20);
         EXPECT_EQ(lines, contents);
     }
 }

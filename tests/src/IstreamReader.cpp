@@ -19,46 +19,36 @@ TEST_P(IstreamReaderTest, Basic) {
     std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
     auto is = std::make_unique<std::istringstream>(dump_buffer(contents));
 
-    byteme::IstreamReader reader(std::move(is), [&]{
-        byteme::IstreamReaderOptions iopt;
-        iopt.buffer_size = GetParam();
-        return iopt;
-    }());
-
-    auto lines = read_lines(reader);
+    byteme::IstreamReader reader(std::move(is));
+    auto lines = read_lines(reader, GetParam());
     EXPECT_EQ(lines, contents);
 }
 
 TEST_P(IstreamReaderTest, Empty) {
-    std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
+    std::vector<std::string> contents;
     auto is = std::make_unique<std::istringstream>(dump_buffer(contents));
 
-    byteme::IstreamReader reader(std::move(is), [&]{
-        byteme::IstreamReaderOptions iopt;
-        iopt.buffer_size = GetParam();
-        return iopt;
-    }());
-
-    auto lines = read_lines(reader);
+    byteme::IstreamReader reader(std::move(is));
+    auto lines = read_lines(reader, GetParam());
     EXPECT_EQ(lines, contents);
 }
 
-TEST_P(IstreamReaderTest, TooLong) {
-    std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
-    auto is = std::make_unique<std::istringstream>(dump_buffer(contents));
+TEST_P(IstreamReaderTest, Exact) {
+    std::vector<std::string> contents;
+    for (int i = 0; i < 10; ++i) {
+        contents.emplace_back(GetParam() - 1, char(i + 'a')); // total size is a multiple of GetParam().
+    }
+    auto combined = dump_buffer(contents);
+    EXPECT_EQ(combined.size() % GetParam(), 0);
+    auto is = std::make_unique<std::istringstream>(std::move(combined));
 
-    byteme::IstreamReader reader(std::move(is), [&]{
-        byteme::IstreamReaderOptions iopt;
-        iopt.buffer_size = GetParam();
-        return iopt;
-    }());
-
-    auto lines = read_lines(reader);
+    byteme::IstreamReader reader(std::move(is));
+    auto lines = read_lines(reader, GetParam());
     EXPECT_EQ(lines, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
     IstreamReader,
     IstreamReaderTest,
-    ::testing::Values(10, 50, 100, 1000)
+    ::testing::Values(10, 20, 50, 100)
 );

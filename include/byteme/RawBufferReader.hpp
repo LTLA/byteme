@@ -18,37 +18,28 @@ namespace byteme {
  * @brief Read bytes from a raw buffer, usually text.
  *
  * This is a wrapper around an input buffer, provided for consistency with the other `*Reader` classes.
- * We assume that the lifetime of the data in the `buffer` pointer exceeds the lifetime of the instance.
  */
 class RawBufferReader final : public Reader {
 public:
     /**
      * @param[in] buffer Pointer to an array of bytes. 
+     * We assume that the lifetime of the array exceeds the lifetime of this `RawBufferReader` instance.
      * @param length Length of the buffer.
      */
-    RawBufferReader(const unsigned char* buffer, std::size_t length) : my_buffer(buffer), my_length(length) {}
+    RawBufferReader(const unsigned char* buffer, std::size_t length) : my_buffer(buffer), my_remaining(length) {}
 
 public:
-    bool load() {
-        if (my_used) {
-            return false;
-        }
-        my_used = true;
-        return true;
-    }
-
-    const unsigned char* buffer() const {
-        return my_buffer;
-    }
-
-    std::size_t available() const {
-        return my_length;
+    std::size_t read(unsigned char* buffer, std::size_t n) {
+        const auto to_copy = std::min(n, my_remaining);
+        std::copy_n(my_buffer, to_copy, buffer);
+        my_buffer += to_copy;
+        my_remaining -= to_copy;
+        return to_copy;
     }
 
 private:
     const unsigned char* my_buffer;
-    std::size_t my_length;
-    bool my_used = false;
+    std::size_t my_remaining;
 };
 
 }

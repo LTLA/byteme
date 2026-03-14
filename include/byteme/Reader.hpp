@@ -19,31 +19,16 @@ public:
     virtual ~Reader() = default;
 
     /**
-     * Read the next chunk of bytes from the input source. 
-     * To read the entire source, this function should be called repeatedly until `false` is returned.
-     * After returning `false` once, the behavior of subsequent calls is undefined.
+     * Read the specified number of bytes from the source into a user-supplied buffer.
      *
-     * @return Boolean indicating whether the read was successful.
-     * If `false`, it can be assumed that the end of the source was reached.
+     * @param[out] buffer Pointer to an array of at least length `n`.
+     * @param n Maximum number of bytes to extract from the source. 
+     * 
+     * @return Number of bytes that were actually extracted from the source.
+     * This will be less than or equal to `n`.
+     * If less than `n`, the stream of bytes from the source is finished and no more calls to `read()` should be performed.
      */
-    virtual bool load() = 0;
-
-    /**
-     * This method should only be called after `load()` has been called and returns `true`.
-     *
-     * @return Pointer to the start of an array containing the available bytes.
-     * The number of available bytes is provided in `available()`.
-     */
-    virtual const unsigned char* buffer() const = 0;
-
-    /**
-     * This method should only be called after `load()` has been called and returns `true`.
-     * The return value is generally expected to be positive; however, it is possible to return a zero.
-     * Note that zero values should not be interpreted as the end of the source, which is strictly only defined by `load()` returning `false`.
-     *
-     * @return Number of available bytes in `buffer()`.
-     */
-    virtual std::size_t available() const = 0;
+    virtual std::size_t read(unsigned char* buffer, std::size_t n) = 0;
 };
 
 }

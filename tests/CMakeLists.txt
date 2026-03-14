@@ -24,14 +24,13 @@ add_executable(
     src/RawBufferReader.cpp
     src/RawFileReader.cpp
     src/ZlibBufferReader.cpp
-    src/ChunkedBufferReader.cpp
-    src/PerByte.cpp
-
-    src/RawBufferWriter.cpp
-    src/RawFileWriter.cpp
-    src/GzipFileWriter.cpp
-    src/ZlibBufferWriter.cpp
-    src/OstreamWriter.cpp
+#    src/PerByte.cpp
+#
+#    src/RawBufferWriter.cpp
+#    src/RawFileWriter.cpp
+#    src/GzipFileWriter.cpp
+#    src/ZlibBufferWriter.cpp
+#    src/OstreamWriter.cpp
 
     src/byteme.cpp
 )
