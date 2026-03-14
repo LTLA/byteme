@@ -150,7 +150,7 @@ public:
         if (number < remaining) {
             std::copy_n(my_buffer_ptr + my_current, number, output); 
             my_current += number;
-            return std::make_pair(number, false);
+            return std::make_pair(number, true);
         }
 
         std::copy_n(my_buffer_ptr + my_current, remaining, output); 
@@ -160,10 +160,10 @@ public:
         // If the available number of bytes is less than the buffer size, the reader is already exhausted.
         if (my_available < buffer_size) {
             my_current = my_available;
-            return std::make_pair(original - number, true);
+            return std::make_pair(original - number, false);
         }
 
-        // Directly passing the output array to the reader, bypassing our buffer.
+        // Directly filling the output array, bypassing our buffer.
         while (number >= buffer_size) {
             my_overall += my_available;
             my_available = refill(output);
@@ -172,7 +172,7 @@ public:
             number -= my_available;
             if (my_available < buffer_size) {
                 my_current = my_available;
-                return std::make_pair(original - number, true);
+                return std::make_pair(original - number, false);
             }
         }
 
@@ -192,7 +192,7 @@ public:
         // Thus, any future advance() would definitely return false.
         bool exhausted = (to_use == my_available);
 
-        return std::make_pair(original - number, exhausted);
+        return std::make_pair(original - number, !exhausted);
     }
 };
 
@@ -262,13 +262,11 @@ public:
      * @cond
      */
     ~PerByteParallel() {
-        if (!my_finished) {
-            std::unique_lock lck(my_mut);
-            my_finished = true;
-            my_ready_input = true;
-            lck.unlock(); // releasing the lock so that the notified thread doesn't immediately block.
-            my_cv.notify_one();
-        }
+        std::unique_lock lck(my_mut);
+        my_kill = true;
+        my_ready_input = true;
+        lck.unlock(); // releasing the lock so that the notified thread doesn't immediately block.
+        my_cv.notify_one();
         my_thread.join();
     }
     /**
@@ -279,32 +277,31 @@ private:
     Pointer_ my_reader;
     std::vector<Type_> my_buffer_main, my_buffer_worker;
     std::size_t my_next_available = 0;
-    bool my_finished = false;
 
 private:
     std::thread my_thread;
     std::exception_ptr my_thread_err = nullptr;
     std::mutex my_mut;
     std::condition_variable my_cv;
+
     bool my_ready_input = false, my_ready_output = false;
     bool my_worker_active = false;
+    bool my_kill = false;
 
     void thread_loop() {
-        while (!my_finished) {
+        while (1) {
             std::unique_lock lck(my_mut);
             my_cv.wait(lck, [&]() { return my_ready_input; });
             my_ready_input = false;
 
-            if (my_finished) { // an explicit kill signal from the destructor.
+            if (my_kill) { // Handle an explicit kill signal from the destructor.
                 break;
             }
 
             try {
                 my_next_available = my_reader->read(reinterpret_cast<unsigned char*>(my_buffer_worker.data()), this->buffer_size);
-                my_finished = my_next_available < this->buffer_size;
             } catch (...) {
                 my_thread_err = std::current_exception();
-                my_finished = true;
             }
 
             my_ready_output = true;
@@ -321,6 +318,7 @@ protected:
             std::unique_lock lck(my_mut);
             my_cv.wait(lck, [&]() { return my_ready_output; });
             my_ready_output = false;
+
             if (my_thread_err) {
                 std::rethrow_exception(my_thread_err);
             }
@@ -330,9 +328,7 @@ protected:
 
             my_ready_input = true;
             lck.unlock();
-            if (!my_finished) {
-                my_cv.notify_one();
-            }
+            my_cv.notify_one();
 
             return output;
 
@@ -340,13 +336,12 @@ protected:
             // If the worker is not active, we just do a read directly on the main thread, and then submit a new job to the worker.
             // Obviously, if we did the read on the worker, we'd have to wait for it anyway, so we might as well cut out the communication overhead.
             auto available = my_reader->read(reinterpret_cast<unsigned char*>(my_buffer_main.data()), this->buffer_size);
-            my_finished = available < this->buffer_size;
 
-            if (!my_finished) {
-                my_ready_input = true;
-                my_cv.notify_one();
-                my_worker_active = true;
-            }
+            std::unique_lock lck(my_mut);
+            my_ready_input = true;
+            lck.unlock();
+            my_cv.notify_one();
+            my_worker_active = true;
 
             return std::make_pair(my_buffer_main.data(), available);
         }
@@ -367,14 +362,12 @@ protected:
             }
 
             std::copy_n(my_buffer_worker.begin(), my_next_available, ptr);
-            my_worker_active = false; 
+            my_worker_active = false;
             return my_next_available;
 
         } else {
             // If the worker isn't active, we can directly read the into the supplied pointer, avoiding some communication overhead.
-            auto available = my_reader->read(reinterpret_cast<unsigned char*>(ptr), this->buffer_size);
-            my_finished = available < this->buffer_size;
-            return available;
+            return my_reader->read(reinterpret_cast<unsigned char*>(ptr), this->buffer_size);
         }
     }
 };
