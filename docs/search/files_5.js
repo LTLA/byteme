@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['perbyte_2ehpp_0',['PerByte.hpp',['../PerByte_8hpp.html',1,'']]]
+  ['ostreamwriter_2ehpp_0',['OstreamWriter.hpp',['../OstreamWriter_8hpp.html',1,'']]]
 ];

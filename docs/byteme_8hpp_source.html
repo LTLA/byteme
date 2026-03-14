@@ -109,20 +109,19 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="PerByte_8hpp.html">PerByte.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#if __has_include(&quot;zlib.h&quot;)</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="GzipFileReader_8hpp.html">GzipFileReader.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="ZlibBufferReader_8hpp.html">ZlibBufferReader.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;<a class="code" href="SomeBufferReader_8hpp.html">SomeBufferReader.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="SomeFileReader_8hpp.html">SomeFileReader.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="GzipFileWriter_8hpp.html">GzipFileWriter.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="ZlibBufferWriter_8hpp.html">ZlibBufferWriter.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {}</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="magic__numbers_8hpp.html">magic_numbers.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#if __has_include(&quot;zlib.h&quot;)</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;<a class="code" href="GzipFileReader_8hpp.html">GzipFileReader.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;<a class="code" href="ZlibBufferReader_8hpp.html">ZlibBufferReader.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="GzipFileWriter_8hpp.html">GzipFileWriter.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="ZlibBufferWriter_8hpp.html">ZlibBufferWriter.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {}</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aChunkedBufferReader_8hpp_html"><div class="ttname"><a href="ChunkedBufferReader_8hpp.html">ChunkedBufferReader.hpp</a></div><div class="ttdoc">Read chunks of bytes from a raw buffer.</div></div>
 <div class="ttc" id="aGzipFileReader_8hpp_html"><div class="ttname"><a href="GzipFileReader_8hpp.html">GzipFileReader.hpp</a></div><div class="ttdoc">Read a Gzip-compressed file.</div></div>
 <div class="ttc" id="aGzipFileWriter_8hpp_html"><div class="ttname"><a href="GzipFileWriter_8hpp.html">GzipFileWriter.hpp</a></div><div class="ttdoc">Write a Gzip-compressed file.</div></div>
@@ -134,11 +133,10 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="aRawFileReader_8hpp_html"><div class="ttname"><a href="RawFileReader_8hpp.html">RawFileReader.hpp</a></div><div class="ttdoc">Read a file without any extra transformations.</div></div>
 <div class="ttc" id="aRawFileWriter_8hpp_html"><div class="ttname"><a href="RawFileWriter_8hpp.html">RawFileWriter.hpp</a></div><div class="ttdoc">Write bytes to a file without any extra transformations.</div></div>
 <div class="ttc" id="aReader_8hpp_html"><div class="ttname"><a href="Reader_8hpp.html">Reader.hpp</a></div><div class="ttdoc">Read an input source.</div></div>
-<div class="ttc" id="aSomeBufferReader_8hpp_html"><div class="ttname"><a href="SomeBufferReader_8hpp.html">SomeBufferReader.hpp</a></div><div class="ttdoc">Read a possibly-Gzipped or Zlibbed buffer.</div></div>
-<div class="ttc" id="aSomeFileReader_8hpp_html"><div class="ttname"><a href="SomeFileReader_8hpp.html">SomeFileReader.hpp</a></div><div class="ttdoc">Read a possibly-Gzipped file.</div></div>
 <div class="ttc" id="aWriter_8hpp_html"><div class="ttname"><a href="Writer_8hpp.html">Writer.hpp</a></div><div class="ttdoc">Write to an output sink.</div></div>
 <div class="ttc" id="aZlibBufferReader_8hpp_html"><div class="ttname"><a href="ZlibBufferReader_8hpp.html">ZlibBufferReader.hpp</a></div><div class="ttdoc">Read bytes from a Zlib-compressed buffer.</div></div>
 <div class="ttc" id="aZlibBufferWriter_8hpp_html"><div class="ttname"><a href="ZlibBufferWriter_8hpp.html">ZlibBufferWriter.hpp</a></div><div class="ttdoc">Write bytes to a Zlib-compressed buffer.</div></div>
+<div class="ttc" id="amagic__numbers_8hpp_html"><div class="ttname"><a href="magic__numbers_8hpp.html">magic_numbers.hpp</a></div><div class="ttdoc">Magic numbers for various compression algorithms.</div></div>
 <div class="ttc" id="anamespacebyteme_html"><div class="ttname"><a href="namespacebyteme.html">byteme</a></div><div class="ttdoc">Simple byte readers and writers.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

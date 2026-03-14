@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['istreamreader_0',['IstreamReader',['../classbyteme_1_1IstreamReader.html#a19247e8caa4d21b5195556a0bf776aa6',1,'byteme::IstreamReader']]]
+  ['is_5fgzip_0',['is_gzip',['../namespacebyteme.html#acb08f1cce34b8b237e3174b307a34178',1,'byteme::is_gzip(const unsigned char *buffer, std::size_t n)'],['../namespacebyteme.html#a079575e91360061a7495713a7e872258',1,'byteme::is_gzip(const char *path)']]],
+  ['is_5fzlib_1',['is_zlib',['../namespacebyteme.html#ad3b16db0612e6afdf861519e51d71653',1,'byteme']]],
+  ['istreamreader_2',['IstreamReader',['../classbyteme_1_1IstreamReader.html#a19247e8caa4d21b5195556a0bf776aa6',1,'byteme::IstreamReader']]]
 ];

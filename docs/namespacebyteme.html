@@ -155,18 +155,6 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Reader.html">Reader</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual class for reading bytes from a source.  <a href="classbyteme_1_1Reader.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1SomeBufferReader.html">SomeBufferReader</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a buffer that may or may not be Gzip/Zlib-compressed.  <a href="classbyteme_1_1SomeBufferReader.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbyteme_1_1SomeBufferReaderOptions.html">SomeBufferReaderOptions</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for the <code><a class="el" href="classbyteme_1_1SomeBufferReader.html" title="Read a buffer that may or may not be Gzip/Zlib-compressed.">SomeBufferReader</a></code> constructor.  <a href="structbyteme_1_1SomeBufferReaderOptions.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1SomeFileReader.html">SomeFileReader</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a file that may or may not be Gzipped.  <a href="classbyteme_1_1SomeFileReader.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbyteme_1_1SomeFileReaderOptions.html">SomeFileReaderOptions</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for the <code><a class="el" href="classbyteme_1_1SomeFileReader.html" title="Read a file that may or may not be Gzipped.">SomeFileReader</a></code> constructor.  <a href="structbyteme_1_1SomeFileReaderOptions.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1Writer.html">Writer</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual class for writing bytes to a sink.  <a href="classbyteme_1_1Writer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -188,6 +176,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a6eed452f40aae5af9b40b75aa3105b56" id="r_a6eed452f40aae5af9b40b75aa3105b56"><td class="memTemplParams" colspan="2">template&lt;typename Output_ , typename Size_ &gt; </td></tr>
 <tr class="memitem:a6eed452f40aae5af9b40b75aa3105b56"><td class="memTemplItemLeft" align="right" valign="top">constexpr Output_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6eed452f40aae5af9b40b75aa3105b56">cap</a> (Size_ size)</td></tr>
 <tr class="separator:a6eed452f40aae5af9b40b75aa3105b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3b16db0612e6afdf861519e51d71653" id="r_ad3b16db0612e6afdf861519e51d71653"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3b16db0612e6afdf861519e51d71653">is_zlib</a> (const unsigned char *buffer, std::size_t n)</td></tr>
+<tr class="separator:ad3b16db0612e6afdf861519e51d71653"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb08f1cce34b8b237e3174b307a34178" id="r_acb08f1cce34b8b237e3174b307a34178"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb08f1cce34b8b237e3174b307a34178">is_gzip</a> (const unsigned char *buffer, std::size_t n)</td></tr>
+<tr class="separator:acb08f1cce34b8b237e3174b307a34178"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a079575e91360061a7495713a7e872258" id="r_a079575e91360061a7495713a7e872258"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a079575e91360061a7495713a7e872258">is_gzip</a> (const char *path)</td></tr>
+<tr class="separator:a079575e91360061a7495713a7e872258"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple byte readers and writers. </p>
@@ -231,6 +225,112 @@ template&lt;typename Output_ , typename Size_ &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>size</code> if it fits in an <code>Output_</code>, otherwise the largest value of an <code>Output_</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a079575e91360061a7495713a7e872258" name="a079575e91360061a7495713a7e872258"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a079575e91360061a7495713a7e872258">&#9670;&#160;</a></span>is_gzip() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool byteme::is_gzip </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Path to a file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the file is Gzipped, based on its magic numbers. </dd></dl>
+
+</div>
+</div>
+<a id="acb08f1cce34b8b237e3174b307a34178" name="acb08f1cce34b8b237e3174b307a34178"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb08f1cce34b8b237e3174b307a34178">&#9670;&#160;</a></span>is_gzip() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool byteme::is_gzip </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned char *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Pointer to an array of length <code>n</code>. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">n</td><td>Number of bytes in <code>buffer</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the buffer contains the bytes of a Gzipped file, based on its magic numbers. </dd></dl>
+
+</div>
+</div>
+<a id="ad3b16db0612e6afdf861519e51d71653" name="ad3b16db0612e6afdf861519e51d71653"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3b16db0612e6afdf861519e51d71653">&#9670;&#160;</a></span>is_zlib()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool byteme::is_zlib </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned char *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Pointer to an array of length <code>n</code>. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">n</td><td>Number of bytes in <code>buffer</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the buffer is Zlib-compressed, based on its magic numbers. </dd></dl>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ostreamwriter_2ehpp_0',['OstreamWriter.hpp',['../OstreamWriter_8hpp.html',1,'']]]
+  ['magic_5fnumbers_2ehpp_0',['magic_numbers.hpp',['../magic__numbers_8hpp.html',1,'']]]
 ];

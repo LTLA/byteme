@@ -44,6 +44,12 @@
     <namespace>byteme</namespace>
   </compound>
   <compound kind="file">
+    <name>magic_numbers.hpp</name>
+    <path>byteme/</path>
+    <filename>magic__numbers_8hpp.html</filename>
+    <namespace>byteme</namespace>
+  </compound>
+  <compound kind="file">
     <name>OstreamWriter.hpp</name>
     <path>byteme/</path>
     <filename>OstreamWriter_8hpp.html</filename>
@@ -95,22 +101,6 @@
     <path>byteme/</path>
     <filename>Reader_8hpp.html</filename>
     <class kind="class">byteme::Reader</class>
-    <namespace>byteme</namespace>
-  </compound>
-  <compound kind="file">
-    <name>SomeBufferReader.hpp</name>
-    <path>byteme/</path>
-    <filename>SomeBufferReader_8hpp.html</filename>
-    <class kind="struct">byteme::SomeBufferReaderOptions</class>
-    <class kind="class">byteme::SomeBufferReader</class>
-    <namespace>byteme</namespace>
-  </compound>
-  <compound kind="file">
-    <name>SomeFileReader.hpp</name>
-    <path>byteme/</path>
-    <filename>SomeFileReader_8hpp.html</filename>
-    <class kind="struct">byteme::SomeFileReaderOptions</class>
-    <class kind="class">byteme::SomeFileReader</class>
     <namespace>byteme</namespace>
   </compound>
   <compound kind="file">
@@ -721,94 +711,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>byteme::SomeBufferReader</name>
-    <filename>classbyteme_1_1SomeBufferReader.html</filename>
-    <base>byteme::Reader</base>
-    <member kind="function">
-      <type></type>
-      <name>SomeBufferReader</name>
-      <anchorfile>classbyteme_1_1SomeBufferReader.html</anchorfile>
-      <anchor>a42b6d367e5f83e2b59eba87f29f4000f</anchor>
-      <arglist>(const unsigned char *buffer, std::size_t length, const SomeBufferReaderOptions &amp;options)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>load</name>
-      <anchorfile>classbyteme_1_1SomeBufferReader.html</anchorfile>
-      <anchor>a12ae0af8ee14ca87e9e2fed95e3ed4ae</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>const unsigned char *</type>
-      <name>buffer</name>
-      <anchorfile>classbyteme_1_1SomeBufferReader.html</anchorfile>
-      <anchor>a845dc3ba53b3ec9fde4edf1ef3c9b2ab</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::size_t</type>
-      <name>available</name>
-      <anchorfile>classbyteme_1_1SomeBufferReader.html</anchorfile>
-      <anchor>a1483046d3c70ca76b23df7bb5ae869b6</anchor>
-      <arglist>() const</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>byteme::SomeBufferReaderOptions</name>
-    <filename>structbyteme_1_1SomeBufferReaderOptions.html</filename>
-    <member kind="variable">
-      <type>std::size_t</type>
-      <name>buffer_size</name>
-      <anchorfile>structbyteme_1_1SomeBufferReaderOptions.html</anchorfile>
-      <anchor>a99f4b826d6ef07cd7be11e92f17e4193</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>byteme::SomeFileReader</name>
-    <filename>classbyteme_1_1SomeFileReader.html</filename>
-    <base>byteme::Reader</base>
-    <member kind="function">
-      <type></type>
-      <name>SomeFileReader</name>
-      <anchorfile>classbyteme_1_1SomeFileReader.html</anchorfile>
-      <anchor>a68b58b4cdeb04b1747db643b69880787</anchor>
-      <arglist>(const char *path, const SomeFileReaderOptions &amp;options)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>load</name>
-      <anchorfile>classbyteme_1_1SomeFileReader.html</anchorfile>
-      <anchor>ac811bf5ceb6ee162201821403835b8bf</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>const unsigned char *</type>
-      <name>buffer</name>
-      <anchorfile>classbyteme_1_1SomeFileReader.html</anchorfile>
-      <anchor>a88e3abc2c4f024f0003e8589e425033b</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::size_t</type>
-      <name>available</name>
-      <anchorfile>classbyteme_1_1SomeFileReader.html</anchorfile>
-      <anchor>ab8f1b0e7eb9655d973006170a1e8fb9b</anchor>
-      <arglist>() const</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>byteme::SomeFileReaderOptions</name>
-    <filename>structbyteme_1_1SomeFileReaderOptions.html</filename>
-    <member kind="variable">
-      <type>std::size_t</type>
-      <name>buffer_size</name>
-      <anchorfile>structbyteme_1_1SomeFileReaderOptions.html</anchorfile>
-      <anchor>a307bfd8881766ecfb0f1ae6d6348b971</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>byteme::Writer</name>
     <filename>classbyteme_1_1Writer.html</filename>
     <member kind="function" virtualness="pure">
@@ -999,10 +901,6 @@
     <class kind="class">byteme::RawFileWriter</class>
     <class kind="struct">byteme::RawFileWriterOptions</class>
     <class kind="class">byteme::Reader</class>
-    <class kind="class">byteme::SomeBufferReader</class>
-    <class kind="struct">byteme::SomeBufferReaderOptions</class>
-    <class kind="class">byteme::SomeFileReader</class>
-    <class kind="struct">byteme::SomeFileReaderOptions</class>
     <class kind="class">byteme::Writer</class>
     <class kind="class">byteme::ZlibBufferReader</class>
     <class kind="struct">byteme::ZlibBufferReaderOptions</class>
@@ -1014,6 +912,27 @@
       <anchorfile>namespacebyteme.html</anchorfile>
       <anchor>a6eed452f40aae5af9b40b75aa3105b56</anchor>
       <arglist>(Size_ size)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>is_zlib</name>
+      <anchorfile>namespacebyteme.html</anchorfile>
+      <anchor>ad3b16db0612e6afdf861519e51d71653</anchor>
+      <arglist>(const unsigned char *buffer, std::size_t n)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>is_gzip</name>
+      <anchorfile>namespacebyteme.html</anchorfile>
+      <anchor>acb08f1cce34b8b237e3174b307a34178</anchor>
+      <arglist>(const unsigned char *buffer, std::size_t n)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>is_gzip</name>
+      <anchorfile>namespacebyteme.html</anchorfile>
+      <anchor>a079575e91360061a7495713a7e872258</anchor>
+      <arglist>(const char *path)</arglist>
     </member>
   </compound>
   <compound kind="page">
