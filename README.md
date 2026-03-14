@@ -63,8 +63,6 @@ For the readers:
 |`RawFileReader`| Read from an uncompressed file|
 |`ZlibBufferReader`| Read from a Zlib-compressed buffer|
 |`GzipFileReader`| Read from an Gzip-compressed file|
-|`SomeBufferReader`| Read from a possibly-Gzip-compressed buffer|
-|`SomeFileReader`| Read from a possibly-Gzip-compressed file|
 |`IstreamReader`| Read from a `std::istream`|
 
 For the writers:

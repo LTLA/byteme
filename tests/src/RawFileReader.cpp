@@ -4,7 +4,6 @@
 #include "temp_file_path.h"
 
 #include "byteme/RawFileReader.hpp"
-#include "byteme/SomeFileReader.hpp"
 
 #include <fstream>
 
@@ -55,20 +54,6 @@ TEST_P(RawFileReaderTest, TooLong) {
 
     byteme::RawFileReader reader(path.c_str(), [&]{
         byteme::RawFileReaderOptions ropt;
-        ropt.buffer_size = GetParam();
-        return ropt;
-    }());
-
-    auto lines = read_lines(reader);
-    EXPECT_EQ(lines, contents);
-}
-
-TEST_P(RawFileReaderTest, SomeFileWorks) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
-    auto path = dump_file(contents);
-
-    byteme::SomeFileReader reader(path.c_str(), [&]{
-        byteme::SomeFileReaderOptions ropt;
         ropt.buffer_size = GetParam();
         return ropt;
     }());

@@ -5,7 +5,6 @@
 #include "temp_file_path.h"
 
 #include "byteme/ZlibBufferReader.hpp"
-#include "byteme/SomeBufferReader.hpp"
 #include "zlib.h"
 
 #include <fstream>
@@ -81,20 +80,6 @@ TEST_P(ZlibBufferReaderTest, TooLong) {
         byteme::ZlibBufferReaderOptions zopt;
         zopt.buffer_size = GetParam();
         return zopt;
-    }());
-
-    auto lines = read_lines(reader);
-    EXPECT_EQ(lines, contents);
-}
-
-TEST_P(ZlibBufferReaderTest, SomeBufferWorks) {
-    std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
-    auto gzcontents = dump_file(contents);
-
-    byteme::SomeBufferReader reader(gzcontents.data(), gzcontents.size(), [&]{
-        byteme::SomeBufferReaderOptions sopt;
-        sopt.buffer_size = GetParam();
-        return sopt;
     }());
 
     auto lines = read_lines(reader);

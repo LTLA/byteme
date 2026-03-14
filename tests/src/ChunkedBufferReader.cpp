@@ -2,7 +2,6 @@
 
 #include "read_lines.h"
 #include "byteme/ChunkedBufferReader.hpp"
-#include "byteme/SomeBufferReader.hpp"
 
 class ChunkedBufferReaderTest : public ::testing::Test {
 protected:
