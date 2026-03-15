@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['zlibbufferreader_0',['ZlibBufferReader',['../classbyteme_1_1ZlibBufferReader.html',1,'byteme']]],
-  ['zlibbufferreaderoptions_1',['ZlibBufferReaderOptions',['../structbyteme_1_1ZlibBufferReaderOptions.html',1,'byteme']]],
-  ['zlibbufferwriter_2',['ZlibBufferWriter',['../classbyteme_1_1ZlibBufferWriter.html',1,'byteme']]],
-  ['zlibbufferwriteroptions_3',['ZlibBufferWriterOptions',['../structbyteme_1_1ZlibBufferWriterOptions.html',1,'byteme']]]
+  ['perbyteinterface_0',['PerByteInterface',['../classbyteme_1_1PerByteInterface.html',1,'byteme']]],
+  ['perbyteparallel_1',['PerByteParallel',['../classbyteme_1_1PerByteParallel.html',1,'byteme']]],
+  ['perbyteserial_2',['PerByteSerial',['../classbyteme_1_1PerByteSerial.html',1,'byteme']]]
 ];

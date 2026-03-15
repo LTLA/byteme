@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ostreamwriter_0',['OstreamWriter',['../classbyteme_1_1OstreamWriter.html',1,'byteme']]]
+  ['exact_0',['Exact',['https://ltla.github.io/sanisizer/classsanisizer_1_1Exact.html',1,'sanisizer']]]
 ];

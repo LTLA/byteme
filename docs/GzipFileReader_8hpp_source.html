@@ -103,9 +103,9 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;zlib.h&quot;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="check__buffer__size_8hpp.html">check_buffer_size.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;SelfClosingGzFile.hpp&quot;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="Reader_8hpp.html">Reader.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;SelfClosingGzFile.hpp&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="Reader_8hpp.html">Reader.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;utils.hpp&quot;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebyteme.html">byteme</a> {</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
@@ -154,7 +154,6 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aReader_8hpp_html"><div class="ttname"><a href="Reader_8hpp.html">Reader.hpp</a></div><div class="ttdoc">Read an input source.</div></div>
-<div class="ttc" id="acheck__buffer__size_8hpp_html"><div class="ttname"><a href="check__buffer__size_8hpp.html">check_buffer_size.hpp</a></div><div class="ttdoc">Utilities to check the buffer sizes.</div></div>
 <div class="ttc" id="aclassbyteme_1_1GzipFileReader_html"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html">byteme::GzipFileReader</a></div><div class="ttdoc">Read uncompressed bytes from a Gzip-compressed file.</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:40</div></div>
 <div class="ttc" id="aclassbyteme_1_1GzipFileReader_html_a4e293b837f53b17cbdaac22e0305d669"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html#a4e293b837f53b17cbdaac22e0305d669">byteme::GzipFileReader::read</a></div><div class="ttdeci">std::size_t read(unsigned char *buffer, std::size_t n)</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:51</div></div>
 <div class="ttc" id="aclassbyteme_1_1GzipFileReader_html_aecf4eebc3a244525b2c71a269d112800"><div class="ttname"><a href="classbyteme_1_1GzipFileReader.html#aecf4eebc3a244525b2c71a269d112800">byteme::GzipFileReader::GzipFileReader</a></div><div class="ttdeci">GzipFileReader(const char *path, const GzipFileReaderOptions &amp;options)</div><div class="ttdef"><b>Definition</b> GzipFileReader.hpp:46</div></div>

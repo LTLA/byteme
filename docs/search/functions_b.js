@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['zlibbufferreader_0',['ZlibBufferReader',['../classbyteme_1_1ZlibBufferReader.html#a3cd5f4e25a1b3744237f6e6811d231dd',1,'byteme::ZlibBufferReader']]],
-  ['zlibbufferwriter_1',['ZlibBufferWriter',['../classbyteme_1_1ZlibBufferWriter.html#a09d7572eb0c546087fb66c13aa8e2d84',1,'byteme::ZlibBufferWriter']]]
+  ['sum_0',['sum',['https://ltla.github.io/sanisizer/namespacesanisizer.html#ad0351da831c6ee07baf0a96c51a019c9',1,'sanisizer']]],
+  ['sum_5funsafe_1',['sum_unsafe',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a6f87dc746d660a88c85ed46d90e5d54c',1,'sanisizer']]]
 ];

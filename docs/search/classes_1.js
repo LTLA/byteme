@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['istreamreader_0',['IstreamReader',['../classbyteme_1_1IstreamReader.html',1,'byteme']]]
+  ['cast_0',['Cast',['https://ltla.github.io/sanisizer/classsanisizer_1_1Cast.html',1,'sanisizer']]]
 ];

@@ -167,9 +167,6 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6eed452f40aae5af9b40b75aa3105b56" id="r_a6eed452f40aae5af9b40b75aa3105b56"><td class="memTemplParams" colspan="2">template&lt;typename Output_ , typename Size_ &gt; </td></tr>
-<tr class="memitem:a6eed452f40aae5af9b40b75aa3105b56"><td class="memTemplItemLeft" align="right" valign="top">constexpr Output_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6eed452f40aae5af9b40b75aa3105b56">cap</a> (Size_ size)</td></tr>
-<tr class="separator:a6eed452f40aae5af9b40b75aa3105b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3b16db0612e6afdf861519e51d71653" id="r_ad3b16db0612e6afdf861519e51d71653"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3b16db0612e6afdf861519e51d71653">is_zlib</a> (const unsigned char *buffer, std::size_t n)</td></tr>
 <tr class="separator:ad3b16db0612e6afdf861519e51d71653"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb08f1cce34b8b237e3174b307a34178" id="r_acb08f1cce34b8b237e3174b307a34178"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb08f1cce34b8b237e3174b307a34178">is_gzip</a> (const unsigned char *buffer, std::size_t n)</td></tr>
@@ -180,48 +177,6 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple byte readers and writers. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a6eed452f40aae5af9b40b75aa3105b56" name="a6eed452f40aae5af9b40b75aa3105b56"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6eed452f40aae5af9b40b75aa3105b56">&#9670;&#160;</a></span>cap()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Output_ , typename Size_ &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Output_ byteme::cap </td>
-          <td>(</td>
-          <td class="paramtype">Size_</td>          <td class="paramname"><span class="paramname"><em>size</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Cap an input integer at the largest value that can be represented by a specified output type, typically a <code>std::size_t</code>. This avoids silent integer overflows, especially in the defaults of the various <code>*Options</code> classes.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Output_</td><td>Unsigned integer type of the output. </td></tr>
-    <tr><td class="paramname">Input_</td><td>Integer type of the input.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">size</td><td>Non-negative integer specifying some kind of buffer size.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>size</code> if it fits in an <code>Output_</code>, otherwise the largest value of an <code>Output_</code>. </dd></dl>
-
-</div>
-</div>
 <a id="a079575e91360061a7495713a7e872258" name="a079575e91360061a7495713a7e872258"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a079575e91360061a7495713a7e872258">&#9670;&#160;</a></span>is_gzip() <span class="overload">[1/2]</span></h2>
 

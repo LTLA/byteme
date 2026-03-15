@@ -7,12 +7,6 @@
     <namespace>byteme</namespace>
   </compound>
   <compound kind="file">
-    <name>check_buffer_size.hpp</name>
-    <path>byteme/</path>
-    <filename>check__buffer__size_8hpp.html</filename>
-    <namespace>byteme</namespace>
-  </compound>
-  <compound kind="file">
     <name>GzipFileReader.hpp</name>
     <path>byteme/</path>
     <filename>GzipFileReader_8hpp.html</filename>
@@ -713,13 +707,6 @@
     <class kind="class">byteme::ZlibBufferWriter</class>
     <class kind="struct">byteme::ZlibBufferWriterOptions</class>
     <member kind="function">
-      <type>constexpr Output_</type>
-      <name>cap</name>
-      <anchorfile>namespacebyteme.html</anchorfile>
-      <anchor>a6eed452f40aae5af9b40b75aa3105b56</anchor>
-      <arglist>(Size_ size)</arglist>
-    </member>
-    <member kind="function">
       <type>bool</type>
       <name>is_zlib</name>
       <anchorfile>namespacebyteme.html</anchorfile>
@@ -745,6 +732,6 @@
     <name>index</name>
     <title>Gimme some bytes</title>
     <filename>index.html</filename>
-    <docanchor file="index.html" title="Gimme some bytes">md__2github_2workspace_2README</docanchor>
+    <docanchor file="index.html">md__2github_2workspace_2README</docanchor>
   </compound>
 </tagfile>

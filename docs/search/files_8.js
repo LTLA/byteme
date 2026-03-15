@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['writer_2ehpp_0',['Writer.hpp',['../Writer_8hpp.html',1,'']]]
+  ['ostreamwriter_2ehpp_0',['OstreamWriter.hpp',['../OstreamWriter_8hpp.html',1,'']]]
 ];

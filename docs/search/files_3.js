@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['istreamreader_2ehpp_0',['IstreamReader.hpp',['../IstreamReader_8hpp.html',1,'']]]
+  ['float_2ehpp_0',['float.hpp',['https://ltla.github.io/sanisizer/float_8hpp.html',1,'']]]
 ];

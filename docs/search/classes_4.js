@@ -1,11 +1,7 @@
 var searchData=
 [
-  ['rawbufferreader_0',['RawBufferReader',['../classbyteme_1_1RawBufferReader.html',1,'byteme']]],
-  ['rawbufferwriter_1',['RawBufferWriter',['../classbyteme_1_1RawBufferWriter.html',1,'byteme']]],
-  ['rawbufferwriteroptions_2',['RawBufferWriterOptions',['../structbyteme_1_1RawBufferWriterOptions.html',1,'byteme']]],
-  ['rawfilereader_3',['RawFileReader',['../classbyteme_1_1RawFileReader.html',1,'byteme']]],
-  ['rawfilereaderoptions_4',['RawFileReaderOptions',['../structbyteme_1_1RawFileReaderOptions.html',1,'byteme']]],
-  ['rawfilewriter_5',['RawFileWriter',['../classbyteme_1_1RawFileWriter.html',1,'byteme']]],
-  ['rawfilewriteroptions_6',['RawFileWriterOptions',['../structbyteme_1_1RawFileWriterOptions.html',1,'byteme']]],
-  ['reader_7',['Reader',['../classbyteme_1_1Reader.html',1,'byteme']]]
+  ['is_5fattestation_0',['is_Attestation',['https://ltla.github.io/sanisizer/structsanisizer_1_1is__Attestation.html',1,'sanisizer']]],
+  ['is_5fattestation_3c_20attestation_3c_20integer_5f_2c_20max_5f_20_3e_20_3e_1',['is_Attestation&lt; Attestation&lt; Integer_, max_ &gt; &gt;',['https://ltla.github.io/sanisizer/structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01max___01_4_01_4.html',1,'sanisizer']]],
+  ['is_5fintegral_5for_5fattestation_2',['is_integral_or_Attestation',['https://ltla.github.io/sanisizer/structsanisizer_1_1is__integral__or__Attestation.html',1,'sanisizer']]],
+  ['istreamreader_3',['IstreamReader',['../classbyteme_1_1IstreamReader.html',1,'byteme']]]
 ];
