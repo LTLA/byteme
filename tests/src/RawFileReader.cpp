@@ -1,71 +1,72 @@
 #include <gtest/gtest.h>
 
-#include "read_lines.h"
-#include "temp_file_path.h"
-
 #include "byteme/RawFileReader.hpp"
+
+#include "temp_file_path.h"
+#include "utils.h"
 
 #include <fstream>
 
-class RawFileReaderTest : public ::testing::TestWithParam<int> {
+class RawFileReaderTest : public ::testing::TestWithParam<std::tuple<int, int> > {
 protected:    
-    auto dump_file(const std::vector<std::string>& contents) {
+    auto dump_file(const std::vector<unsigned char>& contents) {
         auto path = temp_file_path("text");
         std::ofstream output(path);
-        for (auto c : contents) {
-            output << c << "\n";
-        }
+        output.write(reinterpret_cast<const char*>(contents.data()), contents.size());
         output.close();
         return path;
     }
 };
 
 TEST_P(RawFileReaderTest, Basic) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
+    auto params = GetParam();
+    const auto nbytes = std::get<0>(params);
+    const auto chunk = std::get<1>(params);
+
+    auto contents = simulate_bytes(nbytes, /* seed = */ nbytes + chunk * 7);
     auto path = dump_file(contents);
 
     byteme::RawFileReader reader(path.c_str(), {});
-
-    auto lines = read_lines(reader, GetParam());
-    EXPECT_EQ(lines, contents);
-}
-
-TEST_P(RawFileReaderTest, Empty) {
-    std::vector<std::string> contents;
-    auto path = dump_file(contents);
-
-    byteme::RawFileReader reader(path.c_str(), {});
-    auto lines = read_lines(reader, GetParam());
-    EXPECT_EQ(lines, contents);
-}
-
-TEST_P(RawFileReaderTest, Exact) {
-    std::vector<std::string> contents;
-    for (int i = 0; i < 10; ++i) {
-        contents.emplace_back(GetParam() - 1, char(i + 'a'));
-    }
-    auto path = dump_file(contents);
-
-    byteme::RawFileReader reader(path.c_str(), {});
-    auto lines = read_lines(reader, GetParam());
+    auto lines = full_read(reader, chunk);
     EXPECT_EQ(lines, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
     RawFileReader,
     RawFileReaderTest,
-    ::testing::Values(10, 20, 50, 100)
+    ::testing::Combine(
+        ::testing::Values(64, 200, 512, 1000), // Number of simulated bytes 
+        ::testing::Values(25, 32, 64, 125)  // Chunk size, some of which are factors of the simulated bytes.
+    )
 );
 
+TEST_F(RawFileReaderTest, Exact) {
+    auto contents = simulate_bytes(100, /* seed = */ 2468);
+    auto path = dump_file(contents);
+
+    byteme::RawFileReader reader(path.c_str(), {});
+    auto lines = exact_read(reader, 10);
+    EXPECT_EQ(lines, contents);
+}
+
+TEST_F(RawFileReaderTest, Empty) {
+    std::vector<unsigned char> contents;
+    auto path = dump_file(contents);
+
+    byteme::RawFileReader reader(path.c_str(), {});
+    auto lines = full_read(reader, 112);
+    EXPECT_EQ(lines, contents);
+}
+
 TEST_F(RawFileReaderTest, Moveable) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
+    auto contents = simulate_bytes(201, /* seed = */ 4321);
     auto path = dump_file(contents);
 
     // Move constructor.
     {
         byteme::RawFileReader reader(path.c_str(), {});
         byteme::RawFileReader other(std::move(reader));
-        auto lines = read_lines(other, 15);
+        auto lines = full_read(other, 15);
         EXPECT_EQ(lines, contents);
     }
 
@@ -73,7 +74,7 @@ TEST_F(RawFileReaderTest, Moveable) {
     {
         byteme::RawFileReader reader(path.c_str(), {});
         byteme::RawFileReader other = std::move(reader);
-        auto lines = read_lines(other, 20);
+        auto lines = full_read(other, 20);
         EXPECT_EQ(lines, contents);
     }
 }

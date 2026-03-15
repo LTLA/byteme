@@ -1,76 +1,61 @@
 #include <gtest/gtest.h>
 
-#include "read_lines.h"
-#include "temp_file_path.h"
-
 #include "byteme/SelfClosingGzFile.hpp"
 #include "byteme/GzipFileWriter.hpp"
 
 #include "zlib.h"
-#include <fstream>
 
-class GzipFileWriterTest : public ::testing::TestWithParam<int> {
+#include "temp_file_path.h"
+#include "utils.h"
+
+#include <fstream>
+#include <cstddef>
+
+class GzipFileWriterTest : public ::testing::TestWithParam<std::tuple<int, int> > {
 protected:
-    auto dump_file(const std::vector<std::string>& contents, size_t buffer_size) {
+    auto dump_file(const std::vector<unsigned char>& contents, std::size_t chunk_size) {
         auto path = temp_file_path("text");
         byteme::GzipFileWriter writer(path.c_str(), [&]{
             byteme::GzipFileWriterOptions opt;
-            opt.gzbuffer_size = buffer_size;
+            opt.gzbuffer_size = 1024; // setting it just to get some test coverage of the gzbuffer_size setter.
             return opt;
         }());
-
-        for (const auto& c : contents) {
-            writer.write(c);
-            writer.write('\n');
-        }
-        writer.finish();
+        full_dump(writer, contents, chunk_size);
         return path;
     }
 
-    static std::string zcat(const std::string& path) { 
+    static std::vector<unsigned char> zcat(const std::string& path) { 
         auto handle = gzopen(path.c_str(), "r");
         std::vector<unsigned char> everything(10000); // some large number.
         auto read = gzread(handle, everything.data(), everything.size());
-        auto ptr = reinterpret_cast<const char*>(everything.data());
-        return std::string(ptr, ptr + read);
-    }
-
-    static std::string combine(const std::vector<std::string>& contents) {
-        std::string ex;
-        for (const auto& x : contents) {
-            ex += x;
-            ex += '\n';
-        }
-        return ex;
+        everything.resize(read);
+        return everything;
     }
 };
 
 TEST_P(GzipFileWriterTest, Basic) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
-    auto path = dump_file(contents, GetParam());
-    auto expected = combine(contents);
-    auto roundtrip = zcat(path);
-    EXPECT_EQ(roundtrip, expected);
-}
+    auto param = GetParam();
+    auto nbytes = std::get<0>(param);
+    auto chunk_size = std::get<1>(param);
 
-TEST_P(GzipFileWriterTest, Empty) {
-    std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
-    auto path = dump_file(contents, GetParam());
-    auto expected = combine(contents);
+    auto contents = simulate_bytes(nbytes, /* seed = */ nbytes * 100 + chunk_size);
+    auto path = dump_file(contents, chunk_size);
     auto roundtrip = zcat(path);
-    EXPECT_EQ(roundtrip, expected);
-}
-
-TEST_P(GzipFileWriterTest, TooLong) {
-    std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
-    auto path = dump_file(contents, GetParam());
-    auto expected = combine(contents);
-    auto roundtrip = zcat(path);
-    EXPECT_EQ(roundtrip, expected);
+    EXPECT_EQ(roundtrip, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
     GzipFileWriter,
     GzipFileWriterTest,
-    ::testing::Values(10, 50, 100, 1000)
+    ::testing::Combine(
+        ::testing::Values(64, 200, 512, 10000), // Number of simulated bytes 
+        ::testing::Values(25, 32, 64, 125)  // Chunk size, some of which are factors of, less than or greater than the simulated bytes.
+    )
 );
+
+TEST_F(GzipFileWriterTest, Empty) {
+    std::vector<unsigned char> contents; 
+    auto path = dump_file(contents, 20); 
+    auto roundtrip = zcat(path);
+    EXPECT_EQ(roundtrip, contents);
+}

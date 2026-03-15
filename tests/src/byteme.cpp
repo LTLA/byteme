@@ -3,26 +3,22 @@
 #include <cstdint>
 #include <vector>
 
-#include "read_lines.h"
+#include "utils.h"
 #include "temp_file_path.h"
 
 #include "byteme/byteme.hpp"
 #include "zlib.h"
 
 TEST(Miscellaneous, Umbrella) {
-    std::vector<std::string> contents { "wakatte iru wa yo", "deai no shunkan ni", "ase ga nijinda Babyface" };
-    std::string stuff;
-    for (const auto& x : contents) {
-        stuff += x + "\n";
-    }
+    auto contents = simulate_bytes(123, /* seed = */ 13);
 
     auto gzname = temp_file_path("gzip");
     gzFile ohandle = gzopen(gzname.c_str(), "w");
-    gzwrite(ohandle, stuff.c_str(), stuff.size());
+    gzwrite(ohandle, reinterpret_cast<const char*>(contents.data()), contents.size());
     gzclose(ohandle);
 
     byteme::GzipFileReader reader(gzname.c_str(), {});
-    auto lines = read_lines(reader, 10);
+    auto lines = full_read(reader, 10);
     EXPECT_EQ(lines, contents);
 }
 

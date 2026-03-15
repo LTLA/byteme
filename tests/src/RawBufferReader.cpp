@@ -1,53 +1,44 @@
 #include <gtest/gtest.h>
 
-#include "read_lines.h"
 #include "byteme/RawBufferReader.hpp"
 
-class RawBufferReaderTest : public ::testing::TestWithParam<int> {
-protected:    
-    auto dump_buffer(const std::vector<std::string>& contents) {
-        std::string output;
-        for (auto c : contents) {
-            output += c;
-            output += "\n";
-        }
-        return output;
-    }
-};
+#include "utils.h"
+
+class RawBufferReaderTest : public ::testing::TestWithParam<std::tuple<int, int> > {};
 
 TEST_P(RawBufferReaderTest, Basic) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
-    auto concat = dump_buffer(contents);
+    auto params = GetParam();
+    const auto nbytes = std::get<0>(params);
+    const auto chunk = std::get<1>(params);
 
-    byteme::RawBufferReader reader(reinterpret_cast<const unsigned char*>(concat.c_str()), concat.size());
-    auto lines = read_lines(reader, GetParam());
-    EXPECT_EQ(lines, contents);
-}
+    auto contents = simulate_bytes(nbytes, /* seed = */ nbytes + chunk * 11);
 
-TEST_P(RawBufferReaderTest, Empty) {
-    std::vector<std::string> contents;
-    auto concat = dump_buffer(contents);
-
-    byteme::RawBufferReader reader(reinterpret_cast<const unsigned char*>(concat.c_str()), concat.size());
-    auto lines = read_lines(reader, GetParam());
-    EXPECT_EQ(lines, contents);
-}
-
-TEST_P(RawBufferReaderTest, Exact) {
-    std::vector<std::string> contents;
-    for (int i = 0; i < 10; ++i) {
-        contents.emplace_back(GetParam() - 1, char(i + 'a'));
-    }
-    auto concat = dump_buffer(contents);
-    EXPECT_EQ(concat.size() % GetParam(), 0);
-
-    byteme::RawBufferReader reader(reinterpret_cast<const unsigned char*>(concat.c_str()), concat.size());
-    auto lines = read_lines(reader, GetParam());
+    byteme::RawBufferReader reader(contents.data(), contents.size());
+    auto lines = full_read(reader, chunk);
     EXPECT_EQ(lines, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
     RawBufferReader,
     RawBufferReaderTest,
-    ::testing::Values(10, 20, 50, 100)
+    ::testing::Combine(
+        ::testing::Values(64, 200, 512, 1000), // Number of simulated bytes 
+        ::testing::Values(25, 32, 64, 125)  // Chunk size, some of which are factors of, less than or greater than the simulated bytes.
+    )
 );
+
+TEST_F(RawBufferReaderTest, Exact) {
+    auto contents = simulate_bytes(100, /* seed = */ 1357);
+
+    byteme::RawBufferReader reader(contents.data(), contents.size());
+    auto lines = exact_read(reader, 20);
+    EXPECT_EQ(lines, contents);
+}
+
+TEST_P(RawBufferReaderTest, Empty) {
+    std::vector<unsigned char> contents;
+
+    byteme::RawBufferReader reader(contents.data(), contents.size());
+    auto lines = full_read(reader, 15);
+    EXPECT_EQ(lines, contents);
+}

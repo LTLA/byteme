@@ -1,54 +1,62 @@
 #include <gtest/gtest.h>
 
-#include "read_lines.h"
 #include "byteme/IstreamReader.hpp"
 
-class IstreamReaderTest : public ::testing::TestWithParam<int> {
-protected:    
-    auto dump_buffer(const std::vector<std::string>& contents) {
-        std::string output;
-        for (auto c : contents) {
-            output += c;
-            output += "\n";
-        }
-        return output;
+#include "temp_file_path.h"
+#include "utils.h"
+
+#include <fstream>
+
+class IstreamReaderTest : public ::testing::TestWithParam<std::tuple<int, int> > {
+protected:
+    auto dump_file(const std::vector<unsigned char>& contents) {
+        auto path = temp_file_path("text");
+        std::ofstream output(path);
+        output.write(reinterpret_cast<const char*>(contents.data()), contents.size());
+        output.close();
+        return path;
     }
 };
 
 TEST_P(IstreamReaderTest, Basic) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
-    auto is = std::make_unique<std::istringstream>(dump_buffer(contents));
+    auto params = GetParam();
+    const auto nbytes = std::get<0>(params);
+    const auto chunk = std::get<1>(params);
+
+    auto contents = simulate_bytes(nbytes, /* seed = */ nbytes + chunk * 11);
+    auto path = dump_file(contents);
+    auto is = std::make_unique<std::ifstream>(path);
 
     byteme::IstreamReader reader(std::move(is));
-    auto lines = read_lines(reader, GetParam());
-    EXPECT_EQ(lines, contents);
-}
-
-TEST_P(IstreamReaderTest, Empty) {
-    std::vector<std::string> contents;
-    auto is = std::make_unique<std::istringstream>(dump_buffer(contents));
-
-    byteme::IstreamReader reader(std::move(is));
-    auto lines = read_lines(reader, GetParam());
-    EXPECT_EQ(lines, contents);
-}
-
-TEST_P(IstreamReaderTest, Exact) {
-    std::vector<std::string> contents;
-    for (int i = 0; i < 10; ++i) {
-        contents.emplace_back(GetParam() - 1, char(i + 'a')); // total size is a multiple of GetParam().
-    }
-    auto combined = dump_buffer(contents);
-    EXPECT_EQ(combined.size() % GetParam(), 0);
-    auto is = std::make_unique<std::istringstream>(std::move(combined));
-
-    byteme::IstreamReader reader(std::move(is));
-    auto lines = read_lines(reader, GetParam());
-    EXPECT_EQ(lines, contents);
+    auto roundtrip = full_read(reader, chunk);
+    EXPECT_EQ(roundtrip, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
     IstreamReader,
     IstreamReaderTest,
-    ::testing::Values(10, 20, 50, 100)
+    ::testing::Combine(
+        ::testing::Values(64, 200, 512, 1000), // Number of simulated bytes 
+        ::testing::Values(25, 32, 64, 125)  // Chunk size, some of which are factors of, less than or greater than the simulated bytes.
+    )
 );
+
+TEST_F(IstreamReaderTest, Exact) {
+    auto contents = simulate_bytes(100, /* seed = */ 1234);
+    auto path = dump_file(contents);
+    auto is = std::make_unique<std::ifstream>(path);
+
+    byteme::IstreamReader reader(std::move(is));
+    auto lines = exact_read(reader, 50);
+    EXPECT_EQ(lines, contents);
+}
+
+TEST_F(IstreamReaderTest, Empty) {
+    std::vector<unsigned char> contents;
+    auto path = dump_file(contents);
+    auto is = std::make_unique<std::ifstream>(path);
+
+    byteme::IstreamReader reader(std::move(is));
+    auto lines = full_read(reader, 22);
+    EXPECT_EQ(lines, contents);
+}

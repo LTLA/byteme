@@ -1,72 +1,49 @@
 #include <gtest/gtest.h>
 
 #include "temp_file_path.h"
+#include "utils.h"
 
 #include "byteme/RawFileWriter.hpp"
 
-#include <fstream>
+#include <vector>
+#include <cstddef>
 
-class RawFileWriterTest : public ::testing::TestWithParam<int> {
+class RawFileWriterTest : public ::testing::TestWithParam<std::tuple<int, int> > {
 protected:
-    auto dump_file(const std::vector<std::string>& contents, size_t buffer_size) {
+    auto dump_file(const std::vector<unsigned char>& contents, std::size_t chunk_size) {
         auto path = temp_file_path("text");
         byteme::RawFileWriter writer(path.c_str(), [&]{
             byteme::RawFileWriterOptions ropt;
-            ropt.bufsiz = buffer_size;
+            ropt.bufsiz = 1024; // setting it just to get some test coverage on the bufsize setter.
             return ropt;
         }());
 
-        for (const auto& c : contents) {
-            writer.write(c);
-            writer.write('\n');
-        }
-        writer.finish();
-        return path;
-    }
-
-    std::string cat(const std::string& path) { 
-        std::ifstream t(path);
-        std::stringstream buffer;
-        buffer << t.rdbuf();
-        return buffer.str();
-    }
-
-    std::string combine(const std::vector<std::string>& contents) {
-        std::string ex;
-        for (const auto& x : contents) {
-            ex += x;
-            ex += '\n';
-        }
-        return ex;
+        full_dump(writer, contents, chunk_size);
+        return full_read(path);
     }
 };
 
 TEST_P(RawFileWriterTest, Basic) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
-    auto path = dump_file(contents, GetParam());
-    auto roundtrip = cat(path);
-    auto expected = combine(contents);
-    EXPECT_EQ(expected, roundtrip);
-}
+    auto param = GetParam();
+    auto nbytes = std::get<0>(param);
+    auto chunk_size = std::get<1>(param);
 
-TEST_P(RawFileWriterTest, Empty) {
-    std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
-    auto path = dump_file(contents, GetParam());
-    auto roundtrip = cat(path);
-    auto expected = combine(contents);
-    EXPECT_EQ(expected, roundtrip);
-}
-
-TEST_P(RawFileWriterTest, TooLong) {
-    std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
-    auto path = dump_file(contents, GetParam());
-    auto roundtrip = cat(path);
-    auto expected = combine(contents);
-    EXPECT_EQ(expected, roundtrip);
+    auto contents = simulate_bytes(nbytes, /* seed = */ nbytes + 200 * chunk_size);
+    auto roundtrip = dump_file(contents, chunk_size);
+    EXPECT_EQ(contents, roundtrip);
 }
 
 INSTANTIATE_TEST_SUITE_P(
     RawFileWriter,
     RawFileWriterTest,
-    ::testing::Values(10, 50, 100, 1000)
+    ::testing::Combine(
+        ::testing::Values(64, 200, 512, 10000), // Number of simulated bytes 
+        ::testing::Values(25, 32, 64, 125)  // Chunk size, some of which are factors of, less than or greater than the simulated bytes.
+    )
 );
+
+TEST_P(RawFileWriterTest, Empty) {
+    std::vector<unsigned char> contents;
+    auto roundtrip = dump_file(contents, 1234);
+    EXPECT_EQ(contents, roundtrip);
+}
