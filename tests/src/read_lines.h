@@ -5,17 +5,17 @@
 #include <vector>
 
 template<class Reader>
-std::vector<std::string> read_lines(Reader& reader) { 
+std::vector<std::string> read_lines(Reader& reader, std::size_t chunk) { 
     std::vector<std::string> lines;
     bool continuing = false;
 
-    while (reader.load()) {
-        const char* buffer = reinterpret_cast<const char*>(reader.buffer()); // reinterpreting as chars.
-        size_t n = reader.available();
+    std::vector<unsigned char> storage(chunk);
+    while (1) {
+        const auto n = reader.read(storage.data(), chunk);
+        const auto buffer = reinterpret_cast<char*>(storage.data());
 
-        size_t pos = 0;
-        size_t last = 0;
-
+        std::size_t pos = 0;
+        std::size_t last = 0;
         while (1) {
             while (pos < n && buffer[pos] != '\n') {
                 ++pos;
@@ -42,7 +42,11 @@ std::vector<std::string> read_lines(Reader& reader) {
             ++pos;
             last = pos;
         }
-    }
+
+        if (n < chunk) {
+            break;
+        }
+    } 
 
     return lines;
 }

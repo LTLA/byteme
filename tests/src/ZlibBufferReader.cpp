@@ -8,8 +8,10 @@
 #include "zlib.h"
 
 #include <fstream>
+#include <cstdint>
+#include <vector>
 
-class ZlibBufferReaderTest : public ::testing::TestWithParam<int> {
+class ZlibBufferReaderTest : public ::testing::TestWithParam<std::tuple<int, int> > {
 protected:
     std::vector<unsigned char> dump_file(const std::vector<std::string>& contents) {
         std::string stuff;
@@ -32,16 +34,20 @@ protected:
 };
 
 TEST_P(ZlibBufferReaderTest, Basic) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
+    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&a*&^&c", "((&9kkjnjsnakasd" };
     auto gzcontents = dump_file(contents);
+
+    auto config = GetParam();
+    auto chunk_size = std::get<0>(config);
+    auto buffer_size = std::get<1>(config);
 
     byteme::ZlibBufferReader reader(gzcontents.data(), gzcontents.size(), [&]{
         byteme::ZlibBufferReaderOptions zopt;
-        zopt.buffer_size = GetParam();
+        zopt.buffer_size = buffer_size;
         return zopt;
     }());
 
-    auto lines = read_lines(reader);
+    auto lines = read_lines(reader, chunk_size);
     EXPECT_EQ(lines, contents);
 
     // Trying in dedicated Gzip mode.
@@ -49,50 +55,95 @@ TEST_P(ZlibBufferReaderTest, Basic) {
         byteme::ZlibBufferReader reader(gzcontents.data(), gzcontents.size(), [&]{
             byteme::ZlibBufferReaderOptions zopt;
             zopt.mode = 2;
-            zopt.buffer_size = GetParam();
+            zopt.buffer_size = buffer_size;
             return zopt;
         }());
 
-        auto lines = read_lines(reader);
+        auto lines = read_lines(reader, chunk_size);
         EXPECT_EQ(lines, contents);
     }
 }
 
 TEST_P(ZlibBufferReaderTest, Empty) {
-    std::vector<std::string> contents { "asdasdasd", "", "", "caysctgatctv", "", "", "((&9KKJNJSNAKASd", "" };
+    std::vector<std::string> contents;
     auto gzcontents = dump_file(contents);
+
+    auto config = GetParam();
+    auto chunk_size = std::get<0>(config);
+    auto buffer_size = std::get<1>(config);
 
     byteme::ZlibBufferReader reader(gzcontents.data(), gzcontents.size(), [&]{
         byteme::ZlibBufferReaderOptions zopt;
-        zopt.buffer_size = GetParam();
+        zopt.buffer_size = buffer_size;
         return zopt;
     }());
 
-    auto lines = read_lines(reader);
+    auto lines = read_lines(reader, chunk_size);
     EXPECT_EQ(lines, contents);
 }
 
-TEST_P(ZlibBufferReaderTest, TooLong) {
-    std::vector<std::string> contents { "asdasdasd", "asdaisdaioufhiuvhdsiug sifyw983r7w9fsoiufhsiud nse98 98eye9s8fy siufhsu caysctgatctv", "((&9KKJNJSNAKASd" };
+TEST_P(ZlibBufferReaderTest, Exact) {
+    auto config = GetParam();
+    auto chunk_size = std::get<0>(config);
+    auto buffer_size = std::get<1>(config);
+
+    std::vector<std::string> contents;
+    for (int i = 0; i < 10; ++i) {
+        contents.emplace_back(chunk_size - 1, char(i + 'a'));
+    }
     auto gzcontents = dump_file(contents);
 
     byteme::ZlibBufferReader reader(gzcontents.data(), gzcontents.size(), [&]{
         byteme::ZlibBufferReaderOptions zopt;
-        zopt.buffer_size = GetParam();
+        zopt.buffer_size = buffer_size;
         return zopt;
     }());
 
-    auto lines = read_lines(reader);
+    auto lines = read_lines(reader, chunk_size);
     EXPECT_EQ(lines, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
     ZlibBufferReader,
     ZlibBufferReaderTest,
-    ::testing::Values(10, 50, 100, 1000)
+    ::testing::Combine(
+        ::testing::Values(10, 20, 50, 100), // chunk size,
+        ::testing::Values(10, 25, 50, 125)  // buffer size
+    )
 );
 
-TEST(ZlibBufferReaderExtraTests, OtherModes) {
+TEST(ZlibBufferReader, Reread) {
+    // Here, we check that we correctly refill the input buffer for Zlib.
+    // This is necessary as the input buffer size is an unsigned int, not a size_t;
+    // so we need to feed it in a little bit at a time if we've got a very large input buffer.
+    std::vector<unsigned char> payload;
+    std::mt19937_64 rng(69);
+    for (int i = 0; i < 1000; ++i) {
+        payload.push_back(rng() % 256);
+    }
+
+    auto gzname = temp_file_path("zlib");
+    gzFile ohandle = gzopen(gzname.c_str(), "w");
+    gzwrite(ohandle, payload.data(), payload.size());
+    gzclose(ohandle);
+
+    std::ifstream in(gzname, std::ios::binary);
+    if (!in) {
+        throw std::runtime_error("failed to read '" + gzname + "'");
+    }
+    std::vector<unsigned char> compressed(std::istreambuf_iterator<char>(in), {});
+    EXPECT_TRUE(compressed.size() > 255); // enough to trigger a reread for u8, see comments below.
+
+    byteme::ZlibBufferReader reader(compressed.data(), compressed.size(), {});
+    std::vector<unsigned char> roundtrip(payload.size());
+
+    // That said, we don't actually want to create such a large input buffer for testing.
+    // So we just pretend that an unsigned int is a u8 to check that the refill is done properly.
+    reader.template read0<std::uint8_t>(roundtrip.data(), roundtrip.size());
+    EXPECT_EQ(payload, roundtrip);
+}
+
+TEST(ZlibBufferReader, OtherModes) {
     byteme::ZlibBufferReader reader1(NULL, 0, [&]{
         byteme::ZlibBufferReaderOptions zopt;
         zopt.mode = 0; // deflate

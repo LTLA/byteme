@@ -25,17 +25,11 @@ namespace byteme {
  */
 struct GzipFileReaderOptions {
     /**
-     * Size of the buffer in which to store the decompressed data. 
-     * Larger values usually reduce computational time at the cost of increased memory usage.
-     */
-    std::size_t buffer_size = cap<std::size_t>(65536);
-
-    /**
      * Size of the internal buffer used by Zlib.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      * If no value is supplied, the default buffer size for `gzbuffer()` is not changed.
      */
-    std::optional<unsigned> gzbuffer_size;
+    std::optional<unsigned> buffer_size;
 };
 
 /**
@@ -49,62 +43,31 @@ public:
      * @param path Path to the file.
      * @param options Further options.
      */
-    GzipFileReader(const char* path, const GzipFileReaderOptions& options) : 
-        my_gzfile(path, "rb"),
-        my_buffer(
-            check_buffer_size<int>( // constrained for the gzread return type.
-                check_buffer_size<unsigned>( // constrained for the gzread argument type.
-                    check_buffer_size(options.buffer_size)
-                )
-            )
-        )
-    {
-        set_optional_gzbuffer_size(my_gzfile, options.gzbuffer_size);
+    GzipFileReader(const char* path, const GzipFileReaderOptions& options) : my_gzfile(path, "rb") {
+        set_optional_gzbuffer_size(my_gzfile, options.buffer_size);
     }
 
 public:
-    bool load() {
-        if (my_finished) {
-            // We need to check the status explicitly because gzread()
-            // doesn't return an error for a truncated file.
-            check_status();
-            return false;
-        }
-
-        const std::size_t bufsize = my_buffer.size();
-        auto ret = gzread(my_gzfile.handle, my_buffer.data(), bufsize);
-        if (ret < 0) {
-            check_status();
-            return false;
-        }
-
-        my_read = ret;
-        my_finished = (my_read < bufsize);
-        return true;
-    }
-
-    const unsigned char* buffer() const {
-        return my_buffer.data();
-    }
-
-    std::size_t available() const {
-        return my_read;
+    std::size_t read(unsigned char* buffer, std::size_t n) {
+        // While gzbuffer and gzread accepts 'unsigned', the output number of bytes is actually an 'int'!
+        // Moreover, if the requested 'len' can't fit in an 'int', gzread will throw an error -
+        // see comments on the return value for gzread at https://www.zlib.net/manual.html.
+        // So, we forcibly cap the length to 'int'. 
+        return safe_read<int>(buffer, n, [this](unsigned char* buffer, int n) -> int {
+            const auto ret = gzread(this->my_gzfile.handle, buffer, n);
+            if (ret < n) {
+                int status;
+                const auto msg = gzerror(this->my_gzfile.handle, &status);
+                if (status != Z_OK) {
+                    throw std::runtime_error(msg);
+                }
+            }
+            return ret;
+        });
     }
 
 private:
     SelfClosingGzFile my_gzfile;
-    std::vector<unsigned char> my_buffer;
-    std::size_t my_read = 0;
-    bool my_finished = false;
-
-    void check_status() {
-        int status;
-        auto msg = gzerror(my_gzfile.handle, &status);
-        if (status != Z_OK) {
-            throw std::runtime_error(msg);
-        }
-    }
-
 };
 
 }

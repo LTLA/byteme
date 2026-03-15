@@ -18,21 +18,10 @@
 namespace byteme {
 
 /**
- * @brief Options for `IstreamReader` construction.
- */
-struct IstreamReaderOptions {
-    /**
-     * Size of the internal buffer to fill from the stream.
-     * Larger values usually reduce computational time at the cost of increased memory usage.
-     */
-    std::size_t buffer_size = cap<std::size_t>(65536);
-};
-
-/**
  * @brief Read bytes from a `std::istream`.
  *
  * @tparam Pointer_ Pointer to a class providing an input stream of bytes, satisfying the `std::istream` interface.
- * This is most typically a `std::unique_ptr<std::istream> >` but a concrete subclass may also be used to encourage compiler devirtualization.
+ * This is most typically a `std::unique_ptr<std::istream>` but a pointer to a concrete subclass may also be used to encourage devirtualization.
  * Either a raw or smart pointer may be used depending on how the lifetime of the pointed-to object is managed.
  *
  * This is just a wrapper around `std::istream::read`,
@@ -45,48 +34,24 @@ public:
      * @param input Pointer to an input stream.
      * @param options Further options.
      */
-    IstreamReader(Pointer_ input, const IstreamReaderOptions& options) : 
-        my_input(std::move(input)),
-        my_buffer(
-            check_buffer_size<std::streamsize>( // for istream::read().
-                check_buffer_size(options.buffer_size)
-            )
-        )
-    {}
+    IstreamReader(Pointer_ input) : my_input(std::move(input)) {}
 
 public:
-    bool load() {
-        if (!my_okay) {
-            return false;
-        }
-
-        my_input->read(reinterpret_cast<char*>(my_buffer.data()), my_buffer.size());
-        my_read = my_input->gcount();
-
-        if (my_read < my_buffer.size()) {
-            if (my_input->eof()) {
-                my_okay = false;
-            } else {
-                throw std::runtime_error("failed to finish reading the input stream");
+    std::size_t read(unsigned char* buffer, std::size_t n) {
+        return safe_read<std::streamsize>(buffer, n, [this](unsigned char* buffer, std::streamsize n) -> std::streamsize {
+            my_input->read(reinterpret_cast<char*>(buffer), n); 
+            const auto my_read = my_input->gcount();
+            if (my_read < n) {
+                if (!(my_input->eof())) {
+                    throw std::runtime_error("failed to finish reading the input stream");
+                }
             }
-        }
-
-        return true;
-    }
-
-    const unsigned char* buffer() const {
-        return my_buffer.data();
-    }
-
-    std::size_t available() const {
-        return my_read;
+            return my_read;
+        });
     }
 
 private:
     Pointer_ my_input;
-    std::vector<unsigned char> my_buffer;
-    std::size_t my_read = 0;
-    bool my_okay = true;
 };
 
 }
