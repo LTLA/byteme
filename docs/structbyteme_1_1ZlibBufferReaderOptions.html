@@ -104,8 +104,8 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4b41fdc7bbf4749d4dd3c70c783dc32b" id="r_a4b41fdc7bbf4749d4dd3c70c783dc32b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b41fdc7bbf4749d4dd3c70c783dc32b">mode</a> = 3</td></tr>
-<tr class="separator:a4b41fdc7bbf4749d4dd3c70c783dc32b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80c0baf0a1085d9810f0aae0f993d125" id="r_a80c0baf0a1085d9810f0aae0f993d125"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="namespacebyteme.html#a684463951a944a548255a6abe484ef2b">ZlibCompressionMode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80c0baf0a1085d9810f0aae0f993d125">mode</a></td></tr>
+<tr class="separator:a80c0baf0a1085d9810f0aae0f993d125"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5780ce7c036cc541c644241d307bf0a" id="r_ac5780ce7c036cc541c644241d307bf0a"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5780ce7c036cc541c644241d307bf0a">buffer_size</a> = <a class="elRef" href="https://ltla.github.io/sanisizer/namespacesanisizer.html#abd46ba64586c8de228897cc013def813">sanisizer::cap</a>&lt;std::size_t&gt;(65536)</td></tr>
 <tr class="separator:ac5780ce7c036cc541c644241d307bf0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -127,18 +127,18 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4b41fdc7bbf4749d4dd3c70c783dc32b" name="a4b41fdc7bbf4749d4dd3c70c783dc32b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b41fdc7bbf4749d4dd3c70c783dc32b">&#9670;&#160;</a></span>mode</h2>
+<a id="a80c0baf0a1085d9810f0aae0f993d125" name="a80c0baf0a1085d9810f0aae0f993d125"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80c0baf0a1085d9810f0aae0f993d125">&#9670;&#160;</a></span>mode</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int byteme::ZlibBufferReaderOptions::mode = 3</td>
+          <td class="memname">std::optional&lt;<a class="el" href="namespacebyteme.html#a684463951a944a548255a6abe484ef2b">ZlibCompressionMode</a>&gt; byteme::ZlibBufferReaderOptions::mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compression of the stream - DEFLATE (0), Zlib (1) or Gzip (2). Default of 3 will auto-detect between Zlib and Gzip based on the headers. </p>
+<p>Compression mode of the stream. If unset, the function will auto-detect the format, choosing between ZLIB and GZIP based on the headers. </p>
 
 </div>
 </div>

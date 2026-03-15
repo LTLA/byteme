@@ -5,5 +5,6 @@ var searchData=
   ['zlibbufferreaderoptions_2',['ZlibBufferReaderOptions',['../structbyteme_1_1ZlibBufferReaderOptions.html',1,'byteme']]],
   ['zlibbufferwriter_3',['ZlibBufferWriter',['../classbyteme_1_1ZlibBufferWriter.html',1,'byteme::ZlibBufferWriter'],['../classbyteme_1_1ZlibBufferWriter.html#a09d7572eb0c546087fb66c13aa8e2d84',1,'byteme::ZlibBufferWriter::ZlibBufferWriter()']]],
   ['zlibbufferwriter_2ehpp_4',['ZlibBufferWriter.hpp',['../ZlibBufferWriter_8hpp.html',1,'']]],
-  ['zlibbufferwriteroptions_5',['ZlibBufferWriterOptions',['../structbyteme_1_1ZlibBufferWriterOptions.html',1,'byteme']]]
+  ['zlibbufferwriteroptions_5',['ZlibBufferWriterOptions',['../structbyteme_1_1ZlibBufferWriterOptions.html',1,'byteme']]],
+  ['zlibcompressionmode_6',['ZlibCompressionMode',['../namespacebyteme.html#a684463951a944a548255a6abe484ef2b',1,'byteme']]]
 ];

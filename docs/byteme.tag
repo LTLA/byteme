@@ -588,10 +588,10 @@
     <name>byteme::ZlibBufferReaderOptions</name>
     <filename>structbyteme_1_1ZlibBufferReaderOptions.html</filename>
     <member kind="variable">
-      <type>int</type>
+      <type>std::optional&lt; ZlibCompressionMode &gt;</type>
       <name>mode</name>
       <anchorfile>structbyteme_1_1ZlibBufferReaderOptions.html</anchorfile>
-      <anchor>a4b41fdc7bbf4749d4dd3c70c783dc32b</anchor>
+      <anchor>a80c0baf0a1085d9810f0aae0f993d125</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -660,10 +660,10 @@
     <name>byteme::ZlibBufferWriterOptions</name>
     <filename>structbyteme_1_1ZlibBufferWriterOptions.html</filename>
     <member kind="variable">
-      <type>int</type>
+      <type>ZlibCompressionMode</type>
       <name>mode</name>
       <anchorfile>structbyteme_1_1ZlibBufferWriterOptions.html</anchorfile>
-      <anchor>a58534c4abd7686ce1c7ae7a0c32c140c</anchor>
+      <anchor>acc4d28aae986d64257b017231ecc6478</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -706,6 +706,16 @@
     <class kind="struct">byteme::ZlibBufferReaderOptions</class>
     <class kind="class">byteme::ZlibBufferWriter</class>
     <class kind="struct">byteme::ZlibBufferWriterOptions</class>
+    <member kind="enumeration">
+      <type></type>
+      <name>ZlibCompressionMode</name>
+      <anchorfile>namespacebyteme.html</anchorfile>
+      <anchor>a684463951a944a548255a6abe484ef2b</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespacebyteme.html" anchor="a684463951a944a548255a6abe484ef2baf17e827fa227b759dc5c053b334d77cc">DEFLATE</enumvalue>
+      <enumvalue file="namespacebyteme.html" anchor="a684463951a944a548255a6abe484ef2ba87c23ff88ac9b1c4390a679b63ea3b8c">ZLIB</enumvalue>
+      <enumvalue file="namespacebyteme.html" anchor="a684463951a944a548255a6abe484ef2baf1cd28417b03cfab3a8e16d66e34e18a">GZIP</enumvalue>
+    </member>
     <member kind="function">
       <type>bool</type>
       <name>is_zlib</name>
