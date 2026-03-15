@@ -4,11 +4,13 @@
 #include <stdexcept>
 #include <vector>
 #include <cstddef>
+#include <optional>
 
 #include "zlib.h"
 #include "sanisizer/sanisizer.hpp"
 
 #include "Reader.hpp"
+#include "magic_numbers.hpp"
 #include "utils.hpp"
 
 /**
@@ -24,10 +26,10 @@ namespace byteme {
  */
 struct ZlibBufferReaderOptions {
     /**
-     * Compression of the stream - DEFLATE (0), Zlib (1) or Gzip (2).
-     * Default of 3 will auto-detect between Zlib and Gzip based on the headers.
+     * Compression mode of the stream.
+     * If unset, the function will auto-detect the format, choosing between ZLIB and GZIP based on the headers.
      */
-    int mode = 3;
+    std::optional<ZlibCompressionMode> mode;
 
     /**
      * Size of the buffer to use when reading from disk.
@@ -44,7 +46,7 @@ struct ZlibBufferReaderOptions {
 class ZlibBufferReader final : public Reader {
 private:
     struct ZStream {
-        ZStream(int mode) {
+        ZStream(std::optional<ZlibCompressionMode> mode) {
             /* allocate inflate state */
             strm.zalloc = Z_NULL;
             strm.zfree = Z_NULL;
@@ -56,21 +58,28 @@ private:
              * https://stackoverflow.com/questions/1838699/how-can-i-decompress-a-gzip-stream-with-zlib
              * https://stackoverflow.com/questions/29003909/why-is-a-different-zlib-window-bits-value-required-for-extraction-compared-with
              */
-            int ret = 0;
-            if (mode == 0) { // DEFLATE
-                ret = inflateInit2(&strm, -MAX_WBITS); 
-            } else if (mode == 1) { // Zlib
-                ret = inflateInit2(&strm, MAX_WBITS); 
-            } else if (mode == 2) { // Gzip
-                ret = inflateInit2(&strm, 16 + MAX_WBITS); 
-            } else if (mode == 3) { // Gzip/Zlib auto-detected
-                ret = inflateInit2(&strm, 32 + MAX_WBITS); 
+            int ret;
+            if (mode.has_value()) {
+                switch (*mode) {
+                    case ZlibCompressionMode::DEFLATE:
+                        ret = inflateInit2(&strm, -MAX_WBITS); 
+                        break;
+                    case ZlibCompressionMode::ZLIB:
+                        ret = inflateInit2(&strm, MAX_WBITS); 
+                        break;
+                    case ZlibCompressionMode::GZIP:
+                        ret = inflateInit2(&strm, 16 + MAX_WBITS); 
+                        break;
+                    default:
+                        throw std::runtime_error("unknown Zlib compression mode");
+                }
             } else {
-                throw std::runtime_error("mode must be 0 (DEFLATE), 1 (Zlib), 2 (Gzip) or 3 (automatic)");
+                // Autodetection of Gzip or Zlib. 
+                ret = inflateInit2(&strm, 32 + MAX_WBITS); 
             }
 
             if (ret != Z_OK) {
-                throw 1;
+                throw std::runtime_error(strm.msg);
             }
         }
 

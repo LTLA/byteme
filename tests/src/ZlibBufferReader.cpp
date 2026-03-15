@@ -54,7 +54,7 @@ TEST_P(ZlibBufferReaderTest, Basic) {
     {
         byteme::ZlibBufferReader reader(gzcontents.data(), gzcontents.size(), [&]{
             byteme::ZlibBufferReaderOptions zopt;
-            zopt.mode = 2;
+            zopt.mode = byteme::ZlibCompressionMode::GZIP;
             zopt.buffer_size = buffer_size;
             return zopt;
         }());
@@ -143,29 +143,16 @@ TEST(ZlibBufferReader, Reread) {
     EXPECT_EQ(payload, roundtrip);
 }
 
-TEST(ZlibBufferReader, OtherModes) {
+TEST(ZlibBufferReader, OtherModes) { // We'll do some more thorough tests in ZlibBufferWriter.
     byteme::ZlibBufferReader reader1(NULL, 0, [&]{
         byteme::ZlibBufferReaderOptions zopt;
-        zopt.mode = 0; // deflate
+        zopt.mode = byteme::ZlibCompressionMode::DEFLATE;
         return zopt;
     }());
 
     byteme::ZlibBufferReader reader2(NULL, 0, [&]{
         byteme::ZlibBufferReaderOptions zopt;
-        zopt.mode = 1; // zlib
+        zopt.mode = byteme::ZlibCompressionMode::ZLIB;
         return zopt;
     }());
-
-    EXPECT_ANY_THROW(
-        try {
-            byteme::ZlibBufferReader reader(NULL, 0, [&]{
-                byteme::ZlibBufferReaderOptions zopt;
-                zopt.mode = 5; 
-                return zopt;
-            }());
-        } catch (std::exception& e) {
-            EXPECT_THAT(e.what(), ::testing::HasSubstr("mode must be"));
-            throw e;
-        }
-    );
 }

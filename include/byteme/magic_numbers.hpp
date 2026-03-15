@@ -49,6 +49,13 @@ inline bool is_gzip(const char* path) {
     return is_gzip(header, read);
 }
 
+/**
+ * Compression mode for Zlib.
+ * DEFLATE is the underlying compression algorithm,
+ * while ZLIB and GZIP are formats that use DEFLATE internally with some extra wrappers.
+ */
+enum class ZlibCompressionMode : char { DEFLATE, ZLIB, GZIP };
+
 }
 
 #endif

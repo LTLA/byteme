@@ -9,6 +9,7 @@
 #include "sanisizer/sanisizer.hpp"
 
 #include "Writer.hpp"
+#include "magic_numbers.hpp"
 #include "utils.hpp"
 
 /**
@@ -24,9 +25,9 @@ namespace byteme {
  */
 struct ZlibBufferWriterOptions {
     /**
-     * Compression of the stream - DEFLATE (0), Zlib (1) or Gzip (2).
+     * Compression mode of the stream.
      */
-    int mode = 2;
+    ZlibCompressionMode mode = ZlibCompressionMode::GZIP;
 
     /**
      * Compression level, from 1 to 9.
@@ -52,7 +53,7 @@ private:
      * @cond
      */
     struct ZStream {
-        ZStream(int mode, int level) {
+        ZStream(ZlibCompressionMode mode, int level) {
             strm.zalloc = Z_NULL;
             strm.zfree = Z_NULL;
             strm.opaque = Z_NULL;
@@ -61,14 +62,18 @@ private:
 
             // Check out https://zlib.net/manual.html for the constants.
             int windowBits;
-            if (mode == 0) { // deflate
-                windowBits = -15;
-            } else if (mode == 1) { // Zlib
-                windowBits = 15;
-            } else if (mode == 2) { // Gzip
-                windowBits = 16 + 15;
-            } else {
-                throw std::runtime_error("unknown Zlib compression mode supplied");
+            switch (mode) {
+                case ZlibCompressionMode::DEFLATE:
+                    windowBits = -15;
+                    break;
+                case ZlibCompressionMode::ZLIB:
+                    windowBits = 15;
+                    break;
+                case ZlibCompressionMode::GZIP:
+                    windowBits = 16 + 15;
+                    break;
+                default:
+                    throw std::runtime_error("unknown Zlib compression mode");
             } 
 
             int ret = deflateInit2(&strm, level, Z_DEFLATED, windowBits, 8, Z_DEFAULT_STRATEGY);
