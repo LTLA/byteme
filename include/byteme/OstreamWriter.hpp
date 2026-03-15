@@ -6,6 +6,7 @@
 #include <cstddef>
 
 #include "Writer.hpp"
+#include "utils.hpp"
 
 /**
  * @file OstreamWriter.hpp
@@ -37,10 +38,10 @@ public:
 
     void write(const unsigned char* buffer, std::size_t n) {
         safe_write<std::streamsize, false>(
-            reinterpret_cast<const char*>(buffer),
+            buffer,
             n,
-            [&](const char* ptr0, std::streamsize n0) -> void {
-                my_output->write(ptr0, n0);
+            [&](const unsigned char* ptr0, std::streamsize n0) -> void {
+                my_output->write(reinterpret_cast<const char*>(ptr0), n0);
                 if (!(my_output->good())) {
                     throw std::runtime_error("failed to write to arbitrary output stream");
                 }

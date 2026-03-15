@@ -6,9 +6,10 @@
 #include <cstddef>
 
 #include "zlib.h"
+#include "sanisizer/sanisizer.hpp"
 
 #include "Reader.hpp"
-#include "check_buffer_size.hpp"
+#include "utils.hpp"
 
 /**
  * @file ZlibBufferReader.hpp
@@ -32,7 +33,7 @@ struct ZlibBufferReaderOptions {
      * Size of the buffer to use when reading from disk.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    std::size_t buffer_size = cap<std::size_t>(65536);
+    std::size_t buffer_size = sanisizer::cap<std::size_t>(65536);
 };
 
 /**
@@ -89,7 +90,7 @@ private:
         z_stream strm;
     };
 
-    typedef decltype(decltype(ZStream::strm)::avail_out) ZoutSize;
+    typedef I<decltype(I<decltype(ZStream::strm)>::avail_out)> ZoutSize;
 
 public:
     /**
@@ -99,11 +100,8 @@ public:
      */
     ZlibBufferReader(const unsigned char* buffer, std::size_t length, const ZlibBufferReaderOptions& options) : 
         my_zstr(options.mode),
-        my_buffer(
-            check_buffer_size<ZoutSize>(
-                check_buffer_size(options.buffer_size)
-            )
-        ),
+        // Cap it for both allocation safety and to avoid problems from overflow of the avail_out member..
+        my_buffer(sanisizer::cap<I<decltype(my_buffer.size())> >(sanisizer::cap<ZoutSize>(options.buffer_size))),
         my_input(buffer),
         my_length(length)
     {}
@@ -138,7 +136,7 @@ private:
         if (remaining) {
             while (!my_finished) {
                 if (my_zstr.strm.avail_in == 0) {
-                    const auto to_use = check_buffer_size<InSize_>(my_length);
+                    const auto to_use = sanisizer::cap<InSize_>(my_length);
                     my_zstr.strm.avail_in = to_use;
                     my_length -= to_use;
                     my_zstr.strm.next_in = const_cast<unsigned char*>(my_input); // cast is purely for C compatibility.

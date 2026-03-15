@@ -5,7 +5,7 @@
 #include <cstring>
 #include <cstddef>
 
-#include "check_buffer_size.hpp"
+#include "utils.hpp"
 
 /**
  * @file Writer.hpp

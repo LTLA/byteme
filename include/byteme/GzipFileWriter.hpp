@@ -6,7 +6,7 @@
 #include <optional>
 
 #include "Writer.hpp"
-#include "check_buffer_size.hpp"
+#include "utils.hpp"
 
 /**
  * @file GzipFileWriter.hpp

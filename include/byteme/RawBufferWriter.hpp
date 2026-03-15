@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Writer.hpp"
+#include "utils.hpp"
 
 /**
  * @file RawBufferWriter.hpp

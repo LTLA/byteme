@@ -8,9 +8,9 @@
 
 #include "zlib.h"
 
-#include "check_buffer_size.hpp"
 #include "SelfClosingGzFile.hpp"
 #include "Reader.hpp"
+#include "utils.hpp"
 
 /**
  * @file GzipFileReader.hpp

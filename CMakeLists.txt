@@ -13,6 +13,16 @@ target_include_directories(byteme INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/ltla_byteme>")
 
+# Dependencies
+option(BYTEME_FETCH_EXTERN "Automatically fetch byteme's external dependencies." ON)
+if(BYTEME_FETCH_EXTERN)
+    add_subdirectory(extern)
+else()
+    find_package(ltla_sanisizer 0.2.0 CONFIG REQUIRED)
+endif()
+
+target_link_libraries(byteme INTERFACE ltla::sanisizer)
+
 option(BYTEME_FIND_ZLIB "Try to find and link to Zlib for byteme." ON)
 if(BYTEME_FIND_ZLIB)
     find_package(ZLIB)

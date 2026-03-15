@@ -14,6 +14,12 @@ jobs:
       uses: wei/wget@v1
       with:
         args: -O docs/doxygen-awesome.css https://raw.githubusercontent.com/jothepro/doxygen-awesome-css/main/doxygen-awesome.css
+
+    - name: Add sanisizer tagfile
+      uses: wei/wget@v1
+      with:
+        args: -O docs/sanisizer.tag https://ltla.github.io/sanisizer/sanisizer.tag
+
     - name: Doxygen Action
       uses: mattnotmitt/doxygen-action@v1
       with:

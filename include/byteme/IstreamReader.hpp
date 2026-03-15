@@ -7,7 +7,7 @@
 #include <cstddef>
 
 #include "Reader.hpp"
-#include "check_buffer_size.hpp"
+#include "utils.hpp"
 
 /**
  * @file IstreamReader.hpp

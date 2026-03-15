@@ -6,9 +6,10 @@
 #include <cstddef>
 
 #include "zlib.h"
+#include "sanisizer/sanisizer.hpp"
 
 #include "Writer.hpp"
-#include "check_buffer_size.hpp"
+#include "utils.hpp"
 
 /**
  * @file ZlibBufferWriter.hpp
@@ -37,7 +38,7 @@ struct ZlibBufferWriterOptions {
      * Size of the buffer to use when reading from disk.
      * Larger values usually reduce computational time at the cost of increased memory usage.
      */
-    std::size_t buffer_size = cap<std::size_t>(65536);
+    std::size_t buffer_size = sanisizer::cap<std::size_t>(65536);
 };
 
 /**
@@ -95,24 +96,23 @@ private:
      * @endcond
      */
 
+    typedef I<decltype(I<decltype(ZStream::strm)>::avail_out)> ZoutSize;
+
 public:
     /**
      * @param options Further options.
      */
     ZlibBufferWriter(const ZlibBufferWriterOptions& options) : 
         my_zstr(options.mode, options.compression_level),
-        my_holding(
-            check_buffer_size<decltype(decltype(ZStream::strm)::avail_out)>( // constrained for the z_stream interface.
-                check_buffer_size(options.buffer_size)
-            )
-        )
+        // Cap it for both allocation safety and to avoid overflow of the avail_out member.
+        my_holding(sanisizer::cap<I<decltype(my_holding.size())> >(sanisizer::cap<ZoutSize>(options.buffer_size))) 
     {}
 
 public:
     using Writer::write;
 
     void write(const unsigned char* buffer, std::size_t n) {
-        typedef decltype(decltype(ZStream::strm)::avail_in) Size; // constrained for the z_stream interface.
+        typedef I<decltype(I<decltype(ZStream::strm)>::avail_in)> Size; // constrained for the z_stream interface.
         safe_write<Size, false>(
             buffer,
             n,

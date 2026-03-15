@@ -1,5 +1,8 @@
 @PACKAGE_INIT@
 
+include(CMakeFindDependencyMacro)
+find_dependency(ltla_sanisizer 0.2.0 CONFIG REQUIRED)
+
 if(@BYTEME_FIND_ZLIB@)
     find_package(ZLIB)
 endif()

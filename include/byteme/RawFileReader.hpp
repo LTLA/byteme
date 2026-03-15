@@ -9,7 +9,6 @@
 
 #include "Reader.hpp"
 #include "SelfClosingFILE.hpp"
-#include "check_buffer_size.hpp"
 
 /**
  * @file RawFileReader.hpp
