@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['finish_0',['finish',['../classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3',1,'byteme::GzipFileWriter::finish()'],['../classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7',1,'byteme::OstreamWriter::finish()'],['../classbyteme_1_1RawBufferWriter.html#a9f5da6446f98b72afcdbbcf504e10512',1,'byteme::RawBufferWriter::finish()'],['../classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535',1,'byteme::RawFileWriter::finish()'],['../classbyteme_1_1Writer.html#a8317429c5645d0e447a4207091953164',1,'byteme::Writer::finish()'],['../classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac',1,'byteme::ZlibBufferWriter::finish()']]]
+  ['get_0',['get',['../classbyteme_1_1PerByteInterface.html#a647e6ee2e9c7683f162b22d0a51dc3e5',1,'byteme::PerByteInterface']]],
+  ['get_5foutput_1',['get_output',['../classbyteme_1_1RawBufferWriter.html#a77085bb097a701c3b132f1278df923b8',1,'byteme::RawBufferWriter::get_output()'],['../classbyteme_1_1ZlibBufferWriter.html#ac0c286b480ef272974c3ee3d4209ec0e',1,'byteme::ZlibBufferWriter::get_output()']]],
+  ['gzipfilereader_2',['GzipFileReader',['../classbyteme_1_1GzipFileReader.html#aecf4eebc3a244525b2c71a269d112800',1,'byteme::GzipFileReader']]],
+  ['gzipfilewriter_3',['GzipFileWriter',['../classbyteme_1_1GzipFileWriter.html#ad3b9a74789a8182cc40f3ba2d4edf306',1,'byteme::GzipFileWriter']]]
 ];

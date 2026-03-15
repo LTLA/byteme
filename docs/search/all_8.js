@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['magic_5fnumbers_2ehpp_0',['magic_numbers.hpp',['../magic__numbers_8hpp.html',1,'']]],
-  ['mode_1',['mode',['../structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b',1,'byteme::ZlibBufferReaderOptions::mode'],['../structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c',1,'byteme::ZlibBufferWriterOptions::mode']]]
+  ['ostreamwriter_0',['OstreamWriter',['../classbyteme_1_1OstreamWriter.html',1,'byteme::OstreamWriter&lt; Pointer_ &gt;'],['../classbyteme_1_1OstreamWriter.html#a3cbc4a7eec70e40dd6a1c370f165084c',1,'byteme::OstreamWriter::OstreamWriter()']]],
+  ['ostreamwriter_2ehpp_1',['OstreamWriter.hpp',['../OstreamWriter_8hpp.html',1,'']]]
 ];

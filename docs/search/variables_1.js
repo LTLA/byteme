@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['buffer_5fsize_0',['buffer_size',['../structbyteme_1_1GzipFileReaderOptions.html#a17fe61919194f8e5fcb43e9c7be8ec26',1,'byteme::GzipFileReaderOptions::buffer_size'],['../structbyteme_1_1IstreamReaderOptions.html#a3d1d483d6ce6e8f83439339ab8b1b014',1,'byteme::IstreamReaderOptions::buffer_size'],['../structbyteme_1_1RawFileReaderOptions.html#af6ef3890a745687b993cd2d1651ba373',1,'byteme::RawFileReaderOptions::buffer_size'],['../structbyteme_1_1ZlibBufferReaderOptions.html#ac5780ce7c036cc541c644241d307bf0a',1,'byteme::ZlibBufferReaderOptions::buffer_size'],['../structbyteme_1_1ZlibBufferWriterOptions.html#ae3577ab909e788c1cfffaebafc9994c0',1,'byteme::ZlibBufferWriterOptions::buffer_size']]],
-  ['bufsiz_1',['bufsiz',['../structbyteme_1_1RawFileReaderOptions.html#ade9c302249e5a2af16e9d5107dc649ab',1,'byteme::RawFileReaderOptions::bufsiz'],['../structbyteme_1_1RawFileWriterOptions.html#a968198bb36d902d8f17aa0a6b1786ff4',1,'byteme::RawFileWriterOptions::bufsiz']]]
+  ['compression_5flevel_0',['compression_level',['../structbyteme_1_1GzipFileWriterOptions.html#a9072c378aefb629c314f80ff8b77a964',1,'byteme::GzipFileWriterOptions::compression_level'],['../structbyteme_1_1ZlibBufferWriterOptions.html#a31ad029c8bd29c6edfe6e1228ee2aab7',1,'byteme::ZlibBufferWriterOptions::compression_level']]]
 ];

@@ -1,15 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source." alt="" coords="5,141,116,167"/>
-<area shape="rect" id="Node000001" href="$classbyteme_1_1ChunkedBufferReader.html" title="Read chunks of bytes from a raw buffer." alt="" coords="164,5,359,31"/>
-<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="76,127,112,82,136,59,162,40,186,29,188,34,165,44,139,63,116,86,81,130"/>
-<area shape="rect" id="Node000002" href="$classbyteme_1_1GzipFileReader.html" title="Read uncompressed bytes from a Gzip&#45;compressed file." alt="" coords="183,55,340,80"/>
-<area shape="poly" id="edge4_Node000000_Node000002" title=" " alt="" coords="91,130,125,109,163,90,198,78,199,83,165,95,128,114,94,135"/>
-<area shape="rect" id="Node000003" href="$classbyteme_1_1IstreamReader.html" title="Read bytes from a std::istream." alt="" coords="184,104,338,145"/>
-<area shape="poly" id="edge5_Node000000_Node000003" title=" " alt="" coords="131,141,183,133,184,139,132,147"/>
-<area shape="rect" id="Node000004" href="$classbyteme_1_1RawBufferReader.html" title="Read bytes from a raw buffer, usually text." alt="" coords="176,169,346,195"/>
-<area shape="poly" id="edge6_Node000000_Node000004" title=" " alt="" coords="132,161,176,168,175,173,131,167"/>
-<area shape="rect" id="Node000005" href="$classbyteme_1_1RawFileReader.html" title="Read bytes from a file, usually text." alt="" coords="183,219,340,244"/>
-<area shape="poly" id="edge7_Node000000_Node000005" title=" " alt="" coords="98,173,165,205,197,215,196,221,163,210,96,177"/>
-<area shape="rect" id="Node000006" href="$classbyteme_1_1ZlibBufferReader.html" title="Read and decompress bytes from a Zlib&#45;compressed buffer." alt="" coords="179,268,344,294"/>
-<area shape="poly" id="edge8_Node000000_Node000006" title=" " alt="" coords="82,177,118,218,140,238,165,255,189,265,187,270,162,259,137,242,114,221,78,181"/>
+<area shape="rect" id="Node000000" href="$classbyteme_1_1Writer.html" title="Virtual class for writing bytes to a sink." alt="" coords="5,120,109,146"/>
+<area shape="rect" id="Node000001" href="$classbyteme_1_1GzipFileWriter.html" title="Write uncompressed bytes to a Gzip&#45;compressed file." alt="" coords="163,5,314,31"/>
+<area shape="poly" id="edge8_Node000000_Node000001" title=" " alt="" coords="78,106,112,73,155,41,182,29,184,34,158,46,116,77,82,110"/>
+<area shape="rect" id="Node000002" href="$classbyteme_1_1OstreamWriter.html" title="Read bytes from a std::ostream." alt="" coords="162,55,315,96"/>
+<area shape="poly" id="edge9_Node000000_Node000002" title=" " alt="" coords="114,112,171,94,172,99,116,117"/>
+<area shape="rect" id="Node000003" href="$classbyteme_1_1RawBufferWriter.html" title="Write bytes to a raw buffer." alt="" coords="157,120,320,146"/>
+<area shape="poly" id="edge10_Node000000_Node000003" title=" " alt="" coords="124,130,156,130,156,136,124,136"/>
+<area shape="rect" id="Node000004" href="$classbyteme_1_1RawFileWriter.html" title="Write bytes to a file." alt="" coords="163,169,314,195"/>
+<area shape="poly" id="edge11_Node000000_Node000004" title=" " alt="" coords="123,148,189,166,188,171,121,153"/>
+<area shape="rect" id="Node000005" href="$classbyteme_1_1ZlibBufferWriter.html" title="Compress and write bytes to a Zlib&#45;compressed buffer." alt="" coords="159,219,318,244"/>
+<area shape="poly" id="edge12_Node000000_Node000005" title=" " alt="" coords="85,154,119,181,158,205,183,216,181,221,155,210,116,185,82,158"/>
 </map>

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['load_0',['load',['../classbyteme_1_1ChunkedBufferReader.html#ae5f68b4486a3346e6ae062bf1a105226',1,'byteme::ChunkedBufferReader::load()'],['../classbyteme_1_1GzipFileReader.html#aa077d794ad9e305842adf83311906b8a',1,'byteme::GzipFileReader::load()'],['../classbyteme_1_1IstreamReader.html#aa09922b5fa256cca3ced445206e9a6dd',1,'byteme::IstreamReader::load()'],['../classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf',1,'byteme::RawBufferReader::load()'],['../classbyteme_1_1RawFileReader.html#a1477482100fb90bc49d743ea0339d885',1,'byteme::RawFileReader::load()'],['../classbyteme_1_1Reader.html#a60671d10f28ce83fa256d7342c769ba5',1,'byteme::Reader::load()'],['../classbyteme_1_1ZlibBufferReader.html#ad7205cb26d279ca957ada858598a86a3',1,'byteme::ZlibBufferReader::load()']]]
+  ['perbyteparallel_0',['PerByteParallel',['../classbyteme_1_1PerByteParallel.html#a9fbab302f047d6cef60e721ffb47a1a2',1,'byteme::PerByteParallel']]],
+  ['perbyteserial_1',['PerByteSerial',['../classbyteme_1_1PerByteSerial.html#acb3e02df32bf30017475f5fe840b0766',1,'byteme::PerByteSerial']]],
+  ['position_2',['position',['../classbyteme_1_1PerByteInterface.html#a374c2a658715b357ebe9511fdf772169',1,'byteme::PerByteInterface']]]
 ];

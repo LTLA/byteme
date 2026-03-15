@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['load_0',['load',['../classbyteme_1_1ChunkedBufferReader.html#ae5f68b4486a3346e6ae062bf1a105226',1,'byteme::ChunkedBufferReader::load()'],['../classbyteme_1_1GzipFileReader.html#aa077d794ad9e305842adf83311906b8a',1,'byteme::GzipFileReader::load()'],['../classbyteme_1_1IstreamReader.html#aa09922b5fa256cca3ced445206e9a6dd',1,'byteme::IstreamReader::load()'],['../classbyteme_1_1RawBufferReader.html#a6405fcb9973d2836019db1d294a4d0cf',1,'byteme::RawBufferReader::load()'],['../classbyteme_1_1RawFileReader.html#a1477482100fb90bc49d743ea0339d885',1,'byteme::RawFileReader::load()'],['../classbyteme_1_1Reader.html#a60671d10f28ce83fa256d7342c769ba5',1,'byteme::Reader::load()'],['../classbyteme_1_1ZlibBufferReader.html#ad7205cb26d279ca957ada858598a86a3',1,'byteme::ZlibBufferReader::load()']]]
+  ['magic_5fnumbers_2ehpp_0',['magic_numbers.hpp',['../magic__numbers_8hpp.html',1,'']]],
+  ['mode_1',['mode',['../structbyteme_1_1ZlibBufferReaderOptions.html#a4b41fdc7bbf4749d4dd3c70c783dc32b',1,'byteme::ZlibBufferReaderOptions::mode'],['../structbyteme_1_1ZlibBufferWriterOptions.html#a58534c4abd7686ce1c7ae7a0c32c140c',1,'byteme::ZlibBufferWriterOptions::mode']]]
 ];

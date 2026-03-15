@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['extract_0',['extract',['../classbyteme_1_1PerByteInterface.html#a8c61a374f234ea6051f015133d91a44c',1,'byteme::PerByteInterface']]]
+  ['finish_0',['finish',['../classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3',1,'byteme::GzipFileWriter::finish()'],['../classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7',1,'byteme::OstreamWriter::finish()'],['../classbyteme_1_1RawBufferWriter.html#a9f5da6446f98b72afcdbbcf504e10512',1,'byteme::RawBufferWriter::finish()'],['../classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535',1,'byteme::RawFileWriter::finish()'],['../classbyteme_1_1Writer.html#a8317429c5645d0e447a4207091953164',1,'byteme::Writer::finish()'],['../classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac',1,'byteme::ZlibBufferWriter::finish()']]]
 ];
