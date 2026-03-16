@@ -11,7 +11,7 @@
 #include "RawFileWriter.hpp"
 #include "OstreamWriter.hpp"
 
-#include "PerByte.hpp"
+#include "BufferedReader.hpp"
 
 #include "magic_numbers.hpp"
 

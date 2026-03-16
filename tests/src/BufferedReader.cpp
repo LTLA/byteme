@@ -3,7 +3,7 @@
 #include "temp_file_path.h"
 #include "utils.h"
 
-#include "byteme/PerByte.hpp"
+#include "byteme/BufferedReader.hpp"
 #include "byteme/RawBufferReader.hpp"
 
 #include <fstream>
@@ -20,11 +20,11 @@ TEST_P(PerByteGetTest, Basic) {
     auto contents = simulate_bytes(nbytes, /* seed = */ 13 * nbytes + buffer_size + parallel);
     byteme::RawBufferReader reader(contents.data(), contents.size());
 
-    std::unique_ptr<byteme::PerByteInterface<unsigned char> > ptr;
+    std::unique_ptr<byteme::BufferedReader<unsigned char> > ptr;
     if (parallel) {
-        ptr.reset(new byteme::PerByteParallel<unsigned char, byteme::Reader*>(&reader, buffer_size));
+        ptr.reset(new byteme::ParallelBufferedReader<unsigned char, byteme::Reader*>(&reader, buffer_size));
     } else {
-        ptr.reset(new byteme::PerByteSerial<unsigned char, byteme::Reader*>(&reader, buffer_size));
+        ptr.reset(new byteme::SerialBufferedReader<unsigned char, byteme::Reader*>(&reader, buffer_size));
     }
 
     std::vector<unsigned char> output;
@@ -39,7 +39,7 @@ TEST_P(PerByteGetTest, Basic) {
 }
 
 // We want to make sure we test cases where the buffer size is a factor of, greater than or smaller than the total number of bytes.
-// This gets some test coverage on the various scenarios in PerByteInterface::advance().
+// This gets some test coverage on the various scenarios in BufferedReader::advance().
 INSTANTIATE_TEST_SUITE_P(
     PerByte,
     PerByteGetTest,
@@ -62,11 +62,11 @@ TEST_P(PerByteExtractTest, Basic) {
     auto contents = simulate_bytes(nbytes, /* seed = */ 42 * nbytes + buffer_size + extract_len + parallel);
     auto xptr = std::make_unique<byteme::RawBufferReader>(contents.data(), contents.size()); // Using smart pointers for some variety.
 
-    std::unique_ptr<byteme::PerByteInterface<unsigned char> > ptr;
+    std::unique_ptr<byteme::BufferedReader<unsigned char> > ptr;
     if (parallel) {
-        ptr.reset(new byteme::PerByteParallel<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
+        ptr.reset(new byteme::ParallelBufferedReader<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
     } else {
-        ptr.reset(new byteme::PerByteSerial<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
+        ptr.reset(new byteme::SerialBufferedReader<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
     }
 
     std::vector<unsigned char> observed;
@@ -94,11 +94,11 @@ TEST_P(PerByteExtractTest, Mixed) {
     auto contents = simulate_bytes(nbytes, /* seed = */ 42 * nbytes + buffer_size + extract_len + parallel);
     auto xptr = std::make_unique<byteme::RawBufferReader>(contents.data(), contents.size()); // Using smart pointers for some variety.
 
-    std::unique_ptr<byteme::PerByteInterface<unsigned char> > ptr;
+    std::unique_ptr<byteme::BufferedReader<unsigned char> > ptr;
     if (parallel) {
-        ptr.reset(new byteme::PerByteParallel<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
+        ptr.reset(new byteme::ParallelBufferedReader<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
     } else {
-        ptr.reset(new byteme::PerByteSerial<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
+        ptr.reset(new byteme::SerialBufferedReader<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
     }
 
     // Checking that extract() and get/advance() play nice together.
@@ -128,7 +128,7 @@ TEST_P(PerByteExtractTest, Mixed) {
 
 // We want to make sure we test cases where the extraction length is a factor of, greater than or smaller than the Reader buffer size;
 // and similarly, the buffer size is a factor of, greater than or smaller than the total number of bytes.
-// This gets some test coverage on the various scenarios in PerByteInterface::extract().
+// This gets some test coverage on the various scenarios in BufferedReader::extract().
 INSTANTIATE_TEST_SUITE_P(
     PerByte,
     PerByteExtractTest,
@@ -159,11 +159,11 @@ TEST_P(PerByteCharTest, Basic) {
         byteme::RawBufferReader reader(reinterpret_cast<const unsigned char*>(contents.c_str()), contents.size());
 
         // Checking it works with char types.
-        std::unique_ptr<byteme::PerByteInterface<char> > ptr;
+        std::unique_ptr<byteme::BufferedReader<char> > ptr;
         if (parallel) {
-            ptr.reset(new byteme::PerByteParallel<char, byteme::Reader*>(&reader, 10));
+            ptr.reset(new byteme::ParallelBufferedReader<char, byteme::Reader*>(&reader, 10));
         } else {
-            ptr.reset(new byteme::PerByteSerial<char, byteme::Reader*>(&reader, 10));
+            ptr.reset(new byteme::SerialBufferedReader<char, byteme::Reader*>(&reader, 10));
         }
 
         EXPECT_TRUE(ptr->valid());
