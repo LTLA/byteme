@@ -33,6 +33,7 @@ add_executable(
     src/OstreamWriter.cpp
 
     src/byteme.cpp
+    src/utils.cpp
 )
 
 target_link_libraries(
