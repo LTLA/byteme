@@ -1,217 +1,198 @@
 #include <gtest/gtest.h>
 
 #include "temp_file_path.h"
+#include "utils.h"
 
 #include "byteme/PerByte.hpp"
-#include "byteme/RawFileReader.hpp"
+#include "byteme/RawBufferReader.hpp"
 
 #include <fstream>
 #include <memory>
 
-class PerByteTest : public ::testing::TestWithParam<int> {
-protected:
-    auto dump_file(const std::vector<std::string>& contents) {
-        auto path = temp_file_path("text");
-        std::ofstream output(path);
-        for (auto c : contents) {
-            output << c << "\n";
-        }
-        output.close();
-        return path;
-    }
-};
+class PerByteGetTest : public ::testing::TestWithParam<std::tuple<int, int, bool> > {};
 
-TEST_P(PerByteTest, Basic) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
-    auto path = dump_file(contents);
+TEST_P(PerByteGetTest, Basic) {
+    auto param = GetParam();
+    auto nbytes = std::get<0>(param);
+    auto buffer_size = std::get<1>(param);
+    auto parallel = std::get<2>(param);
 
-    byteme::RawFileReader reader(path.c_str(), {});
-    byteme::PerByteSerial<char, byteme::Reader*> extractor(&reader, GetParam());
+    auto contents = simulate_bytes(nbytes, /* seed = */ 13 * nbytes + buffer_size + parallel);
+    byteme::RawBufferReader reader(contents.data(), contents.size());
 
-    std::string observed;
-    std::vector<int> positions;
-    while (extractor.valid()) {
-        if (extractor.get() == '\n') {
-            positions.push_back(extractor.position());
-        } else {
-            observed += extractor.get();
-        }
-        bool still_valid = extractor.advance();
-        EXPECT_EQ(still_valid, extractor.valid());
+    std::unique_ptr<byteme::PerByteInterface<unsigned char> > ptr;
+    if (parallel) {
+        ptr.reset(new byteme::PerByteParallel<unsigned char, byteme::Reader*>(&reader, buffer_size));
+    } else {
+        ptr.reset(new byteme::PerByteSerial<unsigned char, byteme::Reader*>(&reader, buffer_size));
     }
 
-    std::string expected;
-    std::vector<int> expected_pos;
-    int counter = 0;
-    for (const auto& x : contents) {
-        expected += x;
-        counter += x.size(); // position is 0-based, so this implicitly includes the newline.
-        expected_pos.push_back(counter);
-        ++counter; // for the extra length due to the newline.
+    std::vector<unsigned char> output;
+    while (ptr->valid()) {
+        EXPECT_EQ(ptr->position(), output.size());
+        output.push_back(ptr->get());
+        bool still_valid = ptr->advance();
+        EXPECT_EQ(still_valid, ptr->valid());
     }
 
-    EXPECT_EQ(positions, expected_pos);
-    EXPECT_EQ(observed, expected);
+    EXPECT_EQ(output, contents);
 }
 
-TEST_P(PerByteTest, Extraction) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
-    auto path = dump_file(contents);
+// We want to make sure we test cases where the buffer size is a factor of, greater than or smaller than the total number of bytes.
+// This gets some test coverage on the various scenarios in PerByteInterface::advance().
+INSTANTIATE_TEST_SUITE_P(
+    PerByte,
+    PerByteGetTest,
+    ::testing::Combine(
+        ::testing::Values(100, 256, 500, 1024), // number of bytes
+        ::testing::Values(50, 128, 200, 512), // buffer size
+        ::testing::Values(false, true) // parallel or not
+    )
+);
 
-    std::string expected;
-    for (const auto& x : contents) {
-        expected += x;
-        expected += '\n';
+class PerByteExtractTest : public ::testing::TestWithParam<std::tuple<int, int, int, bool> > {};
+
+TEST_P(PerByteExtractTest, Basic) {
+    auto param = GetParam();
+    auto nbytes = std::get<0>(param);
+    auto buffer_size = std::get<1>(param);
+    auto extract_len = std::get<2>(param);
+    auto parallel = std::get<3>(param);
+
+    auto contents = simulate_bytes(nbytes, /* seed = */ 42 * nbytes + buffer_size + extract_len + parallel);
+    auto xptr = std::make_unique<byteme::RawBufferReader>(contents.data(), contents.size()); // Using smart pointers for some variety.
+
+    std::unique_ptr<byteme::PerByteInterface<unsigned char> > ptr;
+    if (parallel) {
+        ptr.reset(new byteme::PerByteParallel<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
+    } else {
+        ptr.reset(new byteme::PerByteSerial<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
     }
 
-    // At least some of these extraction widths should coincide
-    // with the Reader buffer size, so as to get coverage on
-    // the case where we extract exactly the buffered content.
-    std::vector<int> extract_widths { 10, 20, 100 };
+    std::vector<unsigned char> observed;
+    std::vector<unsigned char> buffer(extract_len);
+    while (1) {
+        auto out = ptr->extract(buffer.size(), buffer.data());
+        observed.insert(observed.end(), buffer.data(), buffer.data() + out.first);
+        EXPECT_EQ(ptr->position(), observed.size());
+        EXPECT_EQ(out.second, ptr->valid());
+        if (!out.second) {
+            break;
+        }
+    }
 
-    for (auto w : extract_widths) {
-        byteme::RawFileReader reader(path.c_str(), {});
-        byteme::PerByteSerial<char, byteme::Reader*> extractor(&reader, GetParam());
+    EXPECT_EQ(observed, contents);
+}
 
-        std::string observed;
-        std::vector<char> buffer(w);
-        while (1) {
-            auto out = extractor.extract(w, buffer.data());
-            observed.insert(observed.end(), buffer.data(), buffer.data() + out.first);
-            EXPECT_EQ(extractor.position(), observed.size());
-            if (!out.second) {
+TEST_P(PerByteExtractTest, Mixed) {
+    auto param = GetParam();
+    auto nbytes = std::get<0>(param);
+    auto buffer_size = std::get<1>(param);
+    auto extract_len = std::get<2>(param);
+    auto parallel = std::get<3>(param);
+
+    auto contents = simulate_bytes(nbytes, /* seed = */ 42 * nbytes + buffer_size + extract_len + parallel);
+    auto xptr = std::make_unique<byteme::RawBufferReader>(contents.data(), contents.size()); // Using smart pointers for some variety.
+
+    std::unique_ptr<byteme::PerByteInterface<unsigned char> > ptr;
+    if (parallel) {
+        ptr.reset(new byteme::PerByteParallel<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
+    } else {
+        ptr.reset(new byteme::PerByteSerial<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
+    }
+
+    // Checking that extract() and get/advance() play nice together.
+    std::vector<unsigned char> observed;
+    std::vector<unsigned char> buffer(extract_len);
+    while (1) {
+        auto out = ptr->extract(buffer.size(), buffer.data());
+        observed.insert(observed.end(), buffer.data(), buffer.data() + out.first);
+        if (!out.second) {
+            break;
+        }
+
+        for (int i = 0; i < extract_len; ++i) {
+            observed.push_back(ptr->get());
+            if (!ptr->advance()) {
                 break;
             }
         }
-        EXPECT_EQ(observed, expected);
+        if (!ptr->valid()) {
+            break;
+        }
     }
+
+    EXPECT_EQ(observed, contents);
 }
 
-TEST_P(PerByteTest, SmartPointer) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
-    auto path = dump_file(contents);
 
-    byteme::RawFileReader reader(path.c_str(), {});
-    byteme::PerByteSerial<char, byteme::Reader*> extractor(&reader, GetParam());
+// We want to make sure we test cases where the extraction length is a factor of, greater than or smaller than the Reader buffer size;
+// and similarly, the buffer size is a factor of, greater than or smaller than the total number of bytes.
+// This gets some test coverage on the various scenarios in PerByteInterface::extract().
+INSTANTIATE_TEST_SUITE_P(
+    PerByte,
+    PerByteExtractTest,
+    ::testing::Combine(
+        ::testing::Values(100, 256, 500, 1024), // number of bytes
+        ::testing::Values(50, 128, 200, 512), // buffer size 
+        ::testing::Values(25, 64, 128, 200), // extract len
+        ::testing::Values(false, true) // parallel or not
+    )
+);
 
-    std::vector<std::string> observed(1);
-    while (extractor.valid()) {
-        if (extractor.get() == '\n') {
-            observed.push_back("");
+class PerByteCharTest : public ::testing::TestWithParam<bool> {};
+
+TEST_P(PerByteCharTest, Basic) {
+    auto parallel = GetParam();
+
+    std::string contents(
+        "asdasdasd"
+        "sd738"
+        "93879sdjfsjdf"
+        "caysctgatctv"
+        "oirtueorpr2312"
+        "09798&A*&^&c"
+        "((&9KKJNJSNAKASd"
+    );
+
+    for (int mode = 0; mode < 2; ++mode) {
+        byteme::RawBufferReader reader(reinterpret_cast<const unsigned char*>(contents.c_str()), contents.size());
+
+        // Checking it works with char types.
+        std::unique_ptr<byteme::PerByteInterface<char> > ptr;
+        if (parallel) {
+            ptr.reset(new byteme::PerByteParallel<char, byteme::Reader*>(&reader, 10));
         } else {
-            observed.back() += extractor.get();
+            ptr.reset(new byteme::PerByteSerial<char, byteme::Reader*>(&reader, 10));
         }
-        extractor.advance();
-    }
 
-    observed.pop_back(); // remove trailing newline.
-    EXPECT_EQ(contents, observed);
-}
+        EXPECT_TRUE(ptr->valid());
 
-TEST_P(PerByteTest, Parallel) {
-    std::vector<std::string> contents { "Ochite iku sunadokei bakari miteru yo", "Sakasama ni sureba hora mata hajimaru yo", "Kizanda dake susumu jikan ni", "Itsuka boku mo haireru kana" };
-    auto path = dump_file(contents);
-
-    byteme::RawFileReader reader(path.c_str(), {});
-    byteme::PerByteParallel<char, byteme::Reader*> extractor(&reader, GetParam());
-
-    std::string observed;
-    std::vector<int> positions;
-    while (extractor.valid()) {
-        if (extractor.get() == '\n') {
-            positions.push_back(extractor.position());
+        std::string output;
+        if (mode == 0) {
+            while (1) {
+                output += ptr->get();
+                if (!(ptr->advance())) {
+                    break;
+                }
+            }
         } else {
-            observed += extractor.get();
-        }
-        bool still_valid = extractor.advance();
-        EXPECT_EQ(still_valid, extractor.valid());
-    }
-
-    std::vector<int> expected_pos;
-    std::string expected;
-    int counter = 0;
-    for (const auto& x : contents) {
-        expected += x;
-        counter += x.size();
-        expected_pos.push_back(counter);
-        ++counter;
-    }
-
-    EXPECT_EQ(observed, expected);
-    EXPECT_EQ(positions, expected_pos);
-}
-
-TEST_P(PerByteTest, ParallelDestruction) {
-    std::vector<std::string> contents { "Kimi dake ga sugisatta saka no tochuu wa", "Atataka na hidamari ga ikutsu mo dekiteta", "Boku hitori ga koko de yasashii", "Atatakasa o omoikaeshiteru" };
-    auto path = dump_file(contents);
-
-    // Get enough hits to trigger the next (parallelized) chunk read, but not enough to read through the entire string.
-    {
-        byteme::RawFileReader reader(path.c_str(), {});
-        byteme::PerByteParallel<char, byteme::Reader*> extractor(&reader, GetParam());
-
-        size_t limit = GetParam();
-        for (size_t i = 0; i < limit + 10 && extractor.valid(); ++i) {
-            extractor.get();
-        }
-    }
-
-    // Destruction of the object should not result in a segfault.
-}
-
-TEST_P(PerByteTest, ParallelSmartPointer) {
-    std::vector<std::string> contents { "Kimi dake o kimi dake o", "Suki de ita yo", "Kaze de me ga nijinde", "Tooku naru yo", "Itsu made mo oboeteru" };
-    auto path = dump_file(contents);
-
-    // Passing in a unique pointer.
-    byteme::RawFileReader reader(path.c_str(), {});
-    byteme::PerByteParallel<char, byteme::Reader*> extractor(&reader, GetParam());
-
-    std::vector<std::string> observed(1);
-    while (extractor.valid()) {
-        if (extractor.get() == '\n') {
-            observed.push_back("");
-        } else {
-            observed.back() += extractor.get();
-        }
-        extractor.advance();
-    }
-
-    observed.pop_back(); // remove trailing newline.
-    EXPECT_EQ(contents, observed);
-}
-
-TEST_P(PerByteTest, ParallelExtraction) {
-    std::vector<std::string> contents { "asdasdasd", "sd738", "93879sdjfsjdf", "caysctgatctv", "oirtueorpr2312", "09798&A*&^&c", "((&9KKJNJSNAKASd" };
-    auto path = dump_file(contents);
-
-    std::string expected;
-    for (const auto& x : contents) {
-        expected += x;
-        expected += '\n';
-    }
-
-    std::vector<int> extract_widths { 10, 20, 100 };
-    for (auto w : extract_widths) {
-        byteme::RawFileReader reader(path.c_str(), {});
-        byteme::PerByteParallel<char, byteme::Reader*> extractor(&reader, GetParam());
-
-        std::string observed;
-        std::vector<char> buffer(w);
-        while (1) {
-            auto out = extractor.extract(w, buffer.data());
-            observed.insert(observed.end(), buffer.data(), buffer.data() + out.first);
-            EXPECT_EQ(extractor.position(), observed.size());
-            if (!out.second) {
-                break;
+            std::vector<char> buffer(7);
+            while (1) {
+                auto extracted = ptr->extract(buffer.size(), buffer.data());
+                output.insert(output.end(), buffer.data(), buffer.data() + extracted.first);
+                if (!extracted.second) {
+                    break;
+                }
             }
         }
-        EXPECT_EQ(observed, expected);
+
+        EXPECT_EQ(output, contents);
     }
 }
 
 INSTANTIATE_TEST_SUITE_P(
     PerByte,
-    PerByteTest,
-    ::testing::Values(10, 20, 50, 100)
+    PerByteCharTest,
+    ::testing::Values(false, true)
 );
