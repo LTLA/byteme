@@ -10,6 +10,15 @@
     <namespace>byteme</namespace>
   </compound>
   <compound kind="file">
+    <name>BufferedWriter.hpp</name>
+    <path>byteme/</path>
+    <filename>BufferedWriter_8hpp.html</filename>
+    <class kind="class">byteme::BufferedWriter</class>
+    <class kind="class">byteme::SerialBufferedWriter</class>
+    <class kind="class">byteme::ParallelBufferedWriter</class>
+    <namespace>byteme</namespace>
+  </compound>
+  <compound kind="file">
     <name>byteme.hpp</name>
     <path>byteme/</path>
     <filename>byteme_8hpp.html</filename>
@@ -150,6 +159,47 @@
       <anchorfile>classbyteme_1_1BufferedReader.html</anchorfile>
       <anchor>a1c15c13a980c5f5a99d6a780317c413e</anchor>
       <arglist>(std::size_t number, Type_ *output)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>byteme::BufferedWriter</name>
+    <filename>classbyteme_1_1BufferedWriter.html</filename>
+    <templarg>typename Type_</templarg>
+    <templarg>class WriterPointer_</templarg>
+    <member kind="function">
+      <type>unsigned long long</type>
+      <name>number</name>
+      <anchorfile>classbyteme_1_1BufferedWriter.html</anchorfile>
+      <anchor>affe873267293a3ef93e86280cf70bea0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>write</name>
+      <anchorfile>classbyteme_1_1BufferedWriter.html</anchorfile>
+      <anchor>ac03128fe53c7fc631feb313f9ba723ea</anchor>
+      <arglist>(Type_ input)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>write</name>
+      <anchorfile>classbyteme_1_1BufferedWriter.html</anchorfile>
+      <anchor>a4c903547482d7c9c46cf8d8cf2899781</anchor>
+      <arglist>(const Type_ *input, std::size_t number)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>flush</name>
+      <anchorfile>classbyteme_1_1BufferedWriter.html</anchorfile>
+      <anchor>a260d914d0ab15662751589d0c521b66f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>finish</name>
+      <anchorfile>classbyteme_1_1BufferedWriter.html</anchorfile>
+      <anchor>a198e776adf0a3c616d298d59859db282</anchor>
+      <arglist>()=0</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -327,6 +377,20 @@
       <anchorfile>classbyteme_1_1ParallelBufferedReader.html</anchorfile>
       <anchor>ab0097f7773c2b49bd9d96f6bd57c3f94</anchor>
       <arglist>(Pointer_ reader, std::size_t buffer_size)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>byteme::ParallelBufferedWriter</name>
+    <filename>classbyteme_1_1ParallelBufferedWriter.html</filename>
+    <templarg>typename Type_</templarg>
+    <templarg>class Pointer_</templarg>
+    <base>byteme::BufferedWriter&lt; Type_, WriterPointer_ &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>ParallelBufferedWriter</name>
+      <anchorfile>classbyteme_1_1ParallelBufferedWriter.html</anchorfile>
+      <anchor>a269dc96008f8783973324b72b605f85d</anchor>
+      <arglist>(Pointer_ writer, std::size_t buffer_size)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -527,6 +591,20 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>byteme::SerialBufferedWriter</name>
+    <filename>classbyteme_1_1SerialBufferedWriter.html</filename>
+    <templarg>typename Type_</templarg>
+    <templarg>class Pointer_</templarg>
+    <base>byteme::BufferedWriter&lt; Type_, WriterPointer_ &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>SerialBufferedWriter</name>
+      <anchorfile>classbyteme_1_1SerialBufferedWriter.html</anchorfile>
+      <anchor>a8a01232e87e3ab7512225fc4ebf747f2</anchor>
+      <arglist>(Pointer_ writer, std::size_t buffer_size)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>byteme::Writer</name>
     <filename>classbyteme_1_1Writer.html</filename>
     <member kind="function" virtualness="pure">
@@ -685,6 +763,7 @@
     <name>byteme</name>
     <filename>namespacebyteme.html</filename>
     <class kind="class">byteme::BufferedReader</class>
+    <class kind="class">byteme::BufferedWriter</class>
     <class kind="class">byteme::GzipFileReader</class>
     <class kind="struct">byteme::GzipFileReaderOptions</class>
     <class kind="class">byteme::GzipFileWriter</class>
@@ -692,6 +771,7 @@
     <class kind="class">byteme::IstreamReader</class>
     <class kind="class">byteme::OstreamWriter</class>
     <class kind="class">byteme::ParallelBufferedReader</class>
+    <class kind="class">byteme::ParallelBufferedWriter</class>
     <class kind="class">byteme::RawBufferReader</class>
     <class kind="class">byteme::RawBufferWriter</class>
     <class kind="struct">byteme::RawBufferWriterOptions</class>
@@ -701,6 +781,7 @@
     <class kind="struct">byteme::RawFileWriterOptions</class>
     <class kind="class">byteme::Reader</class>
     <class kind="class">byteme::SerialBufferedReader</class>
+    <class kind="class">byteme::SerialBufferedWriter</class>
     <class kind="class">byteme::Writer</class>
     <class kind="class">byteme::ZlibBufferReader</class>
     <class kind="struct">byteme::ZlibBufferReaderOptions</class>

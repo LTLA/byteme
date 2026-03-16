@@ -1,0 +1,5 @@
+<map id="byteme::ParallelBufferedWriter&lt; Type_, Pointer_ &gt;" name="byteme::ParallelBufferedWriter&lt; Type_, Pointer_ &gt;">
+<area shape="rect" id="Node000001" title="Parallelized buffering to wrap a Writer." alt="" coords="5,94,173,135"/>
+<area shape="rect" id="Node000002" href="$classbyteme_1_1BufferedWriter.html" title="Buffered wrapper around a Writer." alt="" coords="5,5,173,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,62,92,94,86,94,86,62"/>
+</map>

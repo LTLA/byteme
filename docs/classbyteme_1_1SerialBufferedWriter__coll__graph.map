@@ -1,0 +1,5 @@
+<map id="byteme::SerialBufferedWriter&lt; Type_, Pointer_ &gt;" name="byteme::SerialBufferedWriter&lt; Type_, Pointer_ &gt;">
+<area shape="rect" id="Node000001" title="Serial buffering to wrap a Writer." alt="" coords="5,94,190,135"/>
+<area shape="rect" id="Node000002" href="$classbyteme_1_1BufferedWriter.html" title="Buffered wrapper around a Writer." alt="" coords="14,5,181,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,62,100,94,95,94,95,62"/>
+</map>
