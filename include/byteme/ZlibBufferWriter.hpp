@@ -141,7 +141,7 @@ private:
 
     void dump(int flag) {
         do {
-            my_zstr.strm.avail_out = my_holding.size();
+            my_zstr.strm.avail_out = my_holding.size(); // no need to worry about overflow, we capped the size in the constructor.
             my_zstr.strm.next_out = my_holding.data();
             deflate(&(my_zstr.strm), flag); // no need to check, see https://zlib.net/zlib_how.html.
             std::size_t compressed = my_holding.size() - my_zstr.strm.avail_out;

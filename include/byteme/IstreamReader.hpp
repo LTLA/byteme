@@ -32,7 +32,6 @@ class IstreamReader final : public Reader {
 public:
     /**
      * @param input Pointer to an input stream.
-     * @param options Further options.
      */
     IstreamReader(Pointer_ input) : my_input(std::move(input)) {}
 

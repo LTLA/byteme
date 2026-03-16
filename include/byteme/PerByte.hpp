@@ -212,7 +212,8 @@ class PerByteSerial final : public PerByteInterface<Type_> {
 public:
     /**
      * @param reader Pointer to a source of input bytes.
-     * It is assumed that `Reader::load()` has not previously returned `false`.
+     * @param buffer_size Size of the internal buffer in which to store bytes that have been read from `reader` but not yet used.
+     * Larger values reduce the number of reader calls at the cost of greater memory usage.
      */
     PerByteSerial(Pointer_ reader, std::size_t buffer_size) : my_reader(std::move(reader)), my_buffer(buffer_size) {
         this->buffer_size = buffer_size;
@@ -224,6 +225,9 @@ private:
     std::vector<Type_> my_buffer;
 
 protected:
+    /**
+     * @cond
+     */
     std::pair<const Type_*, std::size_t> refill() {
         auto ptr = my_buffer.data();
         return std::make_pair(ptr, refill(ptr));
@@ -232,6 +236,9 @@ protected:
     std::size_t refill(Type_* ptr) {
         return my_reader->read(reinterpret_cast<unsigned char*>(ptr), this->buffer_size);
     }
+    /**
+     * @endcond
+     */
 };
 
 /**
@@ -250,7 +257,8 @@ class PerByteParallel final : public PerByteInterface<Type_> {
 public:
     /**
      * @param reader Pointer to a source of input bytes.
-     * It is assumed that `Reader::load()` has not previously returned `false`.
+     * @param buffer_size Size of the internal buffer in which to store bytes that have been read from `reader` but not yet used.
+     * Larger values reduce the number of reader calls at the cost of greater memory usage.
      */
     PerByteParallel(Pointer_ reader, std::size_t buffer_size) : my_reader(std::move(reader)), my_buffer_main(buffer_size), my_buffer_worker(buffer_size) {
         this->buffer_size = buffer_size;
@@ -311,6 +319,9 @@ private:
     }
 
 protected:
+    /**
+     * @cond
+     */
     std::pair<const Type_*, std::size_t> refill() {
         if (my_worker_active) {
             // If the worker is active, it's probably already gotten started so we just wait for it to finish.
@@ -370,6 +381,9 @@ protected:
             return my_reader->read(reinterpret_cast<unsigned char*>(ptr), this->buffer_size);
         }
     }
+    /**
+     * @endcond
+     */
 };
 
 }

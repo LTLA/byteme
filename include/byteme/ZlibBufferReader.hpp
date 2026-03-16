@@ -120,13 +120,20 @@ public:
         return read0<ZoutSize>(buffer, n);
     }
 
-    // Test function to check that the overflow protection works correctly for the input size.
+    /**
+     * @cond
+     */
+    // This is meant to be an internal function, only exported here for tests.
+    // Specifically we want to check that the overflow protection works correctly for the input size.
     template<typename InSize>
     std::size_t read0(unsigned char* buffer, std::size_t n) {
         return safe_read<ZoutSize>(buffer, n, [this](unsigned char* buffer, ZoutSize n) -> ZoutSize {
             return this->read_internal<InSize>(buffer, n);
         });
     }
+    /**
+     * @endcond
+     */
 
 private:
     template<typename InSize_>
