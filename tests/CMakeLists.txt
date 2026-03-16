@@ -32,6 +32,7 @@ add_executable(
     src/OstreamWriter.cpp
 
     src/BufferedReader.cpp
+    src/BufferedWriter.cpp
 
     src/byteme.cpp
     src/utils.cpp

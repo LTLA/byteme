@@ -12,6 +12,7 @@
 #include "OstreamWriter.hpp"
 
 #include "BufferedReader.hpp"
+#include "BufferedWriter.hpp"
 
 #include "magic_numbers.hpp"
 
