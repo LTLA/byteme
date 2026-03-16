@@ -9,9 +9,9 @@
 #include <fstream>
 #include <memory>
 
-class PerByteGetTest : public ::testing::TestWithParam<std::tuple<int, int, bool> > {};
+class BufferedReaderGetTest : public ::testing::TestWithParam<std::tuple<int, int, bool> > {};
 
-TEST_P(PerByteGetTest, Basic) {
+TEST_P(BufferedReaderGetTest, Basic) {
     auto param = GetParam();
     auto nbytes = std::get<0>(param);
     auto buffer_size = std::get<1>(param);
@@ -41,8 +41,8 @@ TEST_P(PerByteGetTest, Basic) {
 // We want to make sure we test cases where the buffer size is a factor of, greater than or smaller than the total number of bytes.
 // This gets some test coverage on the various scenarios in BufferedReader::advance().
 INSTANTIATE_TEST_SUITE_P(
-    PerByte,
-    PerByteGetTest,
+    BufferedReader,
+    BufferedReaderGetTest,
     ::testing::Combine(
         ::testing::Values(100, 256, 500, 1024), // number of bytes
         ::testing::Values(50, 128, 200, 512), // buffer size
@@ -50,9 +50,9 @@ INSTANTIATE_TEST_SUITE_P(
     )
 );
 
-class PerByteExtractTest : public ::testing::TestWithParam<std::tuple<int, int, int, bool> > {};
+class BufferedReaderExtractTest : public ::testing::TestWithParam<std::tuple<int, int, int, bool> > {};
 
-TEST_P(PerByteExtractTest, Basic) {
+TEST_P(BufferedReaderExtractTest, Basic) {
     auto param = GetParam();
     auto nbytes = std::get<0>(param);
     auto buffer_size = std::get<1>(param);
@@ -84,7 +84,7 @@ TEST_P(PerByteExtractTest, Basic) {
     EXPECT_EQ(observed, contents);
 }
 
-TEST_P(PerByteExtractTest, Mixed) {
+TEST_P(BufferedReaderExtractTest, Mixed) {
     auto param = GetParam();
     auto nbytes = std::get<0>(param);
     auto buffer_size = std::get<1>(param);
@@ -130,8 +130,8 @@ TEST_P(PerByteExtractTest, Mixed) {
 // and similarly, the buffer size is a factor of, greater than or smaller than the total number of bytes.
 // This gets some test coverage on the various scenarios in BufferedReader::extract().
 INSTANTIATE_TEST_SUITE_P(
-    PerByte,
-    PerByteExtractTest,
+    BufferedReader,
+    BufferedReaderExtractTest,
     ::testing::Combine(
         ::testing::Values(100, 256, 500, 1024), // number of bytes
         ::testing::Values(50, 128, 200, 512), // buffer size 
@@ -140,9 +140,9 @@ INSTANTIATE_TEST_SUITE_P(
     )
 );
 
-class PerByteCharTest : public ::testing::TestWithParam<bool> {};
+class BufferedReaderCharTest : public ::testing::TestWithParam<bool> {};
 
-TEST_P(PerByteCharTest, Basic) {
+TEST_P(BufferedReaderCharTest, Basic) {
     auto parallel = GetParam();
 
     std::string contents(
@@ -192,7 +192,7 @@ TEST_P(PerByteCharTest, Basic) {
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    PerByte,
-    PerByteCharTest,
+    BufferedReader,
+    BufferedReaderCharTest,
     ::testing::Values(false, true)
 );
