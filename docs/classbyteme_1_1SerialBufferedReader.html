@@ -148,7 +148,7 @@ class byteme::SerialBufferedReader&lt; Type_, Pointer_ &gt;</div><p>Serial buffe
   </table>
   </dd>
 </dl>
-<p>This is a subclass of <code><a class="el" href="classbyteme_1_1BufferedReader.html" title="Buffered wrapper around a Reader.">BufferedReader</a></code> than calls <code><a class="el" href="classbyteme_1_1Reader.html#ac39e5bfe2feae64643a177ba7dcb7fa9">Reader::read()</a></code> on the main thread. </p>
+<p>This is a subclass of <code><a class="el" href="classbyteme_1_1BufferedReader.html" title="Buffered wrapper around a Reader.">BufferedReader</a></code> that calls <code><a class="el" href="classbyteme_1_1Reader.html#ac39e5bfe2feae64643a177ba7dcb7fa9">Reader::read()</a></code> on the main thread. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0171352dd5853d7fdbbcff353de3a379" name="a0171352dd5853d7fdbbcff353de3a379"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0171352dd5853d7fdbbcff353de3a379">&#9670;&#160;</a></span>SerialBufferedReader()</h2>
@@ -181,7 +181,7 @@ template&lt;typename Type_ , class Pointer_  = std::unique_ptr&lt;Reader&gt;&gt;
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">reader</td><td>Pointer to a source of input bytes. </td></tr>
-    <tr><td class="paramname">buffer_size</td><td>Size of the internal buffer in which to store bytes that have been read from <code>reader</code> but not yet used. Larger values reduce the number of reader calls at the cost of greater memory usage. </td></tr>
+    <tr><td class="paramname">buffer_size</td><td>Size of the internal buffer in which to store bytes that have been read from <code>reader</code> but not yet used. Larger values reduce the number of reader calls at the cost of greater memory usage. Should be positive. </td></tr>
   </table>
   </dd>
 </dl>

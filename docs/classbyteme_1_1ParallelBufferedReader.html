@@ -148,7 +148,7 @@ class byteme::ParallelBufferedReader&lt; Type_, Pointer_ &gt;</div><p>Paralleliz
   </table>
   </dd>
 </dl>
-<p>This is a subclass of <code><a class="el" href="classbyteme_1_1BufferedReader.html" title="Buffered wrapper around a Reader.">BufferedReader</a></code> than calls <code><a class="el" href="classbyteme_1_1Reader.html#ac39e5bfe2feae64643a177ba7dcb7fa9">Reader::read()</a></code> on a worker thread. The user can iterate over the currently-filled buffer in parallel with the readiing of the next buffer's worth of bytes. </p>
+<p>This is a subclass of <code><a class="el" href="classbyteme_1_1BufferedReader.html" title="Buffered wrapper around a Reader.">BufferedReader</a></code> that calls <code><a class="el" href="classbyteme_1_1Reader.html#ac39e5bfe2feae64643a177ba7dcb7fa9">Reader::read()</a></code> on a worker thread. The user can iterate over the currently-filled buffer in parallel with the reading of the next buffer's worth of bytes. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab0097f7773c2b49bd9d96f6bd57c3f94" name="ab0097f7773c2b49bd9d96f6bd57c3f94"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab0097f7773c2b49bd9d96f6bd57c3f94">&#9670;&#160;</a></span>ParallelBufferedReader()</h2>
@@ -181,7 +181,7 @@ template&lt;typename Type_ , class Pointer_  = std::unique_ptr&lt;Reader&gt;&gt;
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">reader</td><td>Pointer to a source of input bytes. </td></tr>
-    <tr><td class="paramname">buffer_size</td><td>Size of the internal buffer in which to store bytes that have been read from <code>reader</code> but not yet used. Larger values reduce the number of reader calls at the cost of greater memory usage. </td></tr>
+    <tr><td class="paramname">buffer_size</td><td>Size of the internal buffer in which to store bytes that have been read from <code>reader</code> but not yet used. Larger values reduce the number of read calls at the cost of greater memory usage. Should be positive. </td></tr>
   </table>
   </dd>
 </dl>
