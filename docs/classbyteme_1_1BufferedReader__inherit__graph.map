@@ -1,0 +1,7 @@
+<map id="byteme::BufferedReader&lt; Type_ &gt;" name="byteme::BufferedReader&lt; Type_ &gt;">
+<area shape="rect" id="Node000001" title="Buffered wrapper around a Reader." alt="" coords="5,39,164,79"/>
+<area shape="rect" id="Node000002" href="$classbyteme_1_1ParallelBufferedReader.html" title="Parallelized buffering to wrap a Reader." alt="" coords="220,5,394,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,42,219,36,220,41,180,48"/>
+<area shape="rect" id="Node000003" href="$classbyteme_1_1SerialBufferedReader.html" title="Serial buffering to wrap a Reader." alt="" coords="212,71,403,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,70,211,75,211,80,179,75"/>
+</map>

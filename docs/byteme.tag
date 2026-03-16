@@ -1,6 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <tagfile doxygen_version="1.12.0">
   <compound kind="file">
+    <name>BufferedReader.hpp</name>
+    <path>byteme/</path>
+    <filename>BufferedReader_8hpp.html</filename>
+    <class kind="class">byteme::BufferedReader</class>
+    <class kind="class">byteme::SerialBufferedReader</class>
+    <class kind="class">byteme::ParallelBufferedReader</class>
+    <namespace>byteme</namespace>
+  </compound>
+  <compound kind="file">
     <name>byteme.hpp</name>
     <path>byteme/</path>
     <filename>byteme_8hpp.html</filename>
@@ -40,15 +49,6 @@
     <path>byteme/</path>
     <filename>OstreamWriter_8hpp.html</filename>
     <class kind="class">byteme::OstreamWriter</class>
-    <namespace>byteme</namespace>
-  </compound>
-  <compound kind="file">
-    <name>PerByte.hpp</name>
-    <path>byteme/</path>
-    <filename>PerByte_8hpp.html</filename>
-    <class kind="class">byteme::PerByteInterface</class>
-    <class kind="class">byteme::PerByteSerial</class>
-    <class kind="class">byteme::PerByteParallel</class>
     <namespace>byteme</namespace>
   </compound>
   <compound kind="file">
@@ -111,6 +111,46 @@
     <class kind="struct">byteme::ZlibBufferWriterOptions</class>
     <class kind="class">byteme::ZlibBufferWriter</class>
     <namespace>byteme</namespace>
+  </compound>
+  <compound kind="class">
+    <name>byteme::BufferedReader</name>
+    <filename>classbyteme_1_1BufferedReader.html</filename>
+    <templarg>typename Type_</templarg>
+    <member kind="function">
+      <type>bool</type>
+      <name>advance</name>
+      <anchorfile>classbyteme_1_1BufferedReader.html</anchorfile>
+      <anchor>ab2267652e79cc367a079d5d0af0af3b3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Type_</type>
+      <name>get</name>
+      <anchorfile>classbyteme_1_1BufferedReader.html</anchorfile>
+      <anchor>aa28ff2d69e79103078a842cc0d295b45</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned long long</type>
+      <name>position</name>
+      <anchorfile>classbyteme_1_1BufferedReader.html</anchorfile>
+      <anchor>ab2e8c16f833432e10414208a89fb26c6</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>valid</name>
+      <anchorfile>classbyteme_1_1BufferedReader.html</anchorfile>
+      <anchor>a14efd33907a2c64607bc1733aa17aecc</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::pair&lt; std::size_t, bool &gt;</type>
+      <name>extract</name>
+      <anchorfile>classbyteme_1_1BufferedReader.html</anchorfile>
+      <anchor>a1c15c13a980c5f5a99d6a780317c413e</anchor>
+      <arglist>(std::size_t number, Type_ *output)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>byteme::GzipFileReader</name>
@@ -276,70 +316,16 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>byteme::PerByteInterface</name>
-    <filename>classbyteme_1_1PerByteInterface.html</filename>
-    <templarg>typename Type_</templarg>
-    <member kind="function">
-      <type>bool</type>
-      <name>advance</name>
-      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
-      <anchor>a6c32b7ee63b692c12a58ce1fa3173799</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>Type_</type>
-      <name>get</name>
-      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
-      <anchor>a647e6ee2e9c7683f162b22d0a51dc3e5</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>unsigned long long</type>
-      <name>position</name>
-      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
-      <anchor>a374c2a658715b357ebe9511fdf772169</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>valid</name>
-      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
-      <anchor>a4f9b6fb5ceb70240c2729a8f7bd15efc</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::pair&lt; std::size_t, bool &gt;</type>
-      <name>extract</name>
-      <anchorfile>classbyteme_1_1PerByteInterface.html</anchorfile>
-      <anchor>a8c61a374f234ea6051f015133d91a44c</anchor>
-      <arglist>(std::size_t number, Type_ *output)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>byteme::PerByteParallel</name>
-    <filename>classbyteme_1_1PerByteParallel.html</filename>
+    <name>byteme::ParallelBufferedReader</name>
+    <filename>classbyteme_1_1ParallelBufferedReader.html</filename>
     <templarg>typename Type_</templarg>
     <templarg>class Pointer_</templarg>
-    <base>byteme::PerByteInterface&lt; Type_ &gt;</base>
+    <base>byteme::BufferedReader&lt; Type_ &gt;</base>
     <member kind="function">
       <type></type>
-      <name>PerByteParallel</name>
-      <anchorfile>classbyteme_1_1PerByteParallel.html</anchorfile>
-      <anchor>a9fbab302f047d6cef60e721ffb47a1a2</anchor>
-      <arglist>(Pointer_ reader, std::size_t buffer_size)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>byteme::PerByteSerial</name>
-    <filename>classbyteme_1_1PerByteSerial.html</filename>
-    <templarg>typename Type_</templarg>
-    <templarg>class Pointer_</templarg>
-    <base>byteme::PerByteInterface&lt; Type_ &gt;</base>
-    <member kind="function">
-      <type></type>
-      <name>PerByteSerial</name>
-      <anchorfile>classbyteme_1_1PerByteSerial.html</anchorfile>
-      <anchor>acb3e02df32bf30017475f5fe840b0766</anchor>
+      <name>ParallelBufferedReader</name>
+      <anchorfile>classbyteme_1_1ParallelBufferedReader.html</anchorfile>
+      <anchor>ab0097f7773c2b49bd9d96f6bd57c3f94</anchor>
       <arglist>(Pointer_ reader, std::size_t buffer_size)</arglist>
     </member>
   </compound>
@@ -527,6 +513,20 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>byteme::SerialBufferedReader</name>
+    <filename>classbyteme_1_1SerialBufferedReader.html</filename>
+    <templarg>typename Type_</templarg>
+    <templarg>class Pointer_</templarg>
+    <base>byteme::BufferedReader&lt; Type_ &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>SerialBufferedReader</name>
+      <anchorfile>classbyteme_1_1SerialBufferedReader.html</anchorfile>
+      <anchor>a0171352dd5853d7fdbbcff353de3a379</anchor>
+      <arglist>(Pointer_ reader, std::size_t buffer_size)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>byteme::Writer</name>
     <filename>classbyteme_1_1Writer.html</filename>
     <member kind="function" virtualness="pure">
@@ -684,15 +684,14 @@
   <compound kind="namespace">
     <name>byteme</name>
     <filename>namespacebyteme.html</filename>
+    <class kind="class">byteme::BufferedReader</class>
     <class kind="class">byteme::GzipFileReader</class>
     <class kind="struct">byteme::GzipFileReaderOptions</class>
     <class kind="class">byteme::GzipFileWriter</class>
     <class kind="struct">byteme::GzipFileWriterOptions</class>
     <class kind="class">byteme::IstreamReader</class>
     <class kind="class">byteme::OstreamWriter</class>
-    <class kind="class">byteme::PerByteInterface</class>
-    <class kind="class">byteme::PerByteParallel</class>
-    <class kind="class">byteme::PerByteSerial</class>
+    <class kind="class">byteme::ParallelBufferedReader</class>
     <class kind="class">byteme::RawBufferReader</class>
     <class kind="class">byteme::RawBufferWriter</class>
     <class kind="struct">byteme::RawBufferWriterOptions</class>
@@ -701,6 +700,7 @@
     <class kind="class">byteme::RawFileWriter</class>
     <class kind="struct">byteme::RawFileWriterOptions</class>
     <class kind="class">byteme::Reader</class>
+    <class kind="class">byteme::SerialBufferedReader</class>
     <class kind="class">byteme::Writer</class>
     <class kind="class">byteme::ZlibBufferReader</class>
     <class kind="struct">byteme::ZlibBufferReaderOptions</class>

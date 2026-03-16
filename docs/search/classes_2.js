@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['exact_0',['Exact',['https://ltla.github.io/sanisizer/classsanisizer_1_1Exact.html',1,'sanisizer']]]
+  ['cast_0',['Cast',['https://ltla.github.io/sanisizer/classsanisizer_1_1Cast.html',1,'sanisizer']]]
 ];

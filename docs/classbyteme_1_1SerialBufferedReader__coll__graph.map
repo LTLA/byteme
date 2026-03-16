@@ -1,0 +1,5 @@
+<map id="byteme::SerialBufferedReader&lt; Type_, Pointer_ &gt;" name="byteme::SerialBufferedReader&lt; Type_, Pointer_ &gt;">
+<area shape="rect" id="Node000001" title="Serial buffering to wrap a Reader." alt="" coords="5,94,197,135"/>
+<area shape="rect" id="Node000002" href="$classbyteme_1_1BufferedReader.html" title="Buffered wrapper around a Reader." alt="" coords="22,5,180,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,62,104,94,98,94,98,62"/>
+</map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cast_0',['Cast',['https://ltla.github.io/sanisizer/classsanisizer_1_1Cast.html',1,'sanisizer']]]
+  ['bufferedreader_0',['BufferedReader',['../classbyteme_1_1BufferedReader.html',1,'byteme']]]
 ];

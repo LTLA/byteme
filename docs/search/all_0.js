@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['advance_0',['advance',['../classbyteme_1_1PerByteInterface.html#a6c32b7ee63b692c12a58ce1fa3173799',1,'byteme::PerByteInterface']]],
+  ['advance_0',['advance',['../classbyteme_1_1BufferedReader.html#ab2267652e79cc367a079d5d0af0af3b3',1,'byteme::BufferedReader']]],
   ['arithmetic_2ehpp_1',['arithmetic.hpp',['https://ltla.github.io/sanisizer/arithmetic_8hpp.html',1,'']]],
   ['as_5fsize_5ftype_2',['as_size_type',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a1822e85f3815607a803d826f36b82814',1,'sanisizer']]],
   ['attest_2ehpp_3',['attest.hpp',['https://ltla.github.io/sanisizer/attest_8hpp.html',1,'']]],

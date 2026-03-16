@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structbyteme_1_1GzipFileReaderOptions.html" title="Options for GzipFileReader construction." alt="" coords="5,5,208,31"/>
+<area shape="rect" id="Node000000" href="$classbyteme_1_1BufferedReader.html" title="Buffered wrapper around a Reader." alt="" coords="5,39,164,79"/>
+<area shape="rect" id="Node000001" href="$classbyteme_1_1ParallelBufferedReader.html" title="Parallelized buffering to wrap a Reader." alt="" coords="220,5,394,46"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="179,42,219,36,220,41,180,48"/>
+<area shape="rect" id="Node000002" href="$classbyteme_1_1SerialBufferedReader.html" title="Serial buffering to wrap a Reader." alt="" coords="212,71,403,111"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="179,70,211,75,211,80,179,75"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['valid_0',['valid',['../classbyteme_1_1PerByteInterface.html#a4f9b6fb5ceb70240c2729a8f7bd15efc',1,'byteme::PerByteInterface']]]
+  ['valid_0',['valid',['../classbyteme_1_1BufferedReader.html#a14efd33907a2c64607bc1733aa17aecc',1,'byteme::BufferedReader']]]
 ];
