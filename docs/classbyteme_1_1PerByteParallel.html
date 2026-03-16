@@ -92,7 +92,6 @@ $(function(){ initResizable(false); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classbyteme_1_1PerByteParallel-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">byteme::PerByteParallel&lt; Type_, Pointer_ &gt; Class Template Reference<span class="mlabels"><span class="mlabel">final</span></span></div></div>
 </div><!--header-->
@@ -138,15 +137,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4f9b6fb5ceb70240c2729a8f7bd15efc inherit pub_methods_classbyteme_1_1PerByteInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c61a374f234ea6051f015133d91a44c inherit pub_methods_classbyteme_1_1PerByteInterface" id="r_a8c61a374f234ea6051f015133d91a44c"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::size_t, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1PerByteInterface.html#a8c61a374f234ea6051f015133d91a44c">extract</a> (std::size_t number, Type_ *output)</td></tr>
 <tr class="separator:a8c61a374f234ea6051f015133d91a44c inherit pub_methods_classbyteme_1_1PerByteInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:ad8dd84cf3ebf1c74ae01d9aa3e745fd1" id="r_ad8dd84cf3ebf1c74ae01d9aa3e745fd1"><td class="memItemLeft" align="right" valign="top"><a id="ad8dd84cf3ebf1c74ae01d9aa3e745fd1" name="ad8dd84cf3ebf1c74ae01d9aa3e745fd1"></a>
-std::pair&lt; const Type_ *, std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>refill</b> ()</td></tr>
-<tr class="separator:ad8dd84cf3ebf1c74ae01d9aa3e745fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0402a2189624a3aae9e894bee47e4dbc" id="r_a0402a2189624a3aae9e894bee47e4dbc"><td class="memItemLeft" align="right" valign="top"><a id="a0402a2189624a3aae9e894bee47e4dbc" name="a0402a2189624a3aae9e894bee47e4dbc"></a>
-std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>refill</b> (Type_ *ptr)</td></tr>
-<tr class="separator:a0402a2189624a3aae9e894bee47e4dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Type_, class Pointer_ = std::unique_ptr&lt;Reader&gt;&gt;<br />
@@ -190,7 +180,8 @@ template&lt;typename Type_ , class Pointer_  = std::unique_ptr&lt;Reader&gt;&gt;
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">reader</td><td>Pointer to a source of input bytes. It is assumed that <code>Reader::load()</code> has not previously returned <code>false</code>. </td></tr>
+    <tr><td class="paramname">reader</td><td>Pointer to a source of input bytes. </td></tr>
+    <tr><td class="paramname">buffer_size</td><td>Size of the internal buffer in which to store bytes that have been read from <code>reader</code> but not yet used. Larger values reduce the number of reader calls at the cost of greater memory usage. </td></tr>
   </table>
   </dd>
 </dl>
