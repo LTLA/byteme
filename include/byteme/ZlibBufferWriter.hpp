@@ -113,6 +113,11 @@ public:
         my_holding(sanisizer::cap<I<decltype(my_holding.size())> >(sanisizer::cap<ZoutSize>(options.buffer_size))) 
     {}
 
+    // One might think that we need to call finish() in the destructor, but in fact we don't.
+    // This is because the only observable effect of finish() is to flush all remaining content to the output buffer;
+    // but if we're destroying the object, the contents of the output buffer don't matter, as it'll be destroyed as well.
+    // So in fact, it's totally acceptable to just not do anything on destruction.
+
 public:
     using Writer::write;
 

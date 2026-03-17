@@ -15,7 +15,12 @@
 
 class ZlibBufferWriterTest : public ::testing::TestWithParam<std::tuple<byteme::ZlibCompressionMode, int, int, int> > {
 protected:
-    std::vector<unsigned char> roundtrip(const std::vector<unsigned char>& contents, byteme::ZlibCompressionMode mode, std::size_t buffer_size, std::size_t chunk_size) {
+    std::vector<unsigned char> roundtrip(
+        const std::vector<unsigned char>& contents,
+        byteme::ZlibCompressionMode mode,
+        std::size_t buffer_size,
+        std::size_t chunk_size
+    ) {
         byteme::ZlibBufferWriter writer([&]{
             byteme::ZlibBufferWriterOptions zopt;
             zopt.mode = mode;
@@ -23,7 +28,7 @@ protected:
             return zopt;
         }());
 
-        full_dump(writer, contents, chunk_size);
+        full_dump(writer, contents, chunk_size, /* with_finish = */ true);
         const auto& compressed = writer.get_output();
 
         if (mode == byteme::ZlibCompressionMode::GZIP) {
@@ -73,7 +78,7 @@ INSTANTIATE_TEST_SUITE_P(
         ::testing::Values(byteme::ZlibCompressionMode::DEFLATE, byteme::ZlibCompressionMode::ZLIB, byteme::ZlibCompressionMode::GZIP), // compression mode 
         ::testing::Values(64, 200, 512, 1000), // Number of simulated bytes 
         ::testing::Values(50, 64, 128, 250), // Buffer size, some of which are factors of, less than or greater than the simulated bytes.
-        ::testing::Values(25, 32, 64, 125)  // Chunk size, some of which are factors of, less than or greater than the simulated bytes.
+        ::testing::Values(25, 32, 64, 125) // Chunk size, some of which are factors of, less than or greater than the simulated bytes.
     )
 );
 

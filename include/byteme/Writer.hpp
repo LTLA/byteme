@@ -20,6 +20,9 @@ namespace byteme {
  */
 class Writer {
 public:
+    /**
+     * The destructor should have the same effect as `finish()` if the latter was not previously called.
+     */
     virtual ~Writer() = default;
 
     /**

@@ -33,6 +33,20 @@ public:
      */
     OstreamWriter(Pointer_ output) : my_output(std::move(output)) {}
 
+    /**
+     * @cond
+     */
+    ~OstreamWriter() {
+        try {
+            my_output->flush(); 
+        } catch (...) {
+            ; // don't allow exceptions to propagate out of this function, as destructors shouldn't throw.
+        }
+    }
+    /**
+     * @endcond
+     */
+
 public:
     using Writer::write;
 

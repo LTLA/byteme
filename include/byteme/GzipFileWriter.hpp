@@ -69,9 +69,11 @@ public:
     }
 
     void finish() {
-        my_gzfile.closed = true;
+        // File closing is done automatically in the SelfClosingGzFile destructor.
+        // So, there's no need to call it manually in our destructor.
+        my_gzfile.closed = true; // set it before gzclose; if the latter fails, we don't try again in the destructor.
         if (gzclose(my_gzfile.handle) != Z_OK) {
-            throw std::runtime_error("failed to close the Gzip-compressed file after writing");
+            throw std::runtime_error("failed to close the Gzip-compressed file");
         }
     }
 

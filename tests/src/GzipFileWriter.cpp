@@ -11,16 +11,17 @@
 #include <fstream>
 #include <cstddef>
 
-class GzipFileWriterTest : public ::testing::TestWithParam<std::tuple<int, int> > {
+class GzipFileWriterTest : public ::testing::TestWithParam<std::tuple<int, int, bool> > {
 protected:
-    auto dump_file(const std::vector<unsigned char>& contents, std::size_t chunk_size) {
+    auto dump_file(const std::vector<unsigned char>& contents, std::size_t chunk_size, bool with_finish) {
         auto path = temp_file_path("text");
         byteme::GzipFileWriter writer(path.c_str(), [&]{
             byteme::GzipFileWriterOptions opt;
             opt.gzbuffer_size = 1024; // setting it just to get some test coverage of the gzbuffer_size setter.
             return opt;
         }());
-        full_dump(writer, contents, chunk_size);
+
+        full_dump(writer, contents, chunk_size, with_finish);
         return path;
     }
 
@@ -37,9 +38,10 @@ TEST_P(GzipFileWriterTest, Basic) {
     auto param = GetParam();
     auto nbytes = std::get<0>(param);
     auto chunk_size = std::get<1>(param);
+    auto with_finish = std::get<2>(param);
 
-    auto contents = simulate_bytes(nbytes, /* seed = */ nbytes * 100 + chunk_size);
-    auto path = dump_file(contents, chunk_size);
+    auto contents = simulate_bytes(nbytes, /* seed = */ nbytes * 100 + chunk_size + int(with_finish) * 5);
+    auto path = dump_file(contents, chunk_size, with_finish);
     auto roundtrip = zcat(path);
     EXPECT_EQ(roundtrip, contents);
 }
@@ -49,13 +51,14 @@ INSTANTIATE_TEST_SUITE_P(
     GzipFileWriterTest,
     ::testing::Combine(
         ::testing::Values(64, 200, 512, 10000), // Number of simulated bytes 
-        ::testing::Values(25, 32, 64, 125)  // Chunk size, some of which are factors of, less than or greater than the simulated bytes.
+        ::testing::Values(25, 32, 64, 125), // Chunk size, some of which are factors of, less than or greater than the simulated bytes.
+        ::testing::Values(true, false) // whether to call finish explicitly.
     )
 );
 
 TEST_F(GzipFileWriterTest, Empty) {
     std::vector<unsigned char> contents; 
-    auto path = dump_file(contents, 20); 
+    auto path = dump_file(contents, 20, true); 
     auto roundtrip = zcat(path);
     EXPECT_EQ(roundtrip, contents);
 }

@@ -57,8 +57,11 @@ public:
     }
 
     void finish() {
+        // File closing is automatically done in the SelfClosingFILE destructor.
+        // So, there's no need to call it manually in our destructor.
         if (std::fclose(my_file.handle)) {
-            throw std::runtime_error("failed to close raw binary file");
+            my_file.handle = nullptr; // set to NULL to avoid another attempt at closing it in the destructor.
+            throw std::runtime_error("failed to close binary file");
         }
         my_file.handle = nullptr;
     }

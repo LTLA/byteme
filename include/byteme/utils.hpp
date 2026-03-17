@@ -1,5 +1,5 @@
-#ifndef BYTEME_CHECK_BUFFER_SIZE_HPP
-#define BYTEME_CHECK_BUFFER_SIZE_HPP
+#ifndef BYTEME_UTILS_HPP
+#define BYTEME_UTILS_HPP
 
 #include <vector>
 #include <limits>
@@ -10,9 +10,6 @@
 
 namespace byteme {
 
-/**
- * @cond
- */
 template<typename Value_>
 using I = std::remove_cv_t<std::remove_reference_t<Value_> >;
 
@@ -56,9 +53,6 @@ void safe_write(const unsigned char* buffer, std::size_t n, Func_ fun) {
 
     fun(buffer, n);
 }
-/**
- * @endcond
- */
 
 }
 

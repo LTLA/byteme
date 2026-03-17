@@ -58,12 +58,15 @@ inline std::vector<unsigned char> exact_read(byteme::Reader& reader, std::size_t
     return output;
 }
 
-inline void full_dump(byteme::Writer& writer, const std::vector<unsigned char>& contents, std::size_t chunk_size) {
+inline void full_dump(byteme::Writer& writer, const std::vector<unsigned char>& contents, std::size_t chunk_size, bool with_finish) {
     const std::size_t len = contents.size();
     for (std::size_t x = 0; x < len; x += chunk_size) {
         writer.write(contents.data() + x, std::min(chunk_size, len - x));
     }
-    writer.finish();
+
+    if (with_finish) {
+        writer.finish();
+    }
 }
 
 #endif
