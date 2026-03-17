@@ -23,6 +23,7 @@ public:
      *
      * @param[out] buffer Pointer to an array of at least length `n`.
      * @param n Maximum number of bytes to extract from the source. 
+     * This may be zero.
      * 
      * @return Number of bytes that were actually extracted from the source.
      * This will be less than or equal to `n`.

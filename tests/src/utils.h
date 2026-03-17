@@ -33,6 +33,20 @@ inline std::vector<unsigned char> full_read(byteme::Reader& reader, std::size_t 
     return output;
 }
 
+inline std::vector<unsigned char> full_read_with_zeros(byteme::Reader& reader, std::size_t chunk) {
+    std::vector<unsigned char> output;
+    std::vector<unsigned char> buffer(chunk);
+    while (1) {
+        EXPECT_EQ(reader.read(buffer.data(), 0), 0); // check that a read of zero is okay and gives back zero.
+        auto nread = reader.read(buffer.data(), chunk);
+        output.insert(output.end(), buffer.data(), buffer.data() + nread);
+        if (nread < chunk) {
+            break;
+        }
+    }
+    return output;
+}
+
 inline std::vector<unsigned char> full_read(const std::string& path) {
     std::ifstream in(path, std::ios::binary);
     if (!in) {
@@ -68,5 +82,14 @@ inline void full_dump(byteme::Writer& writer, const std::vector<unsigned char>& 
         writer.finish();
     }
 }
+inline void full_dump_with_zeros(byteme::Writer& writer, const std::vector<unsigned char>& contents, std::size_t chunk_size) {
+    const std::size_t len = contents.size();
+    for (std::size_t x = 0; x < len; x += chunk_size) {
+        writer.write(NULL, 0); // check that a write of zero is okay.
+        writer.write(contents.data() + x, std::min(chunk_size, len - x));
+    }
+    writer.finish();
+}
+
 
 #endif

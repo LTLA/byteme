@@ -45,3 +45,13 @@ TEST_F(OstreamWriterTest, Empty) {
     auto roundtrip = full_read(path);
     EXPECT_EQ(roundtrip, contents);
 }
+
+TEST_F(OstreamWriterTest, ZeroByteWrites) {
+    auto contents = simulate_bytes(232, /* seed = */ 67);
+    auto path = temp_file_path("text");
+    byteme::OstreamWriter writer(std::make_unique<std::ofstream>(path));
+
+    full_dump_with_zeros(writer, contents, 19);
+    auto roundtrip = full_read(path);
+    EXPECT_EQ(roundtrip, contents);
+}

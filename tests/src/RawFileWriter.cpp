@@ -51,3 +51,13 @@ TEST_P(RawFileWriterTest, Empty) {
     auto roundtrip = full_read(path);
     EXPECT_EQ(contents, roundtrip);
 }
+
+TEST_F(RawFileWriterTest, ZeroByteWrites) {
+    auto contents = simulate_bytes(301, /* seed = */ 51);
+    auto path = temp_file_path("text");
+    byteme::RawFileWriter writer(path.c_str(), {});
+
+    full_dump_with_zeros(writer, contents, 34);
+    auto roundtrip = full_read(path);
+    EXPECT_EQ(roundtrip, contents);
+}

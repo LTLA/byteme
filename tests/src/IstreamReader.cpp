@@ -60,3 +60,13 @@ TEST_F(IstreamReaderTest, Empty) {
     auto lines = full_read(reader, 22);
     EXPECT_EQ(lines, contents);
 }
+
+TEST_F(IstreamReaderTest, ZeroByteReads) {
+    auto contents = simulate_bytes(231, /* seed = */ 321);
+    auto path = dump_file(contents);
+    auto is = std::make_unique<std::ifstream>(path);
+
+    byteme::IstreamReader reader(std::move(is));
+    auto lines = full_read_with_zeros(reader, 43);
+    EXPECT_EQ(lines, contents);
+}

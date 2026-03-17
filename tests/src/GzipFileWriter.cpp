@@ -62,3 +62,13 @@ TEST_F(GzipFileWriterTest, Empty) {
     auto roundtrip = zcat(path);
     EXPECT_EQ(roundtrip, contents);
 }
+
+TEST_F(GzipFileWriterTest, ZeroByteWrites) {
+    auto contents = simulate_bytes(321, /* seed = */ 888);
+    auto path = temp_file_path("text");
+    byteme::GzipFileWriter writer(path.c_str(), {});
+
+    full_dump_with_zeros(writer, contents, 20);
+    auto roundtrip = zcat(path);
+    EXPECT_EQ(roundtrip, contents);
+}

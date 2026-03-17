@@ -59,6 +59,15 @@ TEST_F(GzipFileReaderTest, Empty) {
     EXPECT_EQ(lines, contents);
 }
 
+TEST_F(GzipFileReaderTest, ZeroByteReads) {
+    auto contents = simulate_bytes(111, /* seed = */ 1234);
+    auto path = dump_file(contents);
+
+    byteme::GzipFileReader reader(path.c_str(), {});
+    auto lines = full_read_with_zeros(reader, 13);
+    EXPECT_EQ(lines, contents);
+}
+
 TEST_F(GzipFileReaderTest, Moveable) {
     auto contents = simulate_bytes(192, /* seed = */ 12345);
     auto path = dump_file(contents);

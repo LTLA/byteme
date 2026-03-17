@@ -15,6 +15,23 @@
 
 class ZlibBufferWriterTest : public ::testing::TestWithParam<std::tuple<byteme::ZlibCompressionMode, int, int, int> > {
 protected:
+    static std::vector<unsigned char> gzcat(const std::vector<unsigned char>& compressed, std::size_t expected) {
+        auto path = temp_file_path("temp_");
+        {
+            std::ofstream dump(path, std::ios::binary);
+            dump.write(reinterpret_cast<const char*>(compressed.data()), compressed.size());
+        }
+
+        gzFile ohandle = gzopen(path.c_str(), "r");
+        std::vector<unsigned char> holding(expected + 10);
+        std::size_t avail = gzread(ohandle, holding.data(), holding.size());
+        gzclose(ohandle);
+
+        EXPECT_LT(avail, holding.size());
+        holding.resize(avail);
+        return holding;
+    }
+
     std::vector<unsigned char> roundtrip(
         const std::vector<unsigned char>& contents,
         byteme::ZlibCompressionMode mode,
@@ -32,20 +49,7 @@ protected:
         const auto& compressed = writer.get_output();
 
         if (mode == byteme::ZlibCompressionMode::GZIP) {
-            auto path = temp_file_path("temp_");
-            {
-                std::ofstream dump(path, std::ios::binary);
-                dump.write(reinterpret_cast<const char*>(compressed.data()), compressed.size());
-            }
-
-            gzFile ohandle = gzopen(path.c_str(), "r");
-            std::vector<unsigned char> holding(contents.size() + 10);
-            std::size_t avail = gzread(ohandle, holding.data(), holding.size());
-            gzclose(ohandle);
-
-            EXPECT_LT(avail, holding.size());
-            holding.resize(avail);
-            return holding;
+            return gzcat(compressed, contents.size());
 
         } else {
             byteme::ZlibBufferReader reader(compressed.data(), compressed.size(), [&]{
@@ -86,4 +90,14 @@ TEST_F(ZlibBufferWriterTest, Empty) {
     std::vector<unsigned char> contents;
     auto observed = roundtrip(contents, byteme::ZlibCompressionMode::DEFLATE, 1000, 10);
     EXPECT_EQ(observed, contents);
+}
+
+TEST_F(ZlibBufferWriterTest, ZeroByteWrites) {
+    auto contents = simulate_bytes(144, /* seed = */ 9999);
+    auto path = temp_file_path("text");
+    byteme::ZlibBufferWriter writer({});
+
+    full_dump_with_zeros(writer, contents, 23);
+    auto roundtrip = gzcat(writer.get_output(), contents.size());
+    EXPECT_EQ(roundtrip, contents);
 }

@@ -58,6 +58,15 @@ TEST_F(RawFileReaderTest, Empty) {
     EXPECT_EQ(lines, contents);
 }
 
+TEST_F(RawFileReaderTest, ZeroByteReads) {
+    auto contents = simulate_bytes(199, /* seed = */ 1234);
+    auto path = dump_file(contents);
+
+    byteme::RawFileReader reader(path.c_str(), {});
+    auto lines = full_read_with_zeros(reader, 17);
+    EXPECT_EQ(lines, contents);
+}
+
 TEST_F(RawFileReaderTest, Moveable) {
     auto contents = simulate_bytes(201, /* seed = */ 4321);
     auto path = dump_file(contents);

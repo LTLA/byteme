@@ -42,6 +42,13 @@ TEST_F(RawBufferWriterTest, Empty) {
     EXPECT_EQ(observed, contents);
 }
 
+TEST_F(RawBufferWriterTest, ZeroByteWrites) {
+    auto contents = simulate_bytes(184, /* seed = */ 42);
+    byteme::RawBufferWriter writer({});
+    full_dump_with_zeros(writer, contents, 33);
+    EXPECT_EQ(writer.get_output(), contents);
+}
+
 TEST_F(RawBufferWriterTest, ArrayCheck) {
     std::string expected("Gloria in excelsis deo");
 

@@ -31,6 +31,7 @@ public:
      *
      * @param[in] buffer Pointer to the start of an array containing the bytes to be written.
      * @param n Length of the array in `buffer`.
+     * This may be zero.
      */
     virtual void write(const unsigned char* buffer, std::size_t n) = 0;
 

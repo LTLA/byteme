@@ -42,3 +42,12 @@ TEST_P(RawBufferReaderTest, Empty) {
     auto lines = full_read(reader, 15);
     EXPECT_EQ(lines, contents);
 }
+
+TEST_F(RawBufferReaderTest, ZeroByteReads) {
+    auto contents = simulate_bytes(147, /* seed = */ 69);
+
+    byteme::RawBufferReader reader(contents.data(), contents.size());
+    auto lines = full_read_with_zeros(reader, 22);
+    EXPECT_EQ(lines, contents);
+}
+

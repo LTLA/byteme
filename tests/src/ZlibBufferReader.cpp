@@ -81,6 +81,15 @@ TEST_F(ZlibBufferReaderTest, Exact) {
     EXPECT_EQ(lines, contents);
 }
 
+TEST_F(ZlibBufferReaderTest, ZeroByteReads) {
+    auto contents = simulate_bytes(197, /* seed = */ 555);
+    auto gzcontents = dump_file(contents);
+
+    byteme::ZlibBufferReader reader(gzcontents.data(), gzcontents.size(), {});
+    auto lines = full_read_with_zeros(reader, 23);
+    EXPECT_EQ(lines, contents);
+}
+
 TEST_F(ZlibBufferReaderTest, Reread) {
     // Here, we check that we correctly refill the input buffer for Zlib.
     // This is necessary as the input buffer size is an unsigned int, not a size_t;
