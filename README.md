@@ -21,11 +21,17 @@ To read bytes, create an instance of the desired `Reader` class and loop until n
 const char* filepath = "input.gz";
 byteme::GzipFileReader reader(filepath, {}); 
 
-while (reader.load()) {
-    const unsigned char * buffer = reader.buffer();
-    size_t available = reader.available();
+std::vector<unsigned char> buffer(20);
+while (1) {
+    // read() returns the number of bytes that were actually read into the buffer.
+    auto num_read = reader.read(buffer.data(), buffer.size());
 
     /* Do something with the available bytes in the buffer */
+
+    if (num_read < buffer.size()) {
+        // If fewer bytes are read than requested, the input is finished.
+        break;
+    }
 }
 ```
 
@@ -92,11 +98,9 @@ if (some_condition) {
     ptr.reset(new byteme::RawBufferReader(buffer, length, {}));
 }
 
-if (ptr->load()) {
-    auto bufptr = ptr->buffer();
-    auto available = ptr->available();
-    /* Do something with the buffer. */
-}
+// Read bytes into the buffer from an abstract input source. 
+std::vector<unsigned char> buffer(123);
+auto available = ptr->read(buffer.data(), buffer.size());
 ```
 
 Most of the `Reader` and `Writer` constructors will also accept a matching `Options` instance to fine-tune their behavior.
@@ -105,25 +109,27 @@ Most of the `Reader` and `Writer` constructors will also accept a matching `Opti
 // For readers.
 byteme::ZlibBufferReaderOptions zopt;
 zopt.buffer_size = 8096;
-zopt.mode = 2; // Gzip
+zopt.mode = byteme::ZlibCompressionMode::GZIP;
 byteme::ZlibBufferReader zreader(buffer, length, zopt);
 
 // For writers.
 byteme::ZlibBufferWriterOptions zwopt;
 zwopt.buffer_size = 8096;
-zwopt.mode = 0; // DEFLATE
+zwopt.mode = byteme::ZlibCompressionMode::DEFLATE;
 zwopt.compression_level = 9;
 byteme::ZlibBufferReader zwriter(zwopt);
 ```
 
-## Reading byte-by-byte
+## Buffered reading and writing
 
-Users may prefer to wrap the `Reader` in a `PerByteSerial` instance to access one input byte at a time.
-This avoids the boilerplate of managing all of the other (yet-to-be-used) bytes from `available()`.
+Some applications need to access small chunks or individual bytes from the input stream.
+Calling `Reader::read()` for each request could be too expensive, e.g., if each call makes some attempt to access a storage device.
+In such cases, users can create a `BufferedReader` class to wrap each `Reader`.
+This will read a large chunk into a buffer from which smaller chunks or individual bytes can be extracted.
 
 ```cpp
 auto reader = std::make_unique<byteme::GzipFileReader>(filepath, {})
-byteme::PerByteSerial<char> pb(std::move(reader));
+byteme::SerialBufferedReader<char> pb(std::move(reader), /* buffer_size = */ 65536);
 auto valid = pb.valid();
 while (valid) {
     char x = pb.get();
@@ -136,7 +142,7 @@ We can also extract a range of bytes:
 
 ```cpp
 auto reader = std::make_unique<byteme::GzipFileReader>(filepath, {})
-byteme::PerByteSerial<unsigned char> pb(std::move(reader));
+byteme::SerialBufferedReader<unsigned char> pb(std::move(reader), /* buffer_size = */ 65536);
 while (valid) {
     int32_t value;
     auto outcome = pb.extract(reinterpret_cast<unsigned char*>(&value), sizeof(int32_t)); 
@@ -149,18 +155,35 @@ while (valid) {
 }
 ```
 
-We can even perform the reading in a separate thread via the `PerByteParallel` class.
+We can even perform the reading in a separate thread via the `ParallelBufferedReader` class.
 This allows the (possibly expensive) disk IO operations to be performed in parallel to the user-level parsing.
 
 ```cpp
 auto reader = std::make_unique<byteme::GzipFileReader>(filepath, {})
-byteme::PerByteParallel<char> pb(std::move(reader));
+byteme::ParallelBufferedReader<char> pb(std::move(reader), /* buffer_size = */ 65536);
 auto valid = pb.valid();
 while (valid) {
     char x = pb.get();
     // Do something with 'x'.
     valid = pb.advance();
 }
+```
+
+Similarly, `BufferedWriter` will cache all write requests into a large buffer,
+intermittently calling `Writer::write()` to push the buffered bytes to the underlying storage.
+
+```cpp
+auto writer = std::make_unique<byteme::GzipFileWriter>(filepath, {})
+byteme::SerialBufferedWriter<char> pb(std::move(writer), /* buffer_size = */ 65536);
+
+std::string input("foobarwhee");
+for (auto i : input) { // write individual bytes.
+    pb.write(i);
+}
+
+pb.write(input.c_str(), input.size()); // or write an array.
+
+pb.finish();
 ```
 
 ## Building projects
