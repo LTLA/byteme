@@ -257,27 +257,6 @@
       <anchor>add2b71c32bcd4cc6e2e6443d4219ffb3</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1GzipFileWriter.html</anchorfile>
-      <anchor>a1ecb1ea0461dfdb0f11dcadfb6fcc9fb</anchor>
-      <arglist>(const std::string &amp;x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1GzipFileWriter.html</anchorfile>
-      <anchor>aca9683db3d581100d802b9a0b884dcc3</anchor>
-      <arglist>(const char *x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1GzipFileWriter.html</anchorfile>
-      <anchor>a3e2f96d90f4304638ac6fe332bf64a46</anchor>
-      <arglist>(char x)</arglist>
-    </member>
   </compound>
   <compound kind="struct">
     <name>byteme::GzipFileWriterOptions</name>
@@ -342,27 +321,6 @@
       <anchorfile>classbyteme_1_1OstreamWriter.html</anchorfile>
       <anchor>accafb6643fbd952a9c036e14b3bf3cb7</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1OstreamWriter.html</anchorfile>
-      <anchor>a1ecb1ea0461dfdb0f11dcadfb6fcc9fb</anchor>
-      <arglist>(const std::string &amp;x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1OstreamWriter.html</anchorfile>
-      <anchor>aca9683db3d581100d802b9a0b884dcc3</anchor>
-      <arglist>(const char *x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1OstreamWriter.html</anchorfile>
-      <anchor>a3e2f96d90f4304638ac6fe332bf64a46</anchor>
-      <arglist>(char x)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -444,27 +402,6 @@
       <anchor>a77085bb097a701c3b132f1278df923b8</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1RawBufferWriter.html</anchorfile>
-      <anchor>a1ecb1ea0461dfdb0f11dcadfb6fcc9fb</anchor>
-      <arglist>(const std::string &amp;x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1RawBufferWriter.html</anchorfile>
-      <anchor>aca9683db3d581100d802b9a0b884dcc3</anchor>
-      <arglist>(const char *x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1RawBufferWriter.html</anchorfile>
-      <anchor>a3e2f96d90f4304638ac6fe332bf64a46</anchor>
-      <arglist>(char x)</arglist>
-    </member>
   </compound>
   <compound kind="struct">
     <name>byteme::RawBufferWriterOptions</name>
@@ -531,27 +468,6 @@
       <anchorfile>classbyteme_1_1RawFileWriter.html</anchorfile>
       <anchor>a5cf864429e6b353e3d8a715ccdc4d535</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1RawFileWriter.html</anchorfile>
-      <anchor>a1ecb1ea0461dfdb0f11dcadfb6fcc9fb</anchor>
-      <arglist>(const std::string &amp;x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1RawFileWriter.html</anchorfile>
-      <anchor>aca9683db3d581100d802b9a0b884dcc3</anchor>
-      <arglist>(const char *x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1RawFileWriter.html</anchorfile>
-      <anchor>a3e2f96d90f4304638ac6fe332bf64a46</anchor>
-      <arglist>(char x)</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -628,27 +544,6 @@
       <anchor>a8317429c5645d0e447a4207091953164</anchor>
       <arglist>()=0</arglist>
     </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1Writer.html</anchorfile>
-      <anchor>a1ecb1ea0461dfdb0f11dcadfb6fcc9fb</anchor>
-      <arglist>(const std::string &amp;x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1Writer.html</anchorfile>
-      <anchor>aca9683db3d581100d802b9a0b884dcc3</anchor>
-      <arglist>(const char *x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1Writer.html</anchorfile>
-      <anchor>a3e2f96d90f4304638ac6fe332bf64a46</anchor>
-      <arglist>(char x)</arglist>
-    </member>
   </compound>
   <compound kind="class">
     <name>byteme::ZlibBufferReader</name>
@@ -718,27 +613,6 @@
       <anchorfile>classbyteme_1_1ZlibBufferWriter.html</anchorfile>
       <anchor>ac0c286b480ef272974c3ee3d4209ec0e</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1ZlibBufferWriter.html</anchorfile>
-      <anchor>a1ecb1ea0461dfdb0f11dcadfb6fcc9fb</anchor>
-      <arglist>(const std::string &amp;x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1ZlibBufferWriter.html</anchorfile>
-      <anchor>aca9683db3d581100d802b9a0b884dcc3</anchor>
-      <arglist>(const char *x)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>write</name>
-      <anchorfile>classbyteme_1_1ZlibBufferWriter.html</anchorfile>
-      <anchor>a3e2f96d90f4304638ac6fe332bf64a46</anchor>
-      <arglist>(char x)</arglist>
     </member>
   </compound>
   <compound kind="struct">
