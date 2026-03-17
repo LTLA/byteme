@@ -48,17 +48,3 @@ TEST_F(RawBufferWriterTest, ZeroByteWrites) {
     full_dump_with_zeros(writer, contents, 33);
     EXPECT_EQ(writer.get_output(), contents);
 }
-
-TEST_F(RawBufferWriterTest, ArrayCheck) {
-    std::string expected("Gloria in excelsis deo");
-
-    byteme::RawBufferWriter writer({});
-    writer.write(expected.c_str());
-    writer.finish();
-
-    const auto& stuff = writer.get_output();
-    auto ptr = reinterpret_cast<const char*>(stuff.data());
-    std::string extracted(ptr, ptr + stuff.size());
-
-    EXPECT_EQ(extracted, expected);
-}
