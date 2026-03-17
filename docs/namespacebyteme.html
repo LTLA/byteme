@@ -88,7 +88,6 @@ $(function(){ initResizable(false); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">byteme Namespace Reference</div></div>
@@ -176,13 +175,6 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for the <code><a class="el" href="classbyteme_1_1ZlibBufferWriter.html" title="Compress and write bytes to a Zlib-compressed buffer.">ZlibBufferWriter</a></code> constructor.  <a href="structbyteme_1_1ZlibBufferWriterOptions.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a73fde785f522f86b9a541479b8b5b5a6" id="r_a73fde785f522f86b9a541479b8b5b5a6"><td class="memTemplParams" colspan="2"><a id="a73fde785f522f86b9a541479b8b5b5a6" name="a73fde785f522f86b9a541479b8b5b5a6"></a>
-template&lt;typename Value_ &gt; </td></tr>
-<tr class="memitem:a73fde785f522f86b9a541479b8b5b5a6"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>I</b> = std::remove_cv_t&lt;std::remove_reference_t&lt;Value_&gt; &gt;</td></tr>
-<tr class="separator:a73fde785f522f86b9a541479b8b5b5a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a684463951a944a548255a6abe484ef2b" id="r_a684463951a944a548255a6abe484ef2b"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a684463951a944a548255a6abe484ef2b">ZlibCompressionMode</a> : char { <b>DEFLATE</b>
@@ -199,14 +191,6 @@ Functions</h2></td></tr>
 <tr class="separator:acb08f1cce34b8b237e3174b307a34178"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a079575e91360061a7495713a7e872258" id="r_a079575e91360061a7495713a7e872258"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a079575e91360061a7495713a7e872258">is_gzip</a> (const char *path)</td></tr>
 <tr class="separator:a079575e91360061a7495713a7e872258"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefad635a39e8a7a894cd842482d85b76" id="r_aefad635a39e8a7a894cd842482d85b76"><td class="memTemplParams" colspan="2"><a id="aefad635a39e8a7a894cd842482d85b76" name="aefad635a39e8a7a894cd842482d85b76"></a>
-template&lt;typename Cap_ , class Func_ &gt; </td></tr>
-<tr class="memitem:aefad635a39e8a7a894cd842482d85b76"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><b>safe_read</b> (unsigned char *buffer, std::size_t n, Func_ fun)</td></tr>
-<tr class="separator:aefad635a39e8a7a894cd842482d85b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9294d9852b2ac7dd0a0bd40125188a09" id="r_a9294d9852b2ac7dd0a0bd40125188a09"><td class="memTemplParams" colspan="2"><a id="a9294d9852b2ac7dd0a0bd40125188a09" name="a9294d9852b2ac7dd0a0bd40125188a09"></a>
-template&lt;typename Cap_ , bool non_zero_, class Func_ &gt; </td></tr>
-<tr class="memitem:a9294d9852b2ac7dd0a0bd40125188a09"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>safe_write</b> (const unsigned char *buffer, std::size_t n, Func_ fun)</td></tr>
-<tr class="separator:a9294d9852b2ac7dd0a0bd40125188a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple byte readers and writers. </p>
