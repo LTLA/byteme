@@ -607,6 +607,13 @@
   <compound kind="class">
     <name>byteme::Writer</name>
     <filename>classbyteme_1_1Writer.html</filename>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~Writer</name>
+      <anchorfile>classbyteme_1_1Writer.html</anchorfile>
+      <anchor>ad385ffe4a1d27fe4d7db5c5425cf4588</anchor>
+      <arglist>()=default</arglist>
+    </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>write</name>
