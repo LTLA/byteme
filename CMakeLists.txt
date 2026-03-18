@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.24)
 
 project(byteme
-    VERSION 2.0.1
-    DESCRIPTION "No-frills byte streaming from file"
+    VERSION 2.1.0
+    DESCRIPTION "Read/write bytes from various sources"
     LANGUAGES CXX)
 
 add_library(byteme INTERFACE)
