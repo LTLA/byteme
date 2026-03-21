@@ -126,6 +126,8 @@ Collaboration diagram for byteme::SerialBufferedWriter&lt; Type_, Pointer_ &gt;:
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8a01232e87e3ab7512225fc4ebf747f2" id="r_a8a01232e87e3ab7512225fc4ebf747f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a01232e87e3ab7512225fc4ebf747f2">SerialBufferedWriter</a> (Pointer_ writer, std::size_t buffer_size)</td></tr>
 <tr class="separator:a8a01232e87e3ab7512225fc4ebf747f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a0701de854de3031d406dd2a7175939" id="r_a3a0701de854de3031d406dd2a7175939"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a0701de854de3031d406dd2a7175939">finish</a> ()</td></tr>
+<tr class="separator:a3a0701de854de3031d406dd2a7175939"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classbyteme_1_1BufferedWriter"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classbyteme_1_1BufferedWriter')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classbyteme_1_1BufferedWriter.html">byteme::BufferedWriter&lt; Type_, WriterPointer_ &gt;</a></td></tr>
 <tr class="memitem:affe873267293a3ef93e86280cf70bea0 inherit pub_methods_classbyteme_1_1BufferedWriter" id="r_affe873267293a3ef93e86280cf70bea0"><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1BufferedWriter.html#affe873267293a3ef93e86280cf70bea0">number</a> ()</td></tr>
 <tr class="separator:affe873267293a3ef93e86280cf70bea0 inherit pub_methods_classbyteme_1_1BufferedWriter"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,10 +135,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac03128fe53c7fc631feb313f9ba723ea inherit pub_methods_classbyteme_1_1BufferedWriter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c903547482d7c9c46cf8d8cf2899781 inherit pub_methods_classbyteme_1_1BufferedWriter" id="r_a4c903547482d7c9c46cf8d8cf2899781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1BufferedWriter.html#a4c903547482d7c9c46cf8d8cf2899781">write</a> (const Type_ *input, std::size_t <a class="el" href="classbyteme_1_1BufferedWriter.html#affe873267293a3ef93e86280cf70bea0">number</a>)</td></tr>
 <tr class="separator:a4c903547482d7c9c46cf8d8cf2899781 inherit pub_methods_classbyteme_1_1BufferedWriter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86e83c82b20d4f78b50a5392e2bdb90a inherit pub_methods_classbyteme_1_1BufferedWriter" id="r_a86e83c82b20d4f78b50a5392e2bdb90a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1BufferedWriter.html#a86e83c82b20d4f78b50a5392e2bdb90a">write</a> (const char *string)</td></tr>
+<tr class="separator:a86e83c82b20d4f78b50a5392e2bdb90a inherit pub_methods_classbyteme_1_1BufferedWriter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a260d914d0ab15662751589d0c521b66f inherit pub_methods_classbyteme_1_1BufferedWriter" id="r_a260d914d0ab15662751589d0c521b66f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1BufferedWriter.html#a260d914d0ab15662751589d0c521b66f">flush</a> ()</td></tr>
 <tr class="separator:a260d914d0ab15662751589d0c521b66f inherit pub_methods_classbyteme_1_1BufferedWriter"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a198e776adf0a3c616d298d59859db282 inherit pub_methods_classbyteme_1_1BufferedWriter" id="r_a198e776adf0a3c616d298d59859db282"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbyteme_1_1BufferedWriter.html#a198e776adf0a3c616d298d59859db282">finish</a> ()=0</td></tr>
-<tr class="separator:a198e776adf0a3c616d298d59859db282 inherit pub_methods_classbyteme_1_1BufferedWriter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Type_, class Pointer_ = std::unique_ptr&lt;Writer&gt;&gt;<br />
@@ -185,6 +187,37 @@ template&lt;typename Type_ , class Pointer_  = std::unique_ptr&lt;Writer&gt;&gt;
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3a0701de854de3031d406dd2a7175939" name="a3a0701de854de3031d406dd2a7175939"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a0701de854de3031d406dd2a7175939">&#9670;&#160;</a></span>finish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type_ , class Pointer_  = std::unique_ptr&lt;Writer&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classbyteme_1_1SerialBufferedWriter.html">byteme::SerialBufferedWriter</a>&lt; Type_, Pointer_ &gt;::finish </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Flush all currently-buffered bytes to the underlying <code><a class="el" href="classbyteme_1_1Writer.html" title="Virtual class for writing bytes to a sink.">Writer</a></code> instance and call <code><a class="el" href="classbyteme_1_1Writer.html#a8317429c5645d0e447a4207091953164">Writer::finish()</a></code>. This terminates the write stream so no further calls to <code><a class="el" href="classbyteme_1_1BufferedWriter.html#ac03128fe53c7fc631feb313f9ba723ea">write()</a></code>, <code><a class="el" href="classbyteme_1_1BufferedWriter.html#a260d914d0ab15662751589d0c521b66f">flush()</a></code> or <code><a class="el" href="#a3a0701de854de3031d406dd2a7175939">finish()</a></code> may be performed. It is not called automatically upon <code><a class="el" href="classbyteme_1_1BufferedWriter.html" title="Buffered wrapper around a Writer.">BufferedWriter</a></code> destruction, as the user may want to write further bytes to the same <code><a class="el" href="classbyteme_1_1Writer.html" title="Virtual class for writing bytes to a sink.">Writer</a></code> instance after exiting the <code><a class="el" href="classbyteme_1_1BufferedWriter.html" title="Buffered wrapper around a Writer.">BufferedWriter</a></code> wrapper. </p>
+
+<p>Implements <a class="el" href="classbyteme_1_1BufferedWriter.html#a198e776adf0a3c616d298d59859db282">byteme::BufferedWriter&lt; Type_, WriterPointer_ &gt;</a>.</p>
 
 </div>
 </div>

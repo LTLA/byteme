@@ -189,6 +189,13 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>write</name>
+      <anchorfile>classbyteme_1_1BufferedWriter.html</anchorfile>
+      <anchor>a86e83c82b20d4f78b50a5392e2bdb90a</anchor>
+      <arglist>(const char *string)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>flush</name>
       <anchorfile>classbyteme_1_1BufferedWriter.html</anchorfile>
       <anchor>a260d914d0ab15662751589d0c521b66f</anchor>
@@ -349,6 +356,13 @@
       <anchorfile>classbyteme_1_1ParallelBufferedWriter.html</anchorfile>
       <anchor>a269dc96008f8783973324b72b605f85d</anchor>
       <arglist>(Pointer_ writer, std::size_t buffer_size)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>finish</name>
+      <anchorfile>classbyteme_1_1ParallelBufferedWriter.html</anchorfile>
+      <anchor>a9161f8d9c967e2f78ff3b01a6d43d79b</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -518,6 +532,13 @@
       <anchorfile>classbyteme_1_1SerialBufferedWriter.html</anchorfile>
       <anchor>a8a01232e87e3ab7512225fc4ebf747f2</anchor>
       <arglist>(Pointer_ writer, std::size_t buffer_size)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>finish</name>
+      <anchorfile>classbyteme_1_1SerialBufferedWriter.html</anchorfile>
+      <anchor>a3a0701de854de3031d406dd2a7175939</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
