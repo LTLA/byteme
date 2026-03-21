@@ -196,6 +196,13 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>write</name>
+      <anchorfile>classbyteme_1_1BufferedWriter.html</anchorfile>
+      <anchor>ae80b5a1768f32ba1ce1b4a4d84f53557</anchor>
+      <arglist>(const std::string &amp;string)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>flush</name>
       <anchorfile>classbyteme_1_1BufferedWriter.html</anchorfile>
       <anchor>a260d914d0ab15662751589d0c521b66f</anchor>

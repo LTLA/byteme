@@ -124,6 +124,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4c903547482d7c9c46cf8d8cf2899781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86e83c82b20d4f78b50a5392e2bdb90a" id="r_a86e83c82b20d4f78b50a5392e2bdb90a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86e83c82b20d4f78b50a5392e2bdb90a">write</a> (const char *string)</td></tr>
 <tr class="separator:a86e83c82b20d4f78b50a5392e2bdb90a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae80b5a1768f32ba1ce1b4a4d84f53557" id="r_ae80b5a1768f32ba1ce1b4a4d84f53557"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae80b5a1768f32ba1ce1b4a4d84f53557">write</a> (const std::string &amp;string)</td></tr>
+<tr class="separator:ae80b5a1768f32ba1ce1b4a4d84f53557"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a260d914d0ab15662751589d0c521b66f" id="r_a260d914d0ab15662751589d0c521b66f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a260d914d0ab15662751589d0c521b66f">flush</a> ()</td></tr>
 <tr class="separator:a260d914d0ab15662751589d0c521b66f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a198e776adf0a3c616d298d59859db282" id="r_a198e776adf0a3c616d298d59859db282"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a198e776adf0a3c616d298d59859db282">finish</a> ()=0</td></tr>
@@ -228,7 +230,7 @@ template&lt;typename Type_ , class WriterPointer_  = std::unique_ptr&lt;Writer&g
 </div>
 </div>
 <a id="a86e83c82b20d4f78b50a5392e2bdb90a" name="a86e83c82b20d4f78b50a5392e2bdb90a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86e83c82b20d4f78b50a5392e2bdb90a">&#9670;&#160;</a></span>write() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a86e83c82b20d4f78b50a5392e2bdb90a">&#9670;&#160;</a></span>write() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,8 +263,42 @@ template&lt;typename Type_ , class WriterPointer_  = std::unique_ptr&lt;Writer&g
 
 </div>
 </div>
+<a id="ae80b5a1768f32ba1ce1b4a4d84f53557" name="ae80b5a1768f32ba1ce1b4a4d84f53557"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae80b5a1768f32ba1ce1b4a4d84f53557">&#9670;&#160;</a></span>write() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type_ , class WriterPointer_  = std::unique_ptr&lt;Writer&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classbyteme_1_1BufferedWriter.html">byteme::BufferedWriter</a>&lt; Type_, WriterPointer_ &gt;::write </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>string</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Write a <code>std::string</code> to the buffer. This is a convenient overload to the array <code><a class="el" href="#ac03128fe53c7fc631feb313f9ba723ea">write()</a></code> and may trigger a call to <code><a class="el" href="#a260d914d0ab15662751589d0c521b66f">flush()</a></code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>A string. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a4c903547482d7c9c46cf8d8cf2899781" name="a4c903547482d7c9c46cf8d8cf2899781"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c903547482d7c9c46cf8d8cf2899781">&#9670;&#160;</a></span>write() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c903547482d7c9c46cf8d8cf2899781">&#9670;&#160;</a></span>write() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -301,7 +337,7 @@ template&lt;typename Type_ , class WriterPointer_  = std::unique_ptr&lt;Writer&g
 </div>
 </div>
 <a id="ac03128fe53c7fc631feb313f9ba723ea" name="ac03128fe53c7fc631feb313f9ba723ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac03128fe53c7fc631feb313f9ba723ea">&#9670;&#160;</a></span>write() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac03128fe53c7fc631feb313f9ba723ea">&#9670;&#160;</a></span>write() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
