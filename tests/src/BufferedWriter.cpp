@@ -108,6 +108,21 @@ INSTANTIATE_TEST_SUITE_P(
     )
 );
 
+TEST(BufferedWriter, String) {
+    byteme::RawBufferWriter writer({});
+    byteme::SerialBufferedWriter<unsigned char, byteme::Writer*> buffered(&writer, 100);
+
+    std::string msg = "Itsu made mo oboeteru";
+    buffered.write(msg.c_str());
+    buffered.finish();
+
+    auto& payload = writer.get_output();
+    auto ptr = reinterpret_cast<const char*>(payload.data());
+    std::string observed(ptr, ptr + payload.size());
+
+    EXPECT_EQ(observed, msg);
+}
+
 class BufferedWriterArrayTest : public ::testing::TestWithParam<std::tuple<int, int, int, bool> > {};
 
 TEST_P(BufferedWriterArrayTest, Basic) {
@@ -186,10 +201,13 @@ INSTANTIATE_TEST_SUITE_P(
     )
 );
 
-class BufferedWriterCharTest : public ::testing::TestWithParam<bool> {};
+class BufferedWriterCharTest : public ::testing::TestWithParam<std::tuple<int, bool> > {};
 
 TEST_P(BufferedWriterCharTest, Basic) {
-    auto parallel = GetParam();
+    // Checking it works with Type_ = char.
+    auto params = GetParam();
+    auto mode = std::get<0>(params);
+    auto parallel = std::get<1>(params);
 
     std::string contents(
         "asdasdasd"
@@ -201,40 +219,42 @@ TEST_P(BufferedWriterCharTest, Basic) {
         "((&9KKJNJSNAKASd"
     );
 
-    for (int mode = 0; mode < 2; ++mode) {
-        byteme::RawBufferWriter writer({});
+    byteme::RawBufferWriter writer({});
 
-        // Checking it works with char types.
-        std::unique_ptr<byteme::BufferedWriter<char> > ptr;
-        if (parallel) {
-            ptr.reset(new byteme::ParallelBufferedWriter<char, byteme::Writer*>(&writer, 10));
-        } else {
-            ptr.reset(new byteme::SerialBufferedWriter<char, byteme::Writer*>(&writer, 10));
-        }
-
-        if (mode == 0) {
-            for (auto b : contents) { 
-                ptr->write(b);
-            }
-        } else {
-            const int nbytes = contents.size();
-            for (int b = 0; b < nbytes; b += 11) {
-                ptr->write(contents.c_str() + b, std::min(11, nbytes - b));
-            }
-        }
-
-        ptr->flush();
-        writer.finish();
-        const auto& output = writer.get_output();
-        std::string observed(output.begin(), output.end());
-        EXPECT_EQ(observed, contents);
+    std::unique_ptr<byteme::BufferedWriter<char> > ptr;
+    if (parallel) {
+        ptr.reset(new byteme::ParallelBufferedWriter<char, byteme::Writer*>(&writer, 10));
+    } else {
+        ptr.reset(new byteme::SerialBufferedWriter<char, byteme::Writer*>(&writer, 10));
     }
+
+    if (mode == 0) {
+        for (auto b : contents) { 
+            ptr->write(b);
+        }
+    } else if (mode == 1) {
+        const int nbytes = contents.size();
+        for (int b = 0; b < nbytes; b += 11) {
+            ptr->write(contents.c_str() + b, std::min(11, nbytes - b));
+        }
+    } else {
+        ptr->write(contents.c_str());
+    }
+
+    ptr->flush();
+    writer.finish();
+    const auto& output = writer.get_output();
+    std::string observed(output.begin(), output.end());
+    EXPECT_EQ(observed, contents);
 }
 
 INSTANTIATE_TEST_SUITE_P(
     BufferedWriter,
     BufferedWriterCharTest,
-    ::testing::Values(false, true)
+    ::testing::Combine(
+        ::testing::Values(0, 1, 2), // write mode
+        ::testing::Values(false, true)
+    )
 );
 
 TEST(BufferedWriter, Empty) {

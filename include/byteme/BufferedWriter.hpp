@@ -15,6 +15,7 @@
 #include <type_traits>
 #include <memory>
 #include <cstddef>
+#include <string>
 
 #include "sanisizer/sanisizer.hpp"
 
@@ -150,6 +151,16 @@ public:
         // Filling the cache and copying the remainder into the output array.
         std::copy_n(input, number, my_buffer.data());
         my_current = number;
+    }
+
+    /**
+     * Write a null-terminated string to the buffer.
+     * This is a convenient overload to the array `write()` and may trigger a call to `flush()`.
+     *
+     * @param string Pointer to a null-terminated string.
+     */
+    void write(const char* string) {
+        write(reinterpret_cast<const Type_*>(string), std::char_traits<char>::length(string));
     }
 
 public:
