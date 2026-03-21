@@ -163,6 +163,16 @@ public:
         write(reinterpret_cast<const Type_*>(string), std::char_traits<char>::length(string));
     }
 
+    /**
+     * Write a `std::string` to the buffer.
+     * This is a convenient overload to the array `write()` and may trigger a call to `flush()`.
+     *
+     * @param string A string.
+     */
+    void write(const std::string& string) {
+        write(reinterpret_cast<const Type_*>(string.c_str()), string.size());
+    }
+
 public:
     /**
      * Flush all currently-buffered bytes to the underlying `Writer` instance.

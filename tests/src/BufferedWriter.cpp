@@ -109,18 +109,25 @@ INSTANTIATE_TEST_SUITE_P(
 );
 
 TEST(BufferedWriter, String) {
-    byteme::RawBufferWriter writer({});
-    byteme::SerialBufferedWriter<unsigned char, byteme::Writer*> buffered(&writer, 100);
-
     std::string msg = "Itsu made mo oboeteru";
-    buffered.write(msg.c_str());
-    buffered.finish();
 
-    auto& payload = writer.get_output();
-    auto ptr = reinterpret_cast<const char*>(payload.data());
-    std::string observed(ptr, ptr + payload.size());
+    for (int i = 0; i < 2; ++i) {
+        byteme::RawBufferWriter writer({});
+        byteme::SerialBufferedWriter<unsigned char, byteme::Writer*> buffered(&writer, 100);
 
-    EXPECT_EQ(observed, msg);
+        if (i == 0) {
+            buffered.write(msg.c_str());
+        } else {
+            buffered.write(msg);
+        }
+        buffered.finish();
+
+        auto& payload = writer.get_output();
+        auto ptr = reinterpret_cast<const char*>(payload.data());
+        std::string observed(ptr, ptr + payload.size());
+
+        EXPECT_EQ(observed, msg);
+    }
 }
 
 class BufferedWriterArrayTest : public ::testing::TestWithParam<std::tuple<int, int, int, bool> > {};
@@ -237,8 +244,10 @@ TEST_P(BufferedWriterCharTest, Basic) {
         for (int b = 0; b < nbytes; b += 11) {
             ptr->write(contents.c_str() + b, std::min(11, nbytes - b));
         }
-    } else {
+    } else if (mode == 2) {
         ptr->write(contents.c_str());
+    } else {
+        ptr->write(contents);
     }
 
     ptr->flush();
@@ -252,7 +261,7 @@ INSTANTIATE_TEST_SUITE_P(
     BufferedWriter,
     BufferedWriterCharTest,
     ::testing::Combine(
-        ::testing::Values(0, 1, 2), // write mode
+        ::testing::Values(0, 1, 2, 3), // write mode
         ::testing::Values(false, true)
     )
 );
