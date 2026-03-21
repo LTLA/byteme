@@ -230,14 +230,15 @@ protected:
     void flush_sync(const Type_* ptr, std::size_t num) {
         my_writer->write(reinterpret_cast<const unsigned char*>(ptr), num);
     }
+    /**
+     * @endcond
+     */
 
+public:
     void finish() {
         this->flush();
         my_writer->finish();
     }
-    /**
-     * @endcond
-     */
 };
 
 /**
@@ -386,14 +387,15 @@ protected:
             my_writer->write(reinterpret_cast<const unsigned char*>(ptr), num);
         }
     }
+    /**
+     * @endcond
+     */
 
+public:
     void finish() {
         this->flush();
         my_writer->finish();
     }
-    /**
-     * @endcond
-     */
 };
 
 }
