@@ -25,6 +25,8 @@ TEST(Miscellaneous, Umbrella) {
 TEST(Miscellaneous, MagicNumbers) {
     unsigned char zlib_header[2] { 0x78, 0x01 };
     EXPECT_TRUE(byteme::is_zlib(zlib_header, 2));
+    EXPECT_TRUE(byteme::is_zlib_or_gzip(zlib_header, 2));
+
     zlib_header[1] = 0x5e;
     EXPECT_TRUE(byteme::is_zlib(zlib_header, 2));
     zlib_header[1] = 0x9c;
@@ -40,6 +42,7 @@ TEST(Miscellaneous, MagicNumbers) {
     zlib_header[1] = 0xf9;
     EXPECT_TRUE(byteme::is_zlib(zlib_header, 2));
     EXPECT_FALSE(byteme::is_zlib(zlib_header, 1));
+
     zlib_header[1] = 0x00;
     EXPECT_FALSE(byteme::is_zlib(zlib_header, 2));
     zlib_header[0] = 0x00;
@@ -48,8 +51,11 @@ TEST(Miscellaneous, MagicNumbers) {
     unsigned char gzip_header[2] { 0x1f, 0x8b };
     EXPECT_FALSE(byteme::is_gzip(gzip_header, 1));
     EXPECT_TRUE(byteme::is_gzip(gzip_header, 2));
+    EXPECT_TRUE(byteme::is_zlib_or_gzip(gzip_header, 2));
+
     gzip_header[1] = 0x00;
     EXPECT_FALSE(byteme::is_gzip(gzip_header, 2));
     gzip_header[0] = 0x00;
     EXPECT_FALSE(byteme::is_gzip(gzip_header, 2));
+    EXPECT_FALSE(byteme::is_zlib_or_gzip(zlib_header, 2));
 }

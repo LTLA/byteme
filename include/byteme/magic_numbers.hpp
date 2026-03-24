@@ -31,11 +31,20 @@ inline bool is_zlib(const unsigned char* buffer, std::size_t n) {
 /**
  * @param[in] buffer Pointer to an array of length `n`.
  * @param n Number of bytes in `buffer`. 
- * @return Whether the buffer contains the bytes of a Gzipped file, based on its magic numbers.
+ * @return Whether the buffer is Gzip-compressed, based on its magic numbers.
  */
 inline bool is_gzip(const unsigned char* buffer, std::size_t n) {
     // ommitting the 0x08 requirement as Gzip could be used with non-DEFLATE algorithms.
     return (n >= 2 && buffer[0] == 0x1f && buffer[1] == 0x8b);
+}
+
+/**
+ * @param[in] buffer Pointer to an array of length `n`.
+ * @param n Number of bytes in `buffer`. 
+ * @return Whether the buffer is Gzip- or Zlib-compressed, based on its magic numbers.
+ */
+inline bool is_zlib_or_gzip(const unsigned char* buffer, std::size_t n) {
+    return is_zlib(buffer, n) || is_gzip(buffer, n);
 }
 
 /**
