@@ -189,6 +189,8 @@ Functions</h2></td></tr>
 <tr class="separator:ad3b16db0612e6afdf861519e51d71653"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb08f1cce34b8b237e3174b307a34178" id="r_acb08f1cce34b8b237e3174b307a34178"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb08f1cce34b8b237e3174b307a34178">is_gzip</a> (const unsigned char *buffer, std::size_t n)</td></tr>
 <tr class="separator:acb08f1cce34b8b237e3174b307a34178"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a897b54b7e8ab0eb00006d7d11b7a9563" id="r_a897b54b7e8ab0eb00006d7d11b7a9563"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a897b54b7e8ab0eb00006d7d11b7a9563">is_zlib_or_gzip</a> (const unsigned char *buffer, std::size_t n)</td></tr>
+<tr class="separator:a897b54b7e8ab0eb00006d7d11b7a9563"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a079575e91360061a7495713a7e872258" id="r_a079575e91360061a7495713a7e872258"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a079575e91360061a7495713a7e872258">is_gzip</a> (const char *path)</td></tr>
 <tr class="separator:a079575e91360061a7495713a7e872258"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -284,7 +286,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether the buffer contains the bytes of a Gzipped file, based on its magic numbers. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the buffer is Gzip-compressed, based on its magic numbers. </dd></dl>
 
 </div>
 </div>
@@ -322,6 +324,43 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the buffer is Zlib-compressed, based on its magic numbers. </dd></dl>
+
+</div>
+</div>
+<a id="a897b54b7e8ab0eb00006d7d11b7a9563" name="a897b54b7e8ab0eb00006d7d11b7a9563"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a897b54b7e8ab0eb00006d7d11b7a9563">&#9670;&#160;</a></span>is_zlib_or_gzip()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool byteme::is_zlib_or_gzip </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned char *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Pointer to an array of length <code>n</code>. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">n</td><td>Number of bytes in <code>buffer</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the buffer is Gzip- or Zlib-compressed, based on its magic numbers. </dd></dl>
 
 </div>
 </div>

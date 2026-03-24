@@ -11,6 +11,7 @@ var searchData=
   ['is_5fless_5fthan_8',['is_less_than',['https://ltla.github.io/sanisizer/namespacesanisizer.html#ae9c6a966b9ff5f778c8a604f215461b5',1,'sanisizer']]],
   ['is_5fless_5fthan_5for_5fequal_9',['is_less_than_or_equal',['https://ltla.github.io/sanisizer/namespacesanisizer.html#aa13ce5afa9f069e2aa89c6495e6c0d50',1,'sanisizer']]],
   ['is_5fzlib_10',['is_zlib',['../namespacebyteme.html#ad3b16db0612e6afdf861519e51d71653',1,'byteme']]],
-  ['istreamreader_11',['IstreamReader',['../classbyteme_1_1IstreamReader.html',1,'byteme::IstreamReader&lt; Pointer_ &gt;'],['../classbyteme_1_1IstreamReader.html#a9ec92866979a86aa6a654068b734224c',1,'byteme::IstreamReader::IstreamReader()']]],
-  ['istreamreader_2ehpp_12',['IstreamReader.hpp',['../IstreamReader_8hpp.html',1,'']]]
+  ['is_5fzlib_5for_5fgzip_11',['is_zlib_or_gzip',['../namespacebyteme.html#a897b54b7e8ab0eb00006d7d11b7a9563',1,'byteme']]],
+  ['istreamreader_12',['IstreamReader',['../classbyteme_1_1IstreamReader.html',1,'byteme::IstreamReader&lt; Pointer_ &gt;'],['../classbyteme_1_1IstreamReader.html#a9ec92866979a86aa6a654068b734224c',1,'byteme::IstreamReader::IstreamReader()']]],
+  ['istreamreader_2ehpp_13',['IstreamReader.hpp',['../IstreamReader_8hpp.html',1,'']]]
 ];

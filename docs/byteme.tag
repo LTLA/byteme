@@ -722,6 +722,13 @@
     </member>
     <member kind="function">
       <type>bool</type>
+      <name>is_zlib_or_gzip</name>
+      <anchorfile>namespacebyteme.html</anchorfile>
+      <anchor>a897b54b7e8ab0eb00006d7d11b7a9563</anchor>
+      <arglist>(const unsigned char *buffer, std::size_t n)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
       <name>is_gzip</name>
       <anchorfile>namespacebyteme.html</anchorfile>
       <anchor>a079575e91360061a7495713a7e872258</anchor>
