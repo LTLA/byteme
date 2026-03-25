@@ -139,8 +139,8 @@ public:
     /**
      * Extract up to `number` bytes from the buffer and store them in the `output`.
      * This is equivalent to (but more efficient than) calling `get()` and then `advance()` up to `number` times,
-     * only iterating while the return value of `advance()` is still true.
-     * Users should only call this method if `valid()` is still true.
+     * only iterating while the return value of the latter `advance()` is still true.
+     * Users should only call this method if `valid()` is true.
      *
      * @param number Number of bytes to extract.
      * @param[out] output Pointer to an output buffer of length `number`.
@@ -151,7 +151,7 @@ public:
      * - The number of bytes that were successfully read into `output`.
      *   This can also be interpreted as the number of successful `get()`/`advance()` iterations.
      * - Wether there are any more bytes available in the source for future `get()` or `extract()` calls.
-     *   This can also be interpreted as the result of the final `advance()` (i.e., the result of the `valid()` after `extract()` returns).
+     *   This can also be interpreted as the result of the final `advance()`, i.e., the result of the `valid()` after `extract()` returns.
      *
      * If the first element is less than `number`, it can be assumed that no more bytes are available in the source (i.e., the second element must be false).
      * Note that the converse is not true as it is possible to read `number` bytes and finish the source at the same time.

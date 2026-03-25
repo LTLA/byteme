@@ -95,7 +95,7 @@ std::unique_ptr<byteme::Reader> ptr;
 if (some_condition) {
     ptr.reset(new byteme::ZlibBufferReader(buffer, length, {}));
 } else {
-    ptr.reset(new byteme::RawBufferReader(buffer, length, {}));
+    ptr.reset(new byteme::RawBufferReader(buffer, length));
 }
 
 // Read bytes into the buffer from an abstract input source. 
@@ -144,9 +144,9 @@ We can also extract a range of bytes:
 auto reader = std::make_unique<byteme::GzipFileReader>(filepath, {})
 byteme::SerialBufferedReader<unsigned char> pb(std::move(reader), /* buffer_size = */ 65536);
 while (valid) {
-    int32_t value;
-    auto outcome = pb.extract(reinterpret_cast<unsigned char*>(&value), sizeof(int32_t)); 
-    if (outcome.first != sizeof(int32_t)) {
+    std::int32_t value;
+    auto outcome = pb.extract(reinterpret_cast<unsigned char*>(&value), sizeof(std::int32_t)); 
+    if (outcome.first != sizeof(std::int32_t)) {
         // uh oh, not enough bytes.
     } else {
         // do something with the extracted integer.
@@ -183,7 +183,7 @@ for (auto i : input) { // write individual bytes.
 
 pb.write(input.c_str(), input.size()); // or write an array.
 
-pb.finish();
+pb.finish(); // flush everything to file.
 ```
 
 ## Building projects
