@@ -196,7 +196,7 @@ template&lt;typename Type_ &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Extract up to <code>number</code> bytes from the buffer and store them in the <code>output</code>. This is equivalent to (but more efficient than) calling <code><a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code> and then <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code> up to <code>number</code> times, only iterating while the return value of <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code> is still true. Users should only call this method if <code><a class="el" href="#a14efd33907a2c64607bc1733aa17aecc">valid()</a></code> is still true.</p>
+<p>Extract up to <code>number</code> bytes from the buffer and store them in the <code>output</code>. This is equivalent to (but more efficient than) calling <code><a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code> and then <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code> up to <code>number</code> times, only iterating while the return value of the latter <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code> is still true. Users should only call this method if <code><a class="el" href="#a14efd33907a2c64607bc1733aa17aecc">valid()</a></code> is true.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">number</td><td>Number of bytes to extract. </td></tr>
@@ -207,7 +207,7 @@ template&lt;typename Type_ &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Pair containing:</dd></dl>
 <ul>
 <li>The number of bytes that were successfully read into <code>output</code>. This can also be interpreted as the number of successful <code><a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code>/<code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code> iterations.</li>
-<li>Wether there are any more bytes available in the source for future <code><a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code> or <code><a class="el" href="#a1c15c13a980c5f5a99d6a780317c413e">extract()</a></code> calls. This can also be interpreted as the result of the final <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code> (i.e., the result of the <code><a class="el" href="#a14efd33907a2c64607bc1733aa17aecc">valid()</a></code> after <code><a class="el" href="#a1c15c13a980c5f5a99d6a780317c413e">extract()</a></code> returns).</li>
+<li>Wether there are any more bytes available in the source for future <code><a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code> or <code><a class="el" href="#a1c15c13a980c5f5a99d6a780317c413e">extract()</a></code> calls. This can also be interpreted as the result of the final <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code>, i.e., the result of the <code><a class="el" href="#a14efd33907a2c64607bc1733aa17aecc">valid()</a></code> after <code><a class="el" href="#a1c15c13a980c5f5a99d6a780317c413e">extract()</a></code> returns.</li>
 </ul>
 <p>If the first element is less than <code>number</code>, it can be assumed that no more bytes are available in the source (i.e., the second element must be false). Note that the converse is not true as it is possible to read <code>number</code> bytes and finish the source at the same time. </p>
 

@@ -178,7 +178,7 @@ $(function(){ initResizable(false); });
 <div class="line"><span class="keywordflow">if</span> (some_condition) {</div>
 <div class="line">    ptr.reset(<span class="keyword">new</span> <a class="code hl_class" href="classbyteme_1_1ZlibBufferReader.html">byteme::ZlibBufferReader</a>(buffer, length, {}));</div>
 <div class="line">} <span class="keywordflow">else</span> {</div>
-<div class="line">    ptr.reset(<span class="keyword">new</span> <a class="code hl_class" href="classbyteme_1_1RawBufferReader.html">byteme::RawBufferReader</a>(buffer, length, {}));</div>
+<div class="line">    ptr.reset(<span class="keyword">new</span> <a class="code hl_class" href="classbyteme_1_1RawBufferReader.html">byteme::RawBufferReader</a>(buffer, length));</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Read bytes into the buffer from an abstract input source. </span></div>
@@ -221,9 +221,9 @@ $(function(){ initResizable(false); });
 <div class="fragment"><div class="line"><span class="keyword">auto</span> reader = std::make_unique&lt;byteme::GzipFileReader&gt;(filepath, {})</div>
 <div class="line"><a class="code hl_class" href="classbyteme_1_1SerialBufferedReader.html">byteme::SerialBufferedReader&lt;unsigned char&gt;</a> pb(std::move(reader), <span class="comment">/* buffer_size = */</span> 65536);</div>
 <div class="line"><span class="keywordflow">while</span> (valid) {</div>
-<div class="line">    int32_t value;</div>
-<div class="line">    <span class="keyword">auto</span> outcome = pb.extract(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(&amp;value), <span class="keyword">sizeof</span>(int32_t)); </div>
-<div class="line">    <span class="keywordflow">if</span> (outcome.first != <span class="keyword">sizeof</span>(int32_t)) {</div>
+<div class="line">    std::int32_t value;</div>
+<div class="line">    <span class="keyword">auto</span> outcome = pb.extract(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(&amp;value), <span class="keyword">sizeof</span>(std::int32_t)); </div>
+<div class="line">    <span class="keywordflow">if</span> (outcome.first != <span class="keyword">sizeof</span>(std::int32_t)) {</div>
 <div class="line">        <span class="comment">// uh oh, not enough bytes.</span></div>
 <div class="line">    } <span class="keywordflow">else</span> {</div>
 <div class="line">        <span class="comment">// do something with the extracted integer.</span></div>
@@ -251,7 +251,7 @@ $(function(){ initResizable(false); });
 <div class="line"> </div>
 <div class="line">pb.write(input.c_str(), input.size()); <span class="comment">// or write an array.</span></div>
 <div class="line"> </div>
-<div class="line">pb.finish();</div>
+<div class="line">pb.finish(); <span class="comment">// flush everything to file.</span></div>
 <div class="ttc" id="aclassbyteme_1_1SerialBufferedWriter_html"><div class="ttname"><a href="classbyteme_1_1SerialBufferedWriter.html">byteme::SerialBufferedWriter</a></div><div class="ttdoc">Serial buffering to wrap a Writer.</div><div class="ttdef"><b>Definition</b> BufferedWriter.hpp:208</div></div>
 </div><!-- fragment --><h1>Building projects</h1>
 <h2>CMake using <code>FetchContent</code></h2>
