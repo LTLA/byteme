@@ -164,6 +164,7 @@ public:
         if (number < remaining) {
             std::copy_n(my_buffer.data() + my_current, number, output); 
             my_current += number;
+            //std::cout << "case A" << std::endl;
             return std::make_pair(number, true);
         }
 
@@ -175,6 +176,7 @@ public:
         const auto buffer_size = get_buffer_size();
         if (my_available < buffer_size) {
             my_current = my_available;
+            //std::cout << "case B" << std::endl;
             return std::make_pair(original - number, false);
         }
 
@@ -187,6 +189,7 @@ public:
             number -= my_available;
             if (my_available < buffer_size) {
                 my_current = my_available;
+                //std::cout << "case C" << std::endl;
                 return std::make_pair(original - number, false);
             }
         }
@@ -205,6 +208,7 @@ public:
         // Thus, any future advance() would definitely return false.
         bool exhausted = (to_use == my_available);
 
+        //std::cout << "D" << std::endl;
         return std::make_pair(original - number, !exhausted);
     }
 
@@ -238,6 +242,7 @@ public:
         if (number <= remaining) {
             std::copy_n(my_buffer.data() + my_current, number, output); 
             my_current += number - 1;
+            //std::cout << "case A" << std::endl;
             return number;
         }
 
@@ -250,6 +255,7 @@ public:
         if (my_available < buffer_size) {
             assert(my_available > 0); // my_available > 0 otherwise valid() would be false.
             my_current = my_available - 1;
+            //std::cout << "case B" << std::endl;
             return original - number;
         }
 
@@ -263,13 +269,15 @@ public:
             number -= my_available;
 
             if (my_available < buffer_size) {
-                // We want to make the last byte available, so we just stick it in the buffer.
-                // We know that output must have advanced past its input value as original > remaining > 0, so taking the last element is valid.
+                // We want to make the last byte available for the next get(), so we just stick it in the buffer.
+                // We know that output must have advanced past its input value as remaining > 0 (otherwise valid() would be false), so subtraction is valid.
+                assert(remaining > 0);
                 my_buffer[0] = *(output - 1);
                 my_overall += my_available;
                 my_overall -= 1;
                 my_available = 1;
                 my_current = 0;
+                //std::cout << "case C" << std::endl;
                 return original - number;
             }
         }
@@ -282,16 +290,20 @@ public:
             // If we didn't take the loop, we know that original > remaining to get to this point, and thus number > 0.
             // If we did take the loop, the body ensures that number > buffer_size >= my_available, so a non-premature exit would leave number > 0.
             assert(number > 0);
+
             const auto to_use = std::min(my_available, number); // both values are positive so to_use > 0 and we can safely subtract 1 from it.
             std::copy_n(my_buffer.data(), to_use, output);
             number -= to_use;
             my_current = to_use - 1;
+            //std::cout << "case D" << std::endl;
         } else {
             // Again, we want to make the last byte available, so we just stick it in the buffer, see logic above.
+            assert(remaining > 0);
             my_buffer[0] = *(output - 1);
             my_overall -= 1;
             my_available = 1;
             my_current = 0;
+            //std::cout << "case E" << std::endl;
         }
 
         return original - number;

@@ -50,6 +50,148 @@ INSTANTIATE_TEST_SUITE_P(
     )
 );
 
+class BufferedReaderExtractSimpleTest : public ::testing::TestWithParam<bool> {};
+
+TEST_P(BufferedReaderExtractSimpleTest, Basic) {
+    auto contents = simulate_bytes(100, /* seed = */ 111);
+    bool use_until = GetParam();
+
+    // Case A: extracting from the buffer, without any refills.
+    {
+        byteme::RawBufferReader reader(contents.data(), contents.size());
+        byteme::SerialBufferedReader<unsigned char, byteme::Reader*> bufreader(&reader, 100);
+
+        std::vector<unsigned char> extracted(40); 
+        if (use_until) {
+            auto out = bufreader.extract_until(extracted.size(), extracted.data());
+            EXPECT_EQ(out, extracted.size());
+            EXPECT_EQ(bufreader.position(), 39);
+            EXPECT_EQ(bufreader.get(), contents[39]);
+        } else {
+            auto out = bufreader.extract(extracted.size(), extracted.data());
+            EXPECT_EQ(out.first, extracted.size());
+            EXPECT_TRUE(out.second);
+            EXPECT_EQ(bufreader.position(), 40);
+        }
+
+        auto truncated = contents;
+        truncated.resize(extracted.size());
+        EXPECT_EQ(truncated, extracted);
+    }
+
+    // Case B: extracting from the buffer after the last refill of the stream.
+    {
+        byteme::RawBufferReader reader(contents.data(), contents.size());
+        byteme::SerialBufferedReader<unsigned char, byteme::Reader*> bufreader(&reader, 40);
+
+        std::vector<unsigned char> collected;
+        std::vector<unsigned char> extracted(90); 
+
+        auto out = bufreader.extract(extracted.size(), extracted.data()); // case D exit, just to prime the state for the actual case B exit.
+        EXPECT_EQ(out.first, extracted.size());
+        EXPECT_TRUE(out.second);
+        collected.insert(collected.end(), extracted.begin(), extracted.end());
+        EXPECT_EQ(bufreader.position(), 90);
+
+        if (use_until) {
+            auto out = bufreader.extract_until(extracted.size(), extracted.data());
+            EXPECT_EQ(out, 10);
+            collected.insert(collected.end(), extracted.begin(), extracted.begin() + out);
+            EXPECT_EQ(bufreader.get(), contents.back());
+            EXPECT_EQ(bufreader.position(), 99);
+            EXPECT_FALSE(bufreader.advance());
+            EXPECT_EQ(bufreader.position(), 100);
+        } else {
+            auto out = bufreader.extract(extracted.size(), extracted.data());
+            EXPECT_EQ(out.first, 10);
+            EXPECT_FALSE(out.second);
+            collected.insert(collected.end(), extracted.begin(), extracted.begin() + out.first);
+            EXPECT_EQ(bufreader.position(), 100);
+        }
+
+        EXPECT_EQ(collected, contents);
+    }
+
+    // Case C: directly reading from the Reader into the output array, and terminating inside the loop when there aren't any bytes left.
+    {
+        byteme::RawBufferReader reader(contents.data(), contents.size());
+        byteme::SerialBufferedReader<unsigned char, byteme::Reader*> bufreader(&reader, 20);
+
+        std::vector<unsigned char> extracted(1000); 
+
+        if (use_until) {
+            auto out = bufreader.extract_until(extracted.size(), extracted.data());
+            EXPECT_EQ(out, 100);
+            EXPECT_EQ(bufreader.get(), contents.back());
+            EXPECT_EQ(bufreader.position(), 99);
+            EXPECT_FALSE(bufreader.advance());
+            EXPECT_EQ(bufreader.position(), 100);
+        } else {
+            auto out = bufreader.extract(extracted.size(), extracted.data());
+            EXPECT_EQ(out.first, 100);
+            EXPECT_FALSE(out.second);
+        }
+
+        extracted.resize(100);
+        EXPECT_EQ(extracted, contents);
+    }
+
+    // Case D: some direct reads into the output array, and then an extra read of a few more bytes from the buffer.
+    {
+        byteme::RawBufferReader reader(contents.data(), contents.size());
+        byteme::SerialBufferedReader<unsigned char, byteme::Reader*> bufreader(&reader, 25);
+
+        std::vector<unsigned char> extracted(80); 
+
+        if (use_until) {
+            auto out = bufreader.extract_until(extracted.size(), extracted.data());
+            EXPECT_EQ(out, 80);
+            EXPECT_EQ(bufreader.get(), contents[79]);
+            EXPECT_EQ(bufreader.position(), 79);
+            EXPECT_TRUE(bufreader.advance());
+        } else {
+            auto out = bufreader.extract(extracted.size(), extracted.data());
+            EXPECT_EQ(out.first, 80);
+            EXPECT_TRUE(out.second);
+        }
+
+        auto truncated = contents;
+        truncated.resize(80);
+        extracted.resize(80);
+        EXPECT_EQ(extracted, truncated);
+    }
+
+    // Case D (extract) or E (extract_until): some direct reads into the output array, and then an extra read of all remaining bytes from the buffer until exhaustion.
+    {
+        byteme::RawBufferReader reader(contents.data(), contents.size());
+        byteme::SerialBufferedReader<unsigned char, byteme::Reader*> bufreader(&reader, 25);
+
+        // +1, to test the last failed refill() when the extraction length is not a multiple of the buffer size.
+        std::vector<unsigned char> extracted(101); 
+
+        if (use_until) {
+            auto out = bufreader.extract_until(extracted.size(), extracted.data());
+            EXPECT_EQ(out, 100);
+            EXPECT_EQ(bufreader.get(), contents.back());
+            EXPECT_EQ(bufreader.position(), 99);
+            EXPECT_FALSE(bufreader.advance());
+        } else {
+            auto out = bufreader.extract(extracted.size(), extracted.data());
+            EXPECT_EQ(out.first, 100);
+            EXPECT_FALSE(out.second);
+        }
+
+        extracted.resize(contents.size());
+        EXPECT_EQ(extracted, contents);
+    }
+}
+
+INSTANTIATE_TEST_SUITE_P(
+    BufferedReader,
+    BufferedReaderExtractSimpleTest,
+    ::testing::Values(false, true)
+);
+
 class BufferedReaderExtractTest : public ::testing::TestWithParam<std::tuple<int, int, int, bool> > {};
 
 TEST_P(BufferedReaderExtractTest, Basic) {
@@ -70,10 +212,10 @@ TEST_P(BufferedReaderExtractTest, Basic) {
     }
 
     std::vector<unsigned char> observed;
-    std::vector<unsigned char> buffer(extract_len);
+    std::vector<unsigned char> extracted(extract_len);
     while (1) {
-        auto out = ptr->extract(buffer.size(), buffer.data());
-        observed.insert(observed.end(), buffer.data(), buffer.data() + out.first);
+        auto out = ptr->extract(extracted.size(), extracted.data());
+        observed.insert(observed.end(), extracted.data(), extracted.data() + out.first);
         EXPECT_EQ(ptr->position(), observed.size());
         EXPECT_EQ(out.second, ptr->valid());
         if (!out.second) {
@@ -102,14 +244,14 @@ TEST_P(BufferedReaderExtractTest, Until) {
     }
 
     std::vector<unsigned char> observed;
-    std::vector<unsigned char> buffer(extract_len);
+    std::vector<unsigned char> extracted(extract_len);
     while (1) {
-        auto out = ptr->extract_until(buffer.size(), buffer.data());
-        observed.insert(observed.end(), buffer.data(), buffer.data() + out);
+        auto out = ptr->extract_until(extracted.size(), extracted.data());
+        observed.insert(observed.end(), extracted.data(), extracted.data() + out);
         EXPECT_TRUE(ptr->valid());
         EXPECT_EQ(ptr->get(), observed.back()) << ptr->position(); 
         EXPECT_EQ(ptr->position(), observed.size() - 1);
-        if (out < buffer.size()) {
+        if (out < extracted.size()) {
             EXPECT_FALSE(ptr->advance());
             break;
         }
@@ -140,10 +282,10 @@ TEST_P(BufferedReaderExtractTest, Mixed) {
 
     // Checking that extract() and get/advance() play nice together.
     std::vector<unsigned char> observed;
-    std::vector<unsigned char> buffer(extract_len);
+    std::vector<unsigned char> extracted(extract_len);
     while (1) {
-        auto out = ptr->extract(buffer.size(), buffer.data());
-        observed.insert(observed.end(), buffer.data(), buffer.data() + out.first);
+        auto out = ptr->extract(extracted.size(), extracted.data());
+        observed.insert(observed.end(), extracted.data(), extracted.data() + out.first);
         if (!out.second) {
             break;
         }
