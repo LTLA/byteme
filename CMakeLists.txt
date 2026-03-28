@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 
 project(byteme
-    VERSION 2.1.2
+    VERSION 2.1.3
     DESCRIPTION "Read/write bytes from various sources"
     LANGUAGES CXX)
 
