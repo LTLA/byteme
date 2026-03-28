@@ -160,6 +160,13 @@
       <anchor>a1c15c13a980c5f5a99d6a780317c413e</anchor>
       <arglist>(std::size_t number, Type_ *output)</arglist>
     </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>extract_until</name>
+      <anchorfile>classbyteme_1_1BufferedReader.html</anchorfile>
+      <anchor>a71b85149e3a02321f0568d845c0280ee</anchor>
+      <arglist>(std::size_t number, Type_ *output)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>byteme::BufferedWriter</name>

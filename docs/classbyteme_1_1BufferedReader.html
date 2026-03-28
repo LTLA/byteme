@@ -126,6 +126,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a14efd33907a2c64607bc1733aa17aecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c15c13a980c5f5a99d6a780317c413e" id="r_a1c15c13a980c5f5a99d6a780317c413e"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::size_t, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c15c13a980c5f5a99d6a780317c413e">extract</a> (std::size_t number, Type_ *output)</td></tr>
 <tr class="separator:a1c15c13a980c5f5a99d6a780317c413e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71b85149e3a02321f0568d845c0280ee" id="r_a71b85149e3a02321f0568d845c0280ee"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71b85149e3a02321f0568d845c0280ee">extract_until</a> (std::size_t number, Type_ *output)</td></tr>
+<tr class="separator:a71b85149e3a02321f0568d845c0280ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Type_&gt;<br />
@@ -207,9 +209,50 @@ template&lt;typename Type_ &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Pair containing:</dd></dl>
 <ul>
 <li>The number of bytes that were successfully read into <code>output</code>. This can also be interpreted as the number of successful <code><a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code>/<code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code> iterations.</li>
-<li>Wether there are any more bytes available in the source for future <code><a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code> or <code><a class="el" href="#a1c15c13a980c5f5a99d6a780317c413e">extract()</a></code> calls. This can also be interpreted as the result of the final <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code>, i.e., the result of the <code><a class="el" href="#a14efd33907a2c64607bc1733aa17aecc">valid()</a></code> after <code><a class="el" href="#a1c15c13a980c5f5a99d6a780317c413e">extract()</a></code> returns.</li>
+<li>Whether there are any more bytes available in the source for future <code><a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code> or <code><a class="el" href="#a1c15c13a980c5f5a99d6a780317c413e">extract()</a></code> calls. This can also be interpreted as the result of the final <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code>, i.e., the result of the <code><a class="el" href="#a14efd33907a2c64607bc1733aa17aecc">valid()</a></code> after <code><a class="el" href="#a1c15c13a980c5f5a99d6a780317c413e">extract()</a></code> returns.</li>
 </ul>
-<p>If the first element is less than <code>number</code>, it can be assumed that no more bytes are available in the source (i.e., the second element must be false). Note that the converse is not true as it is possible to read <code>number</code> bytes and finish the source at the same time. </p>
+<p>If the first element is less than <code>number</code>, the second element must be false, i.e., no more bytes are available in the source. Note that converse may not be true, i.e., the second element can be false even if the first element is equal to <code>number</code>. </p>
+
+</div>
+</div>
+<a id="a71b85149e3a02321f0568d845c0280ee" name="a71b85149e3a02321f0568d845c0280ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71b85149e3a02321f0568d845c0280ee">&#9670;&#160;</a></span>extract_until()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type_ &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t <a class="el" href="classbyteme_1_1BufferedReader.html">byteme::BufferedReader</a>&lt; Type_ &gt;::extract_until </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>number</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Type_ *</td>          <td class="paramname"><span class="paramname"><em>output</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Extract up to <code>number</code> bytes from the buffer and store them in the <code>output</code>, stopping on the last byte. This is equivalent to calling <code>extract(X - 1, output)</code> and then setting <code>output[X - 1] = <a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code> without any additional <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code>, where <code>X</code> is the return value of this method, i.e., the smaller of <code>number</code> and the number of remaining bytes in the <code><a class="el" href="classbyteme_1_1Reader.html" title="Virtual class for reading bytes from a source.">Reader</a></code>. Users should only call this method if <code><a class="el" href="#a14efd33907a2c64607bc1733aa17aecc">valid()</a></code> is true.</p>
+<p>To be clear, <code><a class="el" href="#a71b85149e3a02321f0568d845c0280ee">extract_until()</a></code> differs from <code><a class="el" href="#a1c15c13a980c5f5a99d6a780317c413e">extract()</a></code> in that the former does not advance past the final extracted byte. This is occasionally useful in loops where <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code> is called before <code><a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code>. Calling <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code> and then <code><a class="el" href="#a71b85149e3a02321f0568d845c0280ee">extract_until()</a></code> is equivalent to <code>X</code> iterations of a <code><a class="el" href="#ab2267652e79cc367a079d5d0af0af3b3">advance()</a></code> + <code><a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code> loop.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">number</td><td>Number of bytes to extract. This should be positive. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Pointer to an output buffer of length <code>number</code>. This is filled with up to <code>number</code> bytes from the source.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes that were successfully read into <code>output</code>, i.e., <code>X</code>. This is less than <code>number</code> iff no more bytes are available in the source. On return, the value of <code><a class="el" href="#aa28ff2d69e79103078a842cc0d295b45">get()</a></code> will be equal to <code>output[X - 1]</code>. </dd></dl>
 
 </div>
 </div>
