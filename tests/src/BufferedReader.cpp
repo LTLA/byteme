@@ -84,6 +84,43 @@ TEST_P(BufferedReaderExtractTest, Basic) {
     EXPECT_EQ(observed, contents);
 }
 
+TEST_P(BufferedReaderExtractTest, Until) {
+    auto param = GetParam();
+    auto nbytes = std::get<0>(param);
+    auto buffer_size = std::get<1>(param);
+    auto extract_len = std::get<2>(param);
+    auto parallel = std::get<3>(param);
+
+    auto contents = simulate_bytes(nbytes, /* seed = */ 67 * nbytes + buffer_size + extract_len + parallel);
+    auto xptr = std::make_unique<byteme::RawBufferReader>(contents.data(), contents.size()); // Using smart pointers for some variety.
+
+    std::unique_ptr<byteme::BufferedReader<unsigned char> > ptr;
+    if (parallel) {
+        ptr.reset(new byteme::ParallelBufferedReader<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
+    } else {
+        ptr.reset(new byteme::SerialBufferedReader<unsigned char, std::unique_ptr<byteme::Reader> >(std::move(xptr), buffer_size));
+    }
+
+    std::vector<unsigned char> observed;
+    std::vector<unsigned char> buffer(extract_len);
+    while (1) {
+        auto out = ptr->extract_until(buffer.size(), buffer.data());
+        observed.insert(observed.end(), buffer.data(), buffer.data() + out);
+        EXPECT_TRUE(ptr->valid());
+        EXPECT_EQ(ptr->get(), observed.back()) << ptr->position(); 
+        EXPECT_EQ(ptr->position(), observed.size() - 1);
+        if (out < buffer.size()) {
+            EXPECT_FALSE(ptr->advance());
+            break;
+        }
+        if (!ptr->advance()) {
+            break;
+        }
+    }
+
+    EXPECT_EQ(observed, contents);
+}
+
 TEST_P(BufferedReaderExtractTest, Mixed) {
     auto param = GetParam();
     auto nbytes = std::get<0>(param);
@@ -91,7 +128,7 @@ TEST_P(BufferedReaderExtractTest, Mixed) {
     auto extract_len = std::get<2>(param);
     auto parallel = std::get<3>(param);
 
-    auto contents = simulate_bytes(nbytes, /* seed = */ 42 * nbytes + buffer_size + extract_len + parallel);
+    auto contents = simulate_bytes(nbytes, /* seed = */ 69 * nbytes + buffer_size + extract_len + parallel);
     auto xptr = std::make_unique<byteme::RawBufferReader>(contents.data(), contents.size()); // Using smart pointers for some variety.
 
     std::unique_ptr<byteme::BufferedReader<unsigned char> > ptr;

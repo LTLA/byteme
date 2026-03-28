@@ -150,11 +150,11 @@ public:
      *
      * - The number of bytes that were successfully read into `output`.
      *   This can also be interpreted as the number of successful `get()`/`advance()` iterations.
-     * - Wether there are any more bytes available in the source for future `get()` or `extract()` calls.
+     * - Whether there are any more bytes available in the source for future `get()` or `extract()` calls.
      *   This can also be interpreted as the result of the final `advance()`, i.e., the result of the `valid()` after `extract()` returns.
      *
-     * If the first element is less than `number`, it can be assumed that no more bytes are available in the source (i.e., the second element must be false).
-     * Note that the converse is not true as it is possible to read `number` bytes and finish the source at the same time.
+     * If the first element is less than `number`, the second element must be false, i.e., no more bytes are available in the source. 
+     * Note that converse may not be true, i.e., the second element can be false even if the first element is equal to `number`.
      */
     std::pair<std::size_t, bool> extract(std::size_t number, Type_* output) {
         const std::size_t original = number;
@@ -206,6 +206,95 @@ public:
         bool exhausted = (to_use == my_available);
 
         return std::make_pair(original - number, !exhausted);
+    }
+
+public:
+    /**
+     * Extract up to `number` bytes from the buffer and store them in the `output`, stopping on the last byte.
+     * This is equivalent to calling `extract(X - 1, output)` and then setting `output[X - 1] = get()` without any additional `advance()`,
+     * where `X` is the return value of this method, i.e., the smaller of `number` and the number of remaining bytes in the `Reader`.
+     * Users should only call this method if `valid()` is true.
+     *
+     * To be clear, `extract_until()` differs from `extract()` in that the former does not advance past the final extracted byte.
+     * This is occasionally useful in loops where `advance()` is called before `get()`.
+     * Calling `advance()` and then `extract_until()` is equivalent to `X` iterations of a `advance()` + `get()` loop.
+     *
+     * @param number Number of bytes to extract.
+     * This should be positive.
+     * @param[out] output Pointer to an output buffer of length `number`.
+     * This is filled with up to `number` bytes from the source.
+     *
+     * @return The number of bytes that were successfully read into `output`, i.e., `X`.
+     * This is less than `number` iff no more bytes are available in the source. 
+     * On return, the value of `get()` will be equal to `output[X - 1]`.
+     */
+    std::size_t extract_until(std::size_t number, Type_* output) {
+        const auto original = number;
+        assert(number > 0);
+
+        // Copying contents of the cached buffer.
+        // Unlike extract(), we allow equality here because we can leave ourselves on the last byte.
+        const std::size_t remaining = my_available - my_current;
+        if (number <= remaining) {
+            std::copy_n(my_buffer.data() + my_current, number, output); 
+            my_current += number - 1;
+            return number;
+        }
+
+        std::copy_n(my_buffer.data() + my_current, remaining, output); 
+        output += remaining;
+        number -= remaining;
+
+        // If the available number of bytes is less than the buffer size, the reader is already exhausted.
+        const auto buffer_size = get_buffer_size();
+        if (my_available < buffer_size) {
+            assert(my_available > 0); // my_available > 0 otherwise valid() would be false.
+            my_current = my_available - 1;
+            return original - number;
+        }
+
+        // Directly filling the output array, bypassing our buffer.
+        // Unlike extract(), we don't allow equality here because we don't want to skip past the last byte.
+        while (number > buffer_size) {
+            my_overall += my_available;
+            my_available = refill(output);
+
+            output += my_available;
+            number -= my_available;
+
+            if (my_available < buffer_size) {
+                // We want to make the last byte available, so we just stick it in the buffer.
+                // We know that output must have advanced past its input value as original > remaining > 0, so taking the last element is valid.
+                my_buffer[0] = *(output - 1);
+                my_overall += my_available;
+                my_overall -= 1;
+                my_available = 1;
+                my_current = 0;
+                return original - number;
+            }
+        }
+
+        // Filling the cache and copying the remainder into the output array.
+        my_overall += my_available;
+        my_available = refill();
+
+        if (my_available) {
+            // If we didn't take the loop, we know that original > remaining to get to this point, and thus number > 0.
+            // If we did take the loop, the body ensures that number > buffer_size >= my_available, so a non-premature exit would leave number > 0.
+            assert(number > 0);
+            const auto to_use = std::min(my_available, number); // both values are positive so to_use > 0 and we can safely subtract 1 from it.
+            std::copy_n(my_buffer.data(), to_use, output);
+            number -= to_use;
+            my_current = to_use - 1;
+        } else {
+            // Again, we want to make the last byte available, so we just stick it in the buffer, see logic above.
+            my_buffer[0] = *(output - 1);
+            my_overall -= 1;
+            my_available = 1;
+            my_current = 0;
+        }
+
+        return original - number;
     }
 };
 
