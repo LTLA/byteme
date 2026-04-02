@@ -382,19 +382,21 @@ public:
         my_buffer_worker(buffer_size)
     {
         my_thread = std::thread([&]() { thread_loop(); }); // set up thread before initializing.
-        this->initialize();
+
+        try {
+            this->initialize();
+        } catch (std::exception& e) {
+            // Killing thread as destructor won't be called if the constructor didn't finish.
+            kill_thread();
+            throw;
+        }
     }
 
     /**
      * @cond
      */
     ~ParallelBufferedReader() {
-        std::unique_lock lck(my_mut);
-        my_kill = true;
-        my_ready_input = true;
-        lck.unlock(); // releasing the lock so that the notified thread doesn't immediately block.
-        my_cv.notify_one();
-        my_thread.join();
+        kill_thread();
     }
     /**
      * @endcond
@@ -436,6 +438,15 @@ private:
             lck.unlock();
             my_cv.notify_one();
         }
+    }
+
+    void kill_thread() {
+        std::unique_lock lck(my_mut);
+        my_kill = true;
+        my_ready_input = true;
+        lck.unlock(); // releasing the lock so that the notified thread doesn't immediately block.
+        my_cv.notify_one();
+        my_thread.join();
     }
 
 protected:
