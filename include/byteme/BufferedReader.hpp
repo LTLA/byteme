@@ -493,7 +493,7 @@ protected:
 
     std::size_t refill(Type_* ptr) {
         if (my_worker_active) {
-            // If the worker is active, we wait for it to finish, transfer the results to the supplied pointer.
+            // If the worker is active, we wait for it to finish and then transfer the results to the supplied pointer.
             // We do not submit a new job, based on the loop in BufferedReader::extract():
             // 
             // - We'll probably want to call this refill() overload again.
