@@ -474,7 +474,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span> </div>
 <div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>    std::size_t refill(Type_* ptr) {</div>
 <div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>        <span class="keywordflow">if</span> (my_worker_active) {</div>
-<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>            <span class="comment">// If the worker is active, we wait for it to finish, transfer the results to the supplied pointer.</span></div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>            <span class="comment">// If the worker is active, we wait for it to finish and then transfer the results to the supplied pointer.</span></div>
 <div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>            <span class="comment">// We do not submit a new job, based on the loop in BufferedReader::extract():</span></div>
 <div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>            <span class="comment">// </span></div>
 <div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>            <span class="comment">// - We&#39;ll probably want to call this refill() overload again.</span></div>
