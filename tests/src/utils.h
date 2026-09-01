@@ -85,7 +85,7 @@ inline void full_dump(byteme::Writer& writer, const std::vector<unsigned char>& 
 inline void full_dump_with_zeros(byteme::Writer& writer, const std::vector<unsigned char>& contents, std::size_t chunk_size) {
     const std::size_t len = contents.size();
     for (std::size_t x = 0; x < len; x += chunk_size) {
-        writer.write(NULL, 0); // check that a write of zero is okay.
+        writer.write(contents.data(), 0); // check that a write of zero is okay.
         writer.write(contents.data() + x, std::min(chunk_size, len - x));
     }
     writer.finish();
