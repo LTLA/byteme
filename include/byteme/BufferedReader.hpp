@@ -11,6 +11,7 @@
 #include <mutex>
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 #include <exception>
 #include <type_traits>
 #include <memory>

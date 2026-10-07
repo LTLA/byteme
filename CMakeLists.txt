@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.24)
 
-project(byteme
-    VERSION 2.1.3
+project(
+    byteme
+    VERSION 2.1.4
     DESCRIPTION "Read/write bytes from various sources"
-    LANGUAGES CXX)
+    LANGUAGES CXX
+)
 
 add_library(byteme INTERFACE)
 add_library(ltla::byteme ALIAS byteme)
