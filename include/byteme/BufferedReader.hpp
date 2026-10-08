@@ -386,7 +386,7 @@ public:
 
         try {
             this->initialize();
-        } catch (std::exception& e) {
+        } catch (...) {
             // Killing thread as destructor won't be called if the constructor didn't finish.
             kill_thread();
             throw;
