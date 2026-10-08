@@ -376,7 +376,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span> </div>
 <div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        <span class="keywordflow">try</span> {</div>
 <div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>            this-&gt;initialize();</div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>        } <span class="keywordflow">catch</span> (std::exception&amp; e) {</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>        } <span class="keywordflow">catch</span> (...) {</div>
 <div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>            <span class="comment">// Killing thread as destructor won&#39;t be called if the constructor didn&#39;t finish.</span></div>
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>            kill_thread();</div>
 <div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>            <span class="keywordflow">throw</span>;</div>
