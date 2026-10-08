@@ -215,24 +215,9 @@ public:
 
 public:
     /**
-     * Extract up to `number` bytes from the buffer and store them in the `output`, stopping on the last byte.
-     * This is equivalent to calling `extract(X - 1, output)` and then setting `output[X - 1] = get()` without any additional `advance()`,
-     * where `X` is the return value of this method, i.e., the smaller of `number` and the number of remaining bytes in the `Reader`.
-     * Users should only call this method if `valid()` is true.
-     *
-     * To be clear, `extract_until()` differs from `extract()` in that the former does not advance past the final extracted byte.
-     * This is occasionally useful in loops where `advance()` is called before `get()`.
-     * Calling `advance()` and then `extract_until()` is equivalent to `X` iterations of a `advance()` + `get()` loop.
-     *
-     * @param number Number of bytes to extract.
-     * This should be positive.
-     * @param[out] output Pointer to an output buffer of length `number`.
-     * This is filled with up to `number` bytes from the source.
-     *
-     * @return The number of bytes that were successfully read into `output`, i.e., `X`.
-     * This is less than `number` iff no more bytes are available in the source. 
-     * On return, the value of `get()` will be equal to `output[X - 1]`.
+     * @cond
      */
+    // Soft-deprecated, for back-compatibility only.
     std::size_t extract_until(std::size_t number, Type_* output) {
         const auto original = number;
         assert(number > 0);
@@ -309,6 +294,9 @@ public:
 
         return original - number;
     }
+    /**
+     * @endcond
+     */
 };
 
 /**
