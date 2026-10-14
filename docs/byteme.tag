@@ -170,8 +170,8 @@
       <type>unsigned long long</type>
       <name>number</name>
       <anchorfile>classbyteme_1_1BufferedWriter.html</anchorfile>
-      <anchor>affe873267293a3ef93e86280cf70bea0</anchor>
-      <arglist>()</arglist>
+      <anchor>a1314aeb2d628f70ea38ff6cf72ebfcca</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>

@@ -116,11 +116,11 @@ Inheritance diagram for byteme::BufferedWriter&lt; Type_, WriterPointer_ &gt;:</
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:affe873267293a3ef93e86280cf70bea0" id="r_affe873267293a3ef93e86280cf70bea0"><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affe873267293a3ef93e86280cf70bea0">number</a> ()</td></tr>
-<tr class="separator:affe873267293a3ef93e86280cf70bea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1314aeb2d628f70ea38ff6cf72ebfcca" id="r_a1314aeb2d628f70ea38ff6cf72ebfcca"><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1314aeb2d628f70ea38ff6cf72ebfcca">number</a> () const</td></tr>
+<tr class="separator:a1314aeb2d628f70ea38ff6cf72ebfcca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac03128fe53c7fc631feb313f9ba723ea" id="r_ac03128fe53c7fc631feb313f9ba723ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac03128fe53c7fc631feb313f9ba723ea">write</a> (Type_ input)</td></tr>
 <tr class="separator:ac03128fe53c7fc631feb313f9ba723ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c903547482d7c9c46cf8d8cf2899781" id="r_a4c903547482d7c9c46cf8d8cf2899781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c903547482d7c9c46cf8d8cf2899781">write</a> (const Type_ *input, std::size_t <a class="el" href="#affe873267293a3ef93e86280cf70bea0">number</a>)</td></tr>
+<tr class="memitem:a4c903547482d7c9c46cf8d8cf2899781" id="r_a4c903547482d7c9c46cf8d8cf2899781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c903547482d7c9c46cf8d8cf2899781">write</a> (const Type_ *input, std::size_t <a class="el" href="#a1314aeb2d628f70ea38ff6cf72ebfcca">number</a>)</td></tr>
 <tr class="separator:a4c903547482d7c9c46cf8d8cf2899781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86e83c82b20d4f78b50a5392e2bdb90a" id="r_a86e83c82b20d4f78b50a5392e2bdb90a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86e83c82b20d4f78b50a5392e2bdb90a">write</a> (const char *string)</td></tr>
 <tr class="separator:a86e83c82b20d4f78b50a5392e2bdb90a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,8 +201,8 @@ template&lt;typename Type_ , class WriterPointer_  = std::unique_ptr&lt;Writer&g
 
 </div>
 </div>
-<a id="affe873267293a3ef93e86280cf70bea0" name="affe873267293a3ef93e86280cf70bea0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affe873267293a3ef93e86280cf70bea0">&#9670;&#160;</a></span>number()</h2>
+<a id="a1314aeb2d628f70ea38ff6cf72ebfcca" name="a1314aeb2d628f70ea38ff6cf72ebfcca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1314aeb2d628f70ea38ff6cf72ebfcca">&#9670;&#160;</a></span>number()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -216,7 +216,7 @@ template&lt;typename Type_ , class WriterPointer_  = std::unique_ptr&lt;Writer&g
           <td class="memname">unsigned long long <a class="el" href="classbyteme_1_1BufferedWriter.html">byteme::BufferedWriter</a>&lt; Type_, WriterPointer_ &gt;::number </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -225,6 +225,7 @@ template&lt;typename Type_ , class WriterPointer_  = std::unique_ptr&lt;Writer&g
   </tr>
 </table>
 </div><div class="memdoc">
+<p>This method may throw an exception if the number of written bytes cannot be held in an <code>unsigned long long</code>.</p>
 <dl class="section return"><dt>Returns</dt><dd>Number of bytes that have currently been written via calls to <code><a class="el" href="#ac03128fe53c7fc631feb313f9ba723ea">write()</a></code>. </dd></dl>
 
 </div>
