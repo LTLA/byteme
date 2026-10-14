@@ -5,6 +5,7 @@
 #include <limits>
 #include <type_traits>
 #include <cstddef>
+#include <exception>
 
 #include "sanisizer/sanisizer.hpp"
 
@@ -34,7 +35,6 @@ std::size_t safe_read(unsigned char* buffer, std::size_t n, Func_ fun) {
     return n - remaining;
 }
 
-
 template<typename Cap_, bool non_zero_, class Func_>
 void safe_write(const unsigned char* buffer, std::size_t n, Func_ fun) {
     constexpr auto total = std::numeric_limits<Cap_>::max();
@@ -52,6 +52,23 @@ void safe_write(const unsigned char* buffer, std::size_t n, Func_ fun) {
     }
 
     fun(buffer, n);
+}
+
+template<typename Overall_, typename Value_>
+void safe_update_position(Overall_& overall, Value_ value, std::exception_ptr& ex) {
+    try {
+        overall = sanisizer::sum<Overall_>(overall, value);
+    } catch (...) {
+        ex = std::current_exception();
+    }
+}
+
+template<typename Overall_, typename Value_>
+Overall_ safe_report_position(Overall_ overall, Value_ value, const std::exception_ptr& ex) {
+    if (ex) {
+        std::rethrow_exception(ex);
+    }
+    return sanisizer::sum<Overall_>(overall, value);
 }
 
 }

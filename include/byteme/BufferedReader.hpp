@@ -17,7 +17,10 @@
 #include <memory>
 #include <cstddef>
 
+#include "sanisizer/sanisizer.hpp"
+
 #include "Reader.hpp"
+#include "utils.hpp"
 
 namespace byteme {
 
@@ -87,6 +90,10 @@ private:
     // We don't use uint64_t because that might not be defined by the implementation.
     unsigned long long my_overall = 0;
 
+    // We want to throw an error if the current position is too large for an unsigned long long,
+    // but only if the caller actually requests the position; otherwise we let it slide.
+    std::exception_ptr my_overall_err;
+
 public:
     /**
      * Advance to the next byte, possibly refilling the buffer using bytes from the supplied `Reader`.
@@ -101,7 +108,7 @@ public:
         }
 
         my_current = 0;
-        my_overall += my_available;
+        safe_update_position(my_overall, my_available, my_overall_err);
 
         const auto buffer_size = get_buffer_size();
         if (my_available == buffer_size) {
@@ -123,10 +130,12 @@ public:
     }
 
     /**
+     * This method may throw an exception if the number of bytes read from the input cannot be held in an `unsigned long long`.
+     *
      * @return The position of the current byte since the start of the input.
      */
     unsigned long long position() const {
-        return my_overall + my_current;
+        return safe_report_position(my_overall, my_current, my_overall_err);
     }
 
     /**
@@ -183,7 +192,7 @@ public:
 
         // Directly filling the output array, bypassing our buffer.
         while (number >= buffer_size) {
-            my_overall += my_available;
+            safe_update_position(my_overall, my_available, my_overall_err);
             my_available = refill(output);
 
             output += my_available;
@@ -196,7 +205,7 @@ public:
         }
 
         // Filling the cache and copying the remainder into the output array.
-        my_overall += my_available;
+        safe_update_position(my_overall, my_available, my_overall_err);
         my_available = refill();
 
         const auto to_use = std::min(my_available, number);

@@ -82,12 +82,18 @@ private:
     // We don't use uint64_t because that might not be defined by the implementation.
     unsigned long long my_overall = 0;
 
+    // We want to throw an error if the current position is too large for an unsigned long long,
+    // but only if the caller actually requests the position; otherwise we let it slide.
+    std::exception_ptr my_overall_err;
+
 public:
     /**
+     * This method may throw an exception if the number of written bytes cannot be held in an `unsigned long long`.
+     * 
      * @return Number of bytes that have currently been written via calls to `write()`.
      */
-    unsigned long long number() {
-        return my_overall + my_current;
+    unsigned long long number() const {
+        return safe_report_position(my_overall, my_current, my_overall_err);
     }
 
 public:
@@ -105,7 +111,7 @@ public:
         if (my_current == buffer_size) {
             flush_async();
             my_current = 0;
-            my_overall += buffer_size;
+            safe_update_position(my_overall, buffer_size, my_overall_err);
         }
     }
 
@@ -133,18 +139,18 @@ public:
 
         if (number == 0) {
             flush_async();
-            my_overall += buffer_size;
+            safe_update_position(my_overall, buffer_size, my_overall_err);
             my_current = 0;
             return;
         }
 
         flush_sync(my_buffer.data(), buffer_size);
-        my_overall += buffer_size;
+        safe_update_position(my_overall, buffer_size, my_overall_err);
 
         // Directly filling the output array, bypassing our buffer.
         while (number >= buffer_size) {
             flush_sync(input, buffer_size);
-            my_overall += buffer_size;
+            safe_update_position(my_overall, buffer_size, my_overall_err);
             input += buffer_size;
             number -= buffer_size;
         } 
@@ -182,7 +188,7 @@ public:
      */
     void flush() {
         flush_sync(my_buffer.data(), my_current); // Flush whatever's left.
-        my_overall += my_current;
+        safe_update_position(my_overall, my_current, my_overall_err);
         my_current = 0;
     }
 
