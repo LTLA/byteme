@@ -1,15 +1,7 @@
 var searchData=
 [
-  ['get_0',['get',['../classbyteme_1_1BufferedReader.html#aa28ff2d69e79103078a842cc0d295b45',1,'byteme::BufferedReader']]],
-  ['get_5fmax_1',['get_max',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a743d244f216921a55a3c74d0544f1d64',1,'sanisizer']]],
-  ['get_5foutput_2',['get_output',['../classbyteme_1_1RawBufferWriter.html#a77085bb097a701c3b132f1278df923b8',1,'byteme::RawBufferWriter::get_output()'],['../classbyteme_1_1ZlibBufferWriter.html#ac0c286b480ef272974c3ee3d4209ec0e',1,'byteme::ZlibBufferWriter::get_output()']]],
-  ['get_5fvalue_3',['get_value',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a1377156c38a676a8de3829988a703d17',1,'sanisizer']]],
-  ['gimme_20some_20bytes_4',['Gimme some bytes',['../index.html',1,'']]],
-  ['gzbuffer_5fsize_5',['gzbuffer_size',['../structbyteme_1_1GzipFileWriterOptions.html#ad3ae50598f977a1063e4cd9b438d2dcc',1,'byteme::GzipFileWriterOptions']]],
-  ['gzipfilereader_6',['GzipFileReader',['../classbyteme_1_1GzipFileReader.html',1,'byteme::GzipFileReader'],['../classbyteme_1_1GzipFileReader.html#aecf4eebc3a244525b2c71a269d112800',1,'byteme::GzipFileReader::GzipFileReader()']]],
-  ['gzipfilereader_2ehpp_7',['GzipFileReader.hpp',['../GzipFileReader_8hpp.html',1,'']]],
-  ['gzipfilereaderoptions_8',['GzipFileReaderOptions',['../structbyteme_1_1GzipFileReaderOptions.html',1,'byteme']]],
-  ['gzipfilewriter_9',['GzipFileWriter',['../classbyteme_1_1GzipFileWriter.html',1,'byteme::GzipFileWriter'],['../classbyteme_1_1GzipFileWriter.html#ad3b9a74789a8182cc40f3ba2d4edf306',1,'byteme::GzipFileWriter::GzipFileWriter()']]],
-  ['gzipfilewriter_2ehpp_10',['GzipFileWriter.hpp',['../GzipFileWriter_8hpp.html',1,'']]],
-  ['gzipfilewriteroptions_11',['GzipFileWriterOptions',['../structbyteme_1_1GzipFileWriterOptions.html',1,'byteme']]]
+  ['finish_0',['finish',['../classbyteme_1_1BufferedWriter.html#a198e776adf0a3c616d298d59859db282',1,'byteme::BufferedWriter::finish()'],['../classbyteme_1_1SerialBufferedWriter.html#a3a0701de854de3031d406dd2a7175939',1,'byteme::SerialBufferedWriter::finish()'],['../classbyteme_1_1ParallelBufferedWriter.html#a9161f8d9c967e2f78ff3b01a6d43d79b',1,'byteme::ParallelBufferedWriter::finish()'],['../classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3',1,'byteme::GzipFileWriter::finish()'],['../classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7',1,'byteme::OstreamWriter::finish()'],['../classbyteme_1_1RawBufferWriter.html#a9f5da6446f98b72afcdbbcf504e10512',1,'byteme::RawBufferWriter::finish()'],['../classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535',1,'byteme::RawFileWriter::finish()'],['../classbyteme_1_1Writer.html#a8317429c5645d0e447a4207091953164',1,'byteme::Writer::finish()'],['../classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac',1,'byteme::ZlibBufferWriter::finish()']]],
+  ['float_2ehpp_1',['float.hpp',['https://ltla.github.io/sanisizer/float_8hpp.html',1,'']]],
+  ['flush_2',['flush',['../classbyteme_1_1BufferedWriter.html#a260d914d0ab15662751589d0c521b66f',1,'byteme::BufferedWriter']]],
+  ['from_5ffloat_3',['from_float',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6',1,'sanisizer']]]
 ];

@@ -1,17 +1,16 @@
 var searchData=
 [
-  ['integer_0',['Integer',['https://ltla.github.io/sanisizer/structsanisizer_1_1Attestation.html#a68d1e7517f9fb4b7bee87ead27a68448',1,'sanisizer::Attestation']]],
-  ['is_5fattestation_1',['is_Attestation',['https://ltla.github.io/sanisizer/structsanisizer_1_1is__Attestation.html',1,'sanisizer']]],
-  ['is_5fattestation_3c_20attestation_3c_20integer_5f_2c_20max_5f_20_3e_20_3e_2',['is_Attestation&lt; Attestation&lt; Integer_, max_ &gt; &gt;',['https://ltla.github.io/sanisizer/structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01max___01_4_01_4.html',1,'sanisizer']]],
-  ['is_5fequal_3',['is_equal',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a48da56272ee357d828828ffd58eda482',1,'sanisizer']]],
-  ['is_5fgreater_5fthan_4',['is_greater_than',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a130cca1b1feb23a41a4a6c44dabc01e7',1,'sanisizer']]],
-  ['is_5fgreater_5fthan_5for_5fequal_5',['is_greater_than_or_equal',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a6e29b2bd239d09d23bf296ffa9c9c8a5',1,'sanisizer']]],
-  ['is_5fgzip_6',['is_gzip',['../namespacebyteme.html#acb08f1cce34b8b237e3174b307a34178',1,'byteme::is_gzip(const unsigned char *buffer, std::size_t n)'],['../namespacebyteme.html#a079575e91360061a7495713a7e872258',1,'byteme::is_gzip(const char *path)']]],
-  ['is_5fintegral_5for_5fattestation_7',['is_integral_or_Attestation',['https://ltla.github.io/sanisizer/structsanisizer_1_1is__integral__or__Attestation.html',1,'sanisizer']]],
-  ['is_5fless_5fthan_8',['is_less_than',['https://ltla.github.io/sanisizer/namespacesanisizer.html#ae9c6a966b9ff5f778c8a604f215461b5',1,'sanisizer']]],
-  ['is_5fless_5fthan_5for_5fequal_9',['is_less_than_or_equal',['https://ltla.github.io/sanisizer/namespacesanisizer.html#aa13ce5afa9f069e2aa89c6495e6c0d50',1,'sanisizer']]],
-  ['is_5fzlib_10',['is_zlib',['../namespacebyteme.html#ad3b16db0612e6afdf861519e51d71653',1,'byteme']]],
-  ['is_5fzlib_5for_5fgzip_11',['is_zlib_or_gzip',['../namespacebyteme.html#a897b54b7e8ab0eb00006d7d11b7a9563',1,'byteme']]],
-  ['istreamreader_12',['IstreamReader',['../classbyteme_1_1IstreamReader.html',1,'byteme::IstreamReader&lt; Pointer_ &gt;'],['../classbyteme_1_1IstreamReader.html#a9ec92866979a86aa6a654068b734224c',1,'byteme::IstreamReader::IstreamReader()']]],
-  ['istreamreader_2ehpp_13',['IstreamReader.hpp',['../IstreamReader_8hpp.html',1,'']]]
+  ['generics_2ehpp_0',['generics.hpp',['https://ltla.github.io/sanisizer/generics_8hpp.html',1,'']]],
+  ['get_1',['get',['../classbyteme_1_1BufferedReader.html#aa28ff2d69e79103078a842cc0d295b45',1,'byteme::BufferedReader']]],
+  ['get_5fmax_2',['get_max',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a743d244f216921a55a3c74d0544f1d64',1,'sanisizer']]],
+  ['get_5foutput_3',['get_output',['../classbyteme_1_1RawBufferWriter.html#a77085bb097a701c3b132f1278df923b8',1,'byteme::RawBufferWriter::get_output()'],['../classbyteme_1_1ZlibBufferWriter.html#ac0c286b480ef272974c3ee3d4209ec0e',1,'byteme::ZlibBufferWriter::get_output()']]],
+  ['get_5fvalue_4',['get_value',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a4b2d1215d4bca4f8179c72083919cf56',1,'sanisizer']]],
+  ['gimme_20some_20bytes_5',['Gimme some bytes',['../index.html',1,'']]],
+  ['gzbuffer_5fsize_6',['gzbuffer_size',['../structbyteme_1_1GzipFileWriterOptions.html#ad3ae50598f977a1063e4cd9b438d2dcc',1,'byteme::GzipFileWriterOptions']]],
+  ['gzipfilereader_7',['GzipFileReader',['../classbyteme_1_1GzipFileReader.html',1,'byteme::GzipFileReader'],['../classbyteme_1_1GzipFileReader.html#aecf4eebc3a244525b2c71a269d112800',1,'byteme::GzipFileReader::GzipFileReader()']]],
+  ['gzipfilereader_2ehpp_8',['GzipFileReader.hpp',['../GzipFileReader_8hpp.html',1,'']]],
+  ['gzipfilereaderoptions_9',['GzipFileReaderOptions',['../structbyteme_1_1GzipFileReaderOptions.html',1,'byteme']]],
+  ['gzipfilewriter_10',['GzipFileWriter',['../classbyteme_1_1GzipFileWriter.html',1,'byteme::GzipFileWriter'],['../classbyteme_1_1GzipFileWriter.html#ad3b9a74789a8182cc40f3ba2d4edf306',1,'byteme::GzipFileWriter::GzipFileWriter()']]],
+  ['gzipfilewriter_2ehpp_11',['GzipFileWriter.hpp',['../GzipFileWriter_8hpp.html',1,'']]],
+  ['gzipfilewriteroptions_12',['GzipFileWriterOptions',['../structbyteme_1_1GzipFileWriterOptions.html',1,'byteme']]]
 ];

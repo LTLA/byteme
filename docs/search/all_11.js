@@ -1,4 +1,10 @@
 var searchData=
 [
-  ['_7ewriter_0',['~Writer',['../classbyteme_1_1Writer.html#ad385ffe4a1d27fe4d7db5c5425cf4588',1,'byteme::Writer']]]
+  ['zlibbufferreader_0',['ZlibBufferReader',['../classbyteme_1_1ZlibBufferReader.html',1,'byteme::ZlibBufferReader'],['../classbyteme_1_1ZlibBufferReader.html#a3cd5f4e25a1b3744237f6e6811d231dd',1,'byteme::ZlibBufferReader::ZlibBufferReader()']]],
+  ['zlibbufferreader_2ehpp_1',['ZlibBufferReader.hpp',['../ZlibBufferReader_8hpp.html',1,'']]],
+  ['zlibbufferreaderoptions_2',['ZlibBufferReaderOptions',['../structbyteme_1_1ZlibBufferReaderOptions.html',1,'byteme']]],
+  ['zlibbufferwriter_3',['ZlibBufferWriter',['../classbyteme_1_1ZlibBufferWriter.html',1,'byteme::ZlibBufferWriter'],['../classbyteme_1_1ZlibBufferWriter.html#a09d7572eb0c546087fb66c13aa8e2d84',1,'byteme::ZlibBufferWriter::ZlibBufferWriter()']]],
+  ['zlibbufferwriter_2ehpp_4',['ZlibBufferWriter.hpp',['../ZlibBufferWriter_8hpp.html',1,'']]],
+  ['zlibbufferwriteroptions_5',['ZlibBufferWriterOptions',['../structbyteme_1_1ZlibBufferWriterOptions.html',1,'byteme']]],
+  ['zlibcompressionmode_6',['ZlibCompressionMode',['../namespacebyteme.html#a684463951a944a548255a6abe484ef2b',1,'byteme']]]
 ];

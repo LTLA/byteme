@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ostreamwriter_0',['OstreamWriter',['../classbyteme_1_1OstreamWriter.html',1,'byteme']]]
+  ['parallelbufferedreader_0',['ParallelBufferedReader',['../classbyteme_1_1ParallelBufferedReader.html',1,'byteme']]],
+  ['parallelbufferedwriter_1',['ParallelBufferedWriter',['../classbyteme_1_1ParallelBufferedWriter.html',1,'byteme']]]
 ];

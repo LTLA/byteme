@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['parallelbufferedreader_0',['ParallelBufferedReader',['../classbyteme_1_1ParallelBufferedReader.html',1,'byteme::ParallelBufferedReader&lt; Type_, Pointer_ &gt;'],['../classbyteme_1_1ParallelBufferedReader.html#ab0097f7773c2b49bd9d96f6bd57c3f94',1,'byteme::ParallelBufferedReader::ParallelBufferedReader()']]],
-  ['parallelbufferedwriter_1',['ParallelBufferedWriter',['../classbyteme_1_1ParallelBufferedWriter.html',1,'byteme::ParallelBufferedWriter&lt; Type_, Pointer_ &gt;'],['../classbyteme_1_1ParallelBufferedWriter.html#a269dc96008f8783973324b72b605f85d',1,'byteme::ParallelBufferedWriter::ParallelBufferedWriter()']]],
-  ['position_2',['position',['../classbyteme_1_1BufferedReader.html#ab2e8c16f833432e10414208a89fb26c6',1,'byteme::BufferedReader']]],
-  ['product_3',['product',['https://ltla.github.io/sanisizer/namespacesanisizer.html#ace3b6841d0fd165ae3f47d07a713a15c',1,'sanisizer']]],
-  ['product_5funsafe_4',['product_unsafe',['https://ltla.github.io/sanisizer/namespacesanisizer.html#aa3df28f9c655292959f7fbf22e61f9c2',1,'sanisizer']]],
-  ['ptrdiff_2ehpp_5',['ptrdiff.hpp',['https://ltla.github.io/sanisizer/ptrdiff_8hpp.html',1,'']]]
+  ['operator_20integer_5f_0',['operator Integer_',['https://ltla.github.io/sanisizer/classsanisizer_1_1Exact.html#ae46a64c0dbe62535e6d5ffe8e555bba5',1,'sanisizer::Exact']]],
+  ['operator_20output_5f_1',['operator Output_',['https://ltla.github.io/sanisizer/classsanisizer_1_1Cast.html#a22b477d41df49b122428deb6532e2307',1,'sanisizer::Cast::operator Output_()'],['https://ltla.github.io/sanisizer/classsanisizer_1_1Exact.html#a0f5204707227e757d6b1dd25ba60619c',1,'sanisizer::Exact::operator Output_()']]],
+  ['ostreamwriter_2',['OstreamWriter',['../classbyteme_1_1OstreamWriter.html',1,'byteme::OstreamWriter&lt; Pointer_ &gt;'],['../classbyteme_1_1OstreamWriter.html#a3cbc4a7eec70e40dd6a1c370f165084c',1,'byteme::OstreamWriter::OstreamWriter()']]],
+  ['ostreamwriter_2ehpp_3',['OstreamWriter.hpp',['../OstreamWriter_8hpp.html',1,'']]],
+  ['overflow_2ehpp_4',['overflow.hpp',['https://ltla.github.io/sanisizer/overflow_8hpp.html',1,'']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['bufferedreader_0',['BufferedReader',['../classbyteme_1_1BufferedReader.html',1,'byteme']]],
-  ['bufferedwriter_1',['BufferedWriter',['../classbyteme_1_1BufferedWriter.html',1,'byteme']]]
+  ['cast_0',['Cast',['https://ltla.github.io/sanisizer/classsanisizer_1_1Cast.html',1,'sanisizer']]],
+  ['constant_1',['Constant',['https://ltla.github.io/sanisizer/structsanisizer_1_1Constant.html',1,'sanisizer']]]
 ];

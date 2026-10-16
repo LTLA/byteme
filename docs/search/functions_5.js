@@ -1,12 +1,6 @@
 var searchData=
 [
-  ['is_5fequal_0',['is_equal',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a48da56272ee357d828828ffd58eda482',1,'sanisizer']]],
-  ['is_5fgreater_5fthan_1',['is_greater_than',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a130cca1b1feb23a41a4a6c44dabc01e7',1,'sanisizer']]],
-  ['is_5fgreater_5fthan_5for_5fequal_2',['is_greater_than_or_equal',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a6e29b2bd239d09d23bf296ffa9c9c8a5',1,'sanisizer']]],
-  ['is_5fgzip_3',['is_gzip',['../namespacebyteme.html#acb08f1cce34b8b237e3174b307a34178',1,'byteme::is_gzip(const unsigned char *buffer, std::size_t n)'],['../namespacebyteme.html#a079575e91360061a7495713a7e872258',1,'byteme::is_gzip(const char *path)']]],
-  ['is_5fless_5fthan_4',['is_less_than',['https://ltla.github.io/sanisizer/namespacesanisizer.html#ae9c6a966b9ff5f778c8a604f215461b5',1,'sanisizer']]],
-  ['is_5fless_5fthan_5for_5fequal_5',['is_less_than_or_equal',['https://ltla.github.io/sanisizer/namespacesanisizer.html#aa13ce5afa9f069e2aa89c6495e6c0d50',1,'sanisizer']]],
-  ['is_5fzlib_6',['is_zlib',['../namespacebyteme.html#ad3b16db0612e6afdf861519e51d71653',1,'byteme']]],
-  ['is_5fzlib_5for_5fgzip_7',['is_zlib_or_gzip',['../namespacebyteme.html#a897b54b7e8ab0eb00006d7d11b7a9563',1,'byteme']]],
-  ['istreamreader_8',['IstreamReader',['../classbyteme_1_1IstreamReader.html#a9ec92866979a86aa6a654068b734224c',1,'byteme::IstreamReader']]]
+  ['finish_0',['finish',['../classbyteme_1_1BufferedWriter.html#a198e776adf0a3c616d298d59859db282',1,'byteme::BufferedWriter::finish()'],['../classbyteme_1_1SerialBufferedWriter.html#a3a0701de854de3031d406dd2a7175939',1,'byteme::SerialBufferedWriter::finish()'],['../classbyteme_1_1ParallelBufferedWriter.html#a9161f8d9c967e2f78ff3b01a6d43d79b',1,'byteme::ParallelBufferedWriter::finish()'],['../classbyteme_1_1GzipFileWriter.html#add2b71c32bcd4cc6e2e6443d4219ffb3',1,'byteme::GzipFileWriter::finish()'],['../classbyteme_1_1OstreamWriter.html#accafb6643fbd952a9c036e14b3bf3cb7',1,'byteme::OstreamWriter::finish()'],['../classbyteme_1_1RawBufferWriter.html#a9f5da6446f98b72afcdbbcf504e10512',1,'byteme::RawBufferWriter::finish()'],['../classbyteme_1_1RawFileWriter.html#a5cf864429e6b353e3d8a715ccdc4d535',1,'byteme::RawFileWriter::finish()'],['../classbyteme_1_1Writer.html#a8317429c5645d0e447a4207091953164',1,'byteme::Writer::finish()'],['../classbyteme_1_1ZlibBufferWriter.html#a192a702db3794bf64766b0cee7ab4fac',1,'byteme::ZlibBufferWriter::finish()']]],
+  ['flush_1',['flush',['../classbyteme_1_1BufferedWriter.html#a260d914d0ab15662751589d0c521b66f',1,'byteme::BufferedWriter']]],
+  ['from_5ffloat_2',['from_float',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6',1,'sanisizer']]]
 ];

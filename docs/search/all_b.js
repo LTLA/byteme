@@ -1,20 +1,12 @@
 var searchData=
 [
-  ['rawbufferreader_0',['RawBufferReader',['../classbyteme_1_1RawBufferReader.html',1,'byteme::RawBufferReader'],['../classbyteme_1_1RawBufferReader.html#a80988c695311f5ebd52680bf93f92847',1,'byteme::RawBufferReader::RawBufferReader()']]],
-  ['rawbufferreader_2ehpp_1',['RawBufferReader.hpp',['../RawBufferReader_8hpp.html',1,'']]],
-  ['rawbufferwriter_2',['RawBufferWriter',['../classbyteme_1_1RawBufferWriter.html',1,'byteme::RawBufferWriter'],['../classbyteme_1_1RawBufferWriter.html#a2536f89eb9c6a58a68269abfa907f3bd',1,'byteme::RawBufferWriter::RawBufferWriter()']]],
-  ['rawbufferwriter_2ehpp_3',['RawBufferWriter.hpp',['../RawBufferWriter_8hpp.html',1,'']]],
-  ['rawbufferwriteroptions_4',['RawBufferWriterOptions',['../structbyteme_1_1RawBufferWriterOptions.html',1,'byteme']]],
-  ['rawfilereader_5',['RawFileReader',['../classbyteme_1_1RawFileReader.html',1,'byteme::RawFileReader'],['../classbyteme_1_1RawFileReader.html#a8408ecd4c0c0d0c03d84b205f941f8d2',1,'byteme::RawFileReader::RawFileReader()']]],
-  ['rawfilereader_2ehpp_6',['RawFileReader.hpp',['../RawFileReader_8hpp.html',1,'']]],
-  ['rawfilereaderoptions_7',['RawFileReaderOptions',['../structbyteme_1_1RawFileReaderOptions.html',1,'byteme']]],
-  ['rawfilewriter_8',['RawFileWriter',['../classbyteme_1_1RawFileWriter.html',1,'byteme::RawFileWriter'],['../classbyteme_1_1RawFileWriter.html#a85b813251f5ce733364d3b02914ad209',1,'byteme::RawFileWriter::RawFileWriter()']]],
-  ['rawfilewriter_2ehpp_9',['RawFileWriter.hpp',['../RawFileWriter_8hpp.html',1,'']]],
-  ['rawfilewriteroptions_10',['RawFileWriterOptions',['../structbyteme_1_1RawFileWriterOptions.html',1,'byteme']]],
-  ['read_11',['read',['../classbyteme_1_1GzipFileReader.html#a4e293b837f53b17cbdaac22e0305d669',1,'byteme::GzipFileReader::read()'],['../classbyteme_1_1IstreamReader.html#aced8bbf4560953a5c331c6ec18edd742',1,'byteme::IstreamReader::read()'],['../classbyteme_1_1RawBufferReader.html#aa2ed5c3a15c37cb69e0ad6a6141f6441',1,'byteme::RawBufferReader::read()'],['../classbyteme_1_1RawFileReader.html#a42ba2360c659f3365a79d0654e26f737',1,'byteme::RawFileReader::read()'],['../classbyteme_1_1Reader.html#ac39e5bfe2feae64643a177ba7dcb7fa9',1,'byteme::Reader::read()'],['../classbyteme_1_1ZlibBufferReader.html#a932af82edf6c8d316f0fb9b54d032179',1,'byteme::ZlibBufferReader::read()']]],
-  ['reader_12',['Reader',['../classbyteme_1_1Reader.html',1,'byteme']]],
-  ['reader_2ehpp_13',['Reader.hpp',['../Reader_8hpp.html',1,'']]],
-  ['required_5fbits_5ffor_5ffloat_14',['required_bits_for_float',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a714d5385b83631d2aace857ca004fee8',1,'sanisizer']]],
-  ['reserve_15',['reserve',['../structbyteme_1_1RawBufferWriterOptions.html#ace854857d6b1b607ff4fedca07d05e1b',1,'byteme::RawBufferWriterOptions::reserve'],['https://ltla.github.io/sanisizer/namespacesanisizer.html#a1a07e85a7c7d29d992442f2d40476188',1,'sanisizer::reserve(Container_ &amp;container, Value_ x, Args_ &amp;&amp;... args)']]],
-  ['resize_16',['resize',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a3df6e5117dcf28cab0e705d4ac499f0d',1,'sanisizer']]]
+  ['parallelbufferedreader_0',['ParallelBufferedReader',['../classbyteme_1_1ParallelBufferedReader.html',1,'byteme::ParallelBufferedReader&lt; Type_, Pointer_ &gt;'],['../classbyteme_1_1ParallelBufferedReader.html#ab0097f7773c2b49bd9d96f6bd57c3f94',1,'byteme::ParallelBufferedReader::ParallelBufferedReader()']]],
+  ['parallelbufferedwriter_1',['ParallelBufferedWriter',['../classbyteme_1_1ParallelBufferedWriter.html',1,'byteme::ParallelBufferedWriter&lt; Type_, Pointer_ &gt;'],['../classbyteme_1_1ParallelBufferedWriter.html#a269dc96008f8783973324b72b605f85d',1,'byteme::ParallelBufferedWriter::ParallelBufferedWriter()']]],
+  ['plus_5fone_2',['plus_one',['https://ltla.github.io/sanisizer/namespacesanisizer.html#ae6ca60232f40d5bc56f66fdc28cacaa7',1,'sanisizer']]],
+  ['position_3',['position',['../classbyteme_1_1BufferedReader.html#ab2e8c16f833432e10414208a89fb26c6',1,'byteme::BufferedReader']]],
+  ['pre_5fcast_4',['pre_cast',['https://ltla.github.io/sanisizer/namespacesanisizer.html#aacd55d75b924707ee0eaac356261751b',1,'sanisizer']]],
+  ['product_5',['product',['https://ltla.github.io/sanisizer/namespacesanisizer.html#ace3b6841d0fd165ae3f47d07a713a15c',1,'sanisizer']]],
+  ['product_2ehpp_6',['product.hpp',['https://ltla.github.io/sanisizer/product_8hpp.html',1,'']]],
+  ['product_5funsafe_7',['product_unsafe',['https://ltla.github.io/sanisizer/namespacesanisizer.html#aa3df28f9c655292959f7fbf22e61f9c2',1,'sanisizer']]],
+  ['ptrdiff_2ehpp_8',['ptrdiff.hpp',['https://ltla.github.io/sanisizer/ptrdiff_8hpp.html',1,'']]]
 ];
