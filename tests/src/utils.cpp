@@ -74,7 +74,7 @@ INSTANTIATE_TEST_SUITE_P(
 TEST(SafeUpdatePosition, Basic) {
     {
         unsigned long long blah = 100;
-        std::exception_ptr ex;
+        bool ex = false;
         byteme::safe_update_position(blah, 20, ex);
         EXPECT_EQ(blah, 120);
         EXPECT_FALSE(ex);
@@ -82,7 +82,7 @@ TEST(SafeUpdatePosition, Basic) {
 
     {
         unsigned long long blah = std::numeric_limits<unsigned long long>::max();
-        std::exception_ptr ex;
+        bool ex = false;
         byteme::safe_update_position(blah, 1, ex);
         EXPECT_TRUE(ex);
     }
@@ -91,19 +91,19 @@ TEST(SafeUpdatePosition, Basic) {
 TEST(SafeReportPosition, Basic) {
     {
         unsigned long long blah = 100;
-        std::exception_ptr ex;
+        bool ex = false;
         EXPECT_EQ(byteme::safe_report_position(blah, 20, ex), 120);
     }
 
     {
         unsigned long long blah = 100;
-        std::exception_ptr ex = std::make_exception_ptr(std::runtime_error("FOO"));
+        bool ex = true;
         EXPECT_ANY_THROW(byteme::safe_report_position(blah, 20, ex));
     }
 
     {
         unsigned long long blah = std::numeric_limits<unsigned long long>::max();
-        std::exception_ptr ex;
+        bool ex = false;
         byteme::safe_update_position(blah, 1, ex);
         EXPECT_ANY_THROW(byteme::safe_report_position(blah, 20, ex));
     }

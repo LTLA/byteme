@@ -81,10 +81,7 @@ private:
     // Standard guarantees this to be at least 64 bits, which is more than that of size_t.
     // We don't use uint64_t because that might not be defined by the implementation.
     unsigned long long my_overall = 0;
-
-    // We want to throw an error if the current position is too large for an unsigned long long,
-    // but only if the caller actually requests the position; otherwise we let it slide.
-    std::exception_ptr my_overall_err;
+    bool my_overall_failed = false;
 
 public:
     /**
@@ -93,7 +90,7 @@ public:
      * @return Number of bytes that have currently been written via calls to `write()`.
      */
     unsigned long long number() const {
-        return safe_report_position(my_overall, my_current, my_overall_err);
+        return safe_report_position(my_overall, my_current, my_overall_failed);
     }
 
 public:
@@ -111,7 +108,7 @@ public:
         if (my_current == buffer_size) {
             flush_async();
             my_current = 0;
-            safe_update_position(my_overall, buffer_size, my_overall_err);
+            safe_update_position(my_overall, buffer_size, my_overall_failed);
         }
     }
 
@@ -139,18 +136,18 @@ public:
 
         if (number == 0) {
             flush_async();
-            safe_update_position(my_overall, buffer_size, my_overall_err);
+            safe_update_position(my_overall, buffer_size, my_overall_failed);
             my_current = 0;
             return;
         }
 
         flush_sync(my_buffer.data(), buffer_size);
-        safe_update_position(my_overall, buffer_size, my_overall_err);
+        safe_update_position(my_overall, buffer_size, my_overall_failed);
 
         // Directly filling the output array, bypassing our buffer.
         while (number >= buffer_size) {
             flush_sync(input, buffer_size);
-            safe_update_position(my_overall, buffer_size, my_overall_err);
+            safe_update_position(my_overall, buffer_size, my_overall_failed);
             input += buffer_size;
             number -= buffer_size;
         } 
@@ -188,7 +185,7 @@ public:
      */
     void flush() {
         flush_sync(my_buffer.data(), my_current); // Flush whatever's left.
-        safe_update_position(my_overall, my_current, my_overall_err);
+        safe_update_position(my_overall, my_current, my_overall_failed);
         my_current = 0;
     }
 

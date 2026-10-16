@@ -5,7 +5,6 @@
 #include <limits>
 #include <type_traits>
 #include <cstddef>
-#include <exception>
 
 #include "sanisizer/sanisizer.hpp"
 
@@ -55,20 +54,22 @@ void safe_write(const unsigned char* buffer, std::size_t n, Func_ fun) {
 }
 
 template<typename Overall_, typename Value_>
-void safe_update_position(Overall_& overall, Value_ value, std::exception_ptr& ex) {
-    try {
-        overall = sanisizer::sum<Overall_>(overall, value);
-    } catch (...) {
-        ex = std::current_exception();
+void safe_update_position(Overall_& overall, Value_ value, bool& failed) {
+    if (sanisizer::is_less_than(sanisizer::get_max<Overall_>() - overall, value)) {
+        failed = true;
+    } else {
+        overall += value;
     }
 }
 
 template<typename Overall_, typename Value_>
-Overall_ safe_report_position(Overall_ overall, Value_ value, const std::exception_ptr& ex) {
-    if (ex) {
-        std::rethrow_exception(ex);
+Overall_ safe_report_position(Overall_ overall, Value_ value, bool failed) { 
+    // Don't take the above arguments by reference, as we'll re-use the update code to modify them locally.
+    safe_update_position(overall, value, failed);
+    if (failed) {
+        throw std::overflow_error("detected wraparound in the total number of bytes");
     }
-    return sanisizer::sum<Overall_>(overall, value);
+    return overall;
 }
 
 }

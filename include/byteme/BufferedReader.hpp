@@ -89,10 +89,7 @@ private:
     // Standard guarantees this to be at least 64 bits, which is more than that of size_t.
     // We don't use uint64_t because that might not be defined by the implementation.
     unsigned long long my_overall = 0;
-
-    // We want to throw an error if the current position is too large for an unsigned long long,
-    // but only if the caller actually requests the position; otherwise we let it slide.
-    std::exception_ptr my_overall_err;
+    bool my_overall_failed = false;
 
 public:
     /**
@@ -108,7 +105,7 @@ public:
         }
 
         my_current = 0;
-        safe_update_position(my_overall, my_available, my_overall_err);
+        safe_update_position(my_overall, my_available, my_overall_failed);
 
         const auto buffer_size = get_buffer_size();
         if (my_available == buffer_size) {
@@ -135,7 +132,7 @@ public:
      * @return The position of the current byte since the start of the input.
      */
     unsigned long long position() const {
-        return safe_report_position(my_overall, my_current, my_overall_err);
+        return safe_report_position(my_overall, my_current, my_overall_failed);
     }
 
     /**
@@ -192,7 +189,7 @@ public:
 
         // Directly filling the output array, bypassing our buffer.
         while (number >= buffer_size) {
-            safe_update_position(my_overall, my_available, my_overall_err);
+            safe_update_position(my_overall, my_available, my_overall_failed);
             my_available = refill(output);
 
             output += my_available;
@@ -205,7 +202,7 @@ public:
         }
 
         // Filling the cache and copying the remainder into the output array.
-        safe_update_position(my_overall, my_available, my_overall_err);
+        safe_update_position(my_overall, my_available, my_overall_failed);
         my_available = refill();
 
         const auto to_use = std::min(my_available, number);
