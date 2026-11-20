@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.24)
 
 project(
     byteme
-    VERSION 2.1.4
+    VERSION 2.1.5
     DESCRIPTION "Read/write bytes from various sources"
     LANGUAGES CXX
 )
@@ -20,7 +20,7 @@ option(BYTEME_FETCH_EXTERN "Automatically fetch byteme's external dependencies."
 if(BYTEME_FETCH_EXTERN)
     add_subdirectory(extern)
 else()
-    find_package(ltla_sanisizer 0.2.0 CONFIG REQUIRED)
+    find_package(ltla_sanisizer 0.3.0 CONFIG REQUIRED)
 endif()
 
 target_link_libraries(byteme INTERFACE ltla::sanisizer)
