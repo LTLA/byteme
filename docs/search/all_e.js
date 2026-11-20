@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['to_5ffloat_0',['to_float',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a447b72d39555bf45311e5f3419246e95',1,'sanisizer']]]
+  ['valid_0',['valid',['../classbyteme_1_1BufferedReader.html#a14efd33907a2c64607bc1733aa17aecc',1,'byteme::BufferedReader']]],
+  ['value_1',['value',['https://ltla.github.io/sanisizer/structsanisizer_1_1Bounded.html#a6448aef12ad7eb8dbe6616c66be4b1c8',1,'sanisizer::Bounded::value'],['https://ltla.github.io/sanisizer/structsanisizer_1_1Constant.html#a6095d68700546a49ed3bcd1e508c9799',1,'sanisizer::Constant::value'],['https://ltla.github.io/sanisizer/structsanisizer_1_1is__Bounded.html#aaa906d0c0fd51f6245fac0db26b5718e',1,'sanisizer::is_Bounded::value'],['https://ltla.github.io/sanisizer/structsanisizer_1_1is__Bounded_3_01Bounded_3_01Integer___00_01max___01_4_01_4.html#a97cdec9760ff90fef96343f9ad084e5f',1,'sanisizer::is_Bounded&lt; Bounded&lt; Integer_, max_ &gt; &gt;::value'],['https://ltla.github.io/sanisizer/structsanisizer_1_1is__Constant.html#ac66b9a11eb8396dc2931f968c0a3eb79',1,'sanisizer::is_Constant::value'],['https://ltla.github.io/sanisizer/structsanisizer_1_1is__Constant_3_01Constant_3_01Integer___00_01value___01_4_01_4.html#a4dd498d7d6b615b8b25e6155659f63dc',1,'sanisizer::is_Constant&lt; Constant&lt; Integer_, value_ &gt; &gt;::value']]]
 ];

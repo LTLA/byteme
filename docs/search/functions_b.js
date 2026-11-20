@@ -1,10 +1,11 @@
 var searchData=
 [
-  ['parallelbufferedreader_0',['ParallelBufferedReader',['../classbyteme_1_1ParallelBufferedReader.html#ab0097f7773c2b49bd9d96f6bd57c3f94',1,'byteme::ParallelBufferedReader']]],
-  ['parallelbufferedwriter_1',['ParallelBufferedWriter',['../classbyteme_1_1ParallelBufferedWriter.html#a269dc96008f8783973324b72b605f85d',1,'byteme::ParallelBufferedWriter']]],
-  ['plus_5fone_2',['plus_one',['https://ltla.github.io/sanisizer/namespacesanisizer.html#ae6ca60232f40d5bc56f66fdc28cacaa7',1,'sanisizer']]],
-  ['position_3',['position',['../classbyteme_1_1BufferedReader.html#ab2e8c16f833432e10414208a89fb26c6',1,'byteme::BufferedReader']]],
-  ['pre_5fcast_4',['pre_cast',['https://ltla.github.io/sanisizer/namespacesanisizer.html#aacd55d75b924707ee0eaac356261751b',1,'sanisizer']]],
-  ['product_5',['product',['https://ltla.github.io/sanisizer/namespacesanisizer.html#ace3b6841d0fd165ae3f47d07a713a15c',1,'sanisizer']]],
-  ['product_5funsafe_6',['product_unsafe',['https://ltla.github.io/sanisizer/namespacesanisizer.html#aa3df28f9c655292959f7fbf22e61f9c2',1,'sanisizer']]]
+  ['rawbufferreader_0',['RawBufferReader',['../classbyteme_1_1RawBufferReader.html#a80988c695311f5ebd52680bf93f92847',1,'byteme::RawBufferReader']]],
+  ['rawbufferwriter_1',['RawBufferWriter',['../classbyteme_1_1RawBufferWriter.html#a2536f89eb9c6a58a68269abfa907f3bd',1,'byteme::RawBufferWriter']]],
+  ['rawfilereader_2',['RawFileReader',['../classbyteme_1_1RawFileReader.html#a8408ecd4c0c0d0c03d84b205f941f8d2',1,'byteme::RawFileReader']]],
+  ['rawfilewriter_3',['RawFileWriter',['../classbyteme_1_1RawFileWriter.html#a85b813251f5ce733364d3b02914ad209',1,'byteme::RawFileWriter']]],
+  ['read_4',['read',['../classbyteme_1_1GzipFileReader.html#a4e293b837f53b17cbdaac22e0305d669',1,'byteme::GzipFileReader::read()'],['../classbyteme_1_1IstreamReader.html#aced8bbf4560953a5c331c6ec18edd742',1,'byteme::IstreamReader::read()'],['../classbyteme_1_1RawBufferReader.html#aa2ed5c3a15c37cb69e0ad6a6141f6441',1,'byteme::RawBufferReader::read()'],['../classbyteme_1_1RawFileReader.html#a42ba2360c659f3365a79d0654e26f737',1,'byteme::RawFileReader::read()'],['../classbyteme_1_1Reader.html#ac39e5bfe2feae64643a177ba7dcb7fa9',1,'byteme::Reader::read()'],['../classbyteme_1_1ZlibBufferReader.html#a932af82edf6c8d316f0fb9b54d032179',1,'byteme::ZlibBufferReader::read()']]],
+  ['required_5fbits_5ffor_5ffloat_5',['required_bits_for_float',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a714d5385b83631d2aace857ca004fee8',1,'sanisizer']]],
+  ['reserve_6',['reserve',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a1a07e85a7c7d29d992442f2d40476188',1,'sanisizer']]],
+  ['resize_7',['resize',['https://ltla.github.io/sanisizer/namespacesanisizer.html#a3df6e5117dcf28cab0e705d4ac499f0d',1,'sanisizer']]]
 ];
